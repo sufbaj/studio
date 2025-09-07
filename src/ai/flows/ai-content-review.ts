@@ -15,7 +15,7 @@ const AiContentReviewInputSchema = z.object({
   text: z.string().describe('The text submitted by the student for review.'),
   language: z
     .enum(['Bosnian', 'Croatian', 'Serbian', 'Swedish'])
-    .describe('The language of the text.'),
+    .describe('The language of the text. The student can write in Swedish or the selected BHS language.'),
   gradeLevel: z
     .enum(['1-3', '4-6', '7-9'])
     .describe('The grade level of the student.'),
@@ -35,7 +35,7 @@ const prompt = ai.definePrompt({
   name: 'aiContentReviewPrompt',
   input: {schema: AiContentReviewInputSchema},
   output: {schema: AiContentReviewOutputSchema},
-  prompt: `You are an AI content reviewer specializing in providing feedback to students learning Bosnian, Croatian, and Serbian.
+  prompt: `You are an AI content reviewer specializing in providing feedback to students learning Bosnian, Croatian, and Serbian. The student may write in Swedish or their selected BHS language.
 
 You will review the text submitted by the student and provide personalized feedback to help them improve their language skills.
 
