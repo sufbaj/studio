@@ -5,7 +5,7 @@ import type { AiContentReviewInput } from '@/ai/flows/ai-content-review';
 import { z } from 'zod';
 
 const AiContentReviewInputSchema = z.object({
-  text: z.string().min(10, "Texten måste vara minst 10 tecken lång."),
+  text: z.string().min(2, "Texten måste vara minst 2 tecken lång."),
   language: z.enum(['Bosnian', 'Croatian', 'Serbian', 'Swedish']),
   gradeLevel: z.enum(['1-3', '4-6', '7-9']),
 });
