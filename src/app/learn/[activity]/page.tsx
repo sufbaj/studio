@@ -1,18 +1,14 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import { VocabularyActivity } from '@/components/activities/VocabularyActivity';
 import { SpellingActivity } from '@/components/activities/SpellingActivity';
 import { AiReviewActivity } from '@/components/activities/AiReviewActivity';
 import { NotImplementedActivity } from '@/components/activities/NotImplementedActivity';
 
-interface ActivityPageProps {
-  params: {
-    activity: string;
-  };
-}
-
-export default function ActivityPage({ params }: ActivityPageProps) {
-  const { activity } = params;
+export default function ActivityPage() {
+  const params = useParams();
+  const activity = params.activity as string;
 
   const renderActivity = () => {
     switch (activity) {
