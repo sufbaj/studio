@@ -4,8 +4,8 @@ export const data: LanguageData = {
   bosnian: {
     '1-3': {
       vocabulary: [
-        { id: 21, word: 'hljeb', translation: 'bröd', audio: '' },
         { id: 1, word: 'kafa', translation: 'kaffe', audio: '' },
+        { id: 21, word: 'Hljeb/kruh', translation: 'bröd', audio: '' },
         { id: 2, word: 'škola', translation: 'skola', audio: '' },
         { id: 3, word: 'kuća', translation: 'hus', audio: '' },
         { id: 4, word: 'knjiga', translation: 'bok', audio: '' },
@@ -39,6 +39,16 @@ export const data: LanguageData = {
         { id: 33, word: 'kišobran', translation: 'paraply', audio: '' },
         { id: 34, word: 'lopov', translation: 'tjuv', audio: '' },
         { id: 35, word: 'policajac', translation: 'polis', audio: '' },
+        { id: 36, word: 'učitelj', translation: 'lärare', audio: '' },
+        { id: 37, word: 'učenik', translation: 'elev', audio: '' },
+        { id: 38, word: 'ljekar', translation: 'läkare', audio: '' },
+        { id: 39, word: 'bolnica', translation: 'sjukhus', audio: '' },
+        { id: 40, word: 'prodavnica', translation: 'affär', audio: '' },
+        { id: 41, word: 'novac', translation: 'pengar', audio: '' },
+        { id: 42, word: 'vrijeme', translation: 'tid', audio: '' },
+        { id: 43, word: 'pitanje', translation: 'fråga', audio: '' },
+        { id: 44, word: 'odgovor', translation: 'svar', audio: '' },
+        { id: 45, word: 'problem', translation: 'problem', audio: '' }
       ],
       spelling: [
         { id: 1, sentence: 'Moja mama pije ___.', blank: 'kafu', options: ['stolicu', 'kafu', 'lopatom'] },
@@ -159,6 +169,16 @@ export const data: LanguageData = {
         { id: 33, word: 'kišobran', translation: 'paraply', audio: '' },
         { id: 34, word: 'lopov', translation: 'tjuv', audio: '' },
         { id: 35, word: 'policajac', translation: 'polis', audio: '' },
+        { id: 36, word: 'učitelj', translation: 'lärare', audio: '' },
+        { id: 37, word: 'učenik', translation: 'elev', audio: '' },
+        { id: 38, word: 'liječnik', translation: 'läkare', audio: '' },
+        { id: 39, word: 'bolnica', translation: 'sjukhus', audio: '' },
+        { id: 40, word: 'trgovina', translation: 'affär', audio: '' },
+        { id: 41, word: 'novac', translation: 'pengar', audio: '' },
+        { id: 42, word: 'vrijeme', translation: 'tid', audio: '' },
+        { id: 43, word: 'pitanje', translation: 'fråga', audio: '' },
+        { id: 44, word: 'odgovor', translation: 'svar', audio: '' },
+        { id: 45, word: 'problem', translation: 'problem', audio: '' }
       ],
       spelling: [
         { id: 1, sentence: 'Jedem svježi ___.', blank: 'kruh', options: ['jastuk', 'kruh', 'ključ'] },
@@ -250,6 +270,16 @@ export const data: LanguageData = {
         { id: 33, word: 'kišobran', translation: 'paraply', audio: '' },
         { id: 34, word: 'lopov', translation: 'tjuv', audio: '' },
         { id: 35, word: 'policajac', translation: 'polis', audio: '' },
+        { id: 36, word: 'učitelj', translation: 'lärare', audio: '' },
+        { id: 37, word: 'učenik', translation: 'elev', audio: '' },
+        { id: 38, word: 'lekar', translation: 'läkare', audio: '' },
+        { id: 39, word: 'bolnica', translation: 'sjukhus', audio: '' },
+        { id: 40, word: 'prodavnica', translation: 'affär', audio: '' },
+        { id: 41, word: 'novac', translation: 'pengar', audio: '' },
+        { id: 42, word: 'vreme', translation: 'tid', audio: '' },
+        { id: 43, word: 'pitanje', translation: 'fråga', audio: '' },
+        { id: 44, word: 'odgovor', translation: 'svar', audio: '' },
+        { id: 45, word: 'problem', translation: 'problem', audio: '' }
       ],
       spelling: [
         { id: 1, sentence: 'Kupio sam ___.', blank: 'hleb', options: ['mesec', 'hleb', 'svesku'] },
