@@ -4,6 +4,8 @@ export const data: LanguageData = {
   bosnian: {
     '1-3': {
       vocabulary: [
+        { id: 21, word: 'hljeb', translation: 'bröd', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'loaf bread' },
+        { id: 1, word: 'kafa', translation: 'kaffe', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'coffee cup' },
         { id: 2, word: 'škola', translation: 'skola', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'school building' },
         { id: 3, word: 'kuća', translation: 'hus', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'house exterior' },
         { id: 4, word: 'knjiga', translation: 'bok', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'open book' },
@@ -23,8 +25,6 @@ export const data: LanguageData = {
         { id: 18, word: 'vrata', translation: 'dörr', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'wooden door' },
         { id: 19, word: 'nebo', translation: 'himmel', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'blue sky' },
         { id: 20, word: 'trava', translation: 'gräs', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'green grass' },
-        { id: 1, word: 'kafa', translation: 'kaffe', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'coffee cup' },
-        { id: 21, word: 'hljeb', translation: 'bröd', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'loaf bread' },
         { id: 22, word: 'mlijeko', translation: 'mjölk', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'glass milk' },
         { id: 23, word: 'šećer', translation: 'socker', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'sugar cubes' },
         { id: 24, word: 'so', translation: 'salt', image: 'https://picsum.photos/400/400', audio: '', 'data-ai-hint': 'salt shaker' },
