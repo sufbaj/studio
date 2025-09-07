@@ -84,6 +84,11 @@ export function SpellingActivity() {
     <div>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Stavning: Fyll i luckan</h2>
+         {!isQuizFinished && (
+           <div className="text-lg font-semibold text-muted-foreground">
+             {currentExerciseIndex + 1} / {exercises.length}
+           </div>
+         )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
           {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}

@@ -131,6 +131,11 @@ export function VocabularyActivity() {
     <div>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Rječnik</h2>
+         {!isQuizFinished && (
+           <div className="text-lg font-semibold text-muted-foreground">
+             {currentItemIndex + 1} / {quizItems.length}
+           </div>
+         )}
         <Button onClick={generateQuiz} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
           {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
@@ -149,16 +154,14 @@ export function VocabularyActivity() {
           transition={{ duration: 0.3 }}
         >
           <Card className="overflow-hidden">
-            <CardContent className="p-0">
-              <div className="grid md:grid-cols-2">
-                <div className="p-6 flex flex-col justify-center items-center bg-muted/50 min-h-[250px]">
-                  <div className="text-center">
-                    <p className="text-muted-foreground">Kako se na {getLanguageDisplayName()} kaže:</p>
-                    <p className="text-4xl font-bold font-headline">{currentQuizItem.item.translation}</p>
-                  </div>
-                </div>
-                <div className="p-6 flex flex-col justify-between">
-                  <div className="grid grid-cols-2 gap-4">
+            <CardContent className="p-6 flex flex-col justify-center items-center bg-muted/50 min-h-[250px]">
+              <div className="text-center">
+                <p className="text-muted-foreground">Kako se na {getLanguageDisplayName()} kaže:</p>
+                <p className="text-4xl font-bold font-headline">{currentQuizItem.item.translation}</p>
+              </div>
+            </CardContent>
+             <CardContent className="p-6">
+                 <div className="grid grid-cols-2 gap-4">
                     {currentQuizItem.options.map((option) => (
                       <Button
                         key={option.word}
@@ -186,13 +189,11 @@ export function VocabularyActivity() {
                     </Button>
                     {isAnswered && (
                       <Button onClick={nextQuestion} size="lg">
-                        {language === 'serbian' ? 'Sledeće' : 'Sljedeće'}
+                         {currentItemIndex < quizItems.length - 1 ? (language === 'serbian' ? 'Sledeće' : 'Sljedeće') : 'Vidi rezultate'}
                       </Button>
                     )}
                   </div>
-                </div>
-              </div>
-            </CardContent>
+             </CardContent>
           </Card>
         </motion.div>
         </AnimatePresence>
