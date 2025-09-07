@@ -7,7 +7,7 @@ import { z } from 'zod';
 // This schema should match the one in the AI flow.
 const AiContentReviewInputSchema = z.object({
   text: z.string().min(2, "Texten måste vara minst 2 tecken lång."),
-  language: z.enum(['Bosnian', 'Croatian', 'Serbian', 'Swedish']),
+  language: z.enum(['Bosnian', 'Croatian', 'Serbian']),
   gradeLevel: z.enum(['1-3', '4-6', '7-9']),
 });
 

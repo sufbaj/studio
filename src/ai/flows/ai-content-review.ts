@@ -14,7 +14,7 @@ import {z} from 'genkit';
 const AiContentReviewInputSchema = z.object({
   text: z.string().min(2, "Texten måste vara minst 2 tecken lång.").describe('The text submitted by the student for review.'),
   language: z
-    .enum(['Bosnian', 'Croatian', 'Serbian', 'Swedish'])
+    .enum(['Bosnian', 'Croatian', 'Serbian'])
     .describe('The language of the text. The student can write in Swedish or the selected BHS language.'),
   gradeLevel: z
     .enum(['1-3', '4-6', '7-9'])
