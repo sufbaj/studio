@@ -116,7 +116,7 @@ export function SentencesActivity() {
         <Card>
           <CardHeader>
             <CardTitle className="text-center text-lg md:text-xl text-muted-foreground">
-              Poredaj riječi u ispravan redoslijed.
+              {language === 'serbian' ? 'Poredaj reči u ispravan redosled.' : 'Poredaj riječi u ispravan redoslijed.'}
             </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-8 items-center">
@@ -140,7 +140,7 @@ export function SentencesActivity() {
                  </motion.div>
               ))}
                {answerWords.length === 0 && (
-                <p className="text-muted-foreground">Ovdje poredaj riječi</p>
+                <p className="text-muted-foreground">{language === 'serbian' ? 'Ovde poredaj reči' : 'Ovdje poredaj riječi'}</p>
                )}
             </div>
             
@@ -172,11 +172,11 @@ export function SentencesActivity() {
                  ) : (
                     <div className="text-center">
                         <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold"><XCircle /> Netačno!</p>
-                        <p className="text-muted-foreground mt-1">Ispravna rečenica je: "{currentExercise.sentence}"</p>
+                        <p className="text-muted-foreground mt-1">{language === 'serbian' ? 'Ispravna rečenica je:' : 'Ispravna rečenica je:'} "{currentExercise.sentence}"</p>
                     </div>
                  )}
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? 'Sljedeća rečenica' : 'Vidi rezultate'}
+                    {currentExerciseIndex < exercises.length - 1 ? (language === 'serbian' ? 'Sledeća rečenica' : 'Sljedeća rečenica') : 'Vidi rezultate'}
                 </Button>
               </>
             )}
