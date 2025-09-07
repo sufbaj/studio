@@ -55,8 +55,6 @@ export function AiReviewActivity() {
     setIsLoading(true);
     setFeedback(null);
     try {
-      // The user can write in either the selected BHS language or Swedish.
-      // The flow itself handles the logic, but we pass the *target* BHS language.
       const result = await reviewTextAction({ text, language: toTitleCase(language) as 'Bosnian' | 'Croatian' | 'Serbian', grade });
       
       if (result.error) {

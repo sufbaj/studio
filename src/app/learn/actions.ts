@@ -12,8 +12,6 @@ const AiContentReviewInputSchema = z.object({
 });
 
 export async function reviewTextAction(input: AiContentReviewInput) {
-    // The language field from the client is the BHS language selected.
-    // The AI flow needs to know which BHS language is the target if the user writes in Swedish.
     const validatedInput = AiContentReviewInputSchema.safeParse(input);
 
     if (!validatedInput.success) {
