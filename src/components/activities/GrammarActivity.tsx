@@ -120,7 +120,7 @@ export function GrammarActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-6 flex-col gap-4">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">Provjeri odgovor</Button>
+              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{language === 'serbian' ? 'Proveri odgovor' : 'Provjeri odgovor'}</Button>
             ) : (
               <div className="text-center w-full">
                  {selectedOption === currentExercise.blank ? (
@@ -136,7 +136,7 @@ export function GrammarActivity() {
                   </AlertDescription>
                 </Alert>
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? 'Sljedeće pitanje' : 'Vidi rezultate'}
+                    {currentExerciseIndex < exercises.length - 1 ? (language === 'serbian' ? 'Sledeće pitanje' : 'Sljedeće pitanje') : 'Vidi rezultate'}
                 </Button>
               </div>
             )}

@@ -96,10 +96,10 @@ export function ReadingActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Razumevanje pročitanog</h2>
+        <h2 className="text-3xl font-headline font-bold">{language === 'serbian' ? 'Razumevanje pročitanog' : 'Razumijevanje pročitanog'}</h2>
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Nove vežbe
+          {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
         </Button>
       </div>
       
@@ -147,10 +147,10 @@ export function ReadingActivity() {
               </CardContent>
               <CardFooter className="justify-end mt-6 flex-col items-end gap-4">
                 {!isAnswered ? (
-                  <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">Proveri odgovor</Button>
+                  <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{language === 'serbian' ? 'Proveri odgovor' : 'Provjeri odgovor'}</Button>
                 ) : (
                     <Button onClick={next} size="lg">
-                        {currentQuestionIndex < currentExercise.questions.length - 1 || currentExerciseIndex < exercises.length - 1 ? 'Sledeće pitanje' : 'Vidi rezultate'}
+                        {currentQuestionIndex < currentExercise.questions.length - 1 || currentExerciseIndex < exercises.length - 1 ? (language === 'serbian' ? 'Sledeće pitanje' : 'Sljedeće pitanje') : 'Vidi rezultate'}
                     </Button>
                 )}
               </CardFooter>
@@ -158,11 +158,11 @@ export function ReadingActivity() {
         </div>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">Vežba završena!</h3>
+            <h3 className="text-2xl font-headline mb-4">{language === 'serbian' ? 'Vežba završena!' : 'Vježba završena!'}</h3>
             <p className="text-lg mb-6">Imali ste {totalCorrectAnswers} od {totalQuestions} tačnih odgovora.</p>
             <Button onClick={generateExercises}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Vežbaj ponovo
+                {language === 'serbian' ? 'Vežbaj ponovo' : 'Vježbaj ponovo'}
             </Button>
         </Card>
       )}

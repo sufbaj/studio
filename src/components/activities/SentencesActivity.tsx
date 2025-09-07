@@ -164,7 +164,7 @@ export function SentencesActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-6 flex-col gap-4">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={wordBank.length > 0} size="lg">Provjeri</Button>
+              <Button onClick={checkAnswer} disabled={wordBank.length > 0} size="lg">{language === 'serbian' ? 'Proveri' : 'Provjeri'}</Button>
             ) : (
               <>
                  {isCorrect ? (

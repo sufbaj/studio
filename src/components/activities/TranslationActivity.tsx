@@ -135,7 +135,7 @@ export function TranslationActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-4 flex-col gap-4">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={!inputValue} size="lg">Provjeri</Button>
+              <Button onClick={checkAnswer} disabled={!inputValue} size="lg">{language === 'serbian' ? 'Proveri' : 'Provjeri'}</Button>
             ) : (
               <div className="text-center w-full">
                  {isCorrect ? (
@@ -146,7 +146,7 @@ export function TranslationActivity() {
                     </p>
                  )}
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? 'Sljedeće pitanje' : 'Vidi rezultate'}
+                    {currentExerciseIndex < exercises.length - 1 ? (language === 'serbian' ? 'Sledeće pitanje' : 'Sljedeće pitanje') : 'Vidi rezultate'}
                 </Button>
               </div>
             )}
