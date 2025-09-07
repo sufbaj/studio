@@ -17,6 +17,20 @@ export function AiReviewActivity() {
   const [feedback, setFeedback] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const getLanguageDisplayName = () => {
+    if (!language) return '';
+    switch (language) {
+      case 'bosnian':
+        return 'bosanskom';
+      case 'croatian':
+        return 'hrvatskom';
+      case 'serbian':
+        return 'srpskom';
+      default:
+        return language;
+    }
+  }
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!text || !language || !grade) {
@@ -49,7 +63,7 @@ export function AiReviewActivity() {
     <div>
       <h2 className="text-3xl font-headline font-bold mb-4">AI Granskning</h2>
       <p className="text-muted-foreground mb-6">
-        Skriv en text på {language ? (language.charAt(0).toUpperCase() + language.slice(1)) : 'det valda språket'} och få omedelbar feedback från vår AI-handledare. Du kan översätta en text, skriva en kort berättelse eller bara några meningar.
+        Skriv en text på {getLanguageDisplayName()} och få omedelbar feedback från vår AI-handledare. Du kan översätta en text, skriva en kort berättelse eller bara några meningar.
       </p>
 
       <Card>

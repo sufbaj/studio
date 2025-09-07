@@ -16,9 +16,9 @@ const grades: { id: Grade; label: string }[] = [
 ];
 
 const languages: { id: Language; label: string }[] = [
-  { id: 'bosnian', label: 'Bosniska' },
-  { id: 'croatian', label: 'Kroatiska' },
-  { id: 'serbian', label: 'Serbiska' },
+  { id: 'bosnian', label: 'Bosanski' },
+  { id: 'croatian', label: 'Hrvatski' },
+  { id: 'serbian', label: 'Srpski' },
 ];
 
 export function HomePage() {

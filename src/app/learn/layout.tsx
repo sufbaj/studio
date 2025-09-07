@@ -42,6 +42,19 @@ const navItems = [
   { href: 'ai-review', icon: Bot, label: 'AI Granskning' },
 ];
 
+function getLanguageDisplayName(language: Language) {
+    switch (language) {
+      case 'bosnian':
+        return 'Bosanski';
+      case 'croatian':
+        return 'Hrvatski';
+      case 'serbian':
+        return 'Srpski';
+      default:
+        return '';
+    }
+}
+
 function LearnLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -64,8 +77,6 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
         </div>
     );
   }
-
-  const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
   return (
     <SidebarProvider>
@@ -102,7 +113,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
             <SidebarTrigger className="md:hidden" />
             <div>
               <h1 className="text-xl font-headline font-semibold">
-                {capitalize(language)} - Årskurs {grade}
+                {getLanguageDisplayName(language)} - Årskurs {grade}
               </h1>
             </div>
           </div>
