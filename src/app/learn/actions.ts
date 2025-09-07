@@ -18,14 +18,14 @@ export async function reviewTextAction(input: AiContentReviewInput) {
     });
 
     if (!validatedInput.success) {
-        throw new Error(validatedInput.error.errors.map(e => e.message).join(', '));
+        return { error: validatedInput.error.errors.map(e => e.message).join(', ') };
     }
     
   try {
     const result = await aiContentReview(validatedInput.data);
-    return result;
+    return { feedback: result.feedback };
   } catch (error) {
     console.error("AI content review failed:", error);
-    throw new Error("Kunde inte ansluta till AI-tjänsten.");
+    return { error: "Kunde inte ansluta till AI-tjänsten." };
   }
 }

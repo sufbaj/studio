@@ -37,10 +37,10 @@ export function AiReviewActivity() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!text || !language || !grade) {
+    if (!language || !grade) {
       toast({
         title: 'Fel',
-        description: 'Se till att du har valt språk, årskurs och skrivit en text.',
+        description: 'Se till att du har valt språk och årskurs.',
         variant: 'destructive',
       });
       return;
@@ -50,11 +50,19 @@ export function AiReviewActivity() {
     setFeedback(null);
     try {
       const result = await reviewTextAction({ text, language, grade });
-      setFeedback(result.feedback);
+      if (result.error) {
+         toast({
+            title: 'Ett fel uppstod',
+            description: result.error,
+            variant: 'destructive',
+        });
+      } else if (result.feedback) {
+        setFeedback(result.feedback);
+      }
     } catch (error) {
       console.error(error);
       toast({
-        title: 'Ett fel uppstod',
+        title: 'Ett oväntat fel uppstod',
         description: 'Kunde inte få feedback från AI. Försök igen senare.',
         variant: 'destructive',
       });
