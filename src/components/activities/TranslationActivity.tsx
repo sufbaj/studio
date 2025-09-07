@@ -75,19 +75,14 @@ export function TranslationActivity() {
   };
   
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    if (event.key === 'Enter' && !event.shiftKey && currentExercise.type === 'sentence') {
-        event.preventDefault();
-        if (!isAnswered) {
-          checkAnswer();
-        } else {
-          nextQuestion();
-        }
-    } else if (event.key === 'Enter' && currentExercise.type === 'word') {
-        if (!isAnswered) {
+    if (event.key === 'Enter' && !isAnswered) {
+        if (currentExercise.type === 'word' || (currentExercise.type === 'sentence' && !event.shiftKey)) {
+            event.preventDefault();
             checkAnswer();
-        } else {
-            nextQuestion();
         }
+    } else if (event.key === 'Enter' && isAnswered) {
+        event.preventDefault();
+        nextQuestion();
     }
   };
 
@@ -99,6 +94,7 @@ export function TranslationActivity() {
       setIsCorrect(null);
     } else {
       // Quiz finished
+      setCurrentExerciseIndex(exercises.length);
     }
   };
 
