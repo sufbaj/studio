@@ -7,7 +7,6 @@ export type Activity =
   | 'spelling'
   | 'reading'
   | 'translation'
-  | 'ai-review'
   | 'translator';
 
 export interface VocabularyItem {
