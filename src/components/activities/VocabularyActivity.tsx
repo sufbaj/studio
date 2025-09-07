@@ -23,7 +23,7 @@ type QuizItem = {
 };
 
 export function VocabularyActivity() {
-  const { language, grade, updateScore } = useAppContext();
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
   const [quizItems, setQuizItems] = useState<QuizItem[]>([]);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
@@ -36,17 +36,18 @@ export function VocabularyActivity() {
 
     const vocabularyList = data[language][grade].vocabulary;
     if (vocabularyList.length < 4) {
-      // Not enough words to generate a meaningful quiz
       setQuizItems([]);
       return;
     }
+    
+    resetScore();
 
-    // Shuffle and pick 10 items
     const shuffled = [...vocabularyList].sort(() => 0.5 - Math.random());
     const selectedItems = shuffled.slice(0, Math.min(10, shuffled.length));
+    
+    setMaxScore(selectedItems.length * 10);
 
     const newQuizItems = selectedItems.map((item) => {
-      // Create distractors
       const distractors = vocabularyList
         .filter((v) => v.id !== item.id)
         .sort(() => 0.5 - Math.random())
@@ -62,7 +63,7 @@ export function VocabularyActivity() {
     setCorrectAnswers(0);
     setIsAnswered(false);
     setSelectedAnswer(null);
-  }, [language, grade]);
+  }, [language, grade, setMaxScore, resetScore]);
 
   useEffect(() => {
     generateQuiz();

@@ -8,8 +8,11 @@ interface AppContextType {
   language: Language | null;
   grade: Grade | null;
   score: number;
+  maxScore: number;
   setSettings: (lang: Language, gr: Grade) => void;
   updateScore: (points: number) => void;
+  setMaxScore: (max: number) => void;
+  resetScore: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -18,19 +21,26 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language | null>(null);
   const [grade, setGrade] = useState<Grade | null>(null);
   const [score, setScore] = useState(0);
+  const [maxScore, setMaxScore] = useState(0);
 
   const setSettings = useCallback((lang: Language, gr: Grade) => {
     setLanguage(lang);
     setGrade(gr);
-    setScore(0); // Reset score when settings change
+    setScore(0);
+    setMaxScore(0);
   }, []);
 
   const updateScore = useCallback((points: number) => {
     setScore((prevScore) => prevScore + points);
   }, []);
 
+  const resetScore = useCallback(() => {
+    setScore(0);
+    setMaxScore(0);
+  }, []);
+
   return (
-    <AppContext.Provider value={{ language, grade, score, setSettings, updateScore }}>
+    <AppContext.Provider value={{ language, grade, score, maxScore, setSettings, updateScore, setMaxScore, resetScore }}>
       {children}
     </AppContext.Provider>
   );

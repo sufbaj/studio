@@ -11,7 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 
 export function SpellingActivity() {
-  const { language, grade, updateScore } = useAppContext();
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
   const [exercises, setExercises] = useState<SpellingItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -21,14 +21,17 @@ export function SpellingActivity() {
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
+    resetScore();
     const spellingList = data[language][grade].spelling;
     const shuffled = [...spellingList].sort(() => 0.5 - Math.random());
-    setExercises(shuffled.slice(0, Math.min(10, shuffled.length)));
+    const selectedExercises = shuffled.slice(0, Math.min(10, shuffled.length));
+    setExercises(selectedExercises);
+    setMaxScore(selectedExercises.length * 10);
     setCurrentExerciseIndex(0);
     setSelectedOption(null);
     setIsAnswered(false);
     setCorrectAnswers(0);
-  }, [language, grade]);
+  }, [language, grade, setMaxScore, resetScore]);
 
   useEffect(() => {
     generateExercises();
@@ -58,11 +61,13 @@ export function SpellingActivity() {
       setSelectedOption(null);
       setIsAnswered(false);
     } else {
-      // Quiz finished
+      setCurrentExerciseIndex(exercises.length);
     }
   };
 
   const currentExercise = exercises[currentExerciseIndex];
+  const isQuizFinished = currentExerciseIndex >= exercises.length;
+
 
   if (!language || !grade || exercises.length === 0) {
     return (
@@ -85,9 +90,9 @@ export function SpellingActivity() {
         </Button>
       </div>
       
-      <Progress value={progress} className="mb-6" />
+      <Progress value={isQuizFinished ? 100 : progress} className="mb-6" />
 
-      {currentExerciseIndex < exercises.length ? (
+      {!isQuizFinished && currentExercise ? (
         <Card>
           <CardHeader>
             <CardTitle className="text-center text-2xl md:text-3xl text-muted-foreground">
@@ -127,7 +132,9 @@ export function SpellingActivity() {
                  ) : (
                     <p className="flex items-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> Fel! Rätt svar: {currentExercise.blank}</p>
                  )}
-                <Button onClick={nextQuestion} size="lg">Nästa fråga</Button>
+                <Button onClick={nextQuestion} size="lg">
+                    {currentExerciseIndex < exercises.length - 1 ? "Nästa fråga" : "Visa resultat"}
+                </Button>
               </div>
             )}
           </CardFooter>

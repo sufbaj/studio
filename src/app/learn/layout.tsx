@@ -58,7 +58,7 @@ function getLanguageDisplayName(language: Language) {
 function LearnLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { setSettings, score, language, grade } = useAppContext();
+  const { setSettings, score, maxScore, language, grade } = useAppContext();
 
   useEffect(() => {
     const lang = searchParams.get('lang') as Language;
@@ -120,7 +120,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 p-2 rounded-lg bg-accent/50">
               <Award className="w-6 h-6 text-yellow-500" />
-              <span className="text-lg font-bold">{score} poäng</span>
+              <span className="text-lg font-bold">{score}{maxScore > 0 && ` / ${maxScore}`} poena</span>
             </div>
             <Button asChild variant="outline" size="icon">
               <Link href="/">

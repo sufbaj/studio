@@ -12,13 +12,12 @@ import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 
-// Function to shuffle an array
 const shuffleArray = <T,>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
 export function SentencesActivity() {
-  const { language, grade, updateScore } = useAppContext();
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
   
   const [exercises, setExercises] = useState<SentenceItem[]>([]);
@@ -33,12 +32,15 @@ export function SentencesActivity() {
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
+    resetScore();
     const sentenceList = data[language][grade].sentences;
     const shuffled = shuffleArray(sentenceList);
-    setExercises(shuffled.slice(0, Math.min(5, shuffled.length)));
+    const selectedExercises = shuffled.slice(0, Math.min(5, shuffled.length));
+    setExercises(selectedExercises);
+    setMaxScore(selectedExercises.length * 20);
     setCurrentExerciseIndex(0);
     setCorrectAnswers(0);
-  }, [language, grade]);
+  }, [language, grade, setMaxScore, resetScore]);
 
   useEffect(() => {
     generateExercises();
@@ -85,10 +87,12 @@ export function SentencesActivity() {
     if (currentExerciseIndex < exercises.length - 1) {
       setCurrentExerciseIndex(prev => prev + 1);
     } else {
-      // Quiz finished, this state will be caught by the main render
+      setCurrentExerciseIndex(exercises.length);
     }
   };
   
+  const isQuizFinished = currentExerciseIndex >= exercises.length;
+
   if (!language || !grade || exercises.length === 0) {
     return (
       <div className="text-center">
@@ -110,9 +114,9 @@ export function SentencesActivity() {
         </Button>
       </div>
       
-      <Progress value={progress} className="mb-6" />
+      <Progress value={isQuizFinished ? 100 : progress} className="mb-6" />
 
-      {currentExerciseIndex < exercises.length ? (
+      {!isQuizFinished && currentExercise ? (
         <Card>
           <CardHeader>
             <CardTitle className="text-center text-lg md:text-xl text-muted-foreground">
@@ -120,7 +124,6 @@ export function SentencesActivity() {
             </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-8 items-center">
-            {/* Answer Area */}
             <div className="min-h-[6rem] w-full bg-secondary rounded-lg p-4 flex flex-wrap items-center justify-center gap-2">
               {answerWords.map((word, index) => (
                  <motion.div key={index} layoutId={`word-${word}-${index}`}>
@@ -144,7 +147,6 @@ export function SentencesActivity() {
                )}
             </div>
             
-            {/* Word Bank */}
             <div className="min-h-[6rem] w-full p-4 flex flex-wrap items-center justify-center gap-2">
                 {wordBank.map((word, index) => (
                     <motion.div key={index} layoutId={`word-${word}-${index}`}>

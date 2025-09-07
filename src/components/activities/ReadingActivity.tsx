@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 export function ReadingActivity() {
-  const { language, grade, updateScore } = useAppContext();
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
 
   const [exercises, setExercises] = useState<ReadingItem[]>([]);
@@ -25,15 +25,21 @@ export function ReadingActivity() {
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
+    resetScore();
     const readingList = data[language][grade].reading;
     const shuffled = [...readingList].sort(() => 0.5 - Math.random());
-    setExercises(shuffled.slice(0, Math.min(2, shuffled.length))); // Take up to 2 texts
+    const selectedExercises = shuffled.slice(0, Math.min(2, shuffled.length));
+    setExercises(selectedExercises);
+    
+    const totalQuestions = selectedExercises.reduce((acc, curr) => acc + curr.questions.length, 0);
+    setMaxScore(totalQuestions * 15);
+
     setCurrentExerciseIndex(0);
     setCurrentQuestionIndex(0);
     setSelectedOption(null);
     setIsAnswered(false);
     setTotalCorrectAnswers(0);
-  }, [language, grade]);
+  }, [language, grade, setMaxScore, resetScore]);
 
   useEffect(() => {
     generateExercises();
@@ -71,7 +77,6 @@ export function ReadingActivity() {
         setCurrentExerciseIndex(prev => prev + 1);
         setCurrentQuestionIndex(0);
       } else {
-        // Quiz finished
         setCurrentExerciseIndex(exercises.length);
       }
     }

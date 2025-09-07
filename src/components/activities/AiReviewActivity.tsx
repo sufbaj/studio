@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,11 +11,15 @@ import { Bot, Loader2, Sparkles } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export function AiReviewActivity() {
-  const { language, grade } = useAppContext();
+  const { language, grade, resetScore } = useAppContext();
   const { toast } = useToast();
   const [text, setText] = useState('');
   const [feedback, setFeedback] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    resetScore();
+  }, [resetScore]);
 
   const getLanguageDisplayName = () => {
     if (!language) return '';

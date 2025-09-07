@@ -13,7 +13,7 @@ import { Progress } from '@/components/ui/progress';
 import { Textarea } from '@/components/ui/textarea';
 
 export function TranslationActivity() {
-  const { language, grade, updateScore } = useAppContext();
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
 
   const [exercises, setExercises] = useState<TranslationItem[]>([]);
@@ -25,15 +25,21 @@ export function TranslationActivity() {
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
+    resetScore();
     const translationList = data[language][grade].translations;
     const shuffled = [...translationList].sort(() => 0.5 - Math.random());
-    setExercises(shuffled.slice(0, Math.min(10, shuffled.length)));
+    const selectedExercises = shuffled.slice(0, Math.min(10, shuffled.length));
+    setExercises(selectedExercises);
+    
+    const max = selectedExercises.reduce((acc, curr) => acc + (curr.type === 'sentence' ? 20 : 10), 0);
+    setMaxScore(max);
+
     setCurrentExerciseIndex(0);
     setInputValue('');
     setIsAnswered(false);
     setIsCorrect(null);
     setCorrectAnswers(0);
-  }, [language, grade]);
+  }, [language, grade, setMaxScore, resetScore]);
 
   useEffect(() => {
     generateExercises();
@@ -59,7 +65,6 @@ export function TranslationActivity() {
     if (!inputValue || !currentExercise) return;
     
     setIsAnswered(true);
-    // Normalize answers for comparison: trim whitespace, convert to lowercase, and remove trailing punctuation.
     const normalize = (str: string) => str.trim().toLowerCase().replace(/[.!?]$/, '');
     const correct = normalize(inputValue) === normalize(currentExercise.target);
     setIsCorrect(correct);
@@ -93,7 +98,6 @@ export function TranslationActivity() {
       setIsAnswered(false);
       setIsCorrect(null);
     } else {
-      // Quiz finished
       setCurrentExerciseIndex(exercises.length);
     }
   };

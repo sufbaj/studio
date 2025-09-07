@@ -12,7 +12,7 @@ import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export function GrammarActivity() {
-  const { language, grade, updateScore } = useAppContext();
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
   const [exercises, setExercises] = useState<GrammarItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -22,14 +22,17 @@ export function GrammarActivity() {
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
+    resetScore();
     const grammarList = data[language][grade].grammar;
     const shuffled = [...grammarList].sort(() => 0.5 - Math.random());
-    setExercises(shuffled.slice(0, Math.min(5, shuffled.length)));
+    const selectedExercises = shuffled.slice(0, Math.min(5, shuffled.length));
+    setExercises(selectedExercises);
+    setMaxScore(selectedExercises.length * 15);
     setCurrentExerciseIndex(0);
     setSelectedOption(null);
     setIsAnswered(false);
     setCorrectAnswers(0);
-  }, [language, grade]);
+  }, [language, grade, setMaxScore, resetScore]);
 
   useEffect(() => {
     generateExercises();
@@ -59,7 +62,6 @@ export function GrammarActivity() {
       setSelectedOption(null);
       setIsAnswered(false);
     } else {
-      // Quiz finished
       setCurrentExerciseIndex(exercises.length);
     }
   };
