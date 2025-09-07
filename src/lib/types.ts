@@ -38,11 +38,26 @@ export interface SentenceItem {
   sentence: string;
 }
 
+export interface ReadingQuestion {
+  id: number;
+  question: string;
+  options: string[];
+  answer: string;
+}
+
+export interface ReadingItem {
+  id: number;
+  title: string;
+  text: string;
+  questions: ReadingQuestion[];
+}
+
 export interface Content {
   vocabulary: VocabularyItem[];
   spelling: SpellingItem[];
   sentences: SentenceItem[];
   grammar: GrammarItem[];
+  reading: ReadingItem[];
 }
 
 export type LanguageData = Record<Language, Record<Grade, Content>>;

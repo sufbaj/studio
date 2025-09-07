@@ -55,10 +55,34 @@ export const data: LanguageData = {
         { id: 3, sentence: 'Ovo je ___ kuća.', blank: 'moja', options: ['moj', 'moja', 'moje'], explanation: 'Imenica "kuća" je ženskog roda, pa prisvojna zamjenica mora biti u ženskom rodu (moja).' },
         { id: 4, sentence: 'Idem u ___ grad.', blank: 'veliki', options: ['veliki', 'velika', 'veliko'], explanation: 'Imenica "grad" je muškog roda, pa pridjev mora biti u muškom rodu (veliki).' },
         { id: 5, sentence: 'Jedem ___ jabuku.', blank: 'crvenu', options: ['crveni', 'crvena', 'crvenu'], explanation: 'U akuzativu jednine ženskog roda, pridjev "crven" ima oblik "crvenu".' }
+      ],
+      reading: [
+        {
+          id: 1,
+          title: "Izlet u šumu",
+          text: "Jednog sunčanog dana, Ana i njen brat Marko su otišli na izlet u šumu sa roditeljima. Ponijeli su korpu punu hrane. U šumi su vidjeli mnogo drveća i čuli cvrkut ptica. Marko je vidio vjevericu kako se penje uz drvo. Ana je brala šareno cvijeće. Nakon šetnje, sjeli su na deku i ručali. Bio je to divan dan.",
+          questions: [
+            { id: 1, question: "Ko je otišao na izlet?", options: ["Samo Ana", "Ana i Marko sa roditeljima", "Samo Marko"], answer: "Ana i Marko sa roditeljima" },
+            { id: 2, question: "Šta je Marko vidio u šumi?", options: ["Zeca", "Medvjeda", "Vjevericu"], answer: "Vjevericu" },
+            { id: 3, question: "Šta je Ana radila?", options: ["Pela se na drvo", "Brala cvijeće", "Spavala"], answer: "Brala cvijeće" },
+            { id: 4, question: "Kakav je bio dan?", options: ["Kišovit", "Divan", "Hladan"], answer: "Divan" }
+          ]
+        },
+        {
+          id: 2,
+          title: "Pas Medo",
+          text: "Dječak po imenu Emir ima psa koji se zove Medo. Medo je veliki žuti pas sa dugim repom. Svaki dan, Emir i Medo idu u park. Emir baca lopticu, a Medo je donosi nazad. Medo voli da se igra i da laje na mačke. Navečer, Medo spava u svojoj kućici u dvorištu. Emir mnogo voli svog psa.",
+          questions: [
+            { id: 1, question: "Kako se zove Emirov pas?", options: ["Žućo", "Lajko", "Medo"], answer: "Medo" },
+            { id: 2, question: "Gdje se Emir i Medo igraju?", options: ["U kući", "U parku", "U školi"], answer: "U parku" },
+            { id: 3, question: "Šta Emir baca Medi?", options: ["Kamen", "Granu", "Lopticu"], answer: "Lopticu" },
+            { id: 4, question: "Gdje Medo spava?", options: ["U Emirovom krevetu", "U svojoj kućici", "Na drvetu"], answer: "U svojoj kućici" }
+          ]
+        }
       ]
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
   },
   croatian: {
     '1-3': {
@@ -107,9 +131,10 @@ export const data: LanguageData = {
         { id: 4, sentence: 'Idem u ___ grad.', blank: 'velik', options: ['velik', 'velika', 'veliko'], explanation: 'Imenica "grad" je muškog roda, pa pridjev mora biti u muškom rodu (velik).' },
         { id: 5, sentence: 'Jedem ___ jabuku.', blank: 'crvenu', options: ['crveni', 'crvena', 'crvenu'], explanation: 'U akuzativu jednine ženskog roda, pridjev "crven" ima oblik "crvenu".' }
       ],
+      reading: [],
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
   },
   serbian: {
     '1-3': {
@@ -158,8 +183,9 @@ export const data: LanguageData = {
         { id: 4, sentence: 'Idem u ___ grad.', blank: 'veliki', options: ['veliki', 'velika', 'veliko'], explanation: 'Imenica "grad" je muškog roda, pa pridev mora biti u muškom rodu (veliki).' },
         { id: 5, sentence: 'Jedem ___ jabuku.', blank: 'crvenu', options: ['crveni', 'crvena', 'crvenu'], explanation: 'U akuzativu jednine ženskog roda, pridev "crven" ima oblik "crvenu".' }
       ],
+      reading: [],
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
   },
 };
