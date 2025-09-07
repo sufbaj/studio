@@ -25,9 +25,15 @@ export interface SpellingItem {
   options: string[];
 }
 
+export interface SentenceItem {
+  id: number;
+  sentence: string;
+}
+
 export interface Content {
   vocabulary: VocabularyItem[];
   spelling: SpellingItem[];
+  sentences: SentenceItem[];
   // Other activity types would be defined here
 }
 

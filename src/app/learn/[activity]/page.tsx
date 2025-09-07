@@ -5,6 +5,7 @@ import { VocabularyActivity } from '@/components/activities/VocabularyActivity';
 import { SpellingActivity } from '@/components/activities/SpellingActivity';
 import { AiReviewActivity } from '@/components/activities/AiReviewActivity';
 import { NotImplementedActivity } from '@/components/activities/NotImplementedActivity';
+import { SentencesActivity } from '@/components/activities/SentencesActivity';
 
 export default function ActivityPage() {
   const params = useParams();
@@ -16,6 +17,8 @@ export default function ActivityPage() {
         return <VocabularyActivity />;
       case 'spelling':
         return <SpellingActivity />;
+      case 'sentences':
+        return <SentencesActivity />;
       case 'ai-review':
         return <AiReviewActivity />;
       default:

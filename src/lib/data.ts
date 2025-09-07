@@ -22,9 +22,16 @@ export const data: LanguageData = {
         { id: 4, sentence: 'Čitam ___.', blank: 'knjigu', options: ['knjigu', 'staklo', 'zid'] },
         { id: 5, sentence: 'Jedem ___.', blank: 'jabuku', options: ['kamen', 'jabuku', 'cipelu'] },
       ],
+      sentences: [
+        { id: 1, sentence: 'Dječak čita knjigu.' },
+        { id: 2, sentence: 'Djevojčica jede jabuku.' },
+        { id: 3, sentence: 'Pas trči brzo.' },
+        { id: 4, sentence: 'Mačka spava na suncu.' },
+        { id: 5, sentence: 'Mi idemo u školu.' },
+      ],
     },
-    '4-6': { vocabulary: [], spelling: [] },
-    '7-9': { vocabulary: [], spelling: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [] },
   },
   croatian: {
     '1-3': {
@@ -39,9 +46,14 @@ export const data: LanguageData = {
         { id: 1, sentence: 'Jedem svježi ___.', blank: 'kruh', options: ['jastuk', 'kruh', 'ključ'] },
         { id: 2, sentence: 'Brojimo do ___.', blank: 'tisuću', options: ['trava', 'tisuću', 'zvijezda'] },
       ],
+      sentences: [
+        { id: 1, sentence: 'Dječak čita knjigu.' },
+        { id: 2, sentence: 'Djevojčica jede jabuku.' },
+        { id: 3, sentence: 'Pas trči brzo.' },
+      ],
     },
-    '4-6': { vocabulary: [], spelling: [] },
-    '7-9': { vocabulary: [], spelling: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [] },
   },
   serbian: {
     '1-3': {
@@ -56,8 +68,13 @@ export const data: LanguageData = {
         { id: 1, sentence: 'Kupio sam ___.', blank: 'hleb', options: ['mesec', 'hleb', 'svesku'] },
         { id: 2, sentence: 'Imam ___ dinara.', blank: 'hiljadu', options: ['pesmu', 'hiljadu', 'olovku'] },
       ],
+      sentences: [
+        { id: 1, sentence: 'Dečak čita knjigu.' },
+        { id: 2, sentence: 'Devojčica jede jabuku.' },
+        { id: 3, sentence: 'Pas trči brzo.' },
+      ],
     },
-    '4-6': { vocabulary: [], spelling: [] },
-    '7-9': { vocabulary: [], spelling: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [] },
   },
 };
