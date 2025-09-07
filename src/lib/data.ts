@@ -144,6 +144,11 @@ export const data: LanguageData = {
         { id: 3, word: 'porodica', translation: 'familj', image: 'https://picsum.photos/300/200?image=834', audio: '', 'data-ai-hint': 'family portrait' },
         { id: 4, word: 'reka', translation: 'flod', image: 'https://picsum.photos/300/200?image=1016', audio: '', 'data-ai-hint': 'calm river' },
         { id: 5, word: 'selo', translation: 'by', image: 'https://picsum.photos/300/200?image=1028', audio: '', 'data-ai-hint': 'small village' },
+        { id: 6, word: 'kafa', translation: 'kaffe', image: 'https://picsum.photos/300/200?image=1060', audio: '', 'data-ai-hint': 'coffee cup' },
+        { id: 7, word: 'škola', translation: 'skola', image: 'https://picsum.photos/300/200?image=211', audio: '', 'data-ai-hint': 'school building' },
+        { id: 8, word: 'kuća', translation: 'hus', image: 'https://picsum.photos/300/200?image=1011', audio: '', 'data-ai-hint': 'house exterior' },
+        { id: 9, word: 'knjiga', translation: 'bok', image: 'https://picsum.photos/300/200?image=24', audio: '', 'data-ai-hint': 'open book' },
+        { id: 10, word: 'jabuka', translation: 'äpple', image: 'https://picsum.photos/300/200?image=1080', audio: '', 'data-ai-hint': 'red apple' },
       ],
       spelling: [
         { id: 1, sentence: 'Kupio sam ___.', blank: 'hleb', options: ['mesec', 'hleb', 'svesku'] },
@@ -183,7 +188,30 @@ export const data: LanguageData = {
         { id: 4, sentence: 'Idem u ___ grad.', blank: 'veliki', options: ['veliki', 'velika', 'veliko'], explanation: 'Imenica "grad" je muškog roda, pa pridev mora biti u muškom rodu (veliki).' },
         { id: 5, sentence: 'Jedem ___ jabuku.', blank: 'crvenu', options: ['crveni', 'crvena', 'crvenu'], explanation: 'U akuzativu jednine ženskog roda, pridev "crven" ima oblik "crvenu".' }
       ],
-      reading: [],
+      reading: [
+        {
+          id: 1,
+          title: "Izlet u šumu",
+          text: "Jednog sunčanog dana, Ana i njen brat Marko su otišli na izlet u šumu sa roditeljima. Poneli su korpu punu hrane. U šumi su videli mnogo drveća i čuli cvrkut ptica. Marko je video vevericu kako se penje uz drvo. Ana je brala šareno cveće. Posle šetnje, seli su na ćebe i ručali. Bio je to divan dan.",
+          questions: [
+            { id: 1, question: "Ko je otišao na izlet?", options: ["Samo Ana", "Ana i Marko sa roditeljima", "Samo Marko"], answer: "Ana i Marko sa roditeljima" },
+            { id: 2, question: "Šta je Marko video u šumi?", options: ["Zeca", "Medveda", "Vevericu"], answer: "Vevericu" },
+            { id: 3, question: "Šta je Ana radila?", options: ["Pela se na drvo", "Brala cveće", "Spavala"], answer: "Brala cveće" },
+            { id: 4, question: "Kakav je bio dan?", options: ["Kišovit", "Divan", "Hladan"], answer: "Divan" }
+          ]
+        },
+        {
+          id: 2,
+          title: "Pas Žuća",
+          text: "Dečak po imenu Milan ima psa koji se zove Žuća. Žuća je veliki žuti pas sa dugim repom. Svaki dan, Milan i Žuća idu u park. Milan baca lopticu, a Žuća je donosi nazad. Žuća voli da se igra i da laje na mačke. Uveče, Žuća spava u svojoj kućici u dvorištu. Milan mnogo voli svog psa.",
+          questions: [
+            { id: 1, question: "Kako se zove Milanov pas?", options: ["Šare", "Lajko", "Žuća"], answer: "Žuća" },
+            { id: 2, question: "Gde se Milan i Žuća igraju?", options: ["U kući", "U parku", "U školi"], answer: "U parku" },
+            { id: 3, question: "Šta Milan baca Žući?", options: ["Kamen", "Granu", "Lopticu"], answer: "Lopticu" },
+            { id: 4, question: "Gde Žuća spava?", options: ["U Milanovom krevetu", "U svojoj kućici", "Na drvetu"], answer: "U svojoj kućici" }
+          ]
+        }
+      ],
     },
     '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
     '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },

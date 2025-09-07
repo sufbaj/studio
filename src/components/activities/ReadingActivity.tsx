@@ -64,7 +64,7 @@ export function ReadingActivity() {
     setSelectedOption(null);
     setIsAnswered(false);
     
-    if (currentQuestionIndex < currentExercise.questions.length - 1) {
+    if (currentExercise && currentQuestionIndex < currentExercise.questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       if (currentExerciseIndex < exercises.length - 1) {
@@ -72,6 +72,7 @@ export function ReadingActivity() {
         setCurrentQuestionIndex(0);
       } else {
         // Quiz finished
+        setCurrentExerciseIndex(exercises.length);
       }
     }
   };
@@ -86,8 +87,8 @@ export function ReadingActivity() {
   }
   
   const totalQuestions = exercises.reduce((acc, curr) => acc + curr.questions.length, 0);
-  const answeredQuestions = exercises.slice(0, currentExerciseIndex).reduce((acc, curr) => acc + curr.questions.length, 0) + currentQuestionIndex;
-  const progress = (answeredQuestions / totalQuestions) * 100;
+  const answeredQuestions = exercises.slice(0, currentExerciseIndex).reduce((acc, curr) => acc + curr.questions.length, 0) + (currentExercise ? currentQuestionIndex : 0);
+  const progress = totalQuestions > 0 ? (answeredQuestions / totalQuestions) * 100 : 0;
   
   const isQuizFinished = currentExerciseIndex >= exercises.length;
 
@@ -95,16 +96,16 @@ export function ReadingActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Razumijevanje pročitanog</h2>
+        <h2 className="text-3xl font-headline font-bold">Razumevanje pročitanog</h2>
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Nove vježbe
+          Nove vežbe
         </Button>
       </div>
       
       <Progress value={isQuizFinished ? 100 : progress} className="mb-6" />
 
-      {!isQuizFinished ? (
+      {!isQuizFinished && currentExercise && currentQuestion ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card>
                 <CardHeader>
@@ -138,7 +139,7 @@ export function ReadingActivity() {
                   >
                     {isAnswered && (
                         option === currentQuestion.answer ? <CheckCircle className="mr-2 h-5 w-5 text-green-600" /> :
-                        selectedOption === option && <XCircle className="mr-2 h-5 w-5 text-red-600" />
+                        (selectedOption === option && <XCircle className="mr-2 h-5 w-5 text-red-600" />)
                     )}
                     {option}
                   </Button>
@@ -146,10 +147,10 @@ export function ReadingActivity() {
               </CardContent>
               <CardFooter className="justify-end mt-6 flex-col items-end gap-4">
                 {!isAnswered ? (
-                  <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">Provjeri odgovor</Button>
+                  <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">Proveri odgovor</Button>
                 ) : (
                     <Button onClick={next} size="lg">
-                        {currentQuestionIndex < currentExercise.questions.length - 1 || currentExerciseIndex < exercises.length - 1 ? 'Sljedeće pitanje' : 'Vidi rezultate'}
+                        {currentQuestionIndex < currentExercise.questions.length - 1 || currentExerciseIndex < exercises.length - 1 ? 'Sledeće pitanje' : 'Vidi rezultate'}
                     </Button>
                 )}
               </CardFooter>
@@ -157,11 +158,11 @@ export function ReadingActivity() {
         </div>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">Vježba završena!</h3>
+            <h3 className="text-2xl font-headline mb-4">Vežba završena!</h3>
             <p className="text-lg mb-6">Imali ste {totalCorrectAnswers} od {totalQuestions} tačnih odgovora.</p>
             <Button onClick={generateExercises}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Vježbaj ponovo
+                Vežbaj ponovo
             </Button>
         </Card>
       )}
