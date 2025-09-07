@@ -40,6 +40,20 @@ export function TranslationActivity() {
 
   const currentExercise = useMemo(() => exercises[currentExerciseIndex], [exercises, currentExerciseIndex]);
 
+  const getLanguageDisplayName = () => {
+    if (!language) return '';
+    switch (language) {
+      case 'bosnian':
+        return 'bosanski';
+      case 'croatian':
+        return 'hrvatski';
+      case 'serbian':
+        return 'srpski';
+      default:
+        return '';
+    }
+  }
+
   const checkAnswer = () => {
     if (!inputValue || !currentExercise) return;
     
@@ -104,7 +118,7 @@ export function TranslationActivity() {
       {!isQuizFinished ? (
         <Card className="max-w-xl mx-auto">
           <CardHeader className="text-center">
-            <CardDescription>Prevedi sljedeću riječ na bosanski/hrvatski/srpski:</CardDescription>
+            <CardDescription>Prevedi sljedeću riječ na <span className="font-semibold">{getLanguageDisplayName()}</span>:</CardDescription>
             <CardTitle className="text-4xl font-bold font-headline py-4">{currentExercise.translation}</CardTitle>
           </CardHeader>
           <CardContent>
