@@ -10,9 +10,9 @@ import { cn } from '@/lib/utils';
 import type { Grade, Language } from '@/lib/types';
 
 const grades: { id: Grade; label: string }[] = [
-  { id: '1-3', label: '1-3. razred' },
-  { id: '4-6', label: '4-6. razred' },
-  { id: '7-9', label: '7-9. razred' },
+  { id: '1-3', label: '1-3. razreda' },
+  { id: '4-6', label: '4-6. razreda' },
+  { id: '7-9', label: '7-9. razreda' },
 ];
 
 const languages: { id: Language; label: string }[] = [
