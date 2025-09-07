@@ -1,0 +1,153 @@
+'use client';
+
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useAppContext } from '@/contexts/AppContext';
+import { data } from '@/lib/data';
+import type { VocabularyItem } from '@/lib/types';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { Progress } from '@/components/ui/progress';
+
+export function TranslationActivity() {
+  const { language, grade, updateScore } = useAppContext();
+  const { toast } = useToast();
+
+  const [exercises, setExercises] = useState<VocabularyItem[]>([]);
+  const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
+  const [inputValue, setInputValue] = useState('');
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+
+  const generateExercises = useCallback(() => {
+    if (!language || !grade) return;
+    const vocabularyList = data[language][grade].vocabulary;
+    const shuffled = [...vocabularyList].sort(() => 0.5 - Math.random());
+    setExercises(shuffled.slice(0, Math.min(10, shuffled.length)));
+    setCurrentExerciseIndex(0);
+    setInputValue('');
+    setIsAnswered(false);
+    setIsCorrect(null);
+    setCorrectAnswers(0);
+  }, [language, grade]);
+
+  useEffect(() => {
+    generateExercises();
+  }, [generateExercises]);
+
+  const currentExercise = useMemo(() => exercises[currentExerciseIndex], [exercises, currentExerciseIndex]);
+
+  const checkAnswer = () => {
+    if (!inputValue || !currentExercise) return;
+    
+    setIsAnswered(true);
+    const correct = inputValue.trim().toLowerCase() === currentExercise.word.toLowerCase();
+    setIsCorrect(correct);
+
+    if (correct) {
+      updateScore(15);
+      setCorrectAnswers(prev => prev + 1);
+      toast({ title: "Tačno!", description: "Sjajno! +15 poena." });
+    } else {
+      toast({ title: "Netačno!", description: `Tačan odgovor je "${currentExercise.word}".`, variant: "destructive" });
+    }
+  };
+  
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      if (!isAnswered) {
+        checkAnswer();
+      } else {
+        nextQuestion();
+      }
+    }
+  };
+
+  const nextQuestion = () => {
+    if (currentExerciseIndex < exercises.length - 1) {
+      setCurrentExerciseIndex(prev => prev + 1);
+      setInputValue('');
+      setIsAnswered(false);
+      setIsCorrect(null);
+    } else {
+      // Quiz finished
+    }
+  };
+
+  if (!language || !grade || exercises.length === 0) {
+    return (
+      <div className="text-center">
+        <h2 className="text-2xl font-headline mb-4">Översättning</h2>
+        <p>Nema dostupnih vježbi za prevođenje.</p>
+      </div>
+    );
+  }
+
+  const progress = (currentExerciseIndex / exercises.length) * 100;
+  const isQuizFinished = currentExerciseIndex >= exercises.length;
+
+  return (
+    <div>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-3xl font-headline font-bold">Prevedi riječ</h2>
+        <Button onClick={generateExercises} variant="outline" size="sm">
+          <RefreshCw className="w-4 h-4 mr-2" />
+          Nove vježbe
+        </Button>
+      </div>
+
+      <Progress value={isQuizFinished ? 100 : progress} className="mb-6" />
+
+      {!isQuizFinished ? (
+        <Card className="max-w-xl mx-auto">
+          <CardHeader className="text-center">
+            <CardDescription>Prevedi sljedeću riječ na bosanski/hrvatski/srpski:</CardDescription>
+            <CardTitle className="text-4xl font-bold font-headline py-4">{currentExercise.translation}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Unesi prijevod..."
+              className="text-center text-lg h-12"
+              disabled={isAnswered}
+              autoFocus
+            />
+          </CardContent>
+          <CardFooter className="justify-center mt-4 flex-col gap-4">
+            {!isAnswered ? (
+              <Button onClick={checkAnswer} disabled={!inputValue} size="lg">Provjeri</Button>
+            ) : (
+              <div className="text-center w-full">
+                 {isCorrect ? (
+                    <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> Tačno!</p>
+                 ) : (
+                    <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4">
+                        <XCircle /> Netačno! Tačan odgovor je: <span className="font-mono bg-red-100 px-2 py-1 rounded-md">{currentExercise.word}</span>
+                    </p>
+                 )}
+                <Button onClick={nextQuestion} size="lg">
+                    {currentExerciseIndex < exercises.length - 1 ? 'Sljedeće pitanje' : 'Vidi rezultate'}
+                </Button>
+              </div>
+            )}
+          </CardFooter>
+        </Card>
+      ) : (
+        <Card className="text-center p-8 max-w-xl mx-auto">
+          <h3 className="text-2xl font-headline mb-4">Vježba završena!</h3>
+          <p className="text-lg mb-6">Imali ste {correctAnswers} od {exercises.length} tačnih prijevoda.</p>
+          <Button onClick={generateExercises}>
+            <RefreshCw className="w-4 h-4 mr-2" />
+            Vježbaj ponovo
+          </Button>
+        </Card>
+      )}
+    </div>
+  );
+}

@@ -8,6 +8,7 @@ import { NotImplementedActivity } from '@/components/activities/NotImplementedAc
 import { SentencesActivity } from '@/components/activities/SentencesActivity';
 import { GrammarActivity } from '@/components/activities/GrammarActivity';
 import { ReadingActivity } from '@/components/activities/ReadingActivity';
+import { TranslationActivity } from '@/components/activities/TranslationActivity';
 
 export default function ActivityPage() {
   const params = useParams();
@@ -27,6 +28,8 @@ export default function ActivityPage() {
         return <ReadingActivity />;
       case 'ai-review':
         return <AiReviewActivity />;
+      case 'translation':
+        return <TranslationActivity />;
       default:
         return <NotImplementedActivity activityName={activity} />;
     }
