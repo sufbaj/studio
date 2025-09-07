@@ -5,8 +5,8 @@ export const data: LanguageData = {
   bosnian: {
     '1-3': {
       vocabulary: [
-        { id: 21, word: 'Hljeb/kruh', translation: 'bröd', audio: 'https://picsum.photos/400/400?random=21' },
         { id: 1, word: 'kafa', translation: 'kaffe', audio: 'https://picsum.photos/400/400?random=1' },
+        { id: 21, word: 'Hljeb/kruh', translation: 'bröd', audio: 'https://picsum.photos/400/400?random=21' },
         { id: 2, word: 'škola', translation: 'skola', audio: 'https://picsum.photos/400/400?random=2' },
         { id: 3, word: 'kuća', translation: 'hus', audio: 'https://picsum.photos/400/400?random=3' },
         { id: 4, word: 'knjiga', translation: 'bok', audio: 'https://picsum.photos/400/400?random=4' },
@@ -80,8 +80,16 @@ export const data: LanguageData = {
         { id: 16, sentence: '___ se igra s loptom.', blank: 'Dječak', options: ['Dječak', 'Dečak', 'Djećak'] },
         { id: 17, sentence: 'U ___ ima puno knjiga.', blank: 'biblioteci', options: ['biblioteci', 'knjižnici', 'knjižnjici'] },
         { id: 18, sentence: 'Danas je lijep dan u ___.', blank: 'Sarajevu', options: ['Sarajevu', 'Sarejevu', 'Sarajvu'] },
-        { id: 19, sentence: 'U ___ se pravi ćevap.', blank: 'džezvi', options: ['džezvi', 'đezvi', 'djezvi'] },
-        { id: 20, sentence: 'Volim jesti ___ pitu.', blank: 'burekđinicu', options: ['burekđinicu', 'burekčinicu', 'burekcinicu'] }
+        { id: 19, sentence: 'U ___ se pravi kafa.', blank: 'džezvi', options: ['džezvi', 'đezvi', 'djezvi'] },
+        { id: 20, sentence: 'Volim jesti ___ pitu.', blank: 'burekđinicu', options: ['burekđinicu', 'burekčinicu', 'burekcinicu'] },
+        { id: 21, sentence: 'Djevojčica se igra u ___.', blank: 'sjenici', options: ['sjenici', 'sjenici', 'sjenici'] },
+        { id: 22, sentence: 'On je moj ___.', blank: 'đak', options: ['đak', 'djak', 'džak'] },
+        { id: 23, sentence: 'Vani je prava ___.', blank: 'mećava', options: ['mećava', 'mečava', 'mećeva'] },
+        { id: 24, sentence: 'Obukao je smeđi ___.', blank: 'džemper', options: ['džemper', 'đemper', 'demper'] },
+        { id: 25, sentence: 'Ovo je ___ škola.', blank: 'dječja', options: ['dječja', 'diječja', 'dečja'] },
+        { id: 26, sentence: 'U sobi je upaljena ___.', blank: 'svijeća', options: ['svijeća', 'sviječa', 'sveća'] },
+        { id: 27, sentence: 'Boli me desno ___.', blank: 'rame', options: ['rame', 'ramje', 'ranje'] },
+        { id: 28, sentence: 'Mačka prede u ___.', blank: 'krilu', options: ['krilu', 'krinju', 'krillu'] }
       ],
       sentences: [
         { id: 1, sentence: 'Dječak čita knjigu.' },
@@ -226,7 +234,16 @@ export const data: LanguageData = {
         { id: 12, sentence: 'Baka peče ukusan ___.', blank: 'kolač', options: ['kolač', 'kolać', 'kolac'] },
         { id: 13, sentence: '___ je zeleno.', blank: 'Lišće', options: ['Lišće', 'Lishche', 'Lisce'] },
         { id: 14, sentence: '___ se igra s loptom.', blank: 'Dječak', options: ['Dječak', 'Dečak', 'Djećak'] },
-        { id: 15, sentence: 'U ___ ima puno knjiga.', blank: 'knjižnici', options: ['biblioteci', 'knjižnici', 'knjižnjici'] }
+        { id: 15, sentence: 'U ___ ima puno knjiga.', blank: 'knjižnici', options: ['biblioteci', 'knjižnici', 'knjižnici'] },
+        { id: 16, sentence: 'Djevojčica se igra u ___.', blank: 'pješčaniku', options: ['pješčaniku', 'pjesčaniku', 'pješčaniku'] },
+        { id: 17, sentence: 'On je moj ___.', blank: 'učenik', options: ['učenik', 'ućitelj', 'učenjak'] },
+        { id: 18, sentence: 'Vani je prava ___.', blank: 'mećava', options: ['mećava', 'mečava', 'mećeva'] },
+        { id: 19, sentence: 'Obukao je smeđi ___.', blank: 'džemper', options: ['džemper', 'đemper', 'demper'] },
+        { id: 20, sentence: 'Ovo je ___ škola.', blank: 'dječja', options: ['dječja', 'diječja', 'dečja'] },
+        { id: 21, sentence: 'U sobi je upaljena ___.', blank: 'svijeća', options: ['svijeća', 'sviječa', 'sveća'] },
+        { id: 22, sentence: 'Boli me desno ___.', blank: 'rame', options: ['rame', 'ramje', 'ranje'] },
+        { id: 23, sentence: 'Mačka prede u ___.', blank: 'krilu', options: ['krilu', 'krinju', 'krillu'] },
+        { id: 24, sentence: 'U ___ se kuha kava.', blank: 'džezvi', options: ['džezvi', 'đezvi', 'djezvi'] }
       ],
       sentences: [
         { id: 1, sentence: 'Dječak čita knjigu.' },
