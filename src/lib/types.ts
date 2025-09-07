@@ -7,7 +7,8 @@ export type Activity =
   | 'spelling'
   | 'reading'
   | 'translation'
-  | 'ai-review';
+  | 'ai-review'
+  | 'translator';
 
 export interface VocabularyItem {
   id: number;

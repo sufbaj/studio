@@ -27,7 +27,8 @@ import {
   Languages,
   Bot,
   Home,
-  Award
+  Award,
+  BookOpen
 } from 'lucide-react';
 import type { Language, Grade, Activity } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -40,6 +41,7 @@ const navItems = [
   { href: 'reading', icon: Languages, label: 'Läsförståelse' },
   { href: 'translation', icon: Languages, label: 'Översätta från svenska' },
   { href: 'ai-review', icon: Bot, label: 'AI Granskning' },
+  { href: 'translator', icon: BookOpen, label: 'Översättare' },
 ];
 
 function getLanguageDisplayName(language: Language) {
