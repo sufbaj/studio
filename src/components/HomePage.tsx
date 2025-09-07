@@ -66,7 +66,7 @@ export function HomePage() {
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-4 mb-4">
           <Logo className="h-12 w-12 text-primary" />
-          <h1 className="text-5xl font-headline font-bold tracking-tight">Učim BHS Interaktivt</h1>
+          <h1 className="text-5xl font-headline font-bold tracking-tight">Učim BHS</h1>
         </div>
         <p className="text-xl text-muted-foreground">En rolig väg till att bemästra bosniska, kroatiska och serbiska!</p>
       </div>
@@ -95,7 +95,7 @@ export function HomePage() {
 
           {step === 'language' && (
             <motion.div key="language" initial="hidden" animate="visible" exit="exit">
-               <h2 className="text-3xl font-headline font-semibold text-center mb-8">Vilket språk vill du öva på?</h2>
+               <h2 className="text-3xl font-headline font-semibold text-center mb-8">Koji jezik želiš da vježbaš?</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {languages.map((lang, i) => (
                   <motion.div key={lang.id} custom={i} variants={cardVariants}>
@@ -127,7 +127,7 @@ export function HomePage() {
             exit={{ opacity: 0, y: 20 }}
         >
           <Button variant="outline" size="lg" onClick={handleBack}>
-            Tillbaka
+            Nazad
           </Button>
           <Button 
             size="lg"
@@ -139,7 +139,7 @@ export function HomePage() {
                 color: 'hsl(var(--primary-foreground))'
             }}
           >
-            Starta övningar
+            Započni vježbe
           </Button>
         </motion.div>
       )}
