@@ -49,7 +49,10 @@ export function AiReviewActivity() {
     setIsLoading(true);
     setFeedback(null);
     try {
+      // The user can write in either the selected BHS language or Swedish.
+      // The flow itself handles the logic, but we pass the *target* BHS language.
       const result = await reviewTextAction({ text, language, grade });
+      
       if (result.error) {
          toast({
             title: 'Ett fel uppstod',
@@ -75,7 +78,7 @@ export function AiReviewActivity() {
     <div>
       <h2 className="text-3xl font-headline font-bold mb-4">AI Granskning</h2>
       <p className="text-muted-foreground mb-6">
-        Skriv en text på {getLanguageDisplayName()} och få omedelbar feedback från vår AI-handledare. Du kan översätta en text, skriva en kort berättelse eller bara några meningar.
+        Skriv en text på {getLanguageDisplayName()} ili na švedskom i få omedelbar feedback från vår AI-handledare. Du kan översätta en text, skriva en kort berättelse eller bara några meningar.
       </p>
 
       <Card>

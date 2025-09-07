@@ -6,11 +6,13 @@ import { z } from 'zod';
 
 const AiContentReviewInputSchema = z.object({
   text: z.string().min(2, "Texten måste vara minst 2 tecken lång."),
-  language: z.enum(['Bosnian', 'Croatian', 'Serbian', 'Swedish']),
+  // This is the BHS language the user has selected.
+  // The user can *write* in this language or in Swedish.
+  language: z.enum(['Bosnian', 'Croatian', 'Serbian']),
   gradeLevel: z.enum(['1-3', '4-6', '7-9']),
 });
 
-export async function reviewTextAction(input: AiContentReviewInput) {
+export async function reviewTextAction(input: Omit<AiContentReviewInput, 'language'> & { language: AiContentReviewInput['language'] | 'Swedish' }) {
     const validatedInput = AiContentReviewInputSchema.safeParse(input);
 
     if (!validatedInput.success) {
