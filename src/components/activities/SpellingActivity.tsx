@@ -81,7 +81,7 @@ export function SpellingActivity() {
         <h2 className="text-3xl font-headline font-bold">Stavning: Fyll i luckan</h2>
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Nya uppgifter
+          {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
         </Button>
       </div>
       

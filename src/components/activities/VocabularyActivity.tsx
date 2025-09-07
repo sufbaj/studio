@@ -132,7 +132,7 @@ export function VocabularyActivity() {
         <h2 className="text-3xl font-headline font-bold">Ordförråd</h2>
         <Button onClick={generateQuiz} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Novi zadaci
+          {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
         </Button>
       </div>
       

@@ -106,7 +106,7 @@ export function SentencesActivity() {
         <h2 className="text-3xl font-headline font-bold">Sastavi rečenicu</h2>
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Nove vježbe
+          {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
         </Button>
       </div>
       
