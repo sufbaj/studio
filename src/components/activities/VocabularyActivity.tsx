@@ -78,13 +78,13 @@ export function VocabularyActivity() {
       setCorrectAnswers((prev) => prev + 1);
       updateScore(10);
       toast({
-        title: 'Rätt svar!',
-        description: '+10 poäng',
+        title: 'Tačno!',
+        description: '+10 poena',
       });
     } else {
       toast({
-        title: 'Fel svar!',
-        description: 'Försök igen på nästa!',
+        title: 'Netačno!',
+        description: 'Pokušajte ponovo na sljedećem pitanju!',
         variant: 'destructive',
       });
     }
@@ -120,7 +120,7 @@ export function VocabularyActivity() {
     return (
       <div className="text-center">
         <h2 className="text-2xl font-headline mb-4">Ordförråd</h2>
-        <p>Inget ordförråd tillgängligt för valda inställningar.</p>
+        <p>Nema dostupnih riječi za odabrane postavke.</p>
       </div>
     );
   }
@@ -130,7 +130,7 @@ export function VocabularyActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Ordförråd</h2>
+        <h2 className="text-3xl font-headline font-bold">Rječnik</h2>
         <Button onClick={generateQuiz} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
           {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
@@ -199,11 +199,11 @@ export function VocabularyActivity() {
         </AnimatePresence>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">Bra jobbat!</h3>
-            <p className="text-lg mb-6">Du fick {correctAnswers} av {quizItems.length} rätt.</p>
+            <h3 className="text-2xl font-headline mb-4">Bravo!</h3>
+            <p className="text-lg mb-6">Imali ste {correctAnswers} od {quizItems.length} tačnih odgovora.</p>
             <Button onClick={generateQuiz}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Spela igen
+                Igraj ponovo
             </Button>
         </Card>
       )}
