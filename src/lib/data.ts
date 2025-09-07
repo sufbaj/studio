@@ -1,3 +1,4 @@
+
 import type { LanguageData } from './types';
 
 export const data: LanguageData = {
@@ -95,23 +96,23 @@ export const data: LanguageData = {
         {
           id: 1,
           title: "Izlet u šumu",
-          text: "Jednog sunčanog dana, Ana i njen brat Marko su otišli na izlet u šumu sa roditeljima. Ponijeli su korpu punu hrane. U šumi su vidjeli mnogo drveća i čuli cvrkut ptica. Marko je vidio vjevericu kako se penje uz drvo. Ana je brala šareno cvijeće. Nakon šetnje, sjeli su na deku i ručali. Bio je to divan dan.",
+          text: "Jednog sunčanog dana, Amina i njen brat Adnan su otišli na izlet u šumu sa roditeljima. Ponijeli su korpu punu hrane. U šumi su vidjeli mnogo drveća i čuli cvrkut ptica. Adnan je vidio vjevericu kako se penje uz drvo. Amina je brala šareno cvijeće. Nakon šetnje, sjeli su na deku i ručali. Bio je to divan dan.",
           questions: [
-            { id: 1, question: "Ko je otišao na izlet?", options: ["Samo Ana", "Ana i Marko sa roditeljima", "Samo Marko"], answer: "Ana i Marko sa roditeljima" },
-            { id: 2, question: "Šta je Marko vidio u šumi?", options: ["Zeca", "Medvjeda", "Vjevericu"], answer: "Vjevericu" },
-            { id: 3, question: "Šta je Ana radila?", options: ["Pela se na drvo", "Brala cvijeće", "Spavala"], answer: "Brala cvijeće" },
+            { id: 1, question: "Ko je otišao na izlet?", options: ["Samo Amina", "Amina i Adnan sa roditeljima", "Samo Adnan"], answer: "Amina i Adnan sa roditeljima" },
+            { id: 2, question: "Šta je Adnan vidio u šumi?", options: ["Zeca", "Medvjeda", "Vjevericu"], answer: "Vjevericu" },
+            { id: 3, question: "Šta je Amina radila?", options: ["Pela se na drvo", "Brala cvijeće", "Spavala"], answer: "Brala cvijeće" },
             { id: 4, question: "Kakav je bio dan?", options: ["Kišovit", "Divan", "Hladan"], answer: "Divan" }
           ]
         },
         {
           id: 2,
           title: "Pas Medo",
-          text: "Dječak po imenu Emir ima psa koji se zove Medo. Medo je veliki žuti pas sa dugim repom. Svaki dan, Emir i Medo idu u park. Emir baca lopticu, a Medo je donosi nazad. Medo voli da se igra i da laje na mačke. Navečer, Medo spava u svojoj kućici u dvorištu. Emir mnogo voli svog psa.",
+          text: "Dječak po imenu Amar ima psa koji se zove Medo. Medo je veliki žuti pas sa dugim repom. Svaki dan, Amar i Medo idu u park. Amar baca lopticu, a Medo je donosi nazad. Medo voli da se igra i da laje na mačke. Navečer, Medo spava u svojoj kućici u dvorištu. Amar mnogo voli svog psa.",
           questions: [
-            { id: 1, question: "Kako se zove Emirov pas?", options: ["Žućo", "Lajko", "Medo"], answer: "Medo" },
-            { id: 2, question: "Gdje se Emir i Medo igraju?", options: ["U kući", "U parku", "U školi"], answer: "U parku" },
-            { id: 3, question: "Šta Emir baca Medi?", options: ["Kamen", "Granu", "Lopticu"], answer: "Lopticu" },
-            { id: 4, question: "Gdje Medo spava?", options: ["U Emirovom krevetu", "U svojoj kućici", "Na drvetu"], answer: "U svojoj kućici" }
+            { id: 1, question: "Kako se zove Amarov pas?", options: ["Žućo", "Lajko", "Medo"], answer: "Medo" },
+            { id: 2, question: "Gdje se Amar i Medo igraju?", options: ["U kući", "U parku", "U školi"], answer: "U parku" },
+            { id: 3, question: "Šta Amar baca Medi?", options: ["Kamen", "Granu", "Lopticu"], answer: "Lopticu" },
+            { id: 4, question: "Gdje Medo spava?", options: ["U Amarovom krevetu", "U svojoj kućici", "Na drvetu"], answer: "U svojoj kućici" }
           ]
         }
       ],
