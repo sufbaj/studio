@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import type { VocabularyItem } from '@/lib/types';
@@ -152,18 +151,10 @@ export function VocabularyActivity() {
           <Card className="overflow-hidden">
             <CardContent className="p-0">
               <div className="grid md:grid-cols-2">
-                <div className="p-6 flex flex-col justify-center items-center bg-muted/50">
-                   <Image
-                    src={currentQuizItem.item.image}
-                    alt={currentQuizItem.item.translation}
-                    width={300}
-                    height={300}
-                    className="rounded-lg shadow-md mb-4 aspect-square object-cover"
-                    data-ai-hint={currentQuizItem.item['data-ai-hint']}
-                  />
+                <div className="p-6 flex flex-col justify-center items-center bg-muted/50 min-h-[250px]">
                   <div className="text-center">
-                    <p className="text-muted-foreground">Kako se ovo zove na {getLanguageDisplayName()}?</p>
-                    <p className="text-2xl font-bold font-headline">{currentQuizItem.item.translation}</p>
+                    <p className="text-muted-foreground">Kako se na {getLanguageDisplayName()} kaže:</p>
+                    <p className="text-4xl font-bold font-headline">{currentQuizItem.item.translation}</p>
                   </div>
                 </div>
                 <div className="p-6 flex flex-col justify-between">

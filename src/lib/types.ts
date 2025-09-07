@@ -14,9 +14,7 @@ export interface VocabularyItem {
   id: number;
   word: string;
   translation: string;
-  image: string;
   audio: string;
-  'data-ai-hint': string;
 }
 
 export interface SpellingItem {
