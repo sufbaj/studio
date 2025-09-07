@@ -39,7 +39,7 @@ const navItems = [
   { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },
   { href: 'spelling', icon: FileText, label: 'Stavning' },
   { href: 'reading', icon: Languages, label: 'Läsförståelse' },
-  { href: 'translation', icon: Languages, label: 'Översätta från svenska' },
+  { href: 'translation', icon: Languages, label: 'Svenska till modersmål' },
   { href: 'translator', icon: BookOpen, label: 'Översättare' },
   { href: 'ai-review', icon: Bot, label: 'AI återkoppling' },
 ];
