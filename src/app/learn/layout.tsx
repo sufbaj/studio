@@ -38,7 +38,7 @@ const navItems = [
   { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },
   { href: 'spelling', icon: FileText, label: 'Stavning' },
   { href: 'reading', icon: Languages, label: 'Läsförståelse' },
-  { href: 'translation', icon: Languages, label: 'Översättning' },
+  { href: 'translation', icon: Languages, label: 'Översätta från svenska' },
   { href: 'ai-review', icon: Bot, label: 'AI Granskning' },
 ];
 
@@ -120,7 +120,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 p-2 rounded-lg bg-accent/50">
               <Award className="w-6 h-6 text-yellow-500" />
-              <span className="text-lg font-bold">{score}{maxScore > 0 && ` / ${maxScore}`} poena</span>
+              <span className="text-lg font-bold">{score}{maxScore > 0 ? ` / ${maxScore}` : ''} poena</span>
             </div>
             <Button asChild variant="outline" size="icon">
               <Link href="/">

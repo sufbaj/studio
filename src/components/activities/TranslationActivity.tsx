@@ -105,7 +105,7 @@ export function TranslationActivity() {
   if (!language || !grade || exercises.length === 0) {
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">Översättning</h2>
+        <h2 className="text-2xl font-headline mb-4">Översätta från svenska</h2>
         <p>Nema dostupnih vježbi za prevođenje.</p>
       </div>
     );
