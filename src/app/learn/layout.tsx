@@ -113,7 +113,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
             <SidebarTrigger className="md:hidden" />
             <div>
               <h1 className="text-xl font-headline font-semibold">
-                {getLanguageDisplayName(language)} - Årskurs {grade}
+                {getLanguageDisplayName(language)} - {grade}. razred
               </h1>
             </div>
           </div>

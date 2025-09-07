@@ -10,9 +10,9 @@ import { cn } from '@/lib/utils';
 import type { Grade, Language } from '@/lib/types';
 
 const grades: { id: Grade; label: string }[] = [
-  { id: '1-3', label: 'Åk 1-3' },
-  { id: '4-6', label: 'Åk 4-6' },
-  { id: '7-9', label: 'Åk 7-9' },
+  { id: '1-3', label: '1-3. razred' },
+  { id: '4-6', label: '4-6. razred' },
+  { id: '7-9', label: '7-9. razred' },
 ];
 
 const languages: { id: Language; label: string }[] = [
@@ -75,7 +75,7 @@ export function HomePage() {
         <AnimatePresence mode="wait">
           {step === 'grade' && (
             <motion.div key="grade" initial="hidden" animate="visible" exit="exit">
-              <h2 className="text-3xl font-headline font-semibold text-center mb-8">Välj din årskurs för att börja</h2>
+              <h2 className="text-3xl font-headline font-semibold text-center mb-8">Välj din razred för att börja</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {grades.map((grade, i) => (
                   <motion.div key={grade.id} custom={i} variants={cardVariants}>
