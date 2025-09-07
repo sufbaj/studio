@@ -75,7 +75,7 @@ export function HomePage() {
         <AnimatePresence mode="wait">
           {step === 'grade' && (
             <motion.div key="grade" initial="hidden" animate="visible" exit="exit">
-              <h2 className="text-3xl font-headline font-semibold text-center mb-8">Välj din razred för att börja</h2>
+              <h2 className="text-3xl font-headline font-semibold text-center mb-8">Izaberi svoj razred da bi počeo</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {grades.map((grade, i) => (
                   <motion.div key={grade.id} custom={i} variants={cardVariants}>
