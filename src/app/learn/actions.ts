@@ -11,11 +11,7 @@ const AiContentReviewInputSchema = z.object({
 });
 
 export async function reviewTextAction(input: AiContentReviewInput) {
-    const validatedInput = AiContentReviewInputSchema.safeParse({
-        ...input,
-        language: input.language ? (input.language.charAt(0).toUpperCase() + input.language.slice(1)) as any : undefined,
-        gradeLevel: input.grade,
-    });
+    const validatedInput = AiContentReviewInputSchema.safeParse(input);
 
     if (!validatedInput.success) {
         return { error: validatedInput.error.errors.map(e => e.message).join(', ') };

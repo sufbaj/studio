@@ -12,7 +12,7 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const AiContentReviewInputSchema = z.object({
-  text: z.string().describe('The text submitted by the student for review.'),
+  text: z.string().min(2, "Texten måste vara minst 2 tecken lång.").describe('The text submitted by the student for review.'),
   language: z
     .enum(['Bosnian', 'Croatian', 'Serbian', 'Swedish'])
     .describe('The language of the text. The student can write in Swedish or the selected BHS language.'),
@@ -35,18 +35,21 @@ const prompt = ai.definePrompt({
   name: 'aiContentReviewPrompt',
   input: {schema: AiContentReviewInputSchema},
   output: {schema: AiContentReviewOutputSchema},
-  prompt: `You are an AI content reviewer specializing in providing feedback to students learning Bosnian, Croatian, and Serbian. The student may write in Swedish or their selected BHS language.
+  prompt: `You are an AI content reviewer and language tutor specializing in helping students learning Bosnian, Croatian, and Serbian (BHS).
 
-You will review the text submitted by the student and provide personalized feedback to help them improve their language skills.
+The student will submit a text for review. Your task is to provide helpful feedback. Consider the student's grade level.
 
-Consider the language, grade level, and the content of the text when providing feedback.
+- If the student writes in their selected BHS language, you must provide feedback and translations IN SWEDISH. Give the Swedish translation of the text, and then provide feedback on grammar, spelling, and style.
+- If the student writes in Swedish, you must provide feedback and translations IN THE SELECTED BHS LANGUAGE (Bosnian, Croatian, or Serbian). Give the translation of the text, and then provide feedback.
 
-Language: {{{language}}}
+Your feedback should be encouraging and easy to understand for the specified grade level.
+
+Selected BHS Language: {{{language}}}
 Grade Level: {{{gradeLevel}}}
-Text: {{{text}}}
+Text to review: {{{text}}}
 
 Feedback:
-`, // Keep the 'Feedback:' tag, the model will append after it
+`,
 });
 
 const aiContentReviewFlow = ai.defineFlow(
