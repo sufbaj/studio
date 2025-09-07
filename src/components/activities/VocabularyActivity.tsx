@@ -101,6 +101,20 @@ export function VocabularyActivity() {
   
   const currentQuizItem = useMemo(() => quizItems[currentItemIndex], [quizItems, currentItemIndex]);
 
+  const getLanguageDisplayName = () => {
+    if (!language) return '';
+    switch (language) {
+      case 'bosnian':
+        return 'bosanskom';
+      case 'croatian':
+        return 'hrvatskom';
+      case 'serbian':
+        return 'srpskom';
+      default:
+        return '';
+    }
+  }
+
   if (!language || !grade || quizItems.length === 0) {
     return (
       <div className="text-center">
@@ -118,7 +132,7 @@ export function VocabularyActivity() {
         <h2 className="text-3xl font-headline font-bold">Ordförråd</h2>
         <Button onClick={generateQuiz} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Nya uppgifter
+          Novi zadaci
         </Button>
       </div>
       
@@ -146,7 +160,7 @@ export function VocabularyActivity() {
                     data-ai-hint={currentQuizItem.item['data-ai-hint']}
                   />
                   <div className="text-center">
-                    <p className="text-muted-foreground">Vad heter detta på {language}?</p>
+                    <p className="text-muted-foreground">Kako se ovo zove na {getLanguageDisplayName()}?</p>
                     <p className="text-2xl font-bold font-headline">{currentQuizItem.item.translation}</p>
                   </div>
                 </div>
