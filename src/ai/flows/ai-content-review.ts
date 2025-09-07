@@ -42,20 +42,23 @@ Follow these steps:
 1.  **Detect Language:** Determine if the provided text is written in Swedish or a BHS language (Bosnian, Croatian, or Serbian). Set 'detectedSourceLanguage' to "Swedish" or "BHS".
 
 2.  **Translate:**
-    *   If the detected language is Swedish, translate the text into Bosnian.
+    *   If the detected language is Swedish, translate the text to the student's chosen primary language ({{language}}).
     *   If the detected language is BHS, translate the text into Swedish.
+    *   When translating to Bosnian or Croatian, always use the Ijekavian dialect (e.g., "lijepo", "mlijeko").
+    *   When translating to Serbian, always use the Ekavian dialect (e.g., "lepo", "mleko").
     *   Place the result in the 'translation' field.
 
 3.  **Provide Feedback:**
     *   Analyze the original text for any grammatical errors, spelling mistakes, or awkward phrasing.
     *   Provide clear, constructive feedback. Explain the errors and how to correct them.
     *   The feedback should be written in the same language as the original text (Swedish or BHS).
-    *   If the text is perfectly written, provide a positive and encouraging message like "Odlično napisano! Nema grešaka." or "Utmärkt skrivet! Inga fel.".
+    *   If the text is perfectly written, provide a positive and encouraging message. For BHS, use the appropriate dialect, for example: "Odlično napisano! Nema grešaka." (ijekavian) or "Odlično napisano! Nema grešaka." (ekavian). For Swedish: "Utmärkt skrivet! Inga fel.".
     *   Place the feedback in the 'feedback' field.
 
 4.  **Correct Text:**
     *   Provide a fully corrected version of the original text.
     *   If there were no errors, this field should contain the original, unchanged text.
+    *   Ensure the corrected text respects the correct dialect (Ijekavian for Bosnian/Croatian, Ekavian for Serbian).
     *   Place the result in the 'correctedText' field.
 
 Respond ONLY with the JSON object defined in the output schema.

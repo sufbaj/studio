@@ -36,6 +36,7 @@ const prompt = ai.definePrompt({
 Provide only the translated text, without any additional explanations or context.
 
 If the user specifies a gender, ensure the translation uses the correct grammatical gender (e.g., for past tense verbs in BHS languages like bio/bila).
+If translating to Bosnian or Croatian, use the Ijekavian dialect.
 If translating to Serbian, use the Ekavian dialect.
 
 Gender: {{#if gender}}{{gender}}{{else}}Not specified{{/if}}
