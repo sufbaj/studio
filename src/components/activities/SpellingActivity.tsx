@@ -114,9 +114,9 @@ export function SpellingActivity() {
             </CardTitle>
           </CardHeader>
           <CardContent className="flex justify-center flex-wrap gap-4">
-            {currentExercise.options.sort(() => 0.5 - Math.random()).map(option => (
+            {currentExercise.options.sort(() => 0.5 - Math.random()).map((option, index) => (
               <Button
-                key={option}
+                key={`${option}-${index}`}
                 variant={selectedOption === option ? 'default' : 'secondary'}
                 size="lg"
                 onClick={() => handleSelectOption(option)}
