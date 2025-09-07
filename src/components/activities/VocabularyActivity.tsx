@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import type { VocabularyItem } from '@/lib/types';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Volume2, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -84,20 +84,20 @@ export function VocabularyActivity() {
     } else {
       toast({
         title: 'Netačno!',
-        description: 'Pokušajte ponovo na sljedećem pitanju!',
+        description: 'Više sreće sljedeći put!',
         variant: 'destructive',
       });
     }
+  };
 
-    setTimeout(() => {
-      if (currentItemIndex < quizItems.length - 1) {
-        setCurrentItemIndex((prev) => prev + 1);
-        setIsAnswered(false);
-        setSelectedAnswer(null);
-      } else {
-        // End of quiz
-      }
-    }, 1500);
+  const nextQuestion = () => {
+    if (currentItemIndex < quizItems.length - 1) {
+      setCurrentItemIndex((prev) => prev + 1);
+      setIsAnswered(false);
+      setSelectedAnswer(null);
+    } else {
+      setCurrentItemIndex(quizItems.length); // End of quiz
+    }
   };
   
   const currentQuizItem = useMemo(() => quizItems[currentItemIndex], [quizItems, currentItemIndex]);
@@ -126,6 +126,7 @@ export function VocabularyActivity() {
   }
 
   const progress = (currentItemIndex / quizItems.length) * 100;
+  const isQuizFinished = currentItemIndex >= quizItems.length;
 
   return (
     <div>
@@ -137,9 +138,9 @@ export function VocabularyActivity() {
         </Button>
       </div>
       
-      <Progress value={progress} className="mb-6" />
+      <Progress value={isQuizFinished ? 100 : progress} className="mb-6" />
 
-      {currentItemIndex < quizItems.length ? (
+      {!isQuizFinished ? (
         <AnimatePresence mode="wait">
         <motion.div
           key={currentItemIndex}
@@ -156,8 +157,8 @@ export function VocabularyActivity() {
                     src={currentQuizItem.item.image}
                     alt={currentQuizItem.item.translation}
                     width={300}
-                    height={200}
-                    className="rounded-lg shadow-md mb-4"
+                    height={300}
+                    className="rounded-lg shadow-md mb-4 aspect-square object-cover"
                     data-ai-hint={currentQuizItem.item['data-ai-hint']}
                   />
                   <div className="text-center">
@@ -165,7 +166,7 @@ export function VocabularyActivity() {
                     <p className="text-2xl font-bold font-headline">{currentQuizItem.item.translation}</p>
                   </div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col justify-between">
                   <div className="grid grid-cols-2 gap-4">
                     {currentQuizItem.options.map((option) => (
                       <Button
@@ -174,9 +175,9 @@ export function VocabularyActivity() {
                         disabled={isAnswered}
                         variant="outline"
                         className={`h-24 text-lg relative ${
-                          isAnswered && option.isCorrect ? 'bg-green-200 border-green-500' : ''
+                          isAnswered && option.isCorrect ? 'bg-green-100 dark:bg-green-900/50 border-green-500' : ''
                         } ${
-                          isAnswered && !option.isCorrect && selectedAnswer?.word === option.word ? 'bg-red-200 border-red-500' : ''
+                          isAnswered && !option.isCorrect && selectedAnswer?.word === option.word ? 'bg-red-100 dark:bg-red-900/50 border-red-500' : ''
                         }`}
                       >
                         {option.word}
@@ -188,9 +189,16 @@ export function VocabularyActivity() {
                       </Button>
                     ))}
                   </div>
-                  <Button variant="ghost" size="icon" className="mt-6" disabled>
-                    <Volume2 />
-                  </Button>
+                  <div className="flex items-center justify-between mt-6">
+                    <Button variant="ghost" size="icon" disabled>
+                        <Volume2 />
+                    </Button>
+                    {isAnswered && (
+                      <Button onClick={nextQuestion} size="lg">
+                        {language === 'serbian' ? 'Sledeće' : 'Sljedeće'}
+                      </Button>
+                    )}
+                  </div>
                 </div>
               </div>
             </CardContent>
