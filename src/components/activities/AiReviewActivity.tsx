@@ -9,6 +9,12 @@ import { reviewTextAction } from '@/app/learn/actions';
 import { useToast } from '@/hooks/use-toast';
 import { Bot, Loader2, Sparkles } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import type { Language } from '@/lib/types';
+
+function toTitleCase(str: string): string {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 export function AiReviewActivity() {
   const { language, grade, resetScore } = useAppContext();
@@ -51,7 +57,7 @@ export function AiReviewActivity() {
     try {
       // The user can write in either the selected BHS language or Swedish.
       // The flow itself handles the logic, but we pass the *target* BHS language.
-      const result = await reviewTextAction({ text, language, grade });
+      const result = await reviewTextAction({ text, language: toTitleCase(language) as 'Bosnian' | 'Croatian' | 'Serbian', grade });
       
       if (result.error) {
          toast({
