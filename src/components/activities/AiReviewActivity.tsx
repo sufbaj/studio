@@ -80,7 +80,7 @@ export function AiReviewActivity() {
 
   return (
     <div>
-      <h2 className="text-3xl font-headline font-bold mb-4">AI Granskning</h2>
+      <h2 className="text-3xl font-headline font-bold mb-4">AI återkoppling</h2>
       <p className="text-muted-foreground mb-6">
         Skriv en text på {getLanguageDisplayName()} ili na švedskom i få omedelbar feedback från vår AI-handledare. Du kan översätta en text, skriva en kort berättelse eller bara några meningar.
       </p>

@@ -40,7 +40,7 @@ const navItems = [
   { href: 'spelling', icon: FileText, label: 'Stavning' },
   { href: 'reading', icon: Languages, label: 'Läsförståelse' },
   { href: 'translation', icon: Languages, label: 'Översätta från svenska' },
-  { href: 'ai-review', icon: Bot, label: 'AI Granskning' },
+  { href: 'ai-review', icon: Bot, label: 'AI återkoppling' },
   { href: 'translator', icon: BookOpen, label: 'Översättare' },
 ];
 
