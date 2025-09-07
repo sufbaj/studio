@@ -20,6 +20,7 @@ const TranslatorInputSchema = z.object({
     text: z.string().min(1, "Texten kan inte vara tom."),
     sourceLanguage: z.enum(['Swedish', 'Bosnian', 'Croatian', 'Serbian']),
     targetLanguage: z.enum(['Swedish', 'Bosnian', 'Croatian', 'Serbian']),
+    gender: z.enum(['male', 'female']).optional(),
 });
 
 

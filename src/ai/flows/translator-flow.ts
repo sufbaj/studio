@@ -14,6 +14,7 @@ const TranslatorInputSchema = z.object({
   text: z.string().describe('The text to be translated.'),
   sourceLanguage: z.enum(['Swedish', 'Bosnian', 'Croatian', 'Serbian']).describe('The source language of the text.'),
   targetLanguage: z.enum(['Swedish', 'Bosnian', 'Croatian', 'Serbian']).describe('The language to translate the text to.'),
+  gender: z.enum(['male', 'female']).optional().describe('The grammatical gender to use for the translation, if applicable.'),
 });
 export type TranslatorInput = z.infer<typeof TranslatorInputSchema>;
 
@@ -33,8 +34,11 @@ const prompt = ai.definePrompt({
   output: {schema: TranslatorOutputSchema},
   prompt: `You are an expert translator. Translate the given text from {{sourceLanguage}} to {{targetLanguage}}.
 Provide only the translated text, without any additional explanations or context.
+
+If the user specifies a gender, ensure the translation uses the correct grammatical gender (e.g., for past tense verbs in BHS languages like bio/bila).
 If translating to Serbian, use the Ekavian dialect.
 
+Gender: {{#if gender}}{{gender}}{{else}}Not specified{{/if}}
 Text to translate: {{{text}}}
 `,
 });

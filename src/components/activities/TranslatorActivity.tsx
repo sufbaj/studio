@@ -4,14 +4,17 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { translateTextAction } from '@/app/learn/actions';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, ArrowRightLeft, Languages } from 'lucide-react';
+import { Loader2, ArrowRightLeft, Languages, VenetianMask } from 'lucide-react';
 import type { Language } from '@/lib/types';
 import { useDebounce } from 'use-debounce';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 
 type LanguageOption = 'Swedish' | 'Bosnian' | 'Croatian' | 'Serbian';
+type GenderOption = 'male' | 'female';
 
 function toTitleCase(str: string): string {
     if (!str) return '';
@@ -27,6 +30,7 @@ export function TranslatorActivity() {
   const [isLoading, setIsLoading] = useState(false);
   const [sourceLang, setSourceLang] = useState<LanguageOption>('Swedish');
   const [targetLang, setTargetLang] = useState<LanguageOption>('Bosnian');
+  const [gender, setGender] = useState<GenderOption | undefined>(undefined);
 
   const [debouncedSourceText] = useDebounce(sourceText, 500);
 
@@ -62,6 +66,7 @@ export function TranslatorActivity() {
         text: debouncedSourceText, 
         sourceLanguage: sourceLang,
         targetLanguage: targetLang,
+        gender: gender
       });
       
       if (result.error) {
@@ -85,11 +90,11 @@ export function TranslatorActivity() {
     } finally {
       setIsLoading(false);
     }
-  }, [debouncedSourceText, sourceLang, targetLang, toast]);
+  }, [debouncedSourceText, sourceLang, targetLang, gender, toast]);
 
   useEffect(() => {
     handleTranslate();
-  }, [debouncedSourceText, sourceLang, targetLang, handleTranslate]);
+  }, [debouncedSourceText, sourceLang, targetLang, gender, handleTranslate]);
 
   const handleSwitchLanguages = () => {
     setSourceText(translatedText);
@@ -97,6 +102,11 @@ export function TranslatorActivity() {
     setSourceLang(targetLang);
     setTargetLang(sourceLang);
   };
+  
+  const showGenderSelector = useMemo(() => {
+    return targetLang !== 'Swedish';
+  }, [targetLang]);
+
 
   return (
     <div>
@@ -116,7 +126,7 @@ export function TranslatorActivity() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start relative">
             <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(sourceLang)}</label>
                 <Textarea
@@ -149,6 +159,26 @@ export function TranslatorActivity() {
             </div>
           </div>
         </CardContent>
+         {showGenderSelector && (
+            <CardFooter className="flex-col items-start gap-2 border-t pt-4">
+                <Label>Gramatički rod</Label>
+                <RadioGroup 
+                    onValueChange={(value) => setGender(value as GenderOption)} 
+                    value={gender}
+                    className="flex items-center gap-6"
+                >
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="male" id="male" />
+                        <Label htmlFor="male">Muški (npr. bio)</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="female" id="female" />
+                        <Label htmlFor="female">Ženski (npr. bila)</Label>
+                    </div>
+                </RadioGroup>
+                <Button variant="link" size="sm" className="px-0 h-auto" onClick={() => setGender(undefined)}>Poništi odabir</Button>
+            </CardFooter>
+        )}
       </Card>
     </div>
   );
