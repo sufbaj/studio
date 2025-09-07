@@ -109,6 +109,9 @@ export function TranslationActivity() {
 
   const progress = (currentExerciseIndex / exercises.length) * 100;
   const isQuizFinished = currentExerciseIndex >= exercises.length;
+  const nextButtonText = currentExercise?.type === 'word' 
+    ? (language === 'serbian' ? 'Sledeća reč' : 'Sljedeća riječ') 
+    : (language === 'serbian' ? 'Sledeća rečenica' : 'Sljedeća rečenica');
 
   return (
     <div>
@@ -168,7 +171,7 @@ export function TranslationActivity() {
                     </p>
                  )}
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? (language === 'serbian' ? 'Sledeće pitanje' : 'Sljedeće pitanje') : 'Vidi rezultate'}
+                    {currentExerciseIndex < exercises.length - 1 ? nextButtonText : 'Vidi rezultate'}
                 </Button>
               </div>
             )}
