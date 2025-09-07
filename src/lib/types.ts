@@ -52,12 +52,20 @@ export interface ReadingItem {
   questions: ReadingQuestion[];
 }
 
+export interface TranslationItem {
+  id: number;
+  type: 'word' | 'sentence';
+  source: string; // Swedish
+  target: string; // Target language
+}
+
 export interface Content {
   vocabulary: VocabularyItem[];
   spelling: SpellingItem[];
   sentences: SentenceItem[];
   grammar: GrammarItem[];
   reading: ReadingItem[];
+  translations: TranslationItem[];
 }
 
 export type LanguageData = Record<Language, Record<Grade, Content>>;

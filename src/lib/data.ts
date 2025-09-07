@@ -79,10 +79,27 @@ export const data: LanguageData = {
             { id: 4, question: "Gdje Medo spava?", options: ["U Emirovom krevetu", "U svojoj kućici", "Na drvetu"], answer: "U svojoj kućici" }
           ]
         }
+      ],
+      translations: [
+        { id: 1, type: 'word', source: 'kaffe', target: 'kahva' },
+        { id: 2, type: 'word', source: 'skola', target: 'škola' },
+        { id: 3, type: 'word', source: 'hus', target: 'kuća' },
+        { id: 4, type: 'word', source: 'bok', target: 'knjiga' },
+        { id: 5, type: 'word', source: 'äpple', target: 'jabuka' },
+        { id: 6, type: 'word', source: 'bil', target: 'auto' },
+        { id: 7, type: 'word', source: 'katt', target: 'mačka' },
+        { id: 8, type: 'word', source: 'hund', target: 'pas' },
+        { id: 9, type: 'word', source: 'boll', target: 'lopta' },
+        { id: 10, type: 'word', source: 'sol', target: 'sunce' },
+        { id: 11, type: 'sentence', source: 'Pojken läser en bok.', target: 'Dječak čita knjigu.' },
+        { id: 12, type: 'sentence', source: 'Flickan äter ett äpple.', target: 'Djevojčica jede jabuku.' },
+        { id: 13, type: 'sentence', source: 'Hunden springer snabbt.', target: 'Pas trči brzo.' },
+        { id: 14, type: 'sentence', source: 'Vi går till skolan.', target: 'Mi idemo u školu.' },
+        { id: 15, type: 'sentence', source: 'Min pappa kör bilen.', target: 'Moj tata vozi auto.' },
       ]
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
   },
   croatian: {
     '1-3': {
@@ -132,9 +149,21 @@ export const data: LanguageData = {
         { id: 5, sentence: 'Jedem ___ jabuku.', blank: 'crvenu', options: ['crveni', 'crvena', 'crvenu'], explanation: 'U akuzativu jednine ženskog roda, pridjev "crven" ima oblik "crvenu".' }
       ],
       reading: [],
+      translations: [
+        { id: 1, type: 'word', source: 'bröd', target: 'kruh' },
+        { id: 2, type: 'word', source: 'tusen', target: 'tisuća' },
+        { id: 3, type: 'word', source: 'familj', target: 'obitelj' },
+        { id: 4, type: 'word', source: 'hav', target: 'more' },
+        { id: 5, type: 'word', source: 'stad', target: 'grad' },
+        { id: 6, type: 'sentence', source: 'Pojken läser en bok.', target: 'Dječak čita knjigu.' },
+        { id: 7, type: 'sentence', source: 'Flickan äter ett äpple.', target: 'Djevojčica jede jabuku.' },
+        { id: 8, type: 'sentence', source: 'Hunden springer snabbt.', target: 'Pas trči brzo.' },
+        { id: 9, type: 'sentence', source: 'Vi går till skolan.', target: 'Mi idemo u školu.' },
+        { id: 10, type: 'sentence', source: 'Min pappa kör bilen.', target: 'Moj tata vozi automobil.' },
+      ]
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
   },
   serbian: {
     '1-3': {
@@ -212,8 +241,20 @@ export const data: LanguageData = {
           ]
         }
       ],
+      translations: [
+        { id: 1, type: 'word', source: 'bröd', target: 'hleb' },
+        { id: 2, type: 'word', source: 'tusen', target: 'hiljada' },
+        { id: 3, type: 'word', source: 'familj', target: 'porodica' },
+        { id: 4, type: 'word', source: 'flod', target: 'reka' },
+        { id: 5, type: 'word', source: 'by', target: 'selo' },
+        { id: 6, type: 'sentence', source: 'Pojken läser en bok.', target: 'Dečak čita knjigu.' },
+        { id: 7, type: 'sentence', source: 'Flickan äter ett äpple.', target: 'Devojčica jede jabuku.' },
+        { id: 8, type: 'sentence', source: 'Hunden springer snabbt.', target: 'Pas trči brzo.' },
+        { id: 9, type: 'sentence', source: 'Vi går till skolan.', target: 'Mi idemo u školu.' },
+        { id: 10, type: 'sentence', source: 'Min pappa kör bilen.', target: 'Moj tata vozi auto.' },
+      ]
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
   },
 };

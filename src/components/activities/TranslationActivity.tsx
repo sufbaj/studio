@@ -3,19 +3,20 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
-import type { VocabularyItem } from '@/lib/types';
+import type { TranslationItem } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
+import { Textarea } from '@/components/ui/textarea';
 
 export function TranslationActivity() {
   const { language, grade, updateScore } = useAppContext();
   const { toast } = useToast();
 
-  const [exercises, setExercises] = useState<VocabularyItem[]>([]);
+  const [exercises, setExercises] = useState<TranslationItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const [isAnswered, setIsAnswered] = useState(false);
@@ -24,8 +25,8 @@ export function TranslationActivity() {
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
-    const vocabularyList = data[language][grade].vocabulary;
-    const shuffled = [...vocabularyList].sort(() => 0.5 - Math.random());
+    const translationList = data[language][grade].translations;
+    const shuffled = [...translationList].sort(() => 0.5 - Math.random());
     setExercises(shuffled.slice(0, Math.min(10, shuffled.length)));
     setCurrentExerciseIndex(0);
     setInputValue('');
@@ -58,25 +59,35 @@ export function TranslationActivity() {
     if (!inputValue || !currentExercise) return;
     
     setIsAnswered(true);
-    const correct = inputValue.trim().toLowerCase() === currentExercise.word.toLowerCase();
+    // Normalize answers for comparison: trim whitespace, convert to lowercase, and remove trailing punctuation.
+    const normalize = (str: string) => str.trim().toLowerCase().replace(/[.!?]$/, '');
+    const correct = normalize(inputValue) === normalize(currentExercise.target);
     setIsCorrect(correct);
 
     if (correct) {
-      updateScore(15);
+      const points = currentExercise.type === 'sentence' ? 20 : 10;
+      updateScore(points);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: "Tačno!", description: "Sjajno! +15 poena." });
+      toast({ title: "Tačno!", description: `Sjajno! +${points} poena.` });
     } else {
-      toast({ title: "Netačno!", description: `Tačan odgovor je "${currentExercise.word}".`, variant: "destructive" });
+      toast({ title: "Netačno!", description: `Tačan odgovor je "${currentExercise.target}".`, variant: "destructive" });
     }
   };
   
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      if (!isAnswered) {
-        checkAnswer();
-      } else {
-        nextQuestion();
-      }
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (event.key === 'Enter' && !event.shiftKey && currentExercise.type === 'sentence') {
+        event.preventDefault();
+        if (!isAnswered) {
+          checkAnswer();
+        } else {
+          nextQuestion();
+        }
+    } else if (event.key === 'Enter' && currentExercise.type === 'word') {
+        if (!isAnswered) {
+            checkAnswer();
+        } else {
+            nextQuestion();
+        }
     }
   };
 
@@ -106,7 +117,7 @@ export function TranslationActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Prevedi riječ</h2>
+        <h2 className="text-3xl font-headline font-bold">{language === 'serbian' ? 'Prevedi' : 'Prevedi'}</h2>
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
           {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
@@ -115,23 +126,37 @@ export function TranslationActivity() {
 
       <Progress value={isQuizFinished ? 100 : progress} className="mb-6" />
 
-      {!isQuizFinished ? (
+      {!isQuizFinished && currentExercise ? (
         <Card className="max-w-xl mx-auto">
           <CardHeader className="text-center">
-            <CardDescription>Prevedi sljedeću riječ na <span className="font-semibold">{getLanguageDisplayName()}</span>:</CardDescription>
-            <CardTitle className="text-4xl font-bold font-headline py-4">{currentExercise.translation}</CardTitle>
+            <CardDescription>
+                {currentExercise.type === 'word' ? `Prevedi sljedeću riječ na ${getLanguageDisplayName()}:` : `Prevedi sljedeću rečenicu na ${getLanguageDisplayName()}:`}
+            </CardDescription>
+            <CardTitle className="text-3xl md:text-4xl font-bold font-headline py-4">{currentExercise.source}</CardTitle>
           </CardHeader>
           <CardContent>
-            <Input
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Unesi prijevod..."
-              className="text-center text-lg h-12"
-              disabled={isAnswered}
-              autoFocus
-            />
+            {currentExercise.type === 'word' ? (
+                <Input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Unesi prijevod..."
+                className="text-center text-lg h-12"
+                disabled={isAnswered}
+                autoFocus
+                />
+            ) : (
+                <Textarea
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Unesi prijevod..."
+                className="text-center text-lg min-h-[100px]"
+                disabled={isAnswered}
+                autoFocus
+                />
+            )}
           </CardContent>
           <CardFooter className="justify-center mt-4 flex-col gap-4">
             {!isAnswered ? (
@@ -141,8 +166,9 @@ export function TranslationActivity() {
                  {isCorrect ? (
                     <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> Tačno!</p>
                  ) : (
-                    <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4">
-                        <XCircle /> Netačno! Tačan odgovor je: <span className="font-mono bg-red-100 px-2 py-1 rounded-md">{currentExercise.word}</span>
+                    <p className="flex flex-col items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4">
+                        <span className="flex items-center gap-2"><XCircle /> Netačno!</span>
+                        <span className="text-base text-muted-foreground mt-2">Tačan odgovor je: <span className="font-mono bg-red-100 px-2 py-1 rounded-md text-red-800">{currentExercise.target}</span></span>
                     </p>
                  )}
                 <Button onClick={nextQuestion} size="lg">
