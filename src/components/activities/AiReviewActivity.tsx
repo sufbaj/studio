@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { reviewTextAction } from '@/app/learn/actions';
 import { useToast } from '@/hooks/use-toast';
-import { Bot, Loader2, Sparkles } from 'lucide-radix';
+import { Bot, Loader2, Sparkles } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export function AiReviewActivity() {
