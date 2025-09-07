@@ -60,10 +60,13 @@ export function GrammarActivity() {
       setIsAnswered(false);
     } else {
       // Quiz finished
+      setCurrentExerciseIndex(exercises.length);
     }
   };
 
   const currentExercise = exercises[currentExerciseIndex];
+  const isQuizFinished = currentExerciseIndex >= exercises.length;
+
 
   if (!language || !grade || exercises.length === 0) {
     return (
@@ -86,9 +89,9 @@ export function GrammarActivity() {
         </Button>
       </div>
       
-      <Progress value={progress} className="mb-6" />
+      <Progress value={isQuizFinished ? 100 : progress} className="mb-6" />
 
-      {currentExerciseIndex < exercises.length ? (
+      {!isQuizFinished && currentExercise ? (
         <Card>
           <CardHeader>
             <CardTitle className="text-center text-2xl md:text-3xl text-muted-foreground">
@@ -120,7 +123,7 @@ export function GrammarActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-6 flex-col gap-4">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{language === 'serbian' ? 'Proveri odgovor' : 'Provjeri odgovor'}</Button>
+              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{language === 'serbian' ? 'Proveri' : 'Provjeri'}</Button>
             ) : (
               <div className="text-center w-full">
                  {selectedOption === currentExercise.blank ? (

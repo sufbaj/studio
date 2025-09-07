@@ -109,9 +109,14 @@ export function TranslationActivity() {
 
   const progress = (currentExerciseIndex / exercises.length) * 100;
   const isQuizFinished = currentExerciseIndex >= exercises.length;
-  const nextButtonText = currentExercise?.type === 'word' 
-    ? (language === 'serbian' ? 'Sledeća reč' : 'Sljedeća riječ') 
-    : (language === 'serbian' ? 'Sledeća rečenica' : 'Sljedeća rečenica');
+  
+  const getNextButtonText = () => {
+    if (!currentExercise) return '';
+    if (language === 'serbian') {
+      return currentExercise.type === 'word' ? 'Sledeća reč' : 'Sledeća rečenica';
+    }
+    return currentExercise.type === 'word' ? 'Sljedeća riječ' : 'Sljedeća rečenica';
+  };
 
   return (
     <div>
@@ -129,7 +134,10 @@ export function TranslationActivity() {
         <Card className="max-w-xl mx-auto">
           <CardHeader className="text-center">
             <CardDescription>
-                {currentExercise.type === 'word' ? `Prevedi sljedeću riječ na ${getLanguageDisplayName()}:` : `Prevedi sljedeću rečenicu na ${getLanguageDisplayName()}:`}
+                {language === 'serbian' 
+                  ? (currentExercise.type === 'word' ? `Prevedi sledeću reč na ${getLanguageDisplayName()}:` : `Prevedi sledeću rečenicu na ${getLanguageDisplayName()}:`)
+                  : (currentExercise.type === 'word' ? `Prevedi sljedeću riječ na ${getLanguageDisplayName()}:` : `Prevedi sljedeću rečenicu na ${getLanguageDisplayName()}:`)
+                }
             </CardDescription>
             <CardTitle className="text-3xl md:text-4xl font-bold font-headline py-4">{currentExercise.source}</CardTitle>
           </CardHeader>
@@ -140,7 +148,7 @@ export function TranslationActivity() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Unesi prijevod..."
+                placeholder={language === 'serbian' ? 'Unesi prevod...' : 'Unesi prijevod...'}
                 className="text-center text-lg h-12"
                 disabled={isAnswered}
                 autoFocus
@@ -150,7 +158,7 @@ export function TranslationActivity() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Unesi prijevod..."
+                placeholder={language === 'serbian' ? 'Unesi prevod...' : 'Unesi prijevod...'}
                 className="text-center text-lg min-h-[100px]"
                 disabled={isAnswered}
                 autoFocus
@@ -171,7 +179,7 @@ export function TranslationActivity() {
                     </p>
                  )}
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? nextButtonText : 'Vidi rezultate'}
+                    {currentExerciseIndex < exercises.length - 1 ? getNextButtonText() : 'Vidi rezultate'}
                 </Button>
               </div>
             )}
@@ -180,7 +188,7 @@ export function TranslationActivity() {
       ) : (
         <Card className="text-center p-8 max-w-xl mx-auto">
           <h3 className="text-2xl font-headline mb-4">Vježba završena!</h3>
-          <p className="text-lg mb-6">Imali ste {correctAnswers} od {exercises.length} tačnih prijevoda.</p>
+          <p className="text-lg mb-6">Imali ste {correctAnswers} od {exercises.length} tačnih {language === 'serbian' ? 'prevoda' : 'prijevoda'}.</p>
           <Button onClick={generateExercises}>
             <RefreshCw className="w-4 h-4 mr-2" />
             Vježbaj ponovo
