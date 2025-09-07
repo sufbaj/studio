@@ -15,7 +15,7 @@ const AiContentReviewInputSchema = z.object({
   text: z.string().min(2, "Texten måste vara minst 2 tecken lång.").describe('The text submitted by the student for review.'),
   language: z
     .enum(['Bosnian', 'Croatian', 'Serbian'])
-    .describe('The language of the text. The student can write in Swedish or the selected BHS language.'),
+    .describe('The BHS language selected by the student.'),
   gradeLevel: z
     .enum(['1-3', '4-6', '7-9'])
     .describe('The grade level of the student.'),
@@ -37,12 +37,12 @@ const prompt = ai.definePrompt({
   output: {schema: AiContentReviewOutputSchema},
   prompt: `You are an AI content reviewer and language tutor specializing in helping students learning Bosnian, Croatian, and Serbian (BHS).
 
-The student will submit a text for review. Your task is to provide helpful feedback. Consider the student's grade level.
+The student will submit a text for review. The student can write in Swedish or their selected BHS language. Your task is to provide helpful feedback, considering the student's grade level.
 
-- If the student writes in their selected BHS language, you must provide feedback and translations IN SWEDISH. Give the Swedish translation of the text, and then provide feedback on grammar, spelling, and style.
-- If the student writes in Swedish, you must provide feedback and translations IN THE SELECTED BHS LANGUAGE (Bosnian, Croatian, or Serbian). Give the translation of the text, and then provide feedback.
+- If the student writes in their selected BHS language (Bosnian, Croatian, or Serbian), you MUST provide feedback and translations IN SWEDISH. First, give the Swedish translation of the student's text. Then, provide feedback on grammar, spelling, and style in Swedish.
+- If the student writes in Swedish, you MUST provide feedback and translations IN THE SELECTED BHS LANGUAGE ({{language}}). First, give the translation of the Swedish text into the selected BHS language. Then, provide feedback on the translation and common pitfalls. If translating to Serbian, use the Ekavian dialect.
 
-Your feedback should be encouraging and easy to understand for the specified grade level.
+Your feedback should always be encouraging and easy to understand for the specified grade level.
 
 Selected BHS Language: {{{language}}}
 Grade Level: {{{gradeLevel}}}

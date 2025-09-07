@@ -9,11 +9,9 @@ import { z } from 'zod';
 const AiContentReviewInputSchema = z.object({
   text: z.string().min(2, "Texten måste vara minst 2 tecken lång."),
   language: z
-    .enum(['Bosnian', 'Croatian', 'Serbian'])
-    .describe('The language of the text. The student can write in Swedish or the selected BHS language.'),
+    .enum(['Bosnian', 'Croatian', 'Serbian']),
   gradeLevel: z
-    .enum(['1-3', '4-6', '7-9'])
-    .describe('The grade level of the student.'),
+    .enum(['1-3', '4-6', '7-9']),
 });
 
 const TranslatorInputSchema = z.object({
