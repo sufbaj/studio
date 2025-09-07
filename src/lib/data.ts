@@ -67,6 +67,21 @@ export const data: LanguageData = {
         { id: 3, sentence: 'Ovo je moja ___.', blank: 'kuća', options: ['nebo', 'sreća', 'kuća'] },
         { id: 4, sentence: 'Čitam ___.', blank: 'knjigu', options: ['knjigu', 'staklo', 'zidom'] },
         { id: 5, sentence: 'Jedem ___.', blank: 'jabuku', options: ['kamen', 'jabuku', 'cipelom'] },
+        { id: 6, sentence: 'Učiteljica nosi ___.', blank: 'naočale', options: ['naočale', 'naočare', 'naoćale'] },
+        { id: 7, sentence: 'Na tanjiru je ___.', blank: 'voće', options: ['voće', 'voče', 'voce'] },
+        { id: 8, sentence: 'Djed nosi smeđi ___.', blank: 'šešir', options: ['šešir', 'šećir', 'šesir'] },
+        { id: 9, sentence: 'Idem u ___ spavati.', blank: 'krevet', options: ['krevet', 'krevit', 'krevat'] },
+        { id: 10, sentence: 'Imam novu ___.', blank: 'kuću', options: ['kuću', 'kuču', 'kucu'] },
+        { id: 11, sentence: 'U bašči raste crveni ___.', blank: 'cvijet', options: ['cvijet', 'cvjet', 'cvit'] },
+        { id: 12, sentence: 'To je moj najbolji ___.', blank: 'prijatelj', options: ['prijatelj', 'prijatel', 'priatelj'] },
+        { id: 13, sentence: 'Djevojčica ima dugu ___.', blank: 'kosu', options: ['kosu', 'košu', 'koso'] },
+        { id: 14, sentence: 'Baka pravi ukusan ___.', blank: 'kolač', options: ['kolač', 'kolać', 'kolac'] },
+        { id: 15, sentence: '___ je zeleno.', blank: 'Lišće', options: ['Lišće', 'Lishche', 'Lisce'] },
+        { id: 16, sentence: '___ se igra s loptom.', blank: 'Dječak', options: ['Dječak', 'Dečak', 'Djećak'] },
+        { id: 17, sentence: 'U ___ ima puno knjiga.', blank: 'biblioteci', options: ['biblioteci', 'knjižnici', 'knjižnjici'] },
+        { id: 18, sentence: 'Danas je lijep dan u ___.', blank: 'Sarajevu', options: ['Sarajevu', 'Sarejevu', 'Sarajvu'] },
+        { id: 19, sentence: 'U ___ se pravi ćevap.', blank: 'džezvi', options: ['džezvi', 'đezvi', 'djezvi'] },
+        { id: 20, sentence: 'Volim jesti ___ pitu.', blank: 'burekđinicu', options: ['burekđinicu', 'burekčinicu', 'burekcinicu'] }
       ],
       sentences: [
         { id: 1, sentence: 'Dječak čita knjigu.' },
@@ -211,7 +226,7 @@ export const data: LanguageData = {
         { id: 12, sentence: 'Baka peče ukusan ___.', blank: 'kolač', options: ['kolač', 'kolać', 'kolac'] },
         { id: 13, sentence: '___ je zeleno.', blank: 'Lišće', options: ['Lišće', 'Lishche', 'Lisce'] },
         { id: 14, sentence: '___ se igra s loptom.', blank: 'Dječak', options: ['Dječak', 'Dečak', 'Djećak'] },
-        { id: 15, sentence: 'U ___ ima puno knjiga.', blank: 'knjižnici', options: ['knjižnici', 'knjižnjici', 'knjižnici'] }
+        { id: 15, sentence: 'U ___ ima puno knjiga.', blank: 'knjižnici', options: ['biblioteci', 'knjižnici', 'knjižnjici'] }
       ],
       sentences: [
         { id: 1, sentence: 'Dječak čita knjigu.' },
