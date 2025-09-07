@@ -25,6 +25,14 @@ export interface SpellingItem {
   options: string[];
 }
 
+export interface GrammarItem {
+  id: number;
+  sentence: string;
+  blank: string;
+  options: string[];
+  explanation: string;
+}
+
 export interface SentenceItem {
   id: number;
   sentence: string;
@@ -34,7 +42,7 @@ export interface Content {
   vocabulary: VocabularyItem[];
   spelling: SpellingItem[];
   sentences: SentenceItem[];
-  // Other activity types would be defined here
+  grammar: GrammarItem[];
 }
 
 export type LanguageData = Record<Language, Record<Grade, Content>>;

@@ -6,6 +6,7 @@ import { SpellingActivity } from '@/components/activities/SpellingActivity';
 import { AiReviewActivity } from '@/components/activities/AiReviewActivity';
 import { NotImplementedActivity } from '@/components/activities/NotImplementedActivity';
 import { SentencesActivity } from '@/components/activities/SentencesActivity';
+import { GrammarActivity } from '@/components/activities/GrammarActivity';
 
 export default function ActivityPage() {
   const params = useParams();
@@ -19,6 +20,8 @@ export default function ActivityPage() {
         return <SpellingActivity />;
       case 'sentences':
         return <SentencesActivity />;
+      case 'grammar':
+        return <GrammarActivity />;
       case 'ai-review':
         return <AiReviewActivity />;
       default:

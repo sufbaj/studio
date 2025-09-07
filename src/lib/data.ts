@@ -37,9 +37,9 @@ export const data: LanguageData = {
         { id: 12, sentence: 'Oni gledaju crtani film.' },
         { id: 13, sentence: 'Baka plete topli džemper.' },
         { id: 14, sentence: 'Djed čita novine.' },
-        { id: 15, sentence: 'Ptica leti visoko na nebu' },
-        { id: 16, sentence: 'Riba pliva u vodi' },
-        { id: 17, sentence: 'Danas je lijep dan' },
+        { id: 15, sentence: 'ptica leti visoko na nebu' },
+        { id: 16, sentence: 'riba pliva u vodi' },
+        { id: 17, sentence: 'danas je lijep dan' },
         { id: 18, sentence: 'snijeg pada zimi' },
         { id: 19, sentence: 'volim crtati cvijeće' },
         { id: 20, sentence: 'moja lopta je crvena' },
@@ -49,9 +49,16 @@ export const data: LanguageData = {
         { id: 24, sentence: 'ona pjeva lijepu pjesmu' },
         { id: 25, sentence: 'idemo na izlet sutra' }
       ],
+      grammar: [
+        { id: 1, sentence: 'Dječak ___ loptu.', blank: 'ima', options: ['ima', 'imaju', 'imamo'], explanation: 'Subjekt u jednini (dječak) zahtijeva glagol u trećem licu jednine (ima).' },
+        { id: 2, sentence: 'Djevojčice se ___.', blank: 'igraju', options: ['igra', 'igraš', 'igraju'], explanation: 'Subjekt u množini (djevojčice) zahtijeva glagol u trećem licu množine (igraju).' },
+        { id: 3, sentence: 'Ovo je ___ kuća.', blank: 'moja', options: ['moj', 'moja', 'moje'], explanation: 'Imenica "kuća" je ženskog roda, pa prisvojna zamjenica mora biti u ženskom rodu (moja).' },
+        { id: 4, sentence: 'Idem u ___ grad.', blank: 'veliki', options: ['veliki', 'velika', 'veliko'], explanation: 'Imenica "grad" je muškog roda, pa pridjev mora biti u muškom rodu (veliki).' },
+        { id: 5, sentence: 'Jedem ___ jabuku.', blank: 'crvenu', options: ['crveni', 'crvena', 'crvenu'], explanation: 'U akuzativu jednine ženskog roda, pridjev "crven" ima oblik "crvenu".' }
+      ]
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
   },
   croatian: {
     '1-3': {
@@ -81,9 +88,9 @@ export const data: LanguageData = {
         { id: 12, sentence: 'Oni gledaju crtani film.' },
         { id: 13, sentence: 'Baka plete topli džemper.' },
         { id: 14, sentence: 'Djed čita novine.' },
-        { id: 15, sentence: 'Ptica leti visoko na nebu' },
-        { id: 16, sentence: 'Riba pliva u vodi' },
-        { id: 17, sentence: 'Danas je lijep dan' },
+        { id: 15, sentence: 'ptica leti visoko na nebu' },
+        { id: 16, sentence: 'riba pliva u vodi' },
+        { id: 17, sentence: 'danas je lijep dan' },
         { id: 18, sentence: 'snijeg pada zimi' },
         { id: 19, sentence: 'volim crtati cvijeće' },
         { id: 20, sentence: 'moja lopta je crvena' },
@@ -93,9 +100,16 @@ export const data: LanguageData = {
         { id: 24, sentence: 'ona pjeva lijepu pjesmu' },
         { id: 25, sentence: 'idemo sutra na izlet' }
       ],
+      grammar: [
+        { id: 1, sentence: 'Dječak ___ loptu.', blank: 'ima', options: ['ima', 'imaju', 'imamo'], explanation: 'Subjekt u jednini (dječak) zahtijeva glagol u trećem licu jednine (ima).' },
+        { id: 2, sentence: 'Djevojčice se ___.', blank: 'igraju', options: ['igra', 'igraš', 'igraju'], explanation: 'Subjekt u množini (djevojčice) zahtijeva glagol u trećem licu množine (igraju).' },
+        { id: 3, sentence: 'Ovo je ___ kuća.', blank: 'moja', options: ['moj', 'moja', 'moje'], explanation: 'Imenica "kuća" je ženskog roda, pa posvojna zamjenica mora biti u ženskom rodu (moja).' },
+        { id: 4, sentence: 'Idem u ___ grad.', blank: 'velik', options: ['velik', 'velika', 'veliko'], explanation: 'Imenica "grad" je muškog roda, pa pridjev mora biti u muškom rodu (velik).' },
+        { id: 5, sentence: 'Jedem ___ jabuku.', blank: 'crvenu', options: ['crveni', 'crvena', 'crvenu'], explanation: 'U akuzativu jednine ženskog roda, pridjev "crven" ima oblik "crvenu".' }
+      ],
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
   },
   serbian: {
     '1-3': {
@@ -125,9 +139,9 @@ export const data: LanguageData = {
         { id: 12, sentence: 'Oni gledaju crtani film.' },
         { id: 13, sentence: 'Baka plete topli džemper.' },
         { id: 14, sentence: 'Deda čita novine.' },
-        { id: 15, sentence: 'Ptica leti visoko na nebu' },
-        { id: 16, sentence: 'Riba pliva u vodi' },
-        { id: 17, sentence: 'Danas je lep dan' },
+        { id: 15, sentence: 'ptica leti visoko na nebu' },
+        { id: 16, sentence: 'riba pliva u vodi' },
+        { id: 17, sentence: 'danas je lep dan' },
         { id: 18, sentence: 'sneg pada zimi' },
         { id: 19, sentence: 'volim da crtam cveće' },
         { id: 20, sentence: 'moja lopta je crvena' },
@@ -137,8 +151,15 @@ export const data: LanguageData = {
         { id: 24, sentence: 'ona peva lepu pesmu' },
         { id: 25, sentence: 'idemo sutra na izlet' }
       ],
+      grammar: [
+        { id: 1, sentence: 'Dečak ___ loptu.', blank: 'ima', options: ['ima', 'imaju', 'imamo'], explanation: 'Subjekat u jednini (dečak) zahteva glagol u trećem licu jednine (ima).' },
+        { id: 2, sentence: 'Devojčice se ___.', blank: 'igraju', options: ['igra', 'igraš', 'igraju'], explanation: 'Subjekat u množini (devojčice) zahteva glagol u trećem licu množine (igraju).' },
+        { id: 3, sentence: 'Ovo je ___ kuća.', blank: 'moja', options: ['moj', 'moja', 'moje'], explanation: 'Imenica "kuća" je ženskog roda, pa prisvojna zamenica mora biti u ženskom rodu (moja).' },
+        { id: 4, sentence: 'Idem u ___ grad.', blank: 'veliki', options: ['veliki', 'velika', 'veliko'], explanation: 'Imenica "grad" je muškog roda, pa pridev mora biti u muškom rodu (veliki).' },
+        { id: 5, sentence: 'Jedem ___ jabuku.', blank: 'crvenu', options: ['crveni', 'crvena', 'crvenu'], explanation: 'U akuzativu jednine ženskog roda, pridev "crven" ima oblik "crvenu".' }
+      ],
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [] },
   },
 };
