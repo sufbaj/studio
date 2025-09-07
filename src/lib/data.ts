@@ -4,16 +4,16 @@ export const data: LanguageData = {
   bosnian: {
     '1-3': {
       vocabulary: [
-        { id: 1, word: 'kahva', translation: 'kaffe', image: 'https://picsum.photos/300/200?random=1', audio: '', 'data-ai-hint': 'coffee cup' },
-        { id: 2, word: 'škola', translation: 'skola', image: 'https://picsum.photos/300/200?random=2', audio: '', 'data-ai-hint': 'school building' },
-        { id: 3, word: 'kuća', translation: 'hus', image: 'https://picsum.photos/300/200?random=3', audio: '', 'data-ai-hint': 'house exterior' },
-        { id: 4, word: 'knjiga', translation: 'bok', image: 'https://picsum.photos/300/200?random=4', audio: '', 'data-ai-hint': 'open book' },
-        { id: 5, word: 'jabuka', translation: 'äpple', image: 'https://picsum.photos/300/200?random=5', audio: '', 'data-ai-hint': 'red apple' },
-        { id: 6, word: 'auto', translation: 'bil', image: 'https://picsum.photos/300/200?random=6', audio: '', 'data-ai-hint': 'modern car' },
-        { id: 7, word: 'mačka', translation: 'katt', image: 'https://picsum.photos/300/200?random=7', audio: '', 'data-ai-hint': 'cute cat' },
-        { id: 8, word: 'pas', translation: 'hund', image: 'https://picsum.photos/300/200?random=8', audio: '', 'data-ai-hint': 'happy dog' },
-        { id: 9, word: 'lopta', translation: 'boll', image: 'https://picsum.photos/300/200?random=9', audio: '', 'data-ai-hint': 'soccer ball' },
-        { id: 10, word: 'sunce', translation: 'sol', image: 'https://picsum.photos/300/200?random=10', audio: '', 'data-ai-hint': 'bright sun' },
+        { id: 1, word: 'kahva', translation: 'kaffe', image: 'https://picsum.photos/id/305/300/200', audio: '', 'data-ai-hint': 'coffee cup' },
+        { id: 2, word: 'škola', translation: 'skola', image: 'https://picsum.photos/id/219/300/200', audio: '', 'data-ai-hint': 'school building' },
+        { id: 3, word: 'kuća', translation: 'hus', image: 'https://picsum.photos/id/1062/300/200', audio: '', 'data-ai-hint': 'house exterior' },
+        { id: 4, word: 'knjiga', translation: 'bok', image: 'https://picsum.photos/id/373/300/200', audio: '', 'data-ai-hint': 'open book' },
+        { id: 5, word: 'jabuka', translation: 'äpple', image: 'https://picsum.photos/id/1080/300/200', audio: '', 'data-ai-hint': 'red apple' },
+        { id: 6, word: 'auto', translation: 'bil', image: 'https://picsum.photos/id/1071/300/200', audio: '', 'data-ai-hint': 'modern car' },
+        { id: 7, word: 'mačka', translation: 'katt', image: 'https://picsum.photos/id/219/300/200', audio: '', 'data-ai-hint': 'cute cat' },
+        { id: 8, word: 'pas', translation: 'hund', image: 'https://picsum.photos/id/237/300/200', audio: '', 'data-ai-hint': 'happy dog' },
+        { id: 9, word: 'lopta', translation: 'boll', image: 'https://picsum.photos/id/450/300/200', audio: '', 'data-ai-hint': 'soccer ball' },
+        { id: 10, word: 'sunce', translation: 'sol', image: 'https://picsum.photos/id/13/300/200', audio: '', 'data-ai-hint': 'bright sun' },
       ],
       spelling: [
         { id: 1, sentence: 'Moja mama pije ___.', blank: 'kahvu', options: ['sok', 'kahvu', 'vodu'] },
@@ -29,11 +29,11 @@ export const data: LanguageData = {
   croatian: {
     '1-3': {
       vocabulary: [
-        { id: 1, word: 'kruh', translation: 'bröd', image: 'https://picsum.photos/300/200?random=11', audio: '', 'data-ai-hint': 'sliced bread' },
-        { id: 2, word: 'tisuća', translation: 'tusen', image: 'https://picsum.photos/300/200?random=12', audio: '', 'data-ai-hint': 'number blocks' },
-        { id: 3, word: 'obitelj', translation: 'familj', image: 'https://picsum.photos/300/200?random=13', audio: '', 'data-ai-hint': 'happy family' },
-        { id: 4, word: 'more', translation: 'hav', image: 'https://picsum.photos/300/200?random=14', audio: '', 'data-ai-hint': 'ocean waves' },
-        { id: 5, word: 'grad', translation: 'stad', image: 'https://picsum.photos/300/200?random=15', audio: '', 'data-ai-hint': 'city skyline' },
+        { id: 1, word: 'kruh', translation: 'bröd', image: 'https://picsum.photos/id/312/300/200', audio: '', 'data-ai-hint': 'sliced bread' },
+        { id: 2, word: 'tisuća', translation: 'tusen', image: 'https://picsum.photos/id/175/300/200', audio: '', 'data-ai-hint': 'number blocks' },
+        { id: 3, word: 'obitelj', translation: 'familj', image: 'https://picsum.photos/id/1012/300/200', audio: '', 'data-ai-hint': 'happy family' },
+        { id: 4, word: 'more', translation: 'hav', image: 'https://picsum.photos/id/1015/300/200', audio: '', 'data-ai-hint': 'ocean waves' },
+        { id: 5, word: 'grad', translation: 'stad', image: 'https://picsum.photos/id/1072/300/200', audio: '', 'data-ai-hint': 'city skyline' },
       ],
       spelling: [
         { id: 1, sentence: 'Jedem svježi ___.', blank: 'kruh', options: ['sir', 'kruh', 'meso'] },
@@ -46,11 +46,11 @@ export const data: LanguageData = {
   serbian: {
     '1-3': {
       vocabulary: [
-        { id: 1, word: 'hleb', translation: 'bröd', image: 'https://picsum.photos/300/200?random=21', audio: '', 'data-ai-hint': 'loaf bread' },
-        { id: 2, word: 'hiljada', translation: 'tusen', image: 'https://picsum.photos/300/200?random=22', audio: '', 'data-ai-hint': 'counting money' },
-        { id: 3, word: 'porodica', translation: 'familj', image: 'https://picsum.photos/300/200?random=23', audio: '', 'data-ai-hint': 'family portrait' },
-        { id: 4, word: 'reka', translation: 'flod', image: 'https://picsum.photos/300/200?random=24', audio: '', 'data-ai-hint': 'calm river' },
-        { id: 5, word: 'selo', translation: 'by', image: 'https://picsum.photos/300/200?random=25', audio: '', 'data-ai-hint': 'small village' },
+        { id: 1, word: 'hleb', translation: 'bröd', image: 'https://picsum.photos/id/312/300/200', audio: '', 'data-ai-hint': 'loaf bread' },
+        { id: 2, word: 'hiljada', translation: 'tusen', image: 'https://picsum.photos/id/21/300/200', audio: '', 'data-ai-hint': 'counting money' },
+        { id: 3, word: 'porodica', translation: 'familj', image: 'https://picsum.photos/id/1012/300/200', audio: '', 'data-ai-hint': 'family portrait' },
+        { id: 4, word: 'reka', translation: 'flod', image: 'https://picsum.photos/id/1016/300/200', audio: '', 'data-ai-hint': 'calm river' },
+        { id: 5, word: 'selo', translation: 'by', image: 'https://picsum.photos/id/103/300/200', audio: '', 'data-ai-hint': 'small village' },
       ],
       spelling: [
         { id: 1, sentence: 'Kupio sam ___.', blank: 'hleb', options: ['mleko', 'hleb', 'šećer'] },
