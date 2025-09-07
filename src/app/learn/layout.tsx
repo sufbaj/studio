@@ -41,6 +41,7 @@ const navItems = [
   { href: 'reading', icon: Languages, label: 'Läsförståelse' },
   { href: 'translation', icon: Languages, label: 'Översätta från svenska' },
   { href: 'translator', icon: BookOpen, label: 'Översättare' },
+  { href: 'ai-review', icon: Bot, label: 'AI återkoppling' },
 ];
 
 function getLanguageDisplayName(language: Language) {
