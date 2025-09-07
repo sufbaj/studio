@@ -169,11 +169,11 @@ export function TranslatorActivity() {
                 >
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="male" id="male" />
-                        <Label htmlFor="male">Muški (npr. bio)</Label>
+                        <Label htmlFor="male">Muški rod</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="female" id="female" />
-                        <Label htmlFor="female">Ženski (npr. bila)</Label>
+                        <Label htmlFor="female">Ženski rod</Label>
                     </div>
                 </RadioGroup>
                 <Button variant="link" size="sm" className="px-0 h-auto" onClick={() => setGender(undefined)}>Poništi odabir</Button>
