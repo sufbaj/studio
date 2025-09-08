@@ -1,83 +1,34 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef }
-from 'react';
-import { motion }
-from 'framer-motion';
-import { useAppContext }
-from '@/contexts/AppContext';
-import { data }
-from '@/lib/data';
-import type { SentenceItem }
-from '@/lib/types';
-import { Button }
-from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle }
-from '@/components/ui/card';
-import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2 }
-from 'lucide-react';
-import { useToast }
-from '@/hooks/use-toast';
-import { Progress }
-from '@/components/ui/progress';
-import { cn }
-from '@/lib/utils';
-import { generateSpeechAction }
-from '@/app/learn/actions';
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { useAppContext } from '@/contexts/AppContext';
+import { data } from '@/lib/data';
+import type { SentenceItem } from '@/lib/types';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { Progress } from '@/components/ui/progress';
+import { cn } from '@/lib/utils';
 
-const shuffleArray = < T, > (array: T[]): T[] => {
+const shuffleArray = <T,>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
-const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-
-
 export function SentencesActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore }
-  = useAppContext();
-  const { toast }
-  = useToast();
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const { toast } = useToast();
 
-  const [exercises, setExercises] = useState < SentenceItem[] > ([]);
+  const [exercises, setExercises] = useState<SentenceItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-  const [wordBank, setWordBank] = useState < string[] > ([]);
-  const [answerWords, setAnswerWords] = useState < string[] > ([]);
+  const [wordBank, setWordBank] = useState<string[]>([]);
+  const [answerWords, setAnswerWords] = useState<string[]>([]);
   const [isAnswered, setIsAnswered] = useState(false);
-  const [isCorrect, setIsCorrect] = useState < boolean | null > (null);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [playingText, setPlayingText] = useState < string | null > (null);
-  const audioRef = useRef < HTMLAudioElement | null > (null);
 
   const currentExercise = useMemo(() => exercises[currentExerciseIndex], [exercises, currentExerciseIndex]);
-
-  const handlePlaySound = useCallback(async (text: string) => {
-    if (playingText) return;
-
-    if (audioRef.current) {
-      audioRef.current.src = EMPTY_SOUND_DATA_URI;
-      audioRef.current.play().catch(() => {});
-    }
-
-    setPlayingText(text);
-
-    try {
-      const result = await generateSpeechAction({ text });
-      if (result.error) {
-        toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-      } else if (result.audioData) {
-        if (audioRef.current) {
-          audioRef.current.src = result.audioData;
-          audioRef.current.play();
-        }
-      }
-    } catch (error) {
-      toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-    }
-  }, [playingText, toast]);
-
-  const handleAudioEnded = () => {
-    setPlayingText(null);
-  };
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
@@ -127,7 +78,6 @@ export function SentencesActivity() {
       updateScore(20);
       setCorrectAnswers(prev => prev + 1);
       toast({ title: "Tačno!", description: "Sjajno! +20 poena." });
-      handlePlaySound(currentExercise.sentence);
     } else {
       toast({ title: "Netačno!", description: `Pravilan odgovor je: "${currentExercise.sentence}"`, variant: "destructive" });
     }
@@ -156,7 +106,6 @@ export function SentencesActivity() {
 
   return (
     <div>
-      <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingText(null)} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Sastavi rečenicu</h2>
         {!isQuizFinished && (
@@ -228,9 +177,6 @@ export function SentencesActivity() {
                  {isCorrect ? (
                     <div className="flex items-center gap-4">
                         <p className="flex items-center gap-2 text-green-600 text-xl font-bold"><CheckCircle /> Tačno!</p>
-                         <Button variant="ghost" size="icon" onClick={() => handlePlaySound(currentExercise.sentence)} disabled={!!playingText}>
-                            {playingText === currentExercise.sentence ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
-                        </Button>
                     </div>
                  ) : (
                     <div className="text-center">

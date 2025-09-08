@@ -1,29 +1,16 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef }
-from 'react';
-import { useAppContext }
-from '@/contexts/AppContext';
-import { Button }
-from '@/components/ui/button';
-import { Textarea }
-from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
-from '@/components/ui/card';
-import { translateTextAction, generateSpeechAction }
-from '@/app/learn/actions';
-import { useToast }
-from '@/hooks/use-toast';
-import { Loader2, ArrowRightLeft, Languages, VenetianMask, Volume2 }
-from 'lucide-react';
-import type { Language }
-from '@/lib/types';
-import { useDebounce }
-from 'use-debounce';
-import { RadioGroup, RadioGroupItem }
-from '@/components/ui/radio-group';
-import { Label }
-from '@/components/ui/label';
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useAppContext } from '@/contexts/AppContext';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { translateTextAction } from '@/app/learn/actions';
+import { useToast } from '@/hooks/use-toast';
+import { Loader2, ArrowRightLeft, Languages } from 'lucide-react';
+import { useDebounce } from 'use-debounce';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 
 type LanguageOption = 'Swedish' | 'Bosnian' | 'Croatian' | 'Serbian';
 type GenderOption = 'male' | 'female';
@@ -33,54 +20,18 @@ function toTitleCase(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-
-
 export function TranslatorActivity() {
-  const { language, resetScore }
-  = useAppContext();
-  const { toast }
-  = useToast();
+  const { language, resetScore } = useAppContext();
+  const { toast } = useToast();
 
   const [sourceText, setSourceText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [sourceLang, setSourceLang] = useState < LanguageOption > ('Swedish');
-  const [targetLang, setTargetLang] = useState < LanguageOption > ('Bosnian');
-  const [gender, setGender] = useState < GenderOption | undefined > (undefined);
-  const [playingId, setPlayingId] = useState < string | null > (null);
-  const audioRef = useRef < HTMLAudioElement | null > (null);
+  const [sourceLang, setSourceLang] = useState<LanguageOption>('Swedish');
+  const [targetLang, setTargetLang] = useState<LanguageOption>('Bosnian');
+  const [gender, setGender] = useState<GenderOption | undefined>(undefined);
 
   const [debouncedSourceText] = useDebounce(sourceText, 500);
-
-  const handlePlaySound = useCallback(async (text: string, id: string) => {
-    if (playingId || !text) return;
-
-    if (audioRef.current) {
-      audioRef.current.src = EMPTY_SOUND_DATA_URI;
-      audioRef.current.play().catch(() => {});
-    }
-
-    setPlayingId(id);
-
-    try {
-      const result = await generateSpeechAction({ text });
-      if (result.error) {
-        toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-      } else if (result.audioData) {
-        if (audioRef.current) {
-          audioRef.current.src = result.audioData;
-          audioRef.current.play();
-        }
-      }
-    } catch (error) {
-      toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-    }
-  }, [playingId, toast]);
-
-  const handleAudioEnded = () => {
-    setPlayingId(null);
-  };
 
   useEffect(() => {
     resetScore();
@@ -158,7 +109,6 @@ export function TranslatorActivity() {
 
   return (
     <div>
-      <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingId(null)} />
       <h2 className="text-3xl font-headline font-bold mb-4">Översättare</h2>
       <p className="text-muted-foreground mb-6">
         Använd detta verktyg för att snabbt översätta ord och meningar mellan svenska och ditt valda språk.
@@ -177,12 +127,7 @@ export function TranslatorActivity() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start relative">
             <div className="flex flex-col gap-2">
-                <div className="flex items-center justify-between">
-                    <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(sourceLang)}</label>
-                    <Button variant="ghost" size="icon" className="w-8 h-8" onClick={() => handlePlaySound(sourceText, 'source')} disabled={!sourceText.trim() || !!playingId}>
-                        {playingId === 'source' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
-                    </Button>
-                </div>
+                <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(sourceLang)}</label>
                 <Textarea
                     placeholder={`Skriv text på ${getLanguageDisplayName(sourceLang)}...`}
                     value={sourceText}
@@ -192,12 +137,7 @@ export function TranslatorActivity() {
             </div>
             
             <div className="flex flex-col gap-2">
-                <div className="flex items-center justify-between">
-                    <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(targetLang)}</label>
-                    <Button variant="ghost" size="icon" className="w-8 h-8" onClick={() => handlePlaySound(translatedText, 'target')} disabled={!translatedText.trim() || !!playingId}>
-                        {playingId === 'target' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
-                    </Button>
-                </div>
+                <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(targetLang)}</label>
                 <div className="relative">
                 <Textarea
                     placeholder="Översättning..."

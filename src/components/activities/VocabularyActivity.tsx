@@ -1,27 +1,15 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback, useRef }
-from 'react';
-import { motion, AnimatePresence }
-from 'framer-motion';
-import { useAppContext }
-from '@/contexts/AppContext';
-import { data }
-from '@/lib/data';
-import type { VocabularyItem }
-from '@/lib/types';
-import { Card, CardContent, CardHeader, CardTitle }
-from '@/components/ui/card';
-import { Button }
-from '@/components/ui/button';
-import { Volume2, RefreshCw, CheckCircle, XCircle, Loader2 }
-from 'lucide-react';
-import { useToast }
-from '@/hooks/use-toast';
-import { Progress }
-from '@/components/ui/progress';
-import { generateSpeechAction }
-from '@/app/learn/actions';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useAppContext } from '@/contexts/AppContext';
+import { data } from '@/lib/data';
+import type { VocabularyItem } from '@/lib/types';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { Progress } from '@/components/ui/progress';
 
 type QuizOption = {
   word: string;
@@ -33,50 +21,14 @@ type QuizItem = {
   options: QuizOption[];
 };
 
-const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-
-
 export function VocabularyActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore }
-  = useAppContext();
-  const { toast }
-  = useToast();
-  const [quizItems, setQuizItems] = useState < QuizItem[] > ([]);
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const { toast } = useToast();
+  const [quizItems, setQuizItems] = useState<QuizItem[]>([]);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState < QuizOption | null > (null);
+  const [selectedAnswer, setSelectedAnswer] = useState<QuizOption | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [playingText, setPlayingText] = useState < string | null > (null);
-  const audioRef = useRef < HTMLAudioElement | null > (null);
-
-  const handlePlaySound = useCallback(async (text: string) => {
-    if (playingText) return;
-
-    if (audioRef.current) {
-      audioRef.current.src = EMPTY_SOUND_DATA_URI;
-      audioRef.current.play().catch(() => {});
-    }
-
-    setPlayingText(text);
-
-    try {
-      const result = await generateSpeechAction({ text });
-      if (result.error) {
-        toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-      } else if (result.audioData) {
-        if (audioRef.current) {
-          audioRef.current.src = result.audioData;
-          audioRef.current.play();
-        }
-      }
-    } catch (error) {
-      toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-    }
-  }, [playingText, toast]);
-
-  const handleAudioEnded = () => {
-    setPlayingText(null);
-  };
 
   const generateQuiz = useCallback(() => {
     if (!language || !grade) return;
@@ -177,7 +129,6 @@ export function VocabularyActivity() {
 
   return (
     <div>
-        <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingText(null)} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Rječnik</h2>
          {!isQuizFinished && (
@@ -208,9 +159,6 @@ export function VocabularyActivity() {
                 <p className="text-muted-foreground">Kako se na {getLanguageDisplayName()} kaže:</p>
                  <div className="flex items-center gap-4">
                     <p className="text-4xl font-bold font-headline">{currentQuizItem.item.translation}</p>
-                     <Button variant="ghost" size="icon" onClick={() => handlePlaySound(currentQuizItem.item.translation)} disabled={!!playingText}>
-                         {playingText === currentQuizItem.item.translation ? <Loader2 className="w-6 h-6 animate-spin" /> : <Volume2 className="w-6 h-6" />}
-                    </Button>
                  </div>
               </div>
             </CardContent>
@@ -237,16 +185,7 @@ export function VocabularyActivity() {
                       </Button>
                     ))}
                   </div>
-                  <div className="flex items-center justify-between mt-6">
-                     <Button 
-                        variant="ghost" 
-                        size="icon"
-                        onClick={() => handlePlaySound(currentQuizItem.item.word)} 
-                        disabled={!isAnswered || !selectedAnswer?.isCorrect || !!playingText}
-                        className={!isAnswered || !selectedAnswer?.isCorrect ? 'opacity-0' : ''}
-                        >
-                        {playingText === currentQuizItem.item.word ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5"/>}
-                    </Button>
+                  <div className="flex items-center justify-end mt-6">
                     {isAnswered && (
                       <Button onClick={nextQuestion} size="lg">
                          {currentItemIndex < quizItems.length - 1 ? (language === 'serbian' ? 'Sledeće' : 'Sljedeće') : 'Vidi rezultate'}

@@ -1,70 +1,23 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef }
-from 'react';
-import { useAppContext }
-from '@/contexts/AppContext';
-import { data }
-from '@/lib/data';
-import type { SpellingItem }
-from '@/lib/types';
-import { Button }
-from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle }
-from '@/components/ui/card';
-import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2 }
-from 'lucide-react';
-import { useToast }
-from '@/hooks/use-toast';
-import { Progress }
-from '@/components/ui/progress';
-import { generateSpeechAction }
-from '@/app/learn/actions';
-
-const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-
+import { useState, useEffect, useCallback } from 'react';
+import { useAppContext } from '@/contexts/AppContext';
+import { data } from '@/lib/data';
+import type { SpellingItem } from '@/lib/types';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { Progress } from '@/components/ui/progress';
 
 export function SpellingActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore }
-  = useAppContext();
-  const { toast }
-  = useToast();
-  const [exercises, setExercises] = useState < SpellingItem[] > ([]);
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const { toast } = useToast();
+  const [exercises, setExercises] = useState<SpellingItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState < string | null > (null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [playingText, setPlayingText] = useState < string | null > (null);
-  const audioRef = useRef < HTMLAudioElement | null > (null);
-
-  const handlePlaySound = useCallback(async (text: string) => {
-    if (playingText) return;
-
-    if (audioRef.current) {
-      audioRef.current.src = EMPTY_SOUND_DATA_URI;
-      audioRef.current.play().catch(() => {});
-    }
-
-    setPlayingText(text);
-
-    try {
-      const result = await generateSpeechAction({ text });
-      if (result.error) {
-        toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-      } else if (result.audioData) {
-        if (audioRef.current) {
-          audioRef.current.src = result.audioData;
-          audioRef.current.play();
-        }
-      }
-    } catch (error) {
-      toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-    }
-  }, [playingText, toast]);
-
-  const handleAudioEnded = () => {
-    setPlayingText(null);
-  };
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
@@ -127,12 +80,8 @@ export function SpellingActivity() {
 
   const progress = (currentExerciseIndex / exercises.length) * 100;
 
-  const sentenceText = currentExercise?.sentence.replace('___', '...');
-  const isPlaying = playingText === sentenceText;
-
   return (
     <div>
-      <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingText(null)} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Stavning: Fyll i luckan</h2>
          {!isQuizFinished && (
@@ -151,8 +100,7 @@ export function SpellingActivity() {
       {!isQuizFinished && currentExercise ? (
         <Card>
           <CardHeader>
-             <div className="flex items-center justify-between">
-                <div />
+             <div className="flex items-center justify-center">
                 <CardTitle className="text-center text-2xl md:text-3xl text-muted-foreground">
                 {currentExercise.sentence.split('___').map((part, index) => (
                     <span key={index}>
@@ -165,9 +113,6 @@ export function SpellingActivity() {
                     </span>
                 ))}
                 </CardTitle>
-                <Button variant="ghost" size="icon" onClick={() => handlePlaySound(sentenceText)} disabled={!!playingText}>
-                    {isPlaying ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
-                </Button>
              </div>
           </CardHeader>
           <CardContent className="flex justify-center flex-wrap gap-4">
