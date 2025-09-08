@@ -31,6 +31,7 @@ export function GrammarActivity() {
       const result = await generateSpeechAction({ text });
       if (result.error) {
         toast({ title: 'Greška', description: result.error, variant: 'destructive' });
+        setPlayingText(null);
       } else if (result.audioData) {
         if (audioRef.current) {
           audioRef.current.src = result.audioData;
@@ -39,14 +40,13 @@ export function GrammarActivity() {
       }
     } catch (error) {
        toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-    } finally {
-        if (audioRef.current) {
-            audioRef.current.onended = () => setPlayingText(null);
-        } else {
-             setPlayingText(null);
-        }
+       setPlayingText(null);
     }
   }, [playingText, toast]);
+
+  const handleAudioEnded = () => {
+    setPlayingText(null);
+  };
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
@@ -114,7 +114,7 @@ export function GrammarActivity() {
 
   return (
     <div>
-        <audio ref={audioRef} onEnded={() => setPlayingText(null)} />
+        <audio ref={audioRef} onEnded={handleAudioEnded} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Gramatika: Popuni prazninu</h2>
         {!isQuizFinished && (

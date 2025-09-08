@@ -27,31 +27,33 @@ export function AiReviewActivity() {
   const [sourceText, setSourceText] = useState('');
   const [review, setReview] = useState<AiReviewOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [playingText, setPlayingText] = useState<string | null>(null);
+  const [playingId, setPlayingId] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
 
-  const handlePlaySound = useCallback(async (text: string) => {
-    if (playingText) return;
-    const uniqueId = text.slice(0, 20) + Date.now();
-    setPlayingText(uniqueId);
+  const handlePlaySound = useCallback(async (text: string, id: string) => {
+    if (playingId || !text) return;
+    setPlayingId(id);
     try {
       const result = await generateSpeechAction({ text });
       if (result.error) {
         toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-        setPlayingText(null);
+        setPlayingId(null);
       } else if (result.audioData) {
         if (audioRef.current) {
           audioRef.current.src = result.audioData;
           audioRef.current.play();
-          audioRef.current.onended = () => setPlayingText(null);
         }
       }
     } catch (error) {
        toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-       setPlayingText(null);
+       setPlayingId(null);
     }
-  }, [playingText, toast]);
+  }, [playingId, toast]);
+  
+  const handleAudioEnded = () => {
+    setPlayingId(null);
+  };
 
   const handleReview = async () => {
     if (!sourceText.trim()) {
@@ -101,17 +103,17 @@ export function AiReviewActivity() {
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => handlePlaySound(text)}
-      disabled={!!playingText}
+      onClick={() => handlePlaySound(text, id)}
+      disabled={!!playingId}
       className="text-muted-foreground"
     >
-      {playingText === id ? <Loader2 className="h-5 w-5 animate-spin" /> : <Volume2 className="h-5 w-5" />}
+      {playingId === id ? <Loader2 className="h-5 w-5 animate-spin" /> : <Volume2 className="h-5 w-5" />}
     </Button>
   );
 
   return (
     <div>
-      <audio ref={audioRef} />
+      <audio ref={audioRef} onEnded={handleAudioEnded} />
       <h2 className="text-3xl font-headline font-bold mb-4">AI återkoppling</h2>
       <p className="text-muted-foreground mb-6">
         Skriv en text på svenska eller {language} och få omedelbar feedback och översättning från AI. 
@@ -122,7 +124,7 @@ export function AiReviewActivity() {
         <CardHeader>
             <div className="flex items-center justify-between">
                 <CardTitle>Skriv din text här</CardTitle>
-                <SoundButton text={sourceText} id={sourceText.slice(0, 20) + Date.now()} />
+                <SoundButton text={sourceText} id="source-text" />
             </div>
         </CardHeader>
         <CardContent>
@@ -161,7 +163,7 @@ export function AiReviewActivity() {
                 <div>
                     <h3 className="text-lg font-semibold flex items-center justify-between gap-2 mb-2">
                         <span className="flex items-center gap-2"><Languages className="w-5 h-5 text-primary" /> Översättning</span>
-                        <SoundButton text={review.translation} id={review.translation.slice(0, 20) + Date.now()} />
+                        <SoundButton text={review.translation} id="translation" />
                     </h3>
                     <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.translation}</p>
                 </div>
@@ -171,7 +173,7 @@ export function AiReviewActivity() {
                 <div>
                      <h3 className="text-lg font-semibold flex items-center justify-between gap-2 mb-2">
                         <span className="flex items-center gap-2"><Pilcrow className="w-5 h-5 text-primary" /> Korrigerad text</span>
-                        <SoundButton text={review.correctedText} id={review.correctedText.slice(0, 20) + Date.now()} />
+                        <SoundButton text={review.correctedText} id="corrected-text" />
                     </h3>
                     <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.correctedText}</p>
                 </div>
@@ -181,7 +183,7 @@ export function AiReviewActivity() {
                 <div>
                     <h3 className="text-lg font-semibold flex items-center justify-between gap-2 mb-2">
                         <span className="flex items-center gap-2"><Check className="w-5 h-5 text-primary" /> Feedback</span>
-                        <SoundButton text={review.feedback} id={review.feedback.slice(0, 20) + Date.now()} />
+                        <SoundButton text={review.feedback} id="feedback" />
                     </h3>
                     <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.feedback}</p>
                 </div>

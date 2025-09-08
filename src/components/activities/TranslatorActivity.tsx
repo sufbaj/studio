@@ -31,31 +31,34 @@ export function TranslatorActivity() {
   const [sourceLang, setSourceLang] = useState<LanguageOption>('Swedish');
   const [targetLang, setTargetLang] = useState<LanguageOption>('Bosnian');
   const [gender, setGender] = useState<GenderOption | undefined>(undefined);
-  const [playingText, setPlayingText] = useState<string | null>(null);
+  const [playingId, setPlayingId] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [debouncedSourceText] = useDebounce(sourceText, 500);
 
   const handlePlaySound = useCallback(async (text: string, id: string) => {
-    if (playingText) return;
-    setPlayingText(id);
+    if (playingId || !text) return;
+    setPlayingId(id);
     try {
       const result = await generateSpeechAction({ text });
       if (result.error) {
         toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-        setPlayingText(null);
+        setPlayingId(null);
       } else if (result.audioData) {
         if (audioRef.current) {
           audioRef.current.src = result.audioData;
           audioRef.current.play();
-          audioRef.current.onended = () => setPlayingText(null);
         }
       }
     } catch (error) {
        toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-       setPlayingText(null);
+       setPlayingId(null);
     }
-  }, [playingText, toast]);
+  }, [playingId, toast]);
+
+  const handleAudioEnded = () => {
+    setPlayingId(null);
+  };
 
   useEffect(() => {
     resetScore();
@@ -133,7 +136,7 @@ export function TranslatorActivity() {
 
   return (
     <div>
-      <audio ref={audioRef} />
+      <audio ref={audioRef} onEnded={handleAudioEnded} />
       <h2 className="text-3xl font-headline font-bold mb-4">Översättare</h2>
       <p className="text-muted-foreground mb-6">
         Använd detta verktyg för att snabbt översätta ord och meningar mellan svenska och ditt valda språk.
@@ -154,8 +157,8 @@ export function TranslatorActivity() {
             <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                     <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(sourceLang)}</label>
-                    <Button variant="ghost" size="icon" className="w-8 h-8" onClick={() => handlePlaySound(sourceText, 'source')} disabled={!sourceText.trim() || !!playingText}>
-                        {playingText === 'source' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
+                    <Button variant="ghost" size="icon" className="w-8 h-8" onClick={() => handlePlaySound(sourceText, 'source')} disabled={!sourceText.trim() || !!playingId}>
+                        {playingId === 'source' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
                     </Button>
                 </div>
                 <Textarea
@@ -169,8 +172,8 @@ export function TranslatorActivity() {
             <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                     <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(targetLang)}</label>
-                    <Button variant="ghost" size="icon" className="w-8 h-8" onClick={() => handlePlaySound(translatedText, 'target')} disabled={!translatedText.trim() || !!playingText}>
-                        {playingText === 'target' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
+                    <Button variant="ghost" size="icon" className="w-8 h-8" onClick={() => handlePlaySound(translatedText, 'target')} disabled={!translatedText.trim() || !!playingId}>
+                        {playingId === 'target' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
                     </Button>
                 </div>
                 <div className="relative">

@@ -33,6 +33,7 @@ export function TranslationActivity() {
       const result = await generateSpeechAction({ text });
       if (result.error) {
         toast({ title: 'Greška', description: result.error, variant: 'destructive' });
+        setPlayingText(null);
       } else if (result.audioData) {
         if (audioRef.current) {
           audioRef.current.src = result.audioData;
@@ -41,14 +42,13 @@ export function TranslationActivity() {
       }
     } catch (error) {
        toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-    } finally {
-        if (audioRef.current) {
-            audioRef.current.onended = () => setPlayingText(null);
-        } else {
-             setPlayingText(null);
-        }
+       setPlayingText(null);
     }
   }, [playingText, toast]);
+
+  const handleAudioEnded = () => {
+    setPlayingText(null);
+  };
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
@@ -151,9 +151,9 @@ export function TranslationActivity() {
 
   return (
     <div>
-        <audio ref={audioRef} onEnded={() => setPlayingText(null)} />
+        <audio ref={audioRef} onEnded={handleAudioEnded} />
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">{language === 'serbian' ? 'Prevedi' : 'Prevedi'}</h2>
+        <h2 className="text-3xl font-headline font-bold">Svenska till modersmål</h2>
         {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentExerciseIndex + 1} / {exercises.length}
