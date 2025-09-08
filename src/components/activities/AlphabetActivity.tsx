@@ -1,26 +1,46 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
-import { useAppContext } from '@/contexts/AppContext';
-import { data } from '@/lib/data';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Volume2, Loader2 } from 'lucide-react';
-import { generateSpeechAction } from '@/app/learn/actions';
-import { useToast } from '@/hooks/use-toast';
+import { useState, useCallback, useRef }
+from 'react';
+import { useAppContext }
+from '@/contexts/AppContext';
+import { data }
+from '@/lib/data';
+import { Card, CardContent }
+from '@/components/ui/card';
+import { Button }
+from '@/components/ui/button';
+import { Volume2, Loader2 }
+from 'lucide-react';
+import { generateSpeechAction }
+from '@/app/learn/actions';
+import { useToast }
+from '@/hooks/use-toast';
+
+const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+
 
 export function AlphabetActivity() {
-  const { language, grade } = useAppContext();
-  const { toast } = useToast();
-  const [playingLetter, setPlayingLetter] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { language, grade }
+  = useAppContext();
+  const { toast }
+  = useToast();
+  const [playingLetter, setPlayingLetter] = useState < string | null > (null);
+  const audioRef = useRef < HTMLAudioElement | null > (null);
 
   const alphabet = (language && grade && data[language][grade].alphabet) || [];
 
   const handlePlaySound = useCallback(
     async (text: string) => {
       if (playingLetter) return;
+
+      if (audioRef.current) {
+        audioRef.current.src = EMPTY_SOUND_DATA_URI;
+        audioRef.current.play().catch(() => {});
+      }
+
       setPlayingLetter(text);
+
       try {
         const result = await generateSpeechAction({ text });
         if (result.error) {
@@ -29,7 +49,6 @@ export function AlphabetActivity() {
             description: result.error,
             variant: 'destructive',
           });
-          setPlayingLetter(null);
         } else if (result.audioData) {
           if (audioRef.current) {
             audioRef.current.src = result.audioData;
@@ -42,10 +61,8 @@ export function AlphabetActivity() {
           description: 'Nije uspjelo generiranje zvuka.',
           variant: 'destructive',
         });
-        setPlayingLetter(null);
       }
-    },
-    [playingLetter, toast]
+    }, [playingLetter, toast]
   );
 
   const handleAudioEnded = () => {
@@ -59,7 +76,7 @@ export function AlphabetActivity() {
 
   return (
     <div>
-      <audio ref={audioRef} onEnded={handleAudioEnded} />
+      <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingLetter(null)} />
       <h2 className="text-3xl font-headline font-bold mb-4">Alfabet</h2>
       <p className="text-muted-foreground mb-6">
         Klikni na slovo da čuješ izgovor.

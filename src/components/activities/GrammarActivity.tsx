@@ -1,37 +1,58 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { useAppContext } from '@/contexts/AppContext';
-import { data } from '@/lib/data';
-import type { GrammarItem } from '@/lib/types';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { RefreshCw, CheckCircle, XCircle, Lightbulb, Volume2, Loader2 } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import { Progress } from '@/components/ui/progress';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { generateSpeechAction } from '@/app/learn/actions';
+import { useState, useEffect, useCallback, useRef }
+from 'react';
+import { useAppContext }
+from '@/contexts/AppContext';
+import { data }
+from '@/lib/data';
+import type { GrammarItem }
+from '@/lib/types';
+import { Button }
+from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle }
+from '@/components/ui/card';
+import { RefreshCw, CheckCircle, XCircle, Lightbulb, Volume2, Loader2 }
+from 'lucide-react';
+import { useToast }
+from '@/hooks/use-toast';
+import { Progress }
+from '@/components/ui/progress';
+import { Alert, AlertDescription, AlertTitle }
+from '@/components/ui/alert';
+import { generateSpeechAction }
+from '@/app/learn/actions';
+
+const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
 
 
 export function GrammarActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
-  const { toast } = useToast();
-  const [exercises, setExercises] = useState<GrammarItem[]>([]);
+  const { language, grade, updateScore, setMaxScore, resetScore }
+  = useAppContext();
+  const { toast }
+  = useToast();
+  const [exercises, setExercises] = useState < GrammarItem[] > ([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState < string | null > (null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [playingText, setPlayingText] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [playingText, setPlayingText] = useState < string | null > (null);
+  const audioRef = useRef < HTMLAudioElement | null > (null);
 
   const handlePlaySound = useCallback(async (text: string) => {
     if (playingText) return;
+
+    if (audioRef.current) {
+      audioRef.current.src = EMPTY_SOUND_DATA_URI;
+      audioRef.current.play().catch(() => {});
+    }
+
     setPlayingText(text);
+
     try {
       const result = await generateSpeechAction({ text });
       if (result.error) {
         toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-        setPlayingText(null);
       } else if (result.audioData) {
         if (audioRef.current) {
           audioRef.current.src = result.audioData;
@@ -39,8 +60,7 @@ export function GrammarActivity() {
         }
       }
     } catch (error) {
-       toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-       setPlayingText(null);
+      toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
     }
   }, [playingText, toast]);
 
@@ -65,7 +85,7 @@ export function GrammarActivity() {
   useEffect(() => {
     generateExercises();
   }, [generateExercises]);
-  
+
   const handleSelectOption = (option: string) => {
     if (isAnswered) return;
     setSelectedOption(option);
@@ -106,15 +126,15 @@ export function GrammarActivity() {
       </div>
     );
   }
-  
+
   const progress = (currentExerciseIndex / exercises.length) * 100;
-  
+
   const sentenceText = currentExercise?.sentence.replace('___', '...');
   const isPlaying = playingText === sentenceText;
 
   return (
     <div>
-        <audio ref={audioRef} onEnded={handleAudioEnded} />
+        <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingText(null)} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Gramatika: Popuni prazninu</h2>
         {!isQuizFinished && (

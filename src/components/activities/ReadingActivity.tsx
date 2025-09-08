@@ -1,34 +1,51 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { useAppContext } from '@/contexts/AppContext';
-import { data } from '@/lib/data';
-import type { ReadingItem, ReadingQuestion } from '@/lib/types';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2, Pause } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import { Progress } from '@/components/ui/progress';
-import { cn } from '@/lib/utils';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { generateSpeechAction } from '@/app/learn/actions';
+import { useState, useEffect, useCallback, useMemo, useRef }
+from 'react';
+import { useAppContext }
+from '@/contexts/AppContext';
+import { data }
+from '@/lib/data';
+import type { ReadingItem, ReadingQuestion }
+from '@/lib/types';
+import { Button }
+from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
+from '@/components/ui/card';
+import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2, Pause }
+from 'lucide-react';
+import { useToast }
+from '@/hooks/use-toast';
+import { Progress }
+from '@/components/ui/progress';
+import { cn }
+from '@/lib/utils';
+import { ScrollArea }
+from '@/components/ui/scroll-area';
+import { generateSpeechAction }
+from '@/app/learn/actions';
+
+const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+
 
 export function ReadingActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
-  const { toast } = useToast();
+  const { language, grade, updateScore, setMaxScore, resetScore }
+  = useAppContext();
+  const { toast }
+  = useToast();
 
-  const [exercises, setExercises] = useState<ReadingItem[]>([]);
+  const [exercises, setExercises] = useState < ReadingItem[] > ([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState < string | null > (null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentlyPlayingSentenceIndex, setCurrentlyPlayingSentenceIndex] = useState<number | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const sentencesRef = useRef<string[]>([]);
-  const sentenceRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [currentlyPlayingSentenceIndex, setCurrentlyPlayingSentenceIndex] = useState < number | null > (null);
+  const audioRef = useRef < HTMLAudioElement | null > (null);
+  const sentencesRef = useRef < string[] > ([]);
+  const sentenceRefs = useRef < (HTMLSpanElement | null)[] > ([]);
   const isPlaybackCancelled = useRef(false);
 
 
@@ -39,7 +56,7 @@ export function ReadingActivity() {
     const shuffled = [...readingList].sort(() => 0.5 - Math.random());
     const selectedExercises = shuffled.slice(0, Math.min(2, shuffled.length));
     setExercises(selectedExercises);
-    
+
     const totalQuestions = selectedExercises.reduce((acc, curr) => acc + curr.questions.length, 0);
     setMaxScore(totalQuestions * 15);
 
@@ -69,40 +86,47 @@ export function ReadingActivity() {
 
   const playSentences = useCallback(async () => {
     if (isPlaying || !currentExercise) return;
+
+    if (audioRef.current) {
+      audioRef.current.src = EMPTY_SOUND_DATA_URI;
+      audioRef.current.play().catch(() => {});
+    }
+
     setIsPlaying(true);
     isPlaybackCancelled.current = false;
 
     for (let i = 0; i < sentencesRef.current.length; i++) {
+      if (isPlaybackCancelled.current) break;
+
+      setCurrentlyPlayingSentenceIndex(i);
+      const sentence = sentencesRef.current[i];
+
+      sentenceRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      try {
+        const result = await generateSpeechAction({ text: sentence });
         if (isPlaybackCancelled.current) break;
 
-        setCurrentlyPlayingSentenceIndex(i);
-        const sentence = sentencesRef.current[i];
-        
-        sentenceRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-        try {
-            const result = await generateSpeechAction({ text: sentence });
-            if (isPlaybackCancelled.current) break;
-            
-            if (result.error || !result.audioData) {
-                toast({ title: 'Greška pri reprodukciji', variant: 'destructive' });
-                break; 
-            }
-            if (audioRef.current) {
-                await new Promise<void>((resolve) => {
-                    audioRef.current!.src = result.audioData!;
-                    const playPromise = audioRef.current!.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(() => { resolve(); });
-                    }
-                    audioRef.current!.onended = () => resolve();
-                    audioRef.current!.onerror = () => resolve();
-                });
-            }
-        } catch (e) {
-            toast({ title: 'Greška pri reprodukciji', variant: 'destructive' });
-            break;
+        if (result.error || !result.audioData) {
+          toast({ title: 'Greška pri reprodukciji', variant: 'destructive' });
+          break;
         }
+        if (audioRef.current) {
+          await new Promise < void > ((resolve) => {
+            if (!audioRef.current) {
+                resolve();
+                return;
+            }
+            audioRef.current.src = result.audioData!;
+            audioRef.current.play().catch(() => resolve());
+            audioRef.current.onended = () => resolve();
+            audioRef.current.onerror = () => resolve();
+          });
+        }
+      } catch (e) {
+        toast({ title: 'Greška pri reprodukciji', variant: 'destructive' });
+        break;
+      }
     }
 
     setIsPlaying(false);
@@ -112,8 +136,7 @@ export function ReadingActivity() {
   const stopPlayback = () => {
     isPlaybackCancelled.current = true;
     if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
+      audioRef.current.pause();
     }
     setIsPlaying(false);
     setCurrentlyPlayingSentenceIndex(null);
@@ -141,7 +164,7 @@ export function ReadingActivity() {
     stopPlayback();
     setSelectedOption(null);
     setIsAnswered(false);
-    
+
     if (currentExercise && currentQuestionIndex < currentExercise.questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
@@ -162,11 +185,11 @@ export function ReadingActivity() {
       </div>
     );
   }
-  
+
   const totalQuestions = exercises.reduce((acc, curr) => acc + curr.questions.length, 0);
   const answeredQuestions = exercises.slice(0, currentExerciseIndex).reduce((acc, curr) => acc + curr.questions.length, 0) + (currentExercise ? currentQuestionIndex : 0);
   const progress = totalQuestions > 0 ? (answeredQuestions / totalQuestions) * 100 : 0;
-  
+
   const isQuizFinished = currentExerciseIndex >= exercises.length;
 
 

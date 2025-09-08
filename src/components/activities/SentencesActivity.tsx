@@ -1,46 +1,69 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { useAppContext } from '@/contexts/AppContext';
-import { data } from '@/lib/data';
-import type { SentenceItem } from '@/lib/types';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2 } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import { Progress } from '@/components/ui/progress';
-import { cn } from '@/lib/utils';
-import { generateSpeechAction } from '@/app/learn/actions';
+import { useState, useEffect, useCallback, useMemo, useRef }
+from 'react';
+import { motion }
+from 'framer-motion';
+import { useAppContext }
+from '@/contexts/AppContext';
+import { data }
+from '@/lib/data';
+import type { SentenceItem }
+from '@/lib/types';
+import { Button }
+from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle }
+from '@/components/ui/card';
+import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2 }
+from 'lucide-react';
+import { useToast }
+from '@/hooks/use-toast';
+import { Progress }
+from '@/components/ui/progress';
+import { cn }
+from '@/lib/utils';
+import { generateSpeechAction }
+from '@/app/learn/actions';
 
-const shuffleArray = <T,>(array: T[]): T[] => {
+const shuffleArray = < T, > (array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
+const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+
+
 export function SentencesActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
-  const { toast } = useToast();
-  
-  const [exercises, setExercises] = useState<SentenceItem[]>([]);
+  const { language, grade, updateScore, setMaxScore, resetScore }
+  = useAppContext();
+  const { toast }
+  = useToast();
+
+  const [exercises, setExercises] = useState < SentenceItem[] > ([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-  const [wordBank, setWordBank] = useState<string[]>([]);
-  const [answerWords, setAnswerWords] = useState<string[]>([]);
+  const [wordBank, setWordBank] = useState < string[] > ([]);
+  const [answerWords, setAnswerWords] = useState < string[] > ([]);
   const [isAnswered, setIsAnswered] = useState(false);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [isCorrect, setIsCorrect] = useState < boolean | null > (null);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [playingText, setPlayingText] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [playingText, setPlayingText] = useState < string | null > (null);
+  const audioRef = useRef < HTMLAudioElement | null > (null);
 
   const currentExercise = useMemo(() => exercises[currentExerciseIndex], [exercises, currentExerciseIndex]);
 
   const handlePlaySound = useCallback(async (text: string) => {
     if (playingText) return;
+
+    if (audioRef.current) {
+      audioRef.current.src = EMPTY_SOUND_DATA_URI;
+      audioRef.current.play().catch(() => {});
+    }
+
     setPlayingText(text);
+
     try {
       const result = await generateSpeechAction({ text });
       if (result.error) {
         toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-        setPlayingText(null);
       } else if (result.audioData) {
         if (audioRef.current) {
           audioRef.current.src = result.audioData;
@@ -48,8 +71,7 @@ export function SentencesActivity() {
         }
       }
     } catch (error) {
-       toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-       setPlayingText(null);
+      toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
     }
   }, [playingText, toast]);
 
@@ -97,7 +119,7 @@ export function SentencesActivity() {
     if (isAnswered) return;
     const constructedSentence = answerWords.join(' ');
     const correct = constructedSentence === currentExercise.sentence;
-    
+
     setIsAnswered(true);
     setIsCorrect(correct);
 
@@ -118,7 +140,7 @@ export function SentencesActivity() {
       setCurrentExerciseIndex(exercises.length);
     }
   };
-  
+
   const isQuizFinished = currentExerciseIndex >= exercises.length;
 
   if (!language || !grade || exercises.length === 0) {
@@ -134,7 +156,7 @@ export function SentencesActivity() {
 
   return (
     <div>
-      <audio ref={audioRef} onEnded={handleAudioEnded} />
+      <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingText(null)} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Sastavi rečenicu</h2>
         {!isQuizFinished && (

@@ -1,27 +1,48 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
-import { useAppContext } from '@/contexts/AppContext';
-import { data } from '@/lib/data';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Volume2, Loader2 } from 'lucide-react';
-import { generateSpeechAction } from '@/app/learn/actions';
-import { useToast } from '@/hooks/use-toast';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { useState, useCallback, useRef }
+from 'react';
+import { useAppContext }
+from '@/contexts/AppContext';
+import { data }
+from '@/lib/data';
+import { Card, CardContent }
+from '@/components/ui/card';
+import { Button }
+from '@/components/ui/button';
+import { Volume2, Loader2 }
+from 'lucide-react';
+import { generateSpeechAction }
+from '@/app/learn/actions';
+import { useToast }
+from '@/hooks/use-toast';
+import { ScrollArea }
+from '@/components/ui/scroll-area';
+
+const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+
 
 export function NumbersActivity() {
-  const { language, grade } = useAppContext();
-  const { toast } = useToast();
-  const [playingNumber, setPlayingNumber] = useState<number | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { language, grade }
+  = useAppContext();
+  const { toast }
+  = useToast();
+  const [playingNumber, setPlayingNumber] = useState < number | null > (null);
+  const audioRef = useRef < HTMLAudioElement | null > (null);
 
   const numbers = (language && grade && data[language][grade].numbers) || [];
 
   const handlePlaySound = useCallback(
     async (numberItem: { number: number; word: string }) => {
       if (playingNumber) return;
+
+      if (audioRef.current) {
+        audioRef.current.src = EMPTY_SOUND_DATA_URI;
+        audioRef.current.play().catch(() => {});
+      }
+
       setPlayingNumber(numberItem.number);
+
       try {
         const result = await generateSpeechAction({ text: numberItem.word });
         if (result.error) {
@@ -30,7 +51,6 @@ export function NumbersActivity() {
             description: result.error,
             variant: 'destructive',
           });
-          setPlayingNumber(null);
         } else if (result.audioData) {
           if (audioRef.current) {
             audioRef.current.src = result.audioData;
@@ -43,10 +63,8 @@ export function NumbersActivity() {
           description: 'Nije uspjelo generiranje zvuka.',
           variant: 'destructive',
         });
-        setPlayingNumber(null);
       }
-    },
-    [playingNumber, toast]
+    }, [playingNumber, toast]
   );
 
   const handleAudioEnded = () => {
@@ -60,7 +78,7 @@ export function NumbersActivity() {
 
   return (
     <div>
-      <audio ref={audioRef} onEnded={handleAudioEnded} />
+      <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingNumber(null)} />
       <h2 className="text-3xl font-headline font-bold mb-4">Brojevi</h2>
       <p className="text-muted-foreground mb-6">
         Klikni na broj da čuješ izgovor.

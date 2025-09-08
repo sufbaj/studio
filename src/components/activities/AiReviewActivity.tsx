@@ -1,44 +1,65 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
-import { useAppContext } from '@/contexts/AppContext';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { reviewTextAction, generateSpeechAction } from '@/app/learn/actions';
-import { useToast } from '@/hooks/use-toast';
-import { Loader2, Bot, Languages, Check, Pilcrow, Volume2 } from 'lucide-react';
-import type { AiReviewOutput } from '@/ai/flows/ai-content-review';
-import { Separator } from '../ui/separator';
+import { useState, useCallback, useRef }
+from 'react';
+import { useAppContext }
+from '@/contexts/AppContext';
+import { Button }
+from '@/components/ui/button';
+import { Textarea }
+from '@/components/ui/textarea';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
+from '@/components/ui/card';
+import { reviewTextAction, generateSpeechAction }
+from '@/app/learn/actions';
+import { useToast }
+from '@/hooks/use-toast';
+import { Loader2, Bot, Languages, Check, Pilcrow, Volume2 }
+from 'lucide-react';
+import type { AiReviewOutput }
+from '@/ai/flows/ai-content-review';
+import { Separator }
+from '../ui/separator';
 
 function toTitleCase(str: string | null): 'Swedish' | 'Bosnian' | 'Croatian' | 'Serbian' {
-    if (!str) return 'Bosnian'; // Default
-    const titled = str.charAt(0).toUpperCase() + str.slice(1);
-    if (['Swedish', 'Bosnian', 'Croatian', 'Serbian'].includes(titled)) {
-        return titled as 'Swedish' | 'Bosnian' | 'Croatian' | 'Serbian';
-    }
-    return 'Bosnian';
+  if (!str) return 'Bosnian'; // Default
+  const titled = str.charAt(0).toUpperCase() + str.slice(1);
+  if (['Swedish', 'Bosnian', 'Croatian', 'Serbian'].includes(titled)) {
+    return titled as 'Swedish' | 'Bosnian' | 'Croatian' | 'Serbian';
+  }
+  return 'Bosnian';
 }
 
+const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+
+
 export function AiReviewActivity() {
-  const { language } = useAppContext();
-  const { toast } = useToast();
-  
+  const { language }
+  = useAppContext();
+  const { toast }
+  = useToast();
+
   const [sourceText, setSourceText] = useState('');
-  const [review, setReview] = useState<AiReviewOutput | null>(null);
+  const [review, setReview] = useState < AiReviewOutput | null > (null);
   const [isLoading, setIsLoading] = useState(false);
-  const [playingId, setPlayingId] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [playingId, setPlayingId] = useState < string | null > (null);
+  const audioRef = useRef < HTMLAudioElement | null > (null);
 
 
   const handlePlaySound = useCallback(async (text: string, id: string) => {
     if (playingId || !text) return;
+
+    if (audioRef.current) {
+      audioRef.current.src = EMPTY_SOUND_DATA_URI;
+      audioRef.current.play().catch(() => {});
+    }
+
     setPlayingId(id);
+
     try {
       const result = await generateSpeechAction({ text });
       if (result.error) {
         toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-        setPlayingId(null);
       } else if (result.audioData) {
         if (audioRef.current) {
           audioRef.current.src = result.audioData;
@@ -46,11 +67,10 @@ export function AiReviewActivity() {
         }
       }
     } catch (error) {
-       toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-       setPlayingId(null);
+      toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
     }
   }, [playingId, toast]);
-  
+
   const handleAudioEnded = () => {
     setPlayingId(null);
   };
@@ -60,20 +80,20 @@ export function AiReviewActivity() {
       setReview(null);
       return;
     }
-    
+
     setIsLoading(true);
     setReview(null);
     try {
-      const result = await reviewTextAction({ 
-        text: sourceText, 
+      const result = await reviewTextAction({
+        text: sourceText,
         language: toTitleCase(language),
       });
-      
+
       if (result.error) {
-         toast({
-            title: 'Ett fel uppstod',
-            description: result.error,
-            variant: 'destructive',
+        toast({
+          title: 'Ett fel uppstod',
+          description: result.error,
+          variant: 'destructive',
         });
         setReview(null);
       } else if (result.review) {
@@ -86,16 +106,16 @@ export function AiReviewActivity() {
         description: 'Kunde inte ansluta till AI. Försök igen senare.',
         variant: 'destructive',
       });
-       setReview(null);
+      setReview(null);
     } finally {
       setIsLoading(false);
     }
   };
-  
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+
+  const handleKeyDown = (event: React.KeyboardEvent < HTMLTextAreaElement > ) => {
     if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault();
-        handleReview();
+      event.preventDefault();
+      handleReview();
     }
   };
 
@@ -113,7 +133,7 @@ export function AiReviewActivity() {
 
   return (
     <div>
-      <audio ref={audioRef} onEnded={handleAudioEnded} />
+      <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingId(null)} />
       <h2 className="text-3xl font-headline font-bold mb-4">AI återkoppling</h2>
       <p className="text-muted-foreground mb-6">
         Skriv en text på svenska eller {language} och få omedelbar feedback och översättning från AI. 

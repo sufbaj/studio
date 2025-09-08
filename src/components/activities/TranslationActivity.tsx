@@ -1,39 +1,62 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { useAppContext } from '@/contexts/AppContext';
-import { data } from '@/lib/data';
-import type { TranslationItem } from '@/lib/types';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2 } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import { Progress } from '@/components/ui/progress';
-import { Textarea } from '@/components/ui/textarea';
-import { generateSpeechAction } from '@/app/learn/actions';
+import { useState, useEffect, useCallback, useMemo, useRef }
+from 'react';
+import { useAppContext }
+from '@/contexts/AppContext';
+import { data }
+from '@/lib/data';
+import type { TranslationItem }
+from '@/lib/types';
+import { Button }
+from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
+from '@/components/ui/card';
+import { Input }
+from '@/components/ui/input';
+import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2 }
+from 'lucide-react';
+import { useToast }
+from '@/hooks/use-toast';
+import { Progress }
+from '@/components/ui/progress';
+import { Textarea }
+from '@/components/ui/textarea';
+import { generateSpeechAction }
+from '@/app/learn/actions';
+
+const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+
 
 export function TranslationActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
-  const { toast } = useToast();
+  const { language, grade, updateScore, setMaxScore, resetScore }
+  = useAppContext();
+  const { toast }
+  = useToast();
 
-  const [exercises, setExercises] = useState<TranslationItem[]>([]);
+  const [exercises, setExercises] = useState < TranslationItem[] > ([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const [isAnswered, setIsAnswered] = useState(false);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [isCorrect, setIsCorrect] = useState < boolean | null > (null);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [playingText, setPlayingText] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [playingText, setPlayingText] = useState < string | null > (null);
+  const audioRef = useRef < HTMLAudioElement | null > (null);
 
   const handlePlaySound = useCallback(async (text: string) => {
     if (playingText) return;
+
+    if (audioRef.current) {
+      audioRef.current.src = EMPTY_SOUND_DATA_URI;
+      audioRef.current.play().catch(() => {});
+    }
+
     setPlayingText(text);
+
     try {
       const result = await generateSpeechAction({ text });
       if (result.error) {
         toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-        setPlayingText(null);
       } else if (result.audioData) {
         if (audioRef.current) {
           audioRef.current.src = result.audioData;
@@ -41,8 +64,7 @@ export function TranslationActivity() {
         }
       }
     } catch (error) {
-       toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-       setPlayingText(null);
+      toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
     }
   }, [playingText, toast]);
 
@@ -57,7 +79,7 @@ export function TranslationActivity() {
     const shuffled = [...translationList].sort(() => 0.5 - Math.random());
     const selectedExercises = shuffled.slice(0, Math.min(10, shuffled.length));
     setExercises(selectedExercises);
-    
+
     const max = selectedExercises.reduce((acc, curr) => acc + (curr.type === 'sentence' ? 20 : 10), 0);
     setMaxScore(max);
 
@@ -90,7 +112,7 @@ export function TranslationActivity() {
 
   const checkAnswer = () => {
     if (!inputValue || !currentExercise) return;
-    
+
     setIsAnswered(true);
     const normalize = (str: string) => str.trim().toLowerCase().replace(/[.!?]$/, '');
     const correct = normalize(inputValue) === normalize(currentExercise.target);
@@ -105,16 +127,16 @@ export function TranslationActivity() {
       toast({ title: "Netačno!", description: `Tačan odgovor je "${currentExercise.target}".`, variant: "destructive" });
     }
   };
-  
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+
+  const handleKeyDown = (event: React.KeyboardEvent < HTMLInputElement | HTMLTextAreaElement > ) => {
     if (event.key === 'Enter' && !isAnswered) {
-        if (currentExercise.type === 'word' || (currentExercise.type === 'sentence' && !event.shiftKey)) {
-            event.preventDefault();
-            checkAnswer();
-        }
-    } else if (event.key === 'Enter' && isAnswered) {
+      if (currentExercise.type === 'word' || (currentExercise.type === 'sentence' && !event.shiftKey)) {
         event.preventDefault();
-        nextQuestion();
+        checkAnswer();
+      }
+    } else if (event.key === 'Enter' && isAnswered) {
+      event.preventDefault();
+      nextQuestion();
     }
   };
 
@@ -140,7 +162,7 @@ export function TranslationActivity() {
 
   const progress = (currentExerciseIndex / exercises.length) * 100;
   const isQuizFinished = currentExerciseIndex >= exercises.length;
-  
+
   const getNextButtonText = () => {
     if (!currentExercise) return '';
     if (language === 'serbian') {
@@ -151,7 +173,7 @@ export function TranslationActivity() {
 
   return (
     <div>
-        <audio ref={audioRef} onEnded={handleAudioEnded} />
+        <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingText(null)} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Svenska till modersmål</h2>
         {!isQuizFinished && (

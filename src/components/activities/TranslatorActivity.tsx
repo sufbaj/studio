@@ -1,49 +1,72 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { useAppContext } from '@/contexts/AppContext';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { translateTextAction, generateSpeechAction } from '@/app/learn/actions';
-import { useToast } from '@/hooks/use-toast';
-import { Loader2, ArrowRightLeft, Languages, VenetianMask, Volume2 } from 'lucide-react';
-import type { Language } from '@/lib/types';
-import { useDebounce } from 'use-debounce';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
+import { useState, useEffect, useCallback, useMemo, useRef }
+from 'react';
+import { useAppContext }
+from '@/contexts/AppContext';
+import { Button }
+from '@/components/ui/button';
+import { Textarea }
+from '@/components/ui/textarea';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
+from '@/components/ui/card';
+import { translateTextAction, generateSpeechAction }
+from '@/app/learn/actions';
+import { useToast }
+from '@/hooks/use-toast';
+import { Loader2, ArrowRightLeft, Languages, VenetianMask, Volume2 }
+from 'lucide-react';
+import type { Language }
+from '@/lib/types';
+import { useDebounce }
+from 'use-debounce';
+import { RadioGroup, RadioGroupItem }
+from '@/components/ui/radio-group';
+import { Label }
+from '@/components/ui/label';
 
 type LanguageOption = 'Swedish' | 'Bosnian' | 'Croatian' | 'Serbian';
 type GenderOption = 'male' | 'female';
 
 function toTitleCase(str: string): string {
-    if (!str) return '';
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  if (!str) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+const EMPTY_SOUND_DATA_URI = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+
+
 export function TranslatorActivity() {
-  const { language, resetScore } = useAppContext();
-  const { toast } = useToast();
-  
+  const { language, resetScore }
+  = useAppContext();
+  const { toast }
+  = useToast();
+
   const [sourceText, setSourceText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [sourceLang, setSourceLang] = useState<LanguageOption>('Swedish');
-  const [targetLang, setTargetLang] = useState<LanguageOption>('Bosnian');
-  const [gender, setGender] = useState<GenderOption | undefined>(undefined);
-  const [playingId, setPlayingId] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [sourceLang, setSourceLang] = useState < LanguageOption > ('Swedish');
+  const [targetLang, setTargetLang] = useState < LanguageOption > ('Bosnian');
+  const [gender, setGender] = useState < GenderOption | undefined > (undefined);
+  const [playingId, setPlayingId] = useState < string | null > (null);
+  const audioRef = useRef < HTMLAudioElement | null > (null);
 
   const [debouncedSourceText] = useDebounce(sourceText, 500);
 
   const handlePlaySound = useCallback(async (text: string, id: string) => {
     if (playingId || !text) return;
+
+    if (audioRef.current) {
+      audioRef.current.src = EMPTY_SOUND_DATA_URI;
+      audioRef.current.play().catch(() => {});
+    }
+
     setPlayingId(id);
+
     try {
       const result = await generateSpeechAction({ text });
       if (result.error) {
         toast({ title: 'Greška', description: result.error, variant: 'destructive' });
-        setPlayingId(null);
       } else if (result.audioData) {
         if (audioRef.current) {
           audioRef.current.src = result.audioData;
@@ -51,8 +74,7 @@ export function TranslatorActivity() {
         }
       }
     } catch (error) {
-       toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
-       setPlayingId(null);
+      toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
     }
   }, [playingId, toast]);
 
@@ -63,20 +85,20 @@ export function TranslatorActivity() {
   useEffect(() => {
     resetScore();
   }, [resetScore]);
-  
+
   useEffect(() => {
     if (language) {
-        setTargetLang(toTitleCase(language) as LanguageOption);
+      setTargetLang(toTitleCase(language) as LanguageOption);
     }
   }, [language]);
 
 
   const getLanguageDisplayName = (lang: LanguageOption) => {
     switch (lang) {
-        case 'Swedish': return 'Svenska';
-        case 'Bosnian': return 'Bosanski';
-        case 'Croatian': return 'Hrvatski';
-        case 'Serbian': return 'Srpski';
+      case 'Swedish': return 'Svenska';
+      case 'Bosnian': return 'Bosanski';
+      case 'Croatian': return 'Hrvatski';
+      case 'Serbian': return 'Srpski';
     }
   }
 
@@ -85,21 +107,21 @@ export function TranslatorActivity() {
       setTranslatedText('');
       return;
     }
-    
+
     setIsLoading(true);
     try {
-      const result = await translateTextAction({ 
-        text: debouncedSourceText, 
+      const result = await translateTextAction({
+        text: debouncedSourceText,
         sourceLanguage: sourceLang,
         targetLanguage: targetLang,
         gender: gender
       });
-      
+
       if (result.error) {
-         toast({
-            title: 'Ett fel uppstod',
-            description: result.error,
-            variant: 'destructive',
+        toast({
+          title: 'Ett fel uppstod',
+          description: result.error,
+          variant: 'destructive',
         });
         setTranslatedText('');
       } else if (result.translation) {
@@ -112,7 +134,7 @@ export function TranslatorActivity() {
         description: 'Kunde inte ansluta till AI. Försök igen senare.',
         variant: 'destructive',
       });
-       setTranslatedText('');
+      setTranslatedText('');
     } finally {
       setIsLoading(false);
     }
@@ -128,7 +150,7 @@ export function TranslatorActivity() {
     setSourceLang(targetLang);
     setTargetLang(sourceLang);
   };
-  
+
   const showGenderSelector = useMemo(() => {
     return targetLang !== 'Swedish';
   }, [targetLang]);
@@ -136,7 +158,7 @@ export function TranslatorActivity() {
 
   return (
     <div>
-      <audio ref={audioRef} onEnded={handleAudioEnded} />
+      <audio ref={audioRef} onEnded={handleAudioEnded} onPause={() => setPlayingId(null)} />
       <h2 className="text-3xl font-headline font-bold mb-4">Översättare</h2>
       <p className="text-muted-foreground mb-6">
         Använd detta verktyg för att snabbt översätta ord och meningar mellan svenska och ditt valda språk.
