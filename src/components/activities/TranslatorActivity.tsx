@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { translateTextAction } from '@/app/learn/actions';
+import { translateTextAction, generateSpeechAction } from '@/app/learn/actions';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, ArrowRightLeft, Languages, VenetianMask } from 'lucide-react';
+import { Loader2, ArrowRightLeft, Languages, VenetianMask, Volume2 } from 'lucide-react';
 import type { Language } from '@/lib/types';
 import { useDebounce } from 'use-debounce';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -31,8 +31,31 @@ export function TranslatorActivity() {
   const [sourceLang, setSourceLang] = useState<LanguageOption>('Swedish');
   const [targetLang, setTargetLang] = useState<LanguageOption>('Bosnian');
   const [gender, setGender] = useState<GenderOption | undefined>(undefined);
+  const [playingText, setPlayingText] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [debouncedSourceText] = useDebounce(sourceText, 500);
+
+  const handlePlaySound = useCallback(async (text: string, id: string) => {
+    if (playingText) return;
+    setPlayingText(id);
+    try {
+      const result = await generateSpeechAction({ text });
+      if (result.error) {
+        toast({ title: 'Greška', description: result.error, variant: 'destructive' });
+        setPlayingText(null);
+      } else if (result.audioData) {
+        if (audioRef.current) {
+          audioRef.current.src = result.audioData;
+          audioRef.current.play();
+          audioRef.current.onended = () => setPlayingText(null);
+        }
+      }
+    } catch (error) {
+       toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
+       setPlayingText(null);
+    }
+  }, [playingText, toast]);
 
   useEffect(() => {
     resetScore();
@@ -110,6 +133,7 @@ export function TranslatorActivity() {
 
   return (
     <div>
+      <audio ref={audioRef} />
       <h2 className="text-3xl font-headline font-bold mb-4">Översättare</h2>
       <p className="text-muted-foreground mb-6">
         Använd detta verktyg för att snabbt översätta ord och meningar mellan svenska och ditt valda språk.
@@ -128,7 +152,12 @@ export function TranslatorActivity() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start relative">
             <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(sourceLang)}</label>
+                <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(sourceLang)}</label>
+                    <Button variant="ghost" size="icon" className="w-8 h-8" onClick={() => handlePlaySound(sourceText, 'source')} disabled={!sourceText.trim() || !!playingText}>
+                        {playingText === 'source' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
+                    </Button>
+                </div>
                 <Textarea
                     placeholder={`Skriv text på ${getLanguageDisplayName(sourceLang)}...`}
                     value={sourceText}
@@ -138,7 +167,12 @@ export function TranslatorActivity() {
             </div>
             
             <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(targetLang)}</label>
+                <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(targetLang)}</label>
+                    <Button variant="ghost" size="icon" className="w-8 h-8" onClick={() => handlePlaySound(translatedText, 'target')} disabled={!translatedText.trim() || !!playingText}>
+                        {playingText === 'target' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
+                    </Button>
+                </div>
                 <div className="relative">
                 <Textarea
                     placeholder="Översättning..."

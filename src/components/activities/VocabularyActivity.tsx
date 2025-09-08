@@ -1,15 +1,16 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import type { VocabularyItem } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Volume2, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { Volume2, RefreshCw, CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
+import { generateSpeechAction } from '@/app/learn/actions';
 
 type QuizOption = {
   word: string;
@@ -29,6 +30,32 @@ export function VocabularyActivity() {
   const [selectedAnswer, setSelectedAnswer] = useState<QuizOption | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [playingText, setPlayingText] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const handlePlaySound = useCallback(async (text: string) => {
+    if (playingText) return;
+    setPlayingText(text);
+    try {
+      const result = await generateSpeechAction({ text });
+      if (result.error) {
+        toast({ title: 'Greška', description: result.error, variant: 'destructive' });
+      } else if (result.audioData) {
+        if (audioRef.current) {
+          audioRef.current.src = result.audioData;
+          audioRef.current.play();
+        }
+      }
+    } catch (error) {
+       toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
+    } finally {
+        if (audioRef.current) {
+            audioRef.current.onended = () => setPlayingText(null);
+        } else {
+             setPlayingText(null);
+        }
+    }
+  }, [playingText, toast]);
 
   const generateQuiz = useCallback(() => {
     if (!language || !grade) return;
@@ -129,6 +156,7 @@ export function VocabularyActivity() {
 
   return (
     <div>
+        <audio ref={audioRef} onEnded={() => setPlayingText(null)} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Rječnik</h2>
          {!isQuizFinished && (
@@ -157,7 +185,12 @@ export function VocabularyActivity() {
             <CardContent className="p-6 flex flex-col justify-center items-center bg-muted/50 min-h-[250px]">
               <div className="text-center">
                 <p className="text-muted-foreground">Kako se na {getLanguageDisplayName()} kaže:</p>
-                <p className="text-4xl font-bold font-headline">{currentQuizItem.item.translation}</p>
+                 <div className="flex items-center gap-4">
+                    <p className="text-4xl font-bold font-headline">{currentQuizItem.item.translation}</p>
+                     <Button variant="ghost" size="icon" onClick={() => handlePlaySound(currentQuizItem.item.translation)} disabled={!!playingText}>
+                         {playingText === currentQuizItem.item.translation ? <Loader2 className="w-6 h-6 animate-spin" /> : <Volume2 className="w-6 h-6" />}
+                    </Button>
+                 </div>
               </div>
             </CardContent>
              <CardContent className="p-6">
@@ -184,8 +217,14 @@ export function VocabularyActivity() {
                     ))}
                   </div>
                   <div className="flex items-center justify-between mt-6">
-                    <Button variant="ghost" size="icon" disabled>
-                        <Volume2 />
+                     <Button 
+                        variant="ghost" 
+                        size="icon"
+                        onClick={() => handlePlaySound(currentQuizItem.item.word)} 
+                        disabled={!isAnswered || !selectedAnswer?.isCorrect || !!playingText}
+                        className={!isAnswered || !selectedAnswer?.isCorrect ? 'opacity-0' : ''}
+                        >
+                        {playingText === currentQuizItem.item.word ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5"/>}
                     </Button>
                     {isAnswered && (
                       <Button onClick={nextQuestion} size="lg">

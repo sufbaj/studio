@@ -1,16 +1,17 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import type { TranslationItem } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { Textarea } from '@/components/ui/textarea';
+import { generateSpeechAction } from '@/app/learn/actions';
 
 export function TranslationActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
@@ -22,6 +23,32 @@ export function TranslationActivity() {
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [playingText, setPlayingText] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const handlePlaySound = useCallback(async (text: string) => {
+    if (playingText) return;
+    setPlayingText(text);
+    try {
+      const result = await generateSpeechAction({ text });
+      if (result.error) {
+        toast({ title: 'Greška', description: result.error, variant: 'destructive' });
+      } else if (result.audioData) {
+        if (audioRef.current) {
+          audioRef.current.src = result.audioData;
+          audioRef.current.play();
+        }
+      }
+    } catch (error) {
+       toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
+    } finally {
+        if (audioRef.current) {
+            audioRef.current.onended = () => setPlayingText(null);
+        } else {
+             setPlayingText(null);
+        }
+    }
+  }, [playingText, toast]);
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
@@ -124,6 +151,7 @@ export function TranslationActivity() {
 
   return (
     <div>
+        <audio ref={audioRef} onEnded={() => setPlayingText(null)} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">{language === 'serbian' ? 'Prevedi' : 'Prevedi'}</h2>
         {!isQuizFinished && (
@@ -148,7 +176,12 @@ export function TranslationActivity() {
                   : (currentExercise.type === 'word' ? `Prevedi sljedeću riječ na ${getLanguageDisplayName()}:` : `Prevedi sljedeću rečenicu na ${getLanguageDisplayName()}:`)
                 }
             </CardDescription>
-            <CardTitle className="text-3xl md:text-4xl font-bold font-headline py-4">{currentExercise.source}</CardTitle>
+            <div className="flex items-center justify-center gap-4 py-4">
+                <CardTitle className="text-3xl md:text-4xl font-bold font-headline">{currentExercise.source}</CardTitle>
+                <Button variant="ghost" size="icon" onClick={() => handlePlaySound(currentExercise.source)} disabled={!!playingText}>
+                    {playingText === currentExercise.source ? <Loader2 className="w-6 h-6 animate-spin" /> : <Volume2 className="w-6 h-6" />}
+                </Button>
+            </div>
           </CardHeader>
           <CardContent>
             {currentExercise.type === 'word' ? (
@@ -180,11 +213,21 @@ export function TranslationActivity() {
             ) : (
               <div className="text-center w-full">
                  {isCorrect ? (
-                    <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> Tačno!</p>
+                    <div className="flex items-center justify-center gap-4">
+                        <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> Tačno!</p>
+                         <Button variant="ghost" size="icon" onClick={() => handlePlaySound(currentExercise.target)} disabled={!!playingText}>
+                            {playingText === currentExercise.target ? <Loader2 className="w-6 h-6 animate-spin" /> : <Volume2 className="w-6 h-6" />}
+                        </Button>
+                    </div>
                  ) : (
                     <p className="flex flex-col items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4">
                         <span className="flex items-center gap-2"><XCircle /> Netačno!</span>
-                        <span className="text-base text-muted-foreground mt-2">Tačan odgovor je: <span className="font-mono bg-red-100 px-2 py-1 rounded-md text-red-800">{currentExercise.target}</span></span>
+                        <span className="text-base text-muted-foreground mt-2 flex items-center gap-2">
+                            Tačan odgovor je: <span className="font-mono bg-red-100 px-2 py-1 rounded-md text-red-800">{currentExercise.target}</span>
+                            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => handlePlaySound(currentExercise.target)} disabled={!!playingText}>
+                                {playingText === currentExercise.target ? <Loader2 className="w-4 h-4 animate-spin" /> : <Volume2 className="w-4 h-4" />}
+                            </Button>
+                        </span>
                     </p>
                  )}
                 <Button onClick={nextQuestion} size="lg">

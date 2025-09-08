@@ -1,15 +1,17 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import type { GrammarItem } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { RefreshCw, CheckCircle, XCircle, Lightbulb } from 'lucide-react';
+import { RefreshCw, CheckCircle, XCircle, Lightbulb, Volume2, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { generateSpeechAction } from '@/app/learn/actions';
+
 
 export function GrammarActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
@@ -19,6 +21,32 @@ export function GrammarActivity() {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [playingText, setPlayingText] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const handlePlaySound = useCallback(async (text: string) => {
+    if (playingText) return;
+    setPlayingText(text);
+    try {
+      const result = await generateSpeechAction({ text });
+      if (result.error) {
+        toast({ title: 'Greška', description: result.error, variant: 'destructive' });
+      } else if (result.audioData) {
+        if (audioRef.current) {
+          audioRef.current.src = result.audioData;
+          audioRef.current.play();
+        }
+      }
+    } catch (error) {
+       toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
+    } finally {
+        if (audioRef.current) {
+            audioRef.current.onended = () => setPlayingText(null);
+        } else {
+             setPlayingText(null);
+        }
+    }
+  }, [playingText, toast]);
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
@@ -80,9 +108,13 @@ export function GrammarActivity() {
   }
   
   const progress = (currentExerciseIndex / exercises.length) * 100;
+  
+  const sentenceText = currentExercise?.sentence.replace('___', '...');
+  const isPlaying = playingText === sentenceText;
 
   return (
     <div>
+        <audio ref={audioRef} onEnded={() => setPlayingText(null)} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Gramatika: Popuni prazninu</h2>
         {!isQuizFinished && (
@@ -101,18 +133,24 @@ export function GrammarActivity() {
       {!isQuizFinished && currentExercise ? (
         <Card>
           <CardHeader>
-            <CardTitle className="text-center text-2xl md:text-3xl text-muted-foreground">
-              {currentExercise.sentence.split('___').map((part, index) => (
-                <span key={index}>
-                  {part}
-                  {index < currentExercise.sentence.split('___').length - 1 && (
-                    <span className="inline-block bg-secondary text-secondary-foreground rounded-md px-4 py-1 mx-2 font-bold text-card-foreground min-w-[120px] text-center">
-                      {isAnswered ? currentExercise.blank : selectedOption || '...'}
+            <div className="flex items-center justify-between">
+                <div />
+                <CardTitle className="text-center text-2xl md:text-3xl text-muted-foreground">
+                {currentExercise.sentence.split('___').map((part, index) => (
+                    <span key={index}>
+                    {part}
+                    {index < currentExercise.sentence.split('___').length - 1 && (
+                        <span className="inline-block bg-secondary text-secondary-foreground rounded-md px-4 py-1 mx-2 font-bold text-card-foreground min-w-[120px] text-center">
+                        {isAnswered ? currentExercise.blank : selectedOption || '...'}
+                        </span>
+                    )}
                     </span>
-                  )}
-                </span>
-              ))}
-            </CardTitle>
+                ))}
+                </CardTitle>
+                <Button variant="ghost" size="icon" onClick={() => handlePlaySound(sentenceText)} disabled={!!playingText}>
+                    {isPlaying ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
+                </Button>
+            </div>
           </CardHeader>
           <CardContent className="flex justify-center flex-wrap gap-4">
             {currentExercise.options.sort(() => 0.5 - Math.random()).map(option => (

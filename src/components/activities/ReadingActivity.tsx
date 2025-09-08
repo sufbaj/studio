@@ -1,16 +1,17 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import type { ReadingItem, ReadingQuestion } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2, Pause } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { generateSpeechAction } from '@/app/learn/actions';
 
 export function ReadingActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
@@ -22,6 +23,12 @@ export function ReadingActivity() {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
+
+  const [playingText, setPlayingText] = useState(false);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState<number | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const sentencesRef = useRef<string[]>([]);
+  const sentenceRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
@@ -39,6 +46,8 @@ export function ReadingActivity() {
     setSelectedOption(null);
     setIsAnswered(false);
     setTotalCorrectAnswers(0);
+    setPlayingText(false);
+    setCurrentlyPlaying(null);
   }, [language, grade, setMaxScore, resetScore]);
 
   useEffect(() => {
@@ -47,6 +56,63 @@ export function ReadingActivity() {
 
   const currentExercise = useMemo(() => exercises[currentExerciseIndex], [exercises, currentExerciseIndex]);
   const currentQuestion = useMemo(() => currentExercise?.questions[currentQuestionIndex], [currentExercise, currentQuestionIndex]);
+
+  useEffect(() => {
+    if (currentExercise) {
+      sentencesRef.current = currentExercise.text.match(/[^.!?]+[.!?]+/g) || [];
+      sentenceRefs.current = sentenceRefs.current.slice(0, sentencesRef.current.length);
+    }
+  }, [currentExercise]);
+
+
+  const playSentences = useCallback(async () => {
+    if (playingText || !currentExercise) return;
+    setPlayingText(true);
+
+    for (let i = 0; i < sentencesRef.current.length; i++) {
+        setCurrentlyPlaying(i);
+        const sentence = sentencesRef.current[i];
+        
+        // Scroll to the sentence
+        sentenceRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        try {
+            const result = await generateSpeechAction({ text: sentence });
+            if (result.error || !result.audioData) {
+                toast({ title: 'Greška pri reprodukciji', variant: 'destructive' });
+                break; 
+            }
+            if (audioRef.current) {
+                await new Promise<void>((resolve) => {
+                    audioRef.current!.src = result.audioData!;
+                    audioRef.current!.play();
+                    audioRef.current!.onended = () => resolve();
+                    audioRef.current!.onerror = () => resolve();
+                });
+            }
+        } catch (e) {
+            toast({ title: 'Greška pri reprodukciji', variant: 'destructive' });
+            break;
+        }
+
+        // Check if playback was stopped
+        if (!audioRef.current || audioRef.current.paused) {
+          break;
+        }
+    }
+
+    setPlayingText(false);
+    setCurrentlyPlaying(null);
+  }, [currentExercise, playingText, toast]);
+
+  const stopPlayback = () => {
+    if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+    }
+    setPlayingText(false);
+    setCurrentlyPlaying(null);
+  }
 
   const handleSelectOption = (option: string) => {
     if (isAnswered) return;
@@ -69,6 +135,7 @@ export function ReadingActivity() {
   const next = () => {
     setSelectedOption(null);
     setIsAnswered(false);
+    stopPlayback();
     
     if (currentExercise && currentQuestionIndex < currentExercise.questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
@@ -100,6 +167,7 @@ export function ReadingActivity() {
 
   return (
     <div>
+       <audio ref={audioRef} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">{language === 'serbian' ? 'Razumevanje pročitanog' : 'Razumijevanje pročitanog'}</h2>
         {!isQuizFinished && (
@@ -118,12 +186,29 @@ export function ReadingActivity() {
       {!isQuizFinished && currentExercise && currentQuestion ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card>
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle>{currentExercise.title}</CardTitle>
+                    {playingText ? (
+                         <Button variant="outline" size="icon" onClick={stopPlayback}><Pause className="w-5 h-5" /></Button>
+                    ) : (
+                         <Button variant="outline" size="icon" onClick={playSentences}><Volume2 className="w-5 h-5" /></Button>
+                    )}
                 </CardHeader>
                 <CardContent>
                     <ScrollArea className="h-96">
-                        <p className="text-muted-foreground whitespace-pre-line pr-4">{currentExercise.text}</p>
+                        <div className="text-muted-foreground whitespace-pre-line pr-4">
+                           {sentencesRef.current.map((sentence, index) => (
+                                <span 
+                                    key={index}
+                                    ref={el => sentenceRefs.current[index] = el}
+                                    className={cn("transition-colors duration-300", {
+                                        "bg-accent/80 text-accent-foreground rounded p-1": currentlyPlaying === index
+                                    })}
+                                >
+                                    {sentence}
+                                </span>
+                            ))}
+                        </div>
                     </ScrollArea>
                 </CardContent>
             </Card>

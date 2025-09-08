@@ -1,16 +1,17 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import type { SentenceItem } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { RefreshCw, CheckCircle, XCircle, Volume2, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
+import { generateSpeechAction } from '@/app/learn/actions';
 
 const shuffleArray = <T,>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
@@ -27,8 +28,34 @@ export function SentencesActivity() {
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [playingText, setPlayingText] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const currentExercise = useMemo(() => exercises[currentExerciseIndex], [exercises, currentExerciseIndex]);
+
+  const handlePlaySound = useCallback(async (text: string) => {
+    if (playingText) return;
+    setPlayingText(text);
+    try {
+      const result = await generateSpeechAction({ text });
+      if (result.error) {
+        toast({ title: 'Greška', description: result.error, variant: 'destructive' });
+      } else if (result.audioData) {
+        if (audioRef.current) {
+          audioRef.current.src = result.audioData;
+          audioRef.current.play();
+        }
+      }
+    } catch (error) {
+       toast({ title: 'Greška pri reprodukciji', description: 'Nije uspjelo generiranje zvuka.', variant: 'destructive' });
+    } finally {
+        if (audioRef.current) {
+            audioRef.current.onended = () => setPlayingText(null);
+        } else {
+             setPlayingText(null);
+        }
+    }
+  }, [playingText, toast]);
 
   const generateExercises = useCallback(() => {
     if (!language || !grade) return;
@@ -58,10 +85,10 @@ export function SentencesActivity() {
   const handleWordClick = (word: string, from: 'bank' | 'answer') => {
     if (isAnswered) return;
     if (from === 'bank') {
-      setWordBank(wordBank.filter((w) => w !== word));
+      setWordBank(wordBank.filter((w, i) => `${w}-${i}` !== `${word}-${wordBank.indexOf(word)}`));
       setAnswerWords([...answerWords, word]);
     } else {
-      setAnswerWords(answerWords.filter((w) => w !== word));
+      setAnswerWords(answerWords.filter((w, i) => `${w}-${i}` !== `${word}-${answerWords.indexOf(word)}`));
       setWordBank([...wordBank, word]);
     }
   };
@@ -78,6 +105,7 @@ export function SentencesActivity() {
       updateScore(20);
       setCorrectAnswers(prev => prev + 1);
       toast({ title: "Tačno!", description: "Sjajno! +20 poena." });
+      handlePlaySound(currentExercise.sentence);
     } else {
       toast({ title: "Netačno!", description: `Pravilan odgovor je: "${currentExercise.sentence}"`, variant: "destructive" });
     }
@@ -106,6 +134,7 @@ export function SentencesActivity() {
 
   return (
     <div>
+      <audio ref={audioRef} onEnded={() => setPlayingText(null)} />
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-headline font-bold">Sastavi rečenicu</h2>
         {!isQuizFinished && (
@@ -131,7 +160,7 @@ export function SentencesActivity() {
           <CardContent className="flex flex-col gap-8 items-center">
             <div className="min-h-[6rem] w-full bg-secondary rounded-lg p-4 flex flex-wrap items-center justify-center gap-2">
               {answerWords.map((word, index) => (
-                 <motion.div key={index} layoutId={`word-${word}-${index}`}>
+                 <motion.div key={`${word}-${index}`} layoutId={`word-${word}-${index}`}>
                     <Button
                       variant="outline"
                       size="lg"
@@ -154,7 +183,7 @@ export function SentencesActivity() {
             
             <div className="min-h-[6rem] w-full p-4 flex flex-wrap items-center justify-center gap-2">
                 {wordBank.map((word, index) => (
-                    <motion.div key={index} layoutId={`word-${word}-${index}`}>
+                    <motion.div key={`${word}-${index}`} layoutId={`word-${word}-${index}`}>
                       <Button
                         variant="secondary"
                         size="lg"
@@ -175,7 +204,12 @@ export function SentencesActivity() {
             ) : (
               <>
                  {isCorrect ? (
-                    <p className="flex items-center gap-2 text-green-600 text-xl font-bold"><CheckCircle /> Tačno!</p>
+                    <div className="flex items-center gap-4">
+                        <p className="flex items-center gap-2 text-green-600 text-xl font-bold"><CheckCircle /> Tačno!</p>
+                         <Button variant="ghost" size="icon" onClick={() => handlePlaySound(currentExercise.sentence)} disabled={!!playingText}>
+                            {playingText === currentExercise.sentence ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
+                        </Button>
+                    </div>
                  ) : (
                     <div className="text-center">
                         <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold"><XCircle /> Netačno!</p>
