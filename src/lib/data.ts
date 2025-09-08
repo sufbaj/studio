@@ -576,3 +576,4 @@ export const data: LanguageData = {
 };
 
     
+    
