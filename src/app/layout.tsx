@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Učim BHS',
-  description: 'En interaktiv plattform för att lära sig bosniska, kroatiska och serbiska.',
+  title: 'LingoBHS',
+  description: 'Interaktivna platforma za učenje bosanskog, hrvatskog i srpskog jezika.',
 };
 
 export default function RootLayout({

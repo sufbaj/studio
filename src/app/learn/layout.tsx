@@ -86,7 +86,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
         <SidebarHeader>
           <div className="flex items-center gap-2">
             <Logo className="w-7 h-7 text-primary" />
-            <h2 className="text-lg font-headline font-semibold">Učim BHS</h2>
+            <h2 className="text-lg font-headline font-semibold">LingoBHS</h2>
           </div>
         </SidebarHeader>
         <SidebarContent>
