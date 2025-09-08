@@ -29,6 +29,7 @@ export function AlphabetActivity() {
             description: result.error,
             variant: 'destructive',
           });
+          setPlayingLetter(null);
         } else if (result.audioData) {
           if (audioRef.current) {
             audioRef.current.src = result.audioData;
@@ -41,8 +42,7 @@ export function AlphabetActivity() {
           description: 'Nije uspjelo generiranje zvuka.',
           variant: 'destructive',
         });
-      } finally {
-        // Delay clearing playing letter to allow audio to finish
+        setPlayingLetter(null);
       }
     },
     [playingLetter, toast]
