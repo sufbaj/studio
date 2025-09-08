@@ -9,7 +9,8 @@ export type Activity =
   | 'translation'
   | 'translator'
   | 'ai-review'
-  | 'alphabet';
+  | 'alphabet'
+  | 'numbers';
 
 export interface VocabularyItem {
   id: number;
@@ -65,6 +66,11 @@ export interface AlphabetItem {
   exampleImage: string;
 }
 
+export interface NumberItem {
+  number: number;
+  word: string;
+}
+
 export interface Content {
   vocabulary: VocabularyItem[];
   spelling: SpellingItem[];
@@ -73,6 +79,7 @@ export interface Content {
   reading: ReadingItem[];
   translations: TranslationItem[];
   alphabet: AlphabetItem[];
+  numbers: NumberItem[];
 }
 
 export type LanguageData = Record<Language, Record<Grade, Content>>;

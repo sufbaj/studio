@@ -11,6 +11,7 @@ import { TranslationActivity } from '@/components/activities/TranslationActivity
 import { TranslatorActivity } from '@/components/activities/TranslatorActivity';
 import { AiReviewActivity } from '@/components/activities/AiReviewActivity';
 import { AlphabetActivity } from '@/components/activities/AlphabetActivity';
+import { NumbersActivity } from '@/components/activities/NumbersActivity';
 
 export default function ActivityPage() {
   const params = useParams();
@@ -20,6 +21,8 @@ export default function ActivityPage() {
     switch (activity) {
       case 'alphabet':
         return <AlphabetActivity />;
+      case 'numbers':
+        return <NumbersActivity />;
       case 'vocabulary':
         return <VocabularyActivity />;
       case 'spelling':
