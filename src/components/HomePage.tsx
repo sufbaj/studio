@@ -62,7 +62,7 @@ export function HomePage() {
   };
 
   return (
-    <main className="flex min-h-screen w-full flex-col items-center justify-center p-4">
+    <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 relative">
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-4 mb-4">
           <Logo className="h-12 w-12 text-primary" />
@@ -144,6 +144,10 @@ export function HomePage() {
         </motion.div>
       )}
       </AnimatePresence>
+
+      <div className="absolute bottom-4 text-xs text-muted-foreground">
+        by sufjan.ba
+      </div>
     </main>
   );
 }
