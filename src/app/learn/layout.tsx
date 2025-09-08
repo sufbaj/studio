@@ -28,12 +28,14 @@ import {
   Bot,
   Home,
   Award,
-  BookOpen
+  BookOpen,
+  CaseUpper,
 } from 'lucide-react';
 import type { Language, Grade, Activity } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const navItems = [
+  { href: 'alphabet', icon: CaseUpper, label: 'Alfabet' },
   { href: 'vocabulary', icon: BookText, label: 'Ordförråd' },
   { href: 'sentences', icon: MessageSquare, label: 'Meningar' },
   { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },

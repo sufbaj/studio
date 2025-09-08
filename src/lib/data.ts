@@ -1,9 +1,44 @@
 
 import type { LanguageData } from './types';
 
+const alphabet = [
+    { letter: ['A', 'a'], exampleWord: 'Avion', exampleImage: 'https://picsum.photos/200/200?random=a' },
+    { letter: ['B', 'b'], exampleWord: 'Bicikl', exampleImage: 'https://picsum.photos/200/200?random=b' },
+    { letter: ['C', 'c'], exampleWord: 'Cipele', exampleImage: 'https://picsum.photos/200/200?random=c' },
+    { letter: ['Č', 'č'], exampleWord: 'Čaša', exampleImage: 'https://picsum.photos/200/200?random=c2' },
+    { letter: ['Ć', 'ć'], exampleWord: 'Ćevapi', exampleImage: 'https://picsum.photos/200/200?random=c3' },
+    { letter: ['D', 'd'], exampleWord: 'Drvo', exampleImage: 'https://picsum.photos/200/200?random=d' },
+    { letter: ['Dž', 'dž'], exampleWord: 'Džep', exampleImage: 'https://picsum.photos/200/200?random=dz' },
+    { letter: ['Đ', 'đ'], exampleWord: 'Đak', exampleImage: 'https://picsum.photos/200/200?random=dj' },
+    { letter: ['E', 'e'], exampleWord: 'Ekran', exampleImage: 'https://picsum.photos/200/200?random=e' },
+    { letter: ['F', 'f'], exampleWord: 'Fudbal', exampleImage: 'https://picsum.photos/200/200?random=f' },
+    { letter: ['G', 'g'], exampleWord: 'Gitara', exampleImage: 'https://picsum.photos/200/200?random=g' },
+    { letter: ['H', 'h'], exampleWord: 'Hljeb', exampleImage: 'https://picsum.photos/200/200?random=h' },
+    { letter: ['I', 'i'], exampleWord: 'Igla', exampleImage: 'https://picsum.photos/200/200?random=i' },
+    { letter: ['J', 'j'], exampleWord: 'Jabuka', exampleImage: 'https://picsum.photos/200/200?random=j' },
+    { letter: ['K', 'k'], exampleWord: 'Knjiga', exampleImage: 'https://picsum.photos/200/200?random=k' },
+    { letter: ['L', 'l'], exampleWord: 'Lopta', exampleImage: 'https://picsum.photos/200/200?random=l' },
+    { letter: ['Lj', 'lj'], exampleWord: 'Ljubav', exampleImage: 'https://picsum.photos/200/200?random=lj' },
+    { letter: ['M', 'm'], exampleWord: 'Mačka', exampleImage: 'https://picsum.photos/200/200?random=m' },
+    { letter: ['N', 'n'], exampleWord: 'Noga', exampleImage: 'https://picsum.photos/200/200?random=n' },
+    { letter: ['Nj', 'nj'], exampleWord: 'Njiva', exampleImage: 'https://picsum.photos/200/200?random=nj' },
+    { letter: ['O', 'o'], exampleWord: 'Oblak', exampleImage: 'https://picsum.photos/200/200?random=o' },
+    { letter: ['P', 'p'], exampleWord: 'Pas', exampleImage: 'https://picsum.photos/200/200?random=p' },
+    { letter: ['R', 'r'], aacmpleWord: 'Riba', exampleImage: 'https://picsum.photos/200/200?random=r' },
+    { letter: ['S', 's'], exampleWord: 'Sunce', exampleImage: 'https://picsum.photos/200/200?random=s' },
+    { letter: ['Š', 'š'], exampleWord: 'Šuma', exampleImage: 'https://picsum.photos/200/200?random=s2' },
+    { letter: ['T', 't'], exampleWord: 'Trava', exampleImage: 'https://picsum.photos/200/200?random=t' },
+    { letter: ['U', 'u'], exampleWord: 'Uho', exampleImage: 'https://picsum.photos/200/200?random=u' },
+    { letter: ['V', 'v'], exampleWord: 'Voda', exampleImage: 'https://picsum.photos/200/200?random=v' },
+    { letter: ['Z', 'z'], exampleWord: 'Zebra', exampleImage: 'https://picsum.photos/200/200?random=z' },
+    { letter: ['Ž', 'ž'], exampleWord: 'Žaba', exampleImage: 'https://picsum.photos/200/200?random=z2' },
+];
+
+
 export const data: LanguageData = {
   bosnian: {
     '1-3': {
+      alphabet: alphabet,
       vocabulary: [
         { id: 1, word: 'kafa', translation: 'kaffe', audio: 'https://picsum.photos/400/400?random=1' },
         { id: 21, word: 'Hljeb/kruh', translation: 'bröd', audio: 'https://picsum.photos/400/400?random=21' },
@@ -167,11 +202,12 @@ export const data: LanguageData = {
         { id: 15, type: 'sentence', source: 'Min pappa kör bilen.', target: 'Moj tata vozi auto.' },
       ]
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [] },
   },
   croatian: {
     '1-3': {
+      alphabet: alphabet,
       vocabulary: [
         { id: 1, word: 'kava', translation: 'kaffe', audio: '/audio/placeholder.mp3' },
         { id: 2, word: 'kruh', translation: 'bröd', audio: '/audio/placeholder.mp3' },
@@ -321,11 +357,12 @@ export const data: LanguageData = {
         { id: 15, type: 'sentence', source: 'Min pappa kör bilen.', target: 'Moj tata vozi automobil.' },
       ]
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [] },
   },
   serbian: {
     '1-3': {
+      alphabet: alphabet,
       vocabulary: [
         { id: 1, word: 'kafa', translation: 'kaffe', audio: '/audio/placeholder.mp3' },
         { id: 2, word: 'hleb', translation: 'bröd', audio: '/audio/placeholder.mp3' },
@@ -451,9 +488,7 @@ export const data: LanguageData = {
         { id: 15, type: 'sentence', source: 'Min pappa kör bilen.', target: 'Moj tata vozi auto.' }
       ]
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
-    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [] },
+    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [] },
+    '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [] },
   },
 };
-
-    

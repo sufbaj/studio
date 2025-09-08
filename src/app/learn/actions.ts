@@ -4,6 +4,8 @@ import { translateText } from '@/ai/flows/translator-flow';
 import type { TranslatorInput } from '@/ai/flows/translator-flow';
 import { reviewText } from '@/ai/flows/ai-content-review';
 import type { AiReviewInput } from '@/ai/flows/ai-content-review';
+import { generateSpeech } from '@/ai/flows/tts-flow';
+import type { TtsInput } from '@/ai/flows/tts-flow';
 import { z } from 'zod';
 
 const TranslatorInputSchema = z.object({
@@ -53,5 +55,25 @@ export async function reviewTextAction(input: AiReviewInput) {
     } catch (error) {
         console.error("AI review failed:", error);
         return { error: "Kunde inte ansluta till AI-tjänsten." };
+    }
+}
+
+const TtsInputSchema = z.object({
+    text: z.string().min(1, "Texten kan inte vara tom."),
+});
+
+export async function generateSpeechAction(input: TtsInput) {
+    const validatedInput = TtsInputSchema.safeParse(input);
+
+    if (!validatedInput.success) {
+        return { error: validatedInput.error.errors.map(e => e.message).join(', ') };
+    }
+
+    try {
+        const result = await generateSpeech(validatedInput.data);
+        return { audioData: result.audioData };
+    } catch (error) {
+        console.error("AI speech generation failed:", error);
+        return { error: "Kunde inte generera ljud från text." };
     }
 }
