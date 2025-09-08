@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import Image from 'next/image';
 
 export function AlphabetActivity() {
   const { language, grade } = useAppContext();
@@ -18,17 +18,17 @@ export function AlphabetActivity() {
     <div>
       <h2 className="text-3xl font-headline font-bold mb-4">Alfabet</h2>
       <p className="text-muted-foreground mb-6">
-        Pregledajte slova abecede.
+        Pregledajte slova abecede, zajedno s primjerima riječi i slika.
       </p>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
-        {alphabet.map(({ letter }, index) => {
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {alphabet.map(({ letter, exampleWord, exampleImage }, index) => {
           return (
             <Card
               key={index}
-              className="transition-colors"
+              className="transition-shadow hover:shadow-lg"
             >
-              <CardContent className="flex flex-col items-center justify-center p-4 aspect-square">
+              <CardContent className="flex flex-col items-center justify-start p-4 aspect-square">
                 <div className="flex items-baseline">
                    <span className="text-4xl md:text-5xl font-bold font-headline">
                     {Array.isArray(letter) ? letter[0] : letter}
@@ -37,6 +37,16 @@ export function AlphabetActivity() {
                     {Array.isArray(letter) ? letter[1] : ''}
                    </span>
                 </div>
+                 <div className="relative w-full h-24 mt-2 rounded-md overflow-hidden">
+                    <Image 
+                        src={exampleImage} 
+                        alt={exampleWord} 
+                        fill
+                        className="object-cover"
+                        data-ai-hint={exampleWord.toLowerCase()}
+                    />
+                 </div>
+                <p className="mt-3 font-semibold">{exampleWord}</p>
               </CardContent>
             </Card>
           );
