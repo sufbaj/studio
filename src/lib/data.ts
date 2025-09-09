@@ -314,7 +314,31 @@ export const data: LanguageData = {
         { id: 109, sentence: 'Rijeka Miljacka protiče ___ Sarajevo.', blank: 'kroz', options: ['u', 'na', 'kroz'], explanation: 'Prijedlog "kroz" označava kretanje kroz neki prostor.' },
         { id: 110, sentence: 'Mostar je poznat po ___ mostu.', blank: 'Starom', options: ['Stari', 'Starog', 'Starom'], explanation: 'Lokativ (o čemu je poznat?) s prijedlogom "po" zahtijeva nastavak -om za pridjev muškog roda.' }
       ],
-      reading: [],
+      reading: [
+        {
+          id: 101,
+          title: "Baščaršija, srce Sarajeva",
+          text: "Baščaršija je stara sarajevska čaršija i historijsko srce grada. Izgrađena je u 15. stoljeću, kada je Isa-beg Ishaković osnovao grad. Ime Baščaršija potiče od turskih riječi 'baš', što znači 'glavna', i 'čaršija', što znači 'trgovačka ulica'. Danas je Baščaršija glavna turistička atrakcija Sarajeva. Tu se nalaze mnoge zanatske radnje, kao što su kazandžije i zlatari, ali i brojne ćevabdžinice i aščinice gdje se može probati tradicionalna bosanska hrana. U centru Baščaršije nalazi se Sebilj, drvena fontana koja je jedan od simbola grada.",
+          questions: [
+            { id: 1, question: "Kada je izgrađena Baščaršija?", options: ["U 15. stoljeću", "U 16. stoljeću", "U 20. stoljeću"], answer: "U 15. stoljeću" },
+            { id: 2, question: "Šta znači riječ 'baš'?", options: ["Mala", "Stara", "Glavna"], answer: "Glavna" },
+            { id: 3, question: "Koji se poznati objekat nalazi u centru Baščaršije?", options: ["Vijećnica", "Most", "Sebilj"], answer: "Sebilj" },
+            { id: 4, question: "Koje zanatske radnje se mogu naći na Baščaršiji?", options: ["Automehaničari", "Programeri", "Kazandžije i zlatari"], answer: "Kazandžije i zlatari" },
+            { id: 5, question: "Ko je osnovao Sarajevo?", options: ["Gazi Husrev-beg", "Isa-beg Ishaković", "Tvrtko I Kotromanić"], answer: "Isa-beg Ishaković" }
+          ]
+        },
+        {
+          id: 102,
+          title: "Dan u modernoj školi",
+          text: "Lamija ide u peti razred jedne moderne osnovne škole. Njena učionica ima pametnu tablu umjesto obične zelene. Svaki učenik ima svoj tablet na kojem radi zadatke iz matematike. Danas su na času informatike učili osnove programiranja. Koristili su jednostavan programski jezik kako bi napravili malu igricu. Lamija je napravila igricu gdje mačka lovi miša. Nakon škole, Lamija ima online čas engleskog jezika. Povezuje se sa svojom učiteljicom preko video poziva. Voli tehnologiju jer joj pomaže da uči na zabavan način.",
+          questions: [
+            { id: 1, question: "Šta Lamijina učionica ima umjesto obične table?", options: ["Zid za crtanje", "Pametnu tablu", "Veliki televizor"], answer: "Pametnu tablu" },
+            { id: 2, question: "Šta su učenici učili na času informatike?", options: ["Historiju računara", "Osnove programiranja", "Kako koristiti društvene mreže"], answer: "Osnove programiranja" },
+            { id: 3, question: "Kakvu igricu je Lamija napravila?", options: ["Gdje auto juri kroz grad", "Gdje pas lovi lopticu", "Gdje mačka lovi miša"], answer: "Gdje mačka lovi miša" },
+            { id: 4, question: "Kako Lamija ima čas engleskog jezika?", options: ["Učiteljica dolazi njenoj kući", "Ide u školu jezika", "Online, preko video poziva"], answer: "Online, preko video poziva" }
+          ]
+        }
+      ],
       translations: []
     },
     '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [], numbers: [] },
@@ -543,7 +567,30 @@ export const data: LanguageData = {
         { id: 209, sentence: 'Rijeka Sava protječe ___ Zagreb.', blank: 'kroz', options: ['u', 'na', 'kroz'], explanation: 'Prijedlog "kroz" označava kretanje kroz neki prostor.' },
         { id: 210, sentence: 'Zagreb je poznat po ___ katedrali.', blank: 'svojoj', options: ['svoj', 'svoja', 'svojoj'], explanation: 'Lokativ (o čemu je poznat?) s prijedlogom "po" zahtijeva posvojnu zamjenicu u lokativu (svojoj).' }
       ],
-      reading: [],
+      reading: [
+        {
+          id: 201,
+          title: "Nikola Tesla, izumitelj budućnosti",
+          text: "Nikola Tesla bio je jedan od najvećih izumitelja i znanstvenika u povijesti. Rođen je u selu Smiljan u Lici, u Hrvatskoj. Iako je živio davno, njegovi izumi i danas oblikuju naš svijet. Tesla je najpoznatiji po svom doprinosu sustavu izmjenične struje, koji omogućuje prijenos električne energije na velike udaljenosti. To je razlog zašto danas imamo struju u našim domovima. Također je radio na bežičnom prijenosu energije, radiju i mnogim drugim stvarima. Zvali su ga 'čovjekom koji je izumio 20. stoljeće'. Njegova vizija i genijalnost i danas nadahnjuju znanstvenike diljem svijeta.",
+          questions: [
+            { id: 1, question: "Gdje je rođen Nikola Tesla?", options: ["U Zagrebu", "U Smiljanu", "U Splitu"], answer: "U Smiljanu" },
+            { id: 2, question: "Po kojem je izumu Tesla najpoznatiji?", options: ["Po telefonu", "Po sustavu izmjenične struje", "Po internetu"], answer: "Po sustavu izmjenične struje" },
+            { id: 3, question: "Što nam omogućuje sustav izmjenične struje?", options: ["Letenje zrakoplovom", "Gledanje televizije", "Prijenos struje na velike udaljenosti"], answer: "Prijenos struje na velike udaljenosti" },
+            { id: 4, question: "Kako su zvali Nikolu Teslu?", options: ["Čovjek iz budućnosti", "Čovjek koji je izumio 20. stoljeće", "Kralj izumitelja"], answer: "Čovjek koji je izumio 20. stoljeće" }
+          ]
+        },
+        {
+          id: 202,
+          title: "Ljetovanje na Jadranu",
+          text: "Obitelj Horvat svako ljeto provodi na Jadranskom moru. Ove godine posjetili su otok Hvar. Iznajmili su mali apartman blizu plaže. Djeca, Lana i Luka, po cijele su dane plivali i ronili u bistrom, plavom moru. Gradili su kule od pijeska i skupljali školjke. Jedan dan su otišli na izlet brodom do obližnjih Paklenih otoka. Tamo su se kupali u skrivenim uvalama. Navečer bi šetali rivom i jeli sladoled. Luka kaže da najviše voli okus čokolade, a Lana vanilije. Bilo je to nezaboravno ljetovanje.",
+          questions: [
+            { id: 1, question: "Koji je otok obitelj Horvat posjetila?", options: ["Brač", "Krk", "Hvar"], answer: "Hvar" },
+            { id: 2, question: "Što su djeca radila na plaži?", options: ["Učili matematiku", "Gradili kule od pijeska", "Spavali"], answer: "Gradili kule od pijeska" },
+            { id: 3, question: "Kamo su otišli na izlet brodom?", options: ["Na Paklene otoke", "Na Vis", "Na Korčulu"], answer: "Na Paklene otoke" },
+            { id: 4, question: "Koji okus sladoleda Luka najviše voli?", options: ["Jagodu", "Čokoladu", "Vaniliju"], answer: "Čokoladu" }
+          ]
+        }
+      ],
       translations: []
     },
     '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [], numbers: [] },
@@ -787,7 +834,30 @@ export const data: LanguageData = {
         { id: 309, sentence: 'Reka Dunav protiče ___ Beograd.', blank: 'kroz', options: ['u', 'na', 'kroz'], explanation: 'Predlog "kroz" označava kretanje kroz neki prostor.' },
         { id: 310, sentence: 'Novi Sad je poznat po ___ tvrđavi.', blank: 'Petrovaradinskoj', options: ['Petrovaradinska', 'Petrovaradinskoj', 'Petrovaradinsku'], explanation: 'Lokativ (o čemu je poznat?) s predlogom "po" zahteva pridev u lokativu (Petrovaradinskoj).' }
       ], 
-      reading: [], 
+      reading: [
+        {
+          id: 301,
+          title: "Beogradska tvrđava",
+          text: "Beogradska tvrđava, poznata i kao Kalemegdan, predstavlja najvažniji istorijski spomenik u Beogradu. Nalazi se na ušću reke Save u Dunav. Zbog svog izuzetnog strateškog položaja, na ovom mestu su se vekovima vodile bitke. Tvrđava se sastoji od Gornjeg i Donjeg grada. Danas je Kalemegdan najlepši i najveći park u Beogradu. U njemu se nalaze Vojni muzej, Zoološki vrt i spomenik Pobednik, jedan od simbola Beograda. Ljudi dolaze ovde da šetaju, uživaju u pogledu na reke i uče o bogatoj istoriji grada.",
+          questions: [
+            { id: 1, question: "Gde se nalazi Beogradska tvrđava?", options: ["Na ušću Tise u Dunav", "Na ušću Save u Dunav", "Na obali Morave"], answer: "Na ušću Save u Dunav" },
+            { id: 2, question: "Iz kojih delova se sastoji tvrđava?", options: ["Iz Istočnog i Zapadnog grada", "Iz Severnog i Južnog grada", "Iz Gornjeg i Donjeg grada"], answer: "Iz Gornjeg i Donjeg grada" },
+            { id: 3, question: "Koji se poznati spomenik nalazi na Kalemegdanu?", options: ["Spomenik Neznanom junaku", "Spomenik Pobednik", "Spomenik Knezu Mihailu"], answer: "Spomenik Pobednik" },
+            { id: 4, question: "Šta se još, pored muzeja, nalazi u okviru tvrđave?", options: ["Narodno pozorište", "Zoološki vrt", "Tržni centar"], answer: "Zoološki vrt" }
+          ]
+        },
+        {
+          id: 302,
+          title: "Festival 'Egzit'",
+          text: "Miloš i Jovana su tinejdžeri iz Novog Sada i obožavaju muziku. Svake godine sa nestrpljenjem iščekuju leto i početak muzičkog festivala 'Egzit' (Exit). Ovaj festival se održava na Petrovaradinskoj tvrđavi i jedan je od najpoznatijih u Evropi. Na festivalu nastupaju poznati svetski i domaći muzičari različitih žanrova, od elektronske muzike do roka. Miloš najviše voli da sluša di-džejeve na Dens Areni, dok Jovana preferira gitaru i rok bendove na Glavnoj bini. Festival traje četiri dana i okuplja mlade iz celog sveta. Za njih, to su najbolji dani leta.",
+          questions: [
+            { id: 1, question: "Gde se održava festival 'Egzit'?", options: ["Na Beogradskoj tvrđavi", "Na Petrovaradinskoj tvrđavi", "U centru Novog Sada"], answer: "Na Petrovaradinskoj tvrđavi" },
+            { id: 2, question: "Koliko dana traje festival?", options: ["Dva dana", "Četiri dana", "Sedam dana"], answer: "Četiri dana" },
+            { id: 3, question: "Koju muziku Miloš najviše voli?", options: ["Rok muziku", "Elektronsku muziku", "Narodnu muziku"], answer: "Elektronsku muziku" },
+            { id: 4, question: "Ko dolazi na festival?", options: ["Samo ljudi iz Srbije", "Samo stariji ljudi", "Mladi iz celog sveta"], answer: "Mladi iz celog sveta" }
+          ]
+        }
+      ], 
       translations: [] 
     },
     '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [], numbers: [] },
@@ -796,5 +866,6 @@ export const data: LanguageData = {
 
     
     
+
 
 

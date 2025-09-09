@@ -12,9 +12,80 @@ import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
+interface ReadingActivityStrings {
+  title: string;
+  question: string;
+  of: string;
+  newExercises: string;
+  checkAnswer: string;
+  nextQuestion: string;
+  seeResults: string;
+  exerciseFinished: string;
+  correctAnswersOutOf: (correct: number, total: number) => string;
+  practiceAgain: string;
+  noExercises: string;
+  correctToast: string;
+  incorrectToast: (answer: string) => string;
+}
+
+const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null): ReadingActivityStrings => {
+  switch (language) {
+    case 'serbian':
+      return {
+        title: 'Razumevanje pročitanog',
+        question: 'Pitanje',
+        of: 'od',
+        newExercises: 'Nove vežbe',
+        checkAnswer: 'Proveri odgovor',
+        nextQuestion: 'Sledeće pitanje',
+        seeResults: 'Vidi rezultate',
+        exerciseFinished: 'Vežba završena!',
+        correctAnswersOutOf: (c, t) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+        practiceAgain: 'Vežbaj ponovo',
+        noExercises: 'Nema dostupnih vežbi.',
+        correctToast: 'Tačno! Sjajno! +15 poena.',
+        incorrectToast: (a) => `Netačno! Tačan odgovor je "${a}".`,
+      };
+    case 'croatian':
+      return {
+        title: 'Razumijevanje pročitanog',
+        question: 'Pitanje',
+        of: 'od',
+        newExercises: 'Nove vježbe',
+        checkAnswer: 'Provjeri odgovor',
+        nextQuestion: 'Sljedeće pitanje',
+        seeResults: 'Vidi rezultate',
+        exerciseFinished: 'Vježba završena!',
+        correctAnswersOutOf: (c, t) => `Imali ste ${c} od ${t} točnih odgovora.`,
+        practiceAgain: 'Vježbaj ponovno',
+        noExercises: 'Nema dostupnih vježbi.',
+        correctToast: 'Točno! Sjajno! +15 bodova.',
+        incorrectToast: (a) => `Netočno! Točan odgovor je "${a}".`,
+      };
+    case 'bosnian':
+    default:
+      return {
+        title: 'Razumijevanje pročitanog',
+        question: 'Pitanje',
+        of: 'od',
+        newExercises: 'Nove vježbe',
+        checkAnswer: 'Provjeri odgovor',
+        nextQuestion: 'Sljedeće pitanje',
+        seeResults: 'Vidi rezultate',
+        exerciseFinished: 'Vježba završena!',
+        correctAnswersOutOf: (c, t) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+        practiceAgain: 'Vježbaj ponovo',
+        noExercises: 'Nema dostupnih vježbi.',
+        correctToast: 'Tačno! Sjajno! +15 poena.',
+        incorrectToast: (a) => `Netačno! Tačan odgovor je "${a}".`,
+      };
+  }
+}
+
 export function ReadingActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
+  const s = getStrings(language);
 
   const [exercises, setExercises] = useState<ReadingItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -68,9 +139,9 @@ export function ReadingActivity() {
     if (correct) {
       updateScore(15);
       setTotalCorrectAnswers(prev => prev + 1);
-      toast({ title: "Tačno!", description: "Sjajno! +15 poena." });
+      toast({ title: s.correctToast.split('!')[0], description: s.correctToast.split('!')[1] });
     } else {
-      toast({ title: "Netačno!", description: `Tačan odgovor je "${currentQuestion.answer}".`, variant: "destructive" });
+      toast({ title: "Netačno!", description: s.incorrectToast(currentQuestion.answer), variant: "destructive" });
     }
   };
 
@@ -93,8 +164,8 @@ export function ReadingActivity() {
   if (!language || !grade || exercises.length === 0) {
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">Razumijevanje pročitanog</h2>
-        <p>Nema dostupnih vježbi.</p>
+        <h2 className="text-2xl font-headline mb-4">{s.title}</h2>
+        <p>{s.noExercises}</p>
       </div>
     );
   }
@@ -109,15 +180,15 @@ export function ReadingActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">{language === 'serbian' ? 'Razumevanje pročitanog' : 'Razumijevanje pročitanog'}</h2>
+        <h2 className="text-3xl font-headline font-bold">{s.title}</h2>
         {!isQuizFinished && (
           <div className="text-lg font-semibold text-muted-foreground">
-            Pitanje {answeredQuestions + 1} / {totalQuestions}
+            {s.question} {answeredQuestions + 1} / {totalQuestions}
           </div>
         )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
+          {s.newExercises}
         </Button>
       </div>
       
@@ -146,7 +217,7 @@ export function ReadingActivity() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Pitanje {currentQuestionIndex + 1}</CardTitle>
+              <CardTitle>{s.question} {currentQuestionIndex + 1}</CardTitle>
               <CardDescription>{currentQuestion.question}</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
@@ -174,10 +245,10 @@ export function ReadingActivity() {
             </CardContent>
             <CardFooter className="justify-end mt-6 flex-col items-end gap-4">
               {!isAnswered ? (
-                <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{language === 'serbian' ? 'Proveri odgovor' : 'Provjeri odgovor'}</Button>
+                <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{s.checkAnswer}</Button>
               ) : (
                 <Button onClick={next} size="lg">
-                  {currentQuestionIndex < currentExercise.questions.length - 1 || currentExerciseIndex < exercises.length - 1 ? (language === 'serbian' ? 'Sledeće pitanje' : 'Sljedeće pitanje') : 'Vidi rezultate'}
+                  {currentQuestionIndex < currentExercise.questions.length - 1 || currentExerciseIndex < exercises.length - 1 ? s.nextQuestion : s.seeResults}
                 </Button>
               )}
             </CardFooter>
@@ -185,11 +256,11 @@ export function ReadingActivity() {
         </div>
       ) : (
         <Card className="text-center p-8">
-          <h3 className="text-2xl font-headline mb-4">{language === 'serbian' ? 'Vežba završena!' : 'Vježba završena!'}</h3>
-          <p className="text-lg mb-6">Imali ste {totalCorrectAnswers} od {totalQuestions} tačnih odgovora.</p>
+          <h3 className="text-2xl font-headline mb-4">{s.exerciseFinished}</h3>
+          <p className="text-lg mb-6">{s.correctAnswersOutOf(totalCorrectAnswers, totalQuestions)}</p>
           <Button onClick={generateExercises}>
             <RefreshCw className="w-4 h-4 mr-2" />
-            {language === 'serbian' ? 'Vežbaj ponovo' : 'Vježbaj ponovo'}
+            {s.practiceAgain}
           </Button>
         </Card>
       )}
