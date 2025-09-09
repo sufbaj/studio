@@ -37,7 +37,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const navItems = [
   { href: 'alphabet', icon: CaseUpper, label: 'Alfabet' },
-  { href: 'numbers', icon: Hash, label: 'Brojevi' },
+  { href: 'numbers', icon: Hash, label: 'Siffror' },
   { href: 'vocabulary', icon: BookText, label: 'Ordförråd' },
   { href: 'sentences', icon: MessageSquare, label: 'Meningar' },
   { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },
@@ -90,7 +90,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
         <SidebarHeader>
           <div className="flex items-center gap-2">
             <Logo className="w-7 h-7 text-primary" />
-            <h2 className="text-lg font-headline font-semibold">LinguAI BKS</h2>
+            <h2 className="text-lg font-headline font-semibold">LinguAI</h2>
           </div>
         </SidebarHeader>
         <SidebarContent>
