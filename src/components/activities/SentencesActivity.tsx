@@ -128,8 +128,8 @@ export function SentencesActivity() {
               {language === 'serbian' ? 'Poredaj reči u ispravan redosled.' : 'Poredaj riječi u ispravan redoslijed.'}
             </CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col gap-8 items-center">
-            <div className="min-h-[6rem] w-full bg-secondary rounded-lg p-4 flex flex-wrap items-center justify-center gap-2">
+          <CardContent className="flex flex-col gap-4 items-center">
+            <div className="min-h-[5rem] w-full bg-secondary rounded-lg p-4 flex flex-wrap items-center justify-center gap-2">
               {answerWords.map((word, index) => (
                  <motion.div key={`${word}-${index}`} layoutId={`word-${word}-${index}`}>
                     <Button
@@ -152,7 +152,7 @@ export function SentencesActivity() {
                )}
             </div>
             
-            <div className="min-h-[6rem] w-full p-4 flex flex-wrap items-center justify-center gap-2">
+            <div className="min-h-[5rem] w-full p-4 flex flex-wrap items-center justify-center gap-2">
                 {wordBank.map((word, index) => (
                     <motion.div key={`${word}-${index}`} layoutId={`word-${word}-${index}`}>
                       <Button
