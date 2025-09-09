@@ -66,9 +66,9 @@ export function HomePage() {
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-4 mb-4">
           <Logo className="h-12 w-12 text-primary" />
-          <h1 className="text-5xl font-headline font-bold tracking-tight">LingoBHS</h1>
+          <h1 className="text-5xl font-headline font-bold tracking-tight">LingoAI</h1>
         </div>
-        <p className="text-xl text-muted-foreground">Tvoj put do savršenog znanja bosanskog, hrvatskog i srpskog jezika.</p>
+        <p className="text-xl text-muted-foreground">BKS</p>
       </div>
 
       <div className="w-full max-w-4xl">
