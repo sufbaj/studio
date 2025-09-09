@@ -11,9 +11,8 @@ export const Logo = (props: SVGProps<SVGSVGElement>) => (
     >
         <defs>
             <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="hsl(var(--chart-5))" />
-                <stop offset="50%" stopColor="hsl(var(--chart-1))" />
-                <stop offset="100%" stopColor="hsl(var(--accent))" />
+                <stop offset="0%" stopColor="#FF4500" /> 
+                <stop offset="100%" stopColor="#FF8C00" />
             </linearGradient>
         </defs>
         <g opacity="0.9">
