@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 130 60% 97%;
-    --foreground: 130 25% 15%;
+    --foreground: 130 25% 10%;
     --card: 130 50% 100%;
     --card-foreground: 130 25% 10%;
     --popover: 130 50% 100%;
@@ -25,7 +25,7 @@
     --ring: 130 70% 40%;
     --radius: 0.75rem;
 
-    --sidebar-background: 130 30% 93%;
+    --sidebar-background: 130 60% 97%;
     --sidebar-foreground: 130 25% 10%;
     --sidebar-primary: hsl(var(--primary));
     --sidebar-primary-foreground: hsl(var(--primary-foreground));
@@ -62,7 +62,7 @@
     --input: 130 15% 25%;
     --ring: 130 65% 60%;
     
-    --sidebar-background: 130 15% 8%;
+    --sidebar-background: 130 15% 10%;
     --sidebar-foreground: 130 25% 95%;
     --sidebar-primary: hsl(var(--primary));
     --sidebar-primary-foreground: hsl(var(--primary-foreground));
