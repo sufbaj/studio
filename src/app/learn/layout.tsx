@@ -37,15 +37,15 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const navItems = [
   { href: 'alphabet', icon: CaseUpper, label: 'Alfabet' },
-  { href: 'numbers', icon: Hash, label: 'Brojevi' },
-  { href: 'vocabulary', icon: BookText, label: 'Rječnik' },
-  { href: 'sentences', icon: MessageSquare, label: 'Rečenice' },
-  { href: 'grammar', icon: SpellCheck, label: 'Gramatika' },
-  { href: 'spelling', icon: FileText, label: 'Pravopis' },
-  { href: 'reading', icon: Languages, label: 'Čitanje' },
-  { href: 'translation', icon: Languages, label: 'Prevođenje' },
-  { href: 'translator', icon: BookOpen, label: 'Prevodilac' },
-  { href: 'ai-review', icon: Bot, label: 'AI povratna info' },
+  { href: 'numbers', icon: Hash, label: 'Siffror' },
+  { href: 'vocabulary', icon: BookText, label: 'Ordförråd' },
+  { href: 'sentences', icon: MessageSquare, label: 'Meningar' },
+  { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },
+  { href: 'spelling', icon: FileText, label: 'Stavning' },
+  { href: 'reading', icon: Languages, label: 'Läsning' },
+  { href: 'translation', icon: Languages, label: 'Översättning' },
+  { href: 'translator', icon: BookOpen, label: 'Översättare' },
+  { href: 'ai-review', icon: Bot, label: 'AI Feedback' },
 ];
 
 function getLanguageDisplayName(language: Language) {
