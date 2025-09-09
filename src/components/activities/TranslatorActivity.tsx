@@ -132,7 +132,7 @@ export function TranslatorActivity() {
                     placeholder={`Skriv text på ${getLanguageDisplayName(sourceLang)}...`}
                     value={sourceText}
                     onChange={(e) => setSourceText(e.target.value)}
-                    rows={8}
+                    rows={6}
                 />
             </div>
             
@@ -143,7 +143,7 @@ export function TranslatorActivity() {
                     placeholder="Översättning..."
                     value={translatedText}
                     readOnly
-                    rows={8}
+                    rows={6}
                     className="bg-muted/50"
                 />
                 {isLoading && <Loader2 className="absolute top-3 right-3 h-5 w-5 animate-spin text-muted-foreground" />}
