@@ -68,7 +68,7 @@ export function HomePage() {
           <Logo className="h-12 w-12 text-primary" />
           <h1 className="text-5xl font-headline font-bold tracking-tight">LinguAI</h1>
         </div>
-        <p className="text-xl text-muted-foreground">Učenje bosanskog, hrvatskog i srpskog jezika</p>
+        <p className="text-xl text-muted-foreground">Učenje bosanskog, hrvatskog i srpskog jezika.</p>
       </div>
 
       <div className="w-full max-w-4xl">
