@@ -10,13 +10,13 @@ export type Activity =
   | 'translator'
   | 'ai-review'
   | 'alphabet'
-  | 'numbers';
+  | 'numbers'
+  | 'ai-assistant';
 
 export interface VocabularyItem {
   id: number;
   word: string;
   translation: string;
-  audio: string;
 }
 
 export interface SpellingItem {
