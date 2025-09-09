@@ -278,7 +278,18 @@ export const data: LanguageData = {
         { id: 129, word: 'svijet', translation: 'värld' },
         { id: 130, word: 'svemir', translation: 'universum' }
       ],
-      spelling: [],
+      spelling: [
+        { id: 101, sentence: 'Snijeg je prekrio ___ grad.', blank: 'cijeli', options: ['cijeli', 'cjeli', 'cioli'] },
+        { id: 102, sentence: 'Učiteljica nam je dala ___ zadatak.', blank: 'težak', options: ['težak', 'težek', 'težok'] },
+        { id: 103, sentence: 'U ___ se kuha bosanska kafa.', blank: 'džezvi', options: ['džezvi', 'đezvi', 'jezvi'] },
+        { id: 104, sentence: 'Posjetili smo ___ most u Mostaru.', blank: 'Stari', options: ['stari', 'Stari', 'star'] },
+        { id: 105, sentence: '___ protiče kroz Sarajevo.', blank: 'Miljacka', options: ['Miljacka', 'Miljacki', 'Miljatska'] },
+        { id: 106, sentence: 'Volim jesti ćevape na ___.', blank: 'Baščaršiji', options: ['Baščaršiji', 'Bašćaršiji', 'Baš-čaršiji'] },
+        { id: 107, sentence: 'Gledali smo film o ___ Bosni.', blank: 'srednjovjekovnoj', options: ['srednjevjekovnoj', 'srednjovjekovnoj', 'srednje-vjekovnoj'] },
+        { id: 108, sentence: 'Djevojčica je dobila ___ poklon.', blank: 'lijep', options: ['ljep', 'lijep', 'liep'] },
+        { id: 109, sentence: 'Potrebna mi je ___ za zadaću.', blank: 'pomoć', options: ['pomoć', 'pomoč', 'pomoćj'] },
+        { id: 110, sentence: 'On je poznati bosanski ___.', blank: 'umjetnik', options: ['umjetnik', 'umijetnik', 'umetnik'] },
+      ],
       sentences: [
         { id: 101, sentence: 'Danas je u Sarajevu padala jaka kiša.' },
         { id: 102, sentence: 'Nogometna reprezentacija Bosne i Hercegovine igra važnu utakmicu.' },
@@ -496,7 +507,18 @@ export const data: LanguageData = {
         { id: 229, word: 'sadašnjost', translation: 'nutid' },
         { id: 230, word: 'svijet', translation: 'värld' }
       ],
-      spelling: [],
+      spelling: [
+        { id: 201, sentence: 'Gledam ___ kroz prozor.', blank: 'zvijezde', options: ['zvijezde', 'zvjezde', 'zvezde'] },
+        { id: 202, sentence: 'Učiteljica je ocijenila moju ___.', blank: 'zadaću', options: ['zadaću', 'zadaču', 'zadacu'] },
+        { id: 203, sentence: 'Posjetili smo glavni grad ___.', blank: 'Hrvatske', options: ['hrvatske', 'Hrvatske', 'Hrvatske'] },
+        { id: 204, sentence: 'Vlak za Split kreće s glavnog ___.', blank: 'kolodvora', options: ['kolodvora', 'kolodvora', 'kolodvora'] },
+        { id: 205, sentence: 'U ___ ima puno zanimljivih knjiga.', blank: 'knjižnici', options: ['knjižnici', 'knjižnjici', 'knjižnici'] },
+        { id: 206, sentence: 'Ljeti volim jesti svježe ___.', blank: 'povrće', options: ['povrće', 'povrče', 'povrce'] },
+        { id: 207, sentence: 'Njegov ___ je liječnik.', blank: 'stric', options: ['stric', 'štrice', 'stric'] },
+        { id: 208, sentence: 'U ___ se dogodilo čudo.', blank: 'slučaju', options: ['slučaju', 'slućaju', 'slučaju'] },
+        { id: 209, sentence: 'Imam puno ___ za vikend.', blank: 'obaveza', options: ['obaveza', 'obaveza', 'obveza'] },
+        { id: 210, sentence: 'U školi učimo o ___.', blank: 'povijesti', options: ['povijesti', 'povjesti', 'povijesti'] },
+      ],
       sentences: [
         { id: 201, sentence: 'Zrakoplov za Zagreb polijeće uskoro.' },
         { id: 202, sentence: 'Hrvatska ima prekrasnu obalu s tisuću otoka.' },
@@ -729,7 +751,18 @@ export const data: LanguageData = {
         { id: 329, word: 'sadašnjost', translation: 'nutid' },
         { id: 330, word: 'svet', translation: 'värld' }
       ], 
-      spelling: [], 
+      spelling: [
+        { id: 301, sentence: 'Sneg je pokrio ___ krovove.', blank: 'sve', options: ['sve', 'svije', 'svi'] },
+        { id: 302, sentence: 'Učiteljica nam je dala ___ zadatak.', blank: 'težak', options: ['težak', 'težek', 'težok'] },
+        { id: 303, sentence: 'U ___ se kuva domaća kafa.', blank: 'džezvi', options: ['džezvi', 'đezvi', 'jezvi'] },
+        { id: 304, sentence: 'Posetili smo ___ u Beogradu.', blank: 'Kalemegdan', options: ['Kalemegdan', 'Kalemegdan', 'Kalimegdan'] },
+        { id: 305, sentence: 'Reka Dunav protiče kroz ___ Sad.', blank: 'Novi', options: ['Novi', 'Novi', 'Novij'] },
+        { id: 306, sentence: 'Volim da jedem pljeskavicu sa ___.', blank: 'kajmakom', options: ['kajmakom', 'kaimakom', 'kajmakom'] },
+        { id: 307, sentence: 'Nikola Tesla je bio poznati ___.', blank: 'naučnik', options: ['naučnik', 'naučnik', 'naućnik'] },
+        { id: 308, sentence: 'Devojčica je dobila ___ cvet.', blank: 'lep', options: ['lep', 'lijep', 'liep'] },
+        { id: 309, sentence: 'Potrebna mi je ___ za zadatak.', blank: 'pomoć', options: ['pomoć', 'pomoč', 'pomoćj'] },
+        { id: 310, sentence: 'On je poznati srpski ___.', blank: 'glumac', options: ['glumac', 'glummac', 'glumac'] },
+      ], 
       sentences: [
         { id: 301, sentence: 'Voz za Beograd stiže na železničku stanicu.' },
         { id: 302, sentence: 'Fudbalska reprezentacija Srbije igra važan meč.' },
@@ -763,4 +796,5 @@ export const data: LanguageData = {
 
     
     
+
 
