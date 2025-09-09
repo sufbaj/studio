@@ -12,7 +12,6 @@ import { TranslatorActivity } from '@/components/activities/TranslatorActivity';
 import { AiReviewActivity } from '@/components/activities/AiReviewActivity';
 import { AlphabetActivity } from '@/components/activities/AlphabetActivity';
 import { NumbersActivity } from '@/components/activities/NumbersActivity';
-import { AiAssistantActivity } from '@/components/activities/AiAssistantActivity';
 
 export default function ActivityPage() {
   const params = useParams();
@@ -40,8 +39,6 @@ export default function ActivityPage() {
         return <TranslatorActivity />;
       case 'ai-review':
         return <AiReviewActivity />;
-      case 'ai-assistant':
-        return <AiAssistantActivity />;
       default:
         return <NotImplementedActivity activityName={activity} />;
     }

@@ -31,7 +31,6 @@ import {
   BookOpen,
   CaseUpper,
   Hash,
-  Sparkles,
 } from 'lucide-react';
 import type { Language, Grade, Activity } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -47,7 +46,6 @@ const navItems = [
   { href: 'translation', icon: Languages, label: 'Svenska till modersmål' },
   { href: 'translator', icon: BookOpen, label: 'Översättare' },
   { href: 'ai-review', icon: Bot, label: 'AI återkoppling' },
-  { href: 'ai-assistant', icon: Sparkles, label: 'AI Asistent' },
 ];
 
 function getLanguageDisplayName(language: Language) {
@@ -92,7 +90,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
         <SidebarHeader>
           <div className="flex items-center gap-2">
             <Logo className="w-7 h-7 text-primary" />
-            <h2 className="text-lg font-headline font-semibold">LingoAI</h2>
+            <h2 className="text-lg font-headline font-semibold">LingoAI BKS</h2>
           </div>
         </SidebarHeader>
         <SidebarContent>

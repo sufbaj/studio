@@ -4,9 +4,6 @@ import { translateText } from '@/ai/flows/translator-flow';
 import type { TranslatorInput } from '@/ai/flows/translator-flow';
 import { reviewText } from '@/ai/flows/ai-content-review';
 import type { AiReviewInput } from '@/ai/flows/ai-content-review';
-import { chat } from '@/ai/flows/chatbot-flow';
-import { ChatbotInputSchema } from '@/ai/flows/chatbot-schema';
-import type { ChatbotInput } from '@/ai/flows/chatbot-schema';
 import { z } from 'zod';
 
 const TranslatorInputSchema = z.object({
@@ -55,22 +52,6 @@ export async function reviewTextAction(input: AiReviewInput) {
         return { review: result };
     } catch (error) {
         console.error("AI review failed:", error);
-        return { error: "Kunde inte ansluta till AI-tjänsten." };
-    }
-}
-
-export async function chatbotAction(input: ChatbotInput) {
-    const validatedInput = ChatbotInputSchema.safeParse(input);
-
-    if (!validatedInput.success) {
-        return { error: validatedInput.error.errors.map(e => e.message).join(', ') };
-    }
-
-    try {
-        const result = await chat(validatedInput.data);
-        return { response: result.response };
-    } catch (error) {
-        console.error("AI chat failed:", error);
         return { error: "Kunde inte ansluta till AI-tjänsten." };
     }
 }
