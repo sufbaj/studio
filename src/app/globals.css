@@ -4,19 +4,19 @@
 
 @layer base {
   :root {
-    --background: 20 20% 98%; /* Ljusare, varmare vit */
-    --foreground: 20 10% 10%; /* Mycket mörkare för hög kontrast */
-    --card: 0 0% 100%; /* Ren vit för kort */
+    --background: 20 20% 98%;
+    --foreground: 20 10% 10%;
+    --card: 0 0% 100%;
     --card-foreground: 20 10% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 10% 10%;
-    --primary: 14 90% 55%; /* Något mörkare orange för bättre läsbarhet */
-    --primary-foreground: 0 0% 100%; /* Vit text på primärfärg */
-    --secondary: 30 15% 94%; /* Varmare grå */
+    --primary: 14 90% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 15% 94%;
     --secondary-foreground: 20 10% 20%;
     --muted: 30 15% 96%;
-    --muted-foreground: 20 10% 45%;
-    --accent: 30 90% 60%; /* Ljusare, levande orange/gul */
+    --muted-foreground: 20 10% 30%; /* Povećan kontrast */
+    --accent: 30 90% 60%;
     --accent-foreground: 20 10% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -39,19 +39,19 @@
     --sidebar-ring: 14 90% 55%;
   }
   .dark {
-    --background: 20 10% 8%; /* Mörk, varm grå */
-    --foreground: 30 10% 95%; /* Varm vit */
+    --background: 20 10% 8%;
+    --foreground: 30 10% 95%;
     --card: 20 10% 12%;
     --card-foreground: 30 10% 95%;
     --popover: 20 10% 8%;
     --popover-foreground: 30 10% 95%;
-    --primary: 14 85% 60%; /* Levande orange */
-    --primary-foreground: 20 10% 10%; /* Mörk text för kontrast */
+    --primary: 14 85% 60%;
+    --primary-foreground: 20 10% 10%;
     --secondary: 20 10% 15%;
     --secondary-foreground: 30 10% 90%;
     --muted: 20 10% 18%;
-    --muted-foreground: 30 10% 60%;
-    --accent: 30 80% 65%; /* Ljusare orange/gul */
+    --muted-foreground: 30 10% 70%; /* Povećan kontrast */
+    --accent: 30 80% 65%;
     --accent-foreground: 20 10% 10%;
     --destructive: 0 62.8% 50.6%;
     --destructive-foreground: 0 0% 98%;
