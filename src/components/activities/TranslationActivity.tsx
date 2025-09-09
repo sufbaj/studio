@@ -234,7 +234,7 @@ export function TranslationActivity() {
                 }
             </CardDescription>
             <div className="flex items-center justify-center gap-4 py-4">
-                <CardTitle className="text-3xl md:text-4xl font-bold font-headline">{currentExercise.source}</CardTitle>
+                <CardTitle className="text-3xl md:text-4xl font-bold font-headline text-foreground">{currentExercise.source}</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
@@ -255,7 +255,7 @@ export function TranslationActivity() {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={s.enterTranslation}
-                className="text-center text-lg min-h-[80px]"
+                className="text-center text-lg min-h-[60px]"
                 disabled={isAnswered}
                 autoFocus
                 />

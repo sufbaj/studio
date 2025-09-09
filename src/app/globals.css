@@ -18,10 +18,10 @@
     --muted-foreground: 20 10% 40%;
     --accent: 145 65% 90%;
     --accent-foreground: 145 60% 30%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 20 15% 88%;
-    --input: 20 15% 88%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 20 15% 85%;
+    --input: 20 15% 85%;
     --ring: 145 65% 35%;
     --chart-1: 150 70% 45%;
     --chart-2: 170 65% 45%;

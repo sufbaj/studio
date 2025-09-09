@@ -201,8 +201,8 @@ export function ReadingActivity() {
               <CardTitle>{currentExercise.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <ScrollArea className="h-80">
-                <div className="text-muted-foreground whitespace-pre-line pr-4">
+              <ScrollArea className="h-72">
+                <div className="text-foreground/90 whitespace-pre-line pr-4">
                   {sentencesRef.current.map((sentence, index) => (
                     <span
                       key={index}
@@ -218,7 +218,7 @@ export function ReadingActivity() {
           <Card>
             <CardHeader>
               <CardTitle>{s.question} {currentQuestionIndex + 1}</CardTitle>
-              <CardDescription>{currentQuestion.question}</CardDescription>
+              <CardDescription className="text-foreground font-semibold">{currentQuestion.question}</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-3">
               {currentQuestion.options.map(option => (
@@ -229,16 +229,18 @@ export function ReadingActivity() {
                   onClick={() => handleSelectOption(option)}
                   disabled={isAnswered}
                   className={cn(
-                    "h-auto py-2.5 justify-start text-left text-sm",
+                    "h-auto py-3 justify-start text-left text-base",
+                    "text-foreground/90",
                     selectedOption === option && "border-primary ring-2 ring-primary",
-                    isAnswered && option === currentQuestion.answer && "bg-green-100 border-green-400 text-green-800",
-                    isAnswered && selectedOption === option && option !== currentQuestion.answer && "bg-red-100 border-red-400 text-red-800"
+                    isAnswered && option === currentQuestion.answer && "bg-green-100 border-green-400 text-green-900 font-semibold",
+                    isAnswered && selectedOption === option && option !== currentQuestion.answer && "bg-red-100 border-red-400 text-red-900 font-semibold"
                   )}
                 >
                   {isAnswered && (
-                    option === currentQuestion.answer ? <CheckCircle className="mr-2 h-4 w-4 text-green-600" /> :
-                      (selectedOption === option && <XCircle className="mr-2 h-4 w-4 text-red-600" />)
+                    option === currentQuestion.answer ? <CheckCircle className="mr-2 h-5 w-5 text-green-600" /> :
+                      (selectedOption === option && <XCircle className="mr-2 h-5 w-5 text-red-600" />)
                   )}
+                   {!isAnswered && (<div className="w-5 mr-2" />) }
                   {option}
                 </Button>
               ))}

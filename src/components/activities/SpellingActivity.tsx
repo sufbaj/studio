@@ -101,12 +101,12 @@ export function SpellingActivity() {
         <Card>
           <CardHeader>
              <div className="flex items-center justify-center">
-                <CardTitle className="text-center text-2xl md:text-3xl text-muted-foreground">
+                <CardTitle className="text-center text-2xl md:text-3xl text-foreground">
                 {currentExercise.sentence.split('___').map((part, index) => (
                     <span key={index}>
                     {part}
                     {index < currentExercise.sentence.split('___').length - 1 && (
-                        <span className="inline-block bg-secondary text-secondary-foreground rounded-md px-4 py-1 mx-2 font-bold text-card-foreground min-w-[120px] text-center">
+                        <span className="inline-block bg-secondary text-secondary-foreground rounded-md px-4 py-2 mx-2 font-bold text-card-foreground min-w-[120px] text-center border-2 border-dashed border-border">
                         {isAnswered ? currentExercise.blank : selectedOption || '...'}
                         </span>
                     )}
