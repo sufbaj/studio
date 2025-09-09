@@ -279,7 +279,18 @@ export const data: LanguageData = {
         { id: 130, word: 'svemir', translation: 'universum' }
       ],
       spelling: [],
-      sentences: [],
+      sentences: [
+        { id: 101, sentence: 'Danas je u Sarajevu padala jaka kiša.' },
+        { id: 102, sentence: 'Nogometna reprezentacija Bosne i Hercegovine igra važnu utakmicu.' },
+        { id: 103, sentence: 'Učili smo o historiji srednjovjekovne Bosne.' },
+        { id: 104, sentence: 'Moja nana pravi najbolju pitu na svijetu.' },
+        { id: 105, sentence: 'Ljetos smo putovali na Jadransko more.' },
+        { id: 106, sentence: 'Računar mi je potreban za domaći zadatak.' },
+        { id: 107, sentence: 'Slušam modernu muziku na svom telefonu.' },
+        { id: 108, sentence: 'Prijateljstvo je veoma važno u životu.' },
+        { id: 109, sentence: 'U budućnosti želim postati programer.' },
+        { id: 110, sentence: 'Svijet je pun različitih kultura i jezika.' }
+      ],
       grammar: [],
       reading: [],
       translations: []
@@ -475,7 +486,18 @@ export const data: LanguageData = {
         { id: 230, word: 'svijet', translation: 'värld' }
       ],
       spelling: [],
-      sentences: [],
+      sentences: [
+        { id: 201, sentence: 'Zrakoplov za Zagreb polijeće uskoro.' },
+        { id: 202, sentence: 'Hrvatska ima prekrasnu obalu s tisuću otoka.' },
+        { id: 203, sentence: 'Učili smo o povijesti Dubrovačke Republike.' },
+        { id: 204, sentence: 'Baka nam je ispekla ukusne štrukle.' },
+        { id: 205, sentence: 'Ljeti često idemo na nogometne utakmice.' },
+        { id: 206, sentence: 'Za zadaću moram koristiti računalo.' },
+        { id: 207, sentence: 'Slušam hrvatsku glazbu na radiju.' },
+        { id: 208, sentence: 'Kazalište večeras prikazuje novu predstavu.' },
+        { id: 209, sentence: 'Znanost nam pomaže razumjeti svijet oko nas.' },
+        { id: 210, sentence: 'Veselim se budućnosti i novim izazovima.' }
+      ],
       grammar: [],
       reading: [],
       translations: []
@@ -686,7 +708,18 @@ export const data: LanguageData = {
         { id: 330, word: 'svet', translation: 'värld' }
       ], 
       spelling: [], 
-      sentences: [], 
+      sentences: [
+        { id: 301, sentence: 'Voz za Beograd stiže na železničku stanicu.' },
+        { id: 302, sentence: 'Fudbalska reprezentacija Srbije igra važan meč.' },
+        { id: 303, sentence: 'Učili smo o istoriji Nemanjića.' },
+        { id: 304, sentence: 'Baka nam je spremila ukusnu gibanicu.' },
+        { id: 305, sentence: 'Letos smo posetili Kalemegdansku tvrđavu.' },
+        { id: 306, sentence: 'Računar mi je potreban za domaći zadatak.' },
+        { id: 307, sentence: 'Slušam modernu muziku na svom telefonu.' },
+        { id: 308, sentence: 'Pozorište večeras prikazuje novu predstavu.' },
+        { id: 309, sentence: 'Nauka nam pomaže da razumemo svet oko nas.' },
+        { id: 310, sentence: 'Svet je pun različitih kultura i jezika.' }
+      ], 
       grammar: [], 
       reading: [], 
       translations: [] 
