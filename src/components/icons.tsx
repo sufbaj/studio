@@ -11,12 +11,9 @@ export const Logo = (props: SVGProps<SVGSVGElement>) => (
     >
         <defs>
             <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="hsl(var(--primary))" />
-                <stop offset="100%" stopColor="hsl(var(--primary) / 0.7)" />
-            </linearGradient>
-            <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="hsl(var(--accent))" />
-                <stop offset="100%" stopColor="hsl(var(--accent) / 0.7)" />
+                <stop offset="0%" stopColor="hsl(var(--chart-1))" />
+                <stop offset="50%" stopColor="hsl(var(--chart-2))" />
+                <stop offset="100%" stopColor="hsl(var(--primary))" />
             </linearGradient>
         </defs>
         <path
@@ -24,12 +21,8 @@ export const Logo = (props: SVGProps<SVGSVGElement>) => (
             fill="url(#grad1)"
         />
         <path
-            d="M8 18V21.5C8 21.7761 7.77614 22 7.5 22H7C6.44772 22 6 21.5523 6 21V18H8Z"
-            fill="url(#grad1)"
-        />
-        <path
             d="M12 7L13.5279 10.4721L17 12L13.5279 13.5279L12 17L10.4721 13.5279L7 12L10.4721 10.4721L12 7Z"
-            fill="url(#grad2)"
+            fill="hsl(var(--primary-foreground))"
             stroke="hsl(var(--primary-foreground))"
             strokeWidth="0.5"
             strokeLinejoin="round"
