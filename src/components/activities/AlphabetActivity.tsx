@@ -16,7 +16,7 @@ export function AlphabetActivity() {
 
   return (
     <div>
-      <h2 className="text-3xl font-headline font-bold mb-4">Alfabet</h2>
+      <h2 className="text-3xl font-headline font-bold mb-4">Latinica</h2>
       <p className="text-muted-foreground mb-6">
         Pregledajte slova abecede, zajedno s primjerima riječi i slika.
       </p>
@@ -41,7 +41,8 @@ export function AlphabetActivity() {
                     <Image 
                         src={exampleImage} 
                         alt={exampleWord} 
-                        fill
+                        width={200}
+                        height={200}
                         className="object-cover"
                         data-ai-hint={exampleWord.toLowerCase()}
                     />
