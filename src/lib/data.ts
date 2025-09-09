@@ -291,7 +291,18 @@ export const data: LanguageData = {
         { id: 109, sentence: 'U budućnosti želim postati programer.' },
         { id: 110, sentence: 'Svijet je pun različitih kultura i jezika.' }
       ],
-      grammar: [],
+      grammar: [
+        { id: 101, sentence: 'Putujem ___ za Sarajevo.', blank: 'avionom', options: ['avion', 'aviona', 'avionom'], explanation: 'Instrumental sredstva (čime putujem?) zahtijeva nastavak -om za imenice muškog roda.' },
+        { id: 102, sentence: 'U šumi ima mnogo ___ drveća.', blank: 'visokog', options: ['visoki', 'visokog', 'visokom'], explanation: 'Genitiv množine (mnogo čega?) zahtijeva pridjev u genitivu (visokog).' },
+        { id: 103, sentence: 'Alma je jučer ___ zanimljivu knjigu.', blank: 'pročitala', options: ['pročitao', 'pročitala', 'pročitalo'], explanation: 'Subjekt u ženskom rodu (Alma) zahtijeva glagolski pridjev radni u ženskom rodu (pročitala).' },
+        { id: 104, sentence: 'Dajem poklon ___ Adnanu.', blank: 'dragom', options: ['dragi', 'dragom', 'dragog'], explanation: 'Imenica u dativu (Adnanu) zahtijeva i pridjev u dativu (dragom).' },
+        { id: 105, sentence: 'Sarajevo je ___ od Travnika.', blank: 'veće', options: ['veliko', 'veće', 'najveće'], explanation: 'Komparativ (poređenje dva grada) od pridjeva "velik" glasi "veće".' },
+        { id: 106, sentence: 'Mi ___ sutra ići na izlet na Bjelašnicu.', blank: 'ćemo', options: ['ću', 'ćeš', 'ćemo'], explanation: 'Futur I (buduće vrijeme) za 1. lice množine (mi) tvori se pomoću "ćemo" i infinitiva glagola.' },
+        { id: 107, sentence: 'Učenici ___ pripremaju za takmičenje.', blank: 'se', options: ['se', 'si', 'su'], explanation: 'Povratni glagol "pripremati se" zahtijeva povratnu zamjenicu "se".' },
+        { id: 108, sentence: 'Idem u šetnju ___ svojim psom.', blank: 'sa', options: ['s', 'sa', 'z'], explanation: 'Prijedlog "sa" se koristi ispred riječi koje počinju suglasnicima s, z, š, ž ili suglasničkim skupinama gdje je teško izgovoriti "s".' },
+        { id: 109, sentence: 'Rijeka Miljacka protiče ___ Sarajevo.', blank: 'kroz', options: ['u', 'na', 'kroz'], explanation: 'Prijedlog "kroz" označava kretanje kroz neki prostor.' },
+        { id: 110, sentence: 'Mostar je poznat po ___ mostu.', blank: 'Starom', options: ['Stari', 'Starog', 'Starom'], explanation: 'Lokativ (o čemu je poznat?) s prijedlogom "po" zahtijeva nastavak -om za pridjev muškog roda.' }
+      ],
       reading: [],
       translations: []
     },
@@ -498,7 +509,18 @@ export const data: LanguageData = {
         { id: 209, sentence: 'Znanost nam pomaže razumjeti svijet oko nas.' },
         { id: 210, sentence: 'Veselim se budućnosti i novim izazovima.' }
       ],
-      grammar: [],
+      grammar: [
+        { id: 201, sentence: 'Putujem ___ za Zagreb.', blank: 'vlakom', options: ['vlak', 'vlaka', 'vlakom'], explanation: 'Instrumental sredstva (čime putujem?) zahtijeva nastavak -om za imenice muškog roda.' },
+        { id: 202, sentence: 'Na stolu je mnogo ___ knjiga.', blank: 'zanimljivih', options: ['zanimljive', 'zanimljivih', 'zanimljivima'], explanation: 'Genitiv množine (mnogo čega?) zahtijeva pridjev u genitivu množine (zanimljivih).' },
+        { id: 203, sentence: 'Iva je jučer ___ lijepu pjesmu.', blank: 'napisala', options: ['napisao', 'napisala', 'napisalo'], explanation: 'Subjekt u ženskom rodu (Iva) zahtijeva glagolski pridjev radni u ženskom rodu (napisala).' },
+        { id: 204, sentence: 'Dajem loptu ___ Luki.', blank: 'dobrom', options: ['dobri', 'dobrom', 'dobrog'], explanation: 'Imenica u dativu (Luki) zahtijeva i pridjev u dativu (dobrom).' },
+        { id: 205, sentence: 'Split je ___ od Šibenika.', blank: 'veći', options: ['velik', 'veći', 'najveći'], explanation: 'Komparativ (usporedba dva grada) od pridjeva "velik" glasi "veći".' },
+        { id: 206, sentence: 'Mi ___ sutra posjetiti Plitvička jezera.', blank: 'ćemo', options: ['ću', 'ćeš', 'ćemo'], explanation: 'Futur I. (buduće vrijeme) za 1. lice množine (mi) tvori se pomoću "ćemo" i infinitiva glagola.' },
+        { id: 207, sentence: 'Učenici ___ pripremaju za natjecanje.', blank: 'se', options: ['se', 'si', 'su'], explanation: 'Povratni glagol "pripremati se" zahtijeva povratnu zamjenicu "se".' },
+        { id: 208, sentence: 'Idem u šetnju ___ svojim psom.', blank: 'sa', options: ['s', 'sa', 'z'], explanation: 'Prijedlog "sa" se rabi ispred riječi koje počinju suglasnicima s, z, š, ž ili suglasničkim skupinama gdje je teško izgovoriti "s".' },
+        { id: 209, sentence: 'Rijeka Sava protječe ___ Zagreb.', blank: 'kroz', options: ['u', 'na', 'kroz'], explanation: 'Prijedlog "kroz" označava kretanje kroz neki prostor.' },
+        { id: 210, sentence: 'Zagreb je poznat po ___ katedrali.', blank: 'svojoj', options: ['svoj', 'svoja', 'svojoj'], explanation: 'Lokativ (o čemu je poznat?) s prijedlogom "po" zahtijeva posvojnu zamjenicu u lokativu (svojoj).' }
+      ],
       reading: [],
       translations: []
     },
@@ -720,7 +742,18 @@ export const data: LanguageData = {
         { id: 309, sentence: 'Nauka nam pomaže da razumemo svet oko nas.' },
         { id: 310, sentence: 'Svet je pun različitih kultura i jezika.' }
       ], 
-      grammar: [], 
+      grammar: [
+        { id: 301, sentence: 'Putujem ___ za Beograd.', blank: 'autobusom', options: ['autobus', 'autobusa', 'autobusom'], explanation: 'Instrumental sredstva (čime putujem?) zahteva nastavak -om za imenice muškog roda.' },
+        { id: 302, sentence: 'U šumi ima mnogo ___ drveća.', blank: 'visokog', options: ['visoki', 'visokog', 'visokom'], explanation: 'Genitiv množine (mnogo čega?) zahteva pridev u genitivu (visokog).' },
+        { id: 303, sentence: 'Jelena je juče ___ zanimljivu knjigu.', blank: 'pročitala', options: ['pročitao', 'pročitala', 'pročitalo'], explanation: 'Subjekat u ženskom rodu (Jelena) zahteva glagolski pridev radni u ženskom rodu (pročitala).' },
+        { id: 304, sentence: 'Dajem svesku ___ Marku.', blank: 'dobrom', options: ['dobri', 'dobrom', 'dobrog'], explanation: 'Imenica u dativu (Marku) zahteva i pridev u dativu (dobrom).' },
+        { id: 305, sentence: 'Beograd je ___ od Novog Sada.', blank: 'veći', options: ['velik', 'veći', 'najveći'], explanation: 'Komparativ (poređenje dva grada) od prideva "velik" glasi "veći".' },
+        { id: 306, sentence: 'Mi ___ sutra ići na izlet na Kopaonik.', blank: 'ćemo', options: ['ću', 'ćeš', 'ćemo'], explanation: 'Futur I (buduće vreme) za 1. lice množine (mi) tvori se pomoću "ćemo" i infinitiva glagola.' },
+        { id: 307, sentence: 'Sportisti ___ pripremaju za takmičenje.', blank: 'se', options: ['se', 'si', 'su'], explanation: 'Povratni glagol "pripremati se" zahteva povratnu zamenicu "se".' },
+        { id: 308, sentence: 'Idem u šetnju ___ svojim psom.', blank: 'sa', options: ['s', 'sa', 'z'], explanation: 'Predlog "sa" se koristi ispred reči koje počinju suglasnicima s, z, š, ž ili suglasničkim grupama gde je teško izgovoriti "s".' },
+        { id: 309, sentence: 'Reka Dunav protiče ___ Beograd.', blank: 'kroz', options: ['u', 'na', 'kroz'], explanation: 'Predlog "kroz" označava kretanje kroz neki prostor.' },
+        { id: 310, sentence: 'Novi Sad je poznat po ___ tvrđavi.', blank: 'Petrovaradinskoj', options: ['Petrovaradinska', 'Petrovaradinskoj', 'Petrovaradinsku'], explanation: 'Lokativ (o čemu je poznat?) s predlogom "po" zahteva pridev u lokativu (Petrovaradinskoj).' }
+      ], 
       reading: [], 
       translations: [] 
     },
@@ -730,3 +763,4 @@ export const data: LanguageData = {
 
     
     
+
