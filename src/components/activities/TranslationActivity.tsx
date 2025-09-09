@@ -225,7 +225,7 @@ export function TranslationActivity() {
       <Progress value={isQuizFinished ? 100 : progress} className="mb-6" />
 
       {!isQuizFinished && currentExercise ? (
-        <Card className="max-w-xl mx-auto">
+        <Card className="max-w-2xl mx-auto">
           <CardHeader className="text-center">
             <CardDescription>
                 {currentExercise.type === 'word' 
@@ -255,7 +255,7 @@ export function TranslationActivity() {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={s.enterTranslation}
-                className="text-center text-lg min-h-[100px]"
+                className="text-center text-lg min-h-[80px]"
                 disabled={isAnswered}
                 autoFocus
                 />

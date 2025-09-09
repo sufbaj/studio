@@ -201,7 +201,7 @@ export function ReadingActivity() {
               <CardTitle>{currentExercise.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <ScrollArea className="h-96">
+              <ScrollArea className="h-80">
                 <div className="text-muted-foreground whitespace-pre-line pr-4">
                   {sentencesRef.current.map((sentence, index) => (
                     <span
@@ -220,7 +220,7 @@ export function ReadingActivity() {
               <CardTitle>{s.question} {currentQuestionIndex + 1}</CardTitle>
               <CardDescription>{currentQuestion.question}</CardDescription>
             </CardHeader>
-            <CardContent className="flex flex-col gap-4">
+            <CardContent className="flex flex-col gap-3">
               {currentQuestion.options.map(option => (
                 <Button
                   key={option}
@@ -229,25 +229,25 @@ export function ReadingActivity() {
                   onClick={() => handleSelectOption(option)}
                   disabled={isAnswered}
                   className={cn(
-                    "h-auto py-3 justify-start text-left",
+                    "h-auto py-2.5 justify-start text-left text-sm",
                     selectedOption === option && "border-primary ring-2 ring-primary",
                     isAnswered && option === currentQuestion.answer && "bg-green-100 border-green-400 text-green-800",
                     isAnswered && selectedOption === option && option !== currentQuestion.answer && "bg-red-100 border-red-400 text-red-800"
                   )}
                 >
                   {isAnswered && (
-                    option === currentQuestion.answer ? <CheckCircle className="mr-2 h-5 w-5 text-green-600" /> :
-                      (selectedOption === option && <XCircle className="mr-2 h-5 w-5 text-red-600" />)
+                    option === currentQuestion.answer ? <CheckCircle className="mr-2 h-4 w-4 text-green-600" /> :
+                      (selectedOption === option && <XCircle className="mr-2 h-4 w-4 text-red-600" />)
                   )}
                   {option}
                 </Button>
               ))}
             </CardContent>
-            <CardFooter className="justify-end mt-6 flex-col items-end gap-4">
+            <CardFooter className="justify-end mt-4 flex-col items-end gap-4">
               {!isAnswered ? (
-                <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{s.checkAnswer}</Button>
+                <Button onClick={checkAnswer} disabled={!selectedOption}>{s.checkAnswer}</Button>
               ) : (
-                <Button onClick={next} size="lg">
+                <Button onClick={next}>
                   {currentQuestionIndex < currentExercise.questions.length - 1 || currentExerciseIndex < exercises.length - 1 ? s.nextQuestion : s.seeResults}
                 </Button>
               )}
