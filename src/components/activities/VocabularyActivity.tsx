@@ -114,6 +114,11 @@ export function VocabularyActivity() {
         return '';
     }
   }
+  
+  const getTitle = () => {
+    if (!language) return 'Rječnik';
+    return language === 'serbian' ? 'Rečnik' : 'Rječnik';
+  }
 
   if (!language || !grade || quizItems.length === 0) {
     return (
@@ -130,7 +135,7 @@ export function VocabularyActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Rječnik</h2>
+        <h2 className="text-3xl font-headline font-bold">{getTitle()}</h2>
          {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentItemIndex + 1} / {quizItems.length}
