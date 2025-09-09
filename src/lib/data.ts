@@ -339,7 +339,18 @@ export const data: LanguageData = {
           ]
         }
       ],
-      translations: []
+      translations: [
+        { id: 101, type: 'word', source: 'dator', target: 'računar' },
+        { id: 102, type: 'word', source: 'historia', target: 'historija' },
+        { id: 103, type: 'word', source: 'vänskap', target: 'prijateljstvo' },
+        { id: 104, type: 'word', source: 'framtid', target: 'budućnost' },
+        { id: 105, type: 'word', source: 'kunskap', target: 'znanje' },
+        { id: 106, type: 'sentence', source: 'Jag gör mina läxor på datorn.', target: 'Radim zadaću na računaru.' },
+        { id: 107, type: 'sentence', source: 'Vår familj åker på semester till havet.', target: 'Naša porodica ide na odmor na more.' },
+        { id: 108, type: 'sentence', source: 'Sarajevo är huvudstaden i Bosnien och Hercegovina.', target: 'Sarajevo je glavni grad Bosne i Hercegovine.' },
+        { id: 109, type: 'sentence', source: 'Fotboll är en mycket populär sport.', target: 'Nogomet je veoma popularan sport.' },
+        { id: 110, type: 'sentence', source: 'Amina lyssnar på musik i sitt rum.', target: 'Amina sluša muziku u svojoj sobi.' }
+      ]
     },
     '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [], numbers: [] },
   },
@@ -591,7 +602,18 @@ export const data: LanguageData = {
           ]
         }
       ],
-      translations: []
+      translations: [
+        { id: 201, type: 'word', source: 'dator', target: 'računalo' },
+        { id: 202, type: 'word', source: 'historia', target: 'povijest' },
+        { id: 203, type: 'word', source: 'tågstation', target: 'kolodvor' },
+        { id: 204, type: 'word', source: 'fotboll', target: 'nogomet' },
+        { id: 205, type: 'word', source: 'flygplan', target: 'zrakoplov' },
+        { id: 206, type: 'sentence', source: 'Jag gör mina läxor på datorn.', target: 'Pišem svoju zadaću na računalu.' },
+        { id: 207, type: 'sentence', source: 'Vår familj åker på semester till havet.', target: 'Naša obitelj ide na odmor na more.' },
+        { id: 208, type: 'sentence', source: 'Zagreb är huvudstaden i Kroatien.', target: 'Zagreb je glavni grad Hrvatske.' },
+        { id: 209, type: 'sentence', source: 'Fotboll är en mycket populär sport.', target: 'Nogomet je vrlo popularan sport.' },
+        { id: 210, type: 'sentence', source: 'Lana lyssnar på musik i sitt rum.', target: 'Lana sluša glazbu u svojoj sobi.' }
+      ]
     },
     '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [], numbers: [] },
   },
@@ -858,7 +880,18 @@ export const data: LanguageData = {
           ]
         }
       ], 
-      translations: [] 
+      translations: [
+        { id: 301, type: 'word', source: 'dator', target: 'računar' },
+        { id: 302, type: 'word', source: 'historia', target: 'istorija' },
+        { id: 303, type: 'word', source: 'vänskap', target: 'drugarstvo' },
+        { id: 304, type: 'word', source: 'tågstation', target: 'železnička stanica' },
+        { id: 305, type: 'word', source: 'fotboll', target: 'fudbal' },
+        { id: 306, type: 'sentence', source: 'Jag gör mina läxor på datorn.', target: 'Radim domaći zadatak na računaru.' },
+        { id: 307, type: 'sentence', source: 'Vår familj åker på semester till havet.', target: 'Naša porodica ide na odmor na more.' },
+        { id: 308, type: 'sentence', source: 'Belgrad är huvudstaden i Serbien.', target: 'Beograd je glavni grad Srbije.' },
+        { id: 309, type: 'sentence', source: 'Fotboll är en mycket populär sport.', target: 'Fudbal je veoma popularan sport.' },
+        { id: 310, type: 'sentence', source: 'Miloš lyssnar på musik i sitt rum.', target: 'Miloš sluša muziku u svojoj sobi.' }
+      ] 
     },
     '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [], numbers: [] },
   },
@@ -866,6 +899,7 @@ export const data: LanguageData = {
 
     
     
+
 
 
 
