@@ -17,15 +17,18 @@ export const Logo = (props: SVGProps<SVGSVGElement>) => (
             </linearGradient>
         </defs>
         <path
-            d="M21 15C21 17.7614 18.7614 20 16 20H8C5.23858 20 3 17.7614 3 15V8C3 5.23858 5.23858 3 8 3H16C18.7614 3 21 5.23858 21 8V15Z"
+            d="M8 3H16C18.7614 3 21 5.23858 21 8V16C21 18.7614 18.7614 21 16 21H8C5.23858 21 3 18.7614 3 16V8C3 5.23858 5.23858 3 8 3Z"
             fill="url(#grad1)"
         />
         <path
-            d="M12 7L13.5279 10.4721L17 12L13.5279 13.5279L12 17L10.4721 13.5279L7 12L10.4721 10.4721L12 7Z"
+            d="M9 8C9 7.44772 9.44772 7 10 7H14C14.5523 7 15 7.44772 15 8V16C15 16.5523 14.5523 17 14 17H10C9.44772 17 9 16.5523 9 16V8Z"
             fill="hsl(var(--primary-foreground))"
-            stroke="hsl(var(--primary-foreground))"
-            strokeWidth="0.5"
-            strokeLinejoin="round"
+            fillOpacity="0.8"
+        />
+        <path
+            d="M7 10C7 9.44772 7.44772 9 8 9H16C16.5523 9 17 9.44772 17 10V14C17 14.5523 16.5523 15 16 15H8C7.44772 15 7 14.5523 7 14V10Z"
+            fill="hsl(var(--primary-foreground))"
+            fillOpacity="0.8"
         />
     </svg>
 );
