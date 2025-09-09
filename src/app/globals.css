@@ -10,14 +10,14 @@
     --card-foreground: 145 25% 10%;
     --popover: 145 50% 100%;
     --popover-foreground: 145 25% 10%;
-    --primary: 130 65% 40%;
+    --primary: 130 70% 40%;
     --primary-foreground: 130 50% 98%;
     --secondary: 130 25% 94%;
     --secondary-foreground: 130 25% 20%;
     --muted: 130 25% 96%;
     --muted-foreground: 130 25% 45%;
-    --accent: 130 50% 90%;
-    --accent-foreground: 130 25% 15%;
+    --accent: hsl(var(--primary));
+    --accent-foreground: hsl(var(--primary-foreground));
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     --border: 145 25% 85%;
@@ -29,8 +29,8 @@
     --sidebar-foreground: 145 25% 10%;
     --sidebar-primary: hsl(var(--primary));
     --sidebar-primary-foreground: hsl(var(--primary-foreground));
-    --sidebar-accent: 145 50% 85%;
-    --sidebar-accent-foreground: 145 25% 10%;
+    --sidebar-accent: hsl(var(--primary));
+    --sidebar-accent-foreground: hsl(var(--primary-foreground));
     --sidebar-border: 145 30% 75%;
     --sidebar-ring: hsl(var(--ring));
 
@@ -54,8 +54,8 @@
     --secondary-foreground: 145 25% 90%;
     --muted: 145 25% 22%;
     --muted-foreground: 145 25% 65%;
-    --accent: 130 50% 25%;
-    --accent-foreground: 130 25% 95%;
+    --accent: hsl(var(--primary));
+    --accent-foreground: hsl(var(--primary-foreground));
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
     --border: 145 25% 30%;
@@ -66,8 +66,8 @@
     --sidebar-foreground: 145 25% 95%;
     --sidebar-primary: hsl(var(--primary));
     --sidebar-primary-foreground: hsl(var(--primary-foreground));
-    --sidebar-accent: 145 25% 20%;
-    --sidebar-accent-foreground: 145 25% 95%;
+    --sidebar-accent: hsl(var(--primary));
+    --sidebar-accent-foreground: hsl(var(--primary-foreground));
     --sidebar-border: 145 25% 25%;
     --sidebar-ring: hsl(var(--ring));
   }
