@@ -401,8 +401,44 @@ export const data: LanguageData = {
           { id: 409, sentence: 'Donijeli su ___ odluku.', blank: 'jednoglasnu', options: ['jednoglasnu', 'jedno glasnu', 'jednoglasnu'] },
           { id: 410, sentence: '___ je važna za mentalno zdravlje.', blank: 'Psihologija', options: ['Psihologija', 'Psikologija', 'Sihologija'] },
         ],
-        reading: [],
-        translations: [],
+        reading: [
+          {
+            id: 401,
+            title: "Povelja Kulina bana",
+            text: "Povelja Kulina bana je najstariji sačuvani državni dokument bosanske države i jedan od najznačajnijih dokumenata južnoslavenske pismenosti. Napisana je 29. augusta 1189. godine. Poveljom je bosanski ban Kulin obećao dubrovačkom knezu Krvašu i svim Dubrovčanima punu slobodu kretanja i trgovine po bosanskoj državi. To je u suštini bio trgovački ugovor koji je garantovao sigurnost dubrovačkim trgovcima. Dokument je napisan na starobosanskom narodnom jeziku, pismom bosančicom. Dva primjerka se danas nalaze u Dubrovniku, a jedan u Sankt Peterburgu. Povelja svjedoči o dugoj historiji bosanske državnosti i pismenosti.",
+            questions: [
+              { id: 1, question: "Koji je najstariji sačuvani državni dokument bosanske države?", options: ["Povelja Tvrtka I", "Povelja Kulina bana", "Zakonik Stjepana Dušana"], answer: "Povelja Kulina bana" },
+              { id: 2, question: "Šta je ban Kulin obećao Dubrovčanima?", options: ["Vojnu pomoć", "Zemlju i posjede", "Slobodu kretanja i trgovine"], answer: "Slobodu kretanja i trgovine" },
+              { id: 3, question: "Na kojem pismu je Povelja napisana?", options: ["Latinici", "Glagoljici", "Bosančici"], answer: "Bosančici" },
+              { id: 4, question: "Gdje se danas čuvaju primjerci Povelje?", options: ["Samo u Sarajevu", "U Dubrovniku i Sankt Peterburgu", "U Rimu i Beču"], answer: "U Dubrovniku i Sankt Peterburgu" },
+              { id: 5, question: "O čemu svjedoči Povelja Kulina bana?", options: ["O ratovima", "O gradnji gradova", "O historiji bosanske državnosti i pismenosti"], answer: "O historiji bosanske državnosti i pismenosti" }
+            ]
+          },
+          {
+            id: 402,
+            title: "Mehmed-paša Sokolović",
+            text: "Mehmed-paša Sokolović, rođen kao Bajo Nenadić u selu Sokolovići kod Rudog, bio je jedan od najznačajnijih osmanskih državnika porijeklom iz Bosne. Kao dječak je odveden u Istanbul kroz sistem 'devširme' (danak u krvi) gdje je dobio obrazovanje i prešao na islam. Zbog svoje izvanredne sposobnosti i inteligencije, brzo je napredovao u osmanskoj hijerarhiji. Služio je kao veliki vezir (premijer) za vrijeme vladavine tri sultana: Sulejmana Veličanstvenog, Selima II i Murata III. Bio je poznat kao veliki graditelj i mecena. Njegovo najpoznatije zdanje je most na Drini u Višegradu, koji je ovjekovječio nobelovac Ivo Andrić u svom romanu 'Na Drini ćuprija'.",
+            questions: [
+              { id: 1, question: "Odakle potječe Mehmed-paša Sokolović?", options: ["Iz Istanbula", "Iz sela Sokolovići kod Rudog", "Iz Travnika"], answer: "Iz sela Sokolovići kod Rudog" },
+              { id: 2, question: "Kako je dospio u Istanbul?", options: ["Kao trgovac", "Kroz sistem 'devširme'", "Kao izbjeglica"], answer: "Kroz sistem 'devširme'" },
+              { id: 3, question: "Koju je najvišu funkciju obavljao u Osmanskom carstvu?", options: ["Sultana", "Velikog vezira", "Zapovjednika vojske"], answer: "Velikog vezira" },
+              { id: 4, question: "Koje je njegovo najpoznatije zdanje?", options: ["Stari most u Mostaru", "Most na Drini u Višegradu", "Gazi Husrev-begova džamija"], answer: "Most na Drini u Višegradu" },
+              { id: 5, question: "Koji je pisac ovjekovječio njegov most?", options: ["Meša Selimović", "Branko Ćopić", "Ivo Andrić"], answer: "Ivo Andrić" }
+            ]
+          }
+        ],
+        translations: [
+            { id: 401, type: 'word', source: 'samhälle', target: 'društvo' },
+            { id: 402, type: 'word', source: 'miljö', target: 'okoliš' },
+            { id: 403, type: 'word', source: 'ansvar', target: 'odgovornost' },
+            { id: 404, type: 'word', source: 'jämställdhet', target: 'ravnopravnost' },
+            { id: 405, type: 'word', source: 'vetenskap', target: 'nauka' },
+            { id: 406, type: 'sentence', source: 'Klimatförändringar är ett globalt problem.', target: 'Klimatske promjene su globalni problem.' },
+            { id: 407, type: 'sentence', source: 'Teknologins utveckling har förändrat våra liv.', target: 'Razvoj tehnologije je promijenio naše živote.' },
+            { id: 408, type: 'sentence', source: 'Det är viktigt att ta ansvar för sina handlingar.', target: 'Važno je preuzeti odgovornost za svoje postupke.' },
+            { id: 409, type: 'sentence', source: 'Utbildning är nyckeln till en bättre framtid.', target: 'Obrazovanje je ključ za bolju budućnost.' },
+            { id: 410, type: 'sentence', source: 'Alla medborgare bör ha samma rättigheter och skyldigheter.', target: 'Svi građani bi trebali imati ista prava i obaveze.' }
+        ],
         alphabet: [],
         numbers: [],
       },
@@ -717,8 +753,44 @@ export const data: LanguageData = {
         { id: 509, sentence: 'Donijeli su ___ odluku.', blank: 'jednoglasnu', options: ['jednoglasnu', 'jedno glasnu', 'jednoglasnu'] },
         { id: 510, sentence: '___ je važna za mentalno zdravlje.', blank: 'Psihologija', options: ['Psihologija', 'Psikologija', 'Sihologija'] },
       ],
-      reading: [],
-      translations: [],
+      reading: [
+        {
+            id: 501,
+            title: "Bašćanska ploča",
+            text: "Bašćanska ploča jedan je od najdragocjenijih spomenika hrvatske pismenosti i jezika. Potječe iz otprilike 1100. godine. Pronađena je u crkvi svete Lucije u Jurandvoru kraj Baške na otoku Krku. Ploča je pisana prijelaznim oblikom glagoljice, a jezik je mješavina starohrvatskog i crkvenoslavenskog. Sadržaj ploče je darovnica kralja Zvonimira crkvi svete Lucije. U tekstu se po prvi put na hrvatskom jeziku spominje riječ 'kralj' uz ime jednog hrvatskog vladara (kralj Zvonimir). Zbog toga Bašćanska ploča ima ogromnu povijesnu i kulturnu važnost te se naziva 'krsnim listom hrvatskoga naroda'. Original se danas čuva u Hrvatskoj akademiji znanosti i umjetnosti u Zagrebu.",
+            questions: [
+              { id: 1, question: "Iz koje godine potječe Bašćanska ploča?", options: ["Iz 900. godine", "Iz 1100. godine", "Iz 1300. godine"], answer: "Iz 1100. godine" },
+              { id: 2, question: "Gdje je ploča pronađena?", options: ["U Splitu", "U Zagrebu", "Na otoku Krku"], answer: "Na otoku Krku" },
+              { id: 3, question: "Što je po sadržaju Bašćanska ploča?", options: ["Zakonik", "Pjesma", "Darovnica"], answer: "Darovnica" },
+              { id: 4, question: "Koje se važno ime i titula po prvi put spominju na ploči?", options: ["Knez Branimir", "Kralj Tomislav", "Kralj Zvonimir"], answer: "Kralj Zvonimir" },
+              { id: 5, question: "Gdje se danas čuva originalna Bašćanska ploča?", options: ["U crkvi svete Lucije", "U HAZU u Zagrebu", "U Pomorskom muzeju u Rijeci"], answer: "U HAZU u Zagrebu" }
+            ]
+        },
+        {
+            id: 502,
+            title: "Ivan Meštrović, velikan hrvatske umjetnosti",
+            text: "Ivan Meštrović (1883. – 1962.) smatra se jednim od najvećih hrvatskih kipara, ali i arhitekata i književnika. Njegova djela, prožeta snažnim emocijama i monumentalnošću, poznata su diljem svijeta. Meštrović je rođen u Vrpolju u Slavoniji, a djetinjstvo je proveo u Otavicama u Dalmatinskoj zagori, gdje je samouko počeo klesati drvo i kamen. Njegov talent je prepoznat te odlazi na školovanje u Beč. Stvarao je u različitim materijalima, uključujući broncu, kamen i drvo. Neka od njegovih najpoznatijih djela u Hrvatskoj su 'Zdenac života' ispred HNK u Zagrebu, 'Grgur Ninski' u Splitu i spomenik 'Povijest Hrvata'. Meštrović je velik dio života proveo i u Sjedinjenim Američkim Državama, gdje je predavao na sveučilištima i ostavio značajan trag.",
+            questions: [
+              { id: 1, question: "Tko je bio Ivan Meštrović?", options: ["Slikar", "Kipar, arhitekt i književnik", "Skladatelj"], answer: "Kipar, arhitekt i književnik" },
+              { id: 2, question: "Gdje je Meštrović proveo djetinjstvo?", options: ["U Zagrebu", "U Beču", "U Otavicama"], answer: "U Otavicama" },
+              { id: 3, question: "Koje je jedno od njegovih najpoznatijih djela u Zagrebu?", options: ["Spomenik banu Jelačiću", "Zdenac života", "Katedrala"], answer: "Zdenac života" },
+              { id: 4, question: "U kojoj je još državi Meštrović proveo velik dio života?", options: ["U Francuskoj", "U Italiji", "U SAD-u"], answer: "U SAD-u" },
+              { id: 5, question: "Koji spomenik se nalazi u Splitu?", options: ["Grgur Ninski", "Povijest Hrvata", "Zdenac života"], answer: "Grgur Ninski" }
+            ]
+        }
+      ],
+      translations: [
+        { id: 501, type: 'word', source: 'samhälle', target: 'društvo' },
+        { id: 502, type: 'word', source: 'miljö', target: 'okoliš' },
+        { id: 503, type: 'word', source: 'ansvar', target: 'odgovornost' },
+        { id: 504, type: 'word', source: 'jämställdhet', target: 'ravnopravnost' },
+        { id: 505, type: 'word', source: 'vetenskap', target: 'znanost' },
+        { id: 506, type: 'sentence', source: 'Klimatförändringar är ett globalt problem.', target: 'Klimatske promjene su globalni problem.' },
+        { id: 507, type: 'sentence', source: 'Teknologins utveckling har förändrat våra liv.', target: 'Razvoj tehnologije promijenio je naše živote.' },
+        { id: 508, type: 'sentence', source: 'Det är viktigt att ta ansvar för sina handlingar.', target: 'Važno je preuzeti odgovornost za svoje postupke.' },
+        { id: 509, type: 'sentence', source: 'Utbildning är nyckeln till en bättre framtid.', target: 'Obrazovanje je ključ za bolju budućnost.' },
+        { id: 510, type: 'sentence', source: 'Alla medborgare bör ha samma rättigheter och skyldigheter.', target: 'Svi građani trebaju imati ista prava i obveze.' }
+      ],
       alphabet: [],
       numbers: [],
     },
@@ -1048,18 +1120,46 @@ export const data: LanguageData = {
         { id: 609, sentence: 'Doneli su ___ odluku.', blank: 'jednoglasnu', options: ['jednoglasnu', 'jedno glasnu', 'jednoglasnu'] },
         { id: 610, sentence: '___ je važna za mentalno zdravlje.', blank: 'Psihologija', options: ['Psihologija', 'Psikologija', 'Sihologija'] },
       ],
-      reading: [],
-      translations: [],
+      reading: [
+        {
+            id: 601,
+            title: "Miroslavljevo jevanđelje",
+            text: "Miroslavljevo jevanđelje je najznačajniji i najlepši sačuvani rukopis srpske pismenosti iz 12. veka. Nastalo je po narudžbini humskog kneza Miroslava, brata Stefana Nemanje, verovatno oko 1180. godine. Ovaj raskošni rukopis pisan je na pergamentu i ukrašen je sa 296 minijatura i inicijala u boji i zlatu, što ga čini remek-delom srednjovekovne umetnosti. Jezik je srpska redakcija staroslovenskog jezika. Zbog svog izuzetnog kulturnog i istorijskog značaja, Miroslavljevo jevanđelje je 2005. godine upisano u Uneskovu listu 'Pamćenje sveta' (Memory of the World). Danas se čuva u Narodnom muzeju u Beogradu i predstavlja svedočanstvo o visokom nivou kulture i pismenosti na srpskom dvoru u srednjem veku.",
+            questions: [
+              { id: 1, question: "Za koga je napisano Miroslavljevo jevanđelje?", options: ["Za cara Dušana", "Za kneza Miroslava", "Za Vuka Karadžića"], answer: "Za kneza Miroslava" },
+              { id: 2, question: "Čime je rukopis ukrašen?", options: ["Crtežima ugljenom", "Fotografijama", "Minijaturama i inicijalima u boji i zlatu"], answer: "Minijaturama i inicijalima u boji i zlatu" },
+              { id: 3, question: "Kojim jezikom je jevanđelje napisano?", options: ["Savremenim srpskim jezikom", "Grčkim jezikom", "Srpskom redakcijom staroslovenskog jezika"], answer: "Srpskom redakcijom staroslovenskog jezika" },
+              { id: 4, question: "Na koju Uneskovu listu je upisano?", options: ["Lista svetske baštine", "Pamćenje sveta", "Lista nematerijalne kulture"], answer: "Pamćenje sveta" },
+              { id: 5, question: "Gde se danas čuva originalni rukopis?", options: ["U manastiru Hilandar", "U Matici srpskoj u Novom Sadu", "U Narodnom muzeju u Beogradu"], answer: "U Narodnom muzeju u Beogradu" }
+            ]
+        },
+        {
+            id: 602,
+            title: "Nadežda Petrović, pionirka moderne umetnosti",
+            text: "Nadežda Petrović (1873-1915) bila je najznačajnija srpska slikarka s početka 20. veka i začetnica modernog slikarstva u Srbiji. Njen rad je bio ispred svog vremena, obeležen snažnim potezima četkice i jarkim bojama, bliskim ekspresionizmu. Školovala se u Minhenu i Parizu, gde se upoznala sa savremenim evropskim umetničkim pravcima. Pored slikarstva, Nadežda je bila i veliki patriota i humanista. Učestvovala je kao dobrovoljna bolničarka u Balkanskim ratovima i Prvom svetskom ratu. Umrla je od tifusa 1915. godine u Valjevu, negujući ranjenike. Neka od njenih najpoznatijih dela su 'Resnik', 'Notr Dam' i 'Gračanica'. Njen lik se danas nalazi na novčanici od 200 srpskih dinara.",
+            questions: [
+              { id: 1, question: "Ko je bila Nadežda Petrović?", options: ["Književnica", "Slikarka", "Glumica"], answer: "Slikarka" },
+              { id: 2, question: "Kojem umetničkom pravcu je bio blizak njen stil?", options: ["Impresionizmu", "Realizmu", "Ekspresionizmu"], answer: "Ekspresionizmu" },
+              { id: 3, question: "Kako je Nadežda Petrović učestvovala u ratovima?", options: ["Kao vojnik", "Kao dobrovoljna bolničarka", "Kao reporter"], answer: "Kao dobrovoljna bolničarka" },
+              { id: 4, question: "Od čega je umrla?", options: ["Od starosti", "U borbi", "Od tifusa"], answer: "Od tifusa" },
+              { id: 5, question: "Na kojoj srpskoj novčanici se nalazi njen lik?", options: ["Na novčanici od 100 dinara", "Na novčanici od 200 dinara", "Na novčanici od 500 dinara"], answer: "Na novčanici od 200 dinara" }
+            ]
+        }
+      ],
+      translations: [
+        { id: 601, type: 'word', source: 'samhälle', target: 'društvo' },
+        { id: 602, type: 'word', source: 'miljö', target: 'životna sredina' },
+        { id: 603, type: 'word', source: 'ansvar', target: 'odgovornost' },
+        { id: 604, type: 'word', source: 'jämställdhet', target: 'ravnopravnost' },
+        { id: 605, type: 'word', source: 'vetenskap', target: 'nauka' },
+        { id: 606, type: 'sentence', source: 'Klimatförändringar är ett globalt problem.', target: 'Klimatske promene su globalni problem.' },
+        { id: 607, type: 'sentence', source: 'Teknologins utveckling har förändrat våra liv.', target: 'Razvoj tehnologije je promenio naše živote.' },
+        { id: 608, type: 'sentence', source: 'Det är viktigt att ta ansvar för sina handlingar.', target: 'Važno je preuzeti odgovornost za svoje postupke.' },
+        { id: 609, type: 'sentence', source: 'Utbildning är nyckeln till en bättre framtid.', target: 'Obrazovanje je ključ za bolju budućnost.' },
+        { id: 610, type: 'sentence', source: 'Alla medborgare bör ha samma rättigheter och skyldigheter.', target: 'Svi građani bi trebalo da imaju ista prava i obaveze.' }
+      ],
       alphabet: [],
       numbers: [],
     },
   },
 };
-
-    
-    
-
-
-
-
-
