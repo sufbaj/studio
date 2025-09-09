@@ -37,25 +37,25 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const navItems = [
   { href: 'alphabet', icon: CaseUpper, label: 'Alfabet' },
-  { href: 'numbers', icon: Hash, label: 'Brojevi' },
-  { href: 'vocabulary', icon: BookText, label: 'Rječnik' },
-  { href: 'sentences', icon: MessageSquare, label: 'Rečenice' },
-  { href: 'grammar', icon: SpellCheck, label: 'Gramatika' },
-  { href: 'spelling', icon: FileText, label: 'Pravopis' },
-  { href: 'reading', icon: Languages, label: 'Čitanje' },
-  { href: 'translation', icon: Languages, label: 'Prevođenje' },
-  { href: 'translator', icon: BookOpen, label: 'Prevodilac' },
-  { href: 'ai-review', icon: Bot, label: 'AI Feedback' },
+  { href: 'numbers', icon: Hash, label: 'Siffror' },
+  { href: 'vocabulary', icon: BookText, label: 'Ordförråd' },
+  { href: 'sentences', icon: MessageSquare, label: 'Meningar' },
+  { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },
+  { href: 'spelling', icon: FileText, label: 'Stavning' },
+  { href: 'reading', icon: Languages, label: 'Läsning' },
+  { href: 'translation', icon: Languages, label: 'Översättning' },
+  { href: 'translator', icon: BookOpen, label: 'Översättare' },
+  { href: 'ai-review', icon: Bot, label: 'AI-feedback' },
 ];
 
 function getLanguageDisplayName(language: Language) {
     switch (language) {
       case 'bosnian':
-        return 'Bosanski';
+        return 'Bosniska';
       case 'croatian':
-        return 'Hrvatski';
+        return 'Kroatiska';
       case 'serbian':
-        return 'Srpski';
+        return 'Serbiska';
       default:
         return '';
     }
@@ -96,7 +96,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
         <SidebarContent>
           <SidebarMenu>
             <SidebarGroup>
-              <SidebarGroupLabel>Vježbe</SidebarGroupLabel>
+              <SidebarGroupLabel>Övningar</SidebarGroupLabel>
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
                   <Button asChild variant="ghost" className="w-full justify-start">
@@ -119,14 +119,14 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
             <SidebarTrigger className="md:hidden" />
             <div>
               <h1 className="text-xl font-headline font-semibold">
-                {getLanguageDisplayName(language)} - {grade}. razred
+                {getLanguageDisplayName(language)} - Årskurs {grade}
               </h1>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 p-2 rounded-lg bg-accent/50">
               <Award className="w-6 h-6 text-yellow-500" />
-              <span className="text-lg font-bold">{score}{maxScore > 0 ? ` / ${maxScore}` : ''} poena</span>
+              <span className="text-lg font-bold">{score}{maxScore > 0 ? ` / ${maxScore}` : ''} poäng</span>
             </div>
             <Button asChild variant="outline" size="icon">
               <Link href="/">
