@@ -159,11 +159,11 @@ export function VocabularyActivity() {
           transition={{ duration: 0.3 }}
         >
           <Card className="overflow-hidden">
-            <CardContent className="p-6 flex flex-col justify-center items-center bg-muted/50 min-h-[250px]">
+            <CardContent className="p-6 flex flex-col justify-center items-center bg-muted/50 min-h-[200px]">
               <div className="text-center">
                 <p className="text-muted-foreground">Kako se na {getLanguageDisplayName()} kaže:</p>
                  <div className="flex items-center gap-4">
-                    <p className="text-4xl font-bold font-headline">{currentQuizItem.item.translation}</p>
+                    <p className="text-3xl font-bold font-headline">{currentQuizItem.item.translation}</p>
                  </div>
               </div>
             </CardContent>
@@ -175,7 +175,7 @@ export function VocabularyActivity() {
                         onClick={() => handleAnswer(option)}
                         disabled={isAnswered}
                         variant="outline"
-                        className={`h-24 text-lg relative ${
+                        className={`h-20 text-md relative ${
                           isAnswered && option.isCorrect ? 'bg-green-100 dark:bg-green-900/50 border-green-500' : ''
                         } ${
                           isAnswered && !option.isCorrect && selectedAnswer?.word === option.word ? 'bg-red-100 dark:bg-red-900/50 border-red-500' : ''
