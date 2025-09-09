@@ -244,6 +244,8 @@ export const data: LanguageData = {
       ]
     },
     '4-6': {
+      alphabet: [],
+      numbers: [],
       vocabulary: [
         { id: 101, word: 'rijeka', translation: 'flod' },
         { id: 102, word: 'planina', translation: 'berg' },
@@ -280,9 +282,7 @@ export const data: LanguageData = {
       sentences: [],
       grammar: [],
       reading: [],
-      translations: [],
-      alphabet: [],
-      numbers: []
+      translations: []
     },
     '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [], numbers: [] },
   },
@@ -439,7 +439,47 @@ export const data: LanguageData = {
         { id: 15, type: 'sentence', source: 'Min pappa kör bilen.', target: 'Moj tata vozi automobil.' },
       ]
     },
-    '4-6': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [], numbers: [] },
+    '4-6': {
+      alphabet: [],
+      numbers: [],
+      vocabulary: [
+        { id: 201, word: 'zrakoplov', translation: 'flygplan' },
+        { id: 202, word: 'tisuća', translation: 'tusen' },
+        { id: 203, word: 'kruh', translation: 'bröd' },
+        { id: 204, word: 'nogomet', translation: 'fotboll' },
+        { id: 205, word: 'kolodvor', translation: 'tågstation' },
+        { id: 206, word: 'povijest', translation: 'historia' },
+        { id: 207, word: 'zemljopis', translation: 'geografi' },
+        { id: 208, word: 'trg', translation: 'torg' },
+        { id: 209, word: 'otok', translation: 'ö' },
+        { id: 210, word: 'more', translation: 'hav' },
+        { id: 211, word: 'planina', translation: 'berg' },
+        { id: 212, word: 'juha', translation: 'soppa' },
+        { id: 213, word: 'rajčica', translation: 'tomat' },
+        { id: 214, word: 'hladnjak', translation: 'kylskåp' },
+        { id: 215, word: 'računalo', translation: 'dator' },
+        { id: 216, word: 'glačalo', translation: 'strykjärn' },
+        { id: 217, word: 'kazalište', translation: 'teater' },
+        { id: 218, word: 'glazba', translation: 'musik' },
+        { id: 219, word: 'sport', translation: 'sport' },
+        { id: 220, word: 'zdravlje', translation: 'hälsa' },
+        { id: 221, word: 'obitelj', translation: 'familj' },
+        { id: 222, word: 'prijateljstvo', translation: 'vänskap' },
+        { id: 223, word: 'ljubav', translation: 'kärlek' },
+        { id: 224, word: 'sreća', translation: 'lycka' },
+        { id: 225, word: 'tuga', translation: 'sorg' },
+        { id: 226, word: 'znanost', translation: 'vetenskap' },
+        { id: 227, word: 'budućnost', translation: 'framtid' },
+        { id: 228, word: 'prošlost', translation: 'dåtid' },
+        { id: 229, word: 'sadašnjost', translation: 'nutid' },
+        { id: 230, word: 'svijet', translation: 'värld' }
+      ],
+      spelling: [],
+      sentences: [],
+      grammar: [],
+      reading: [],
+      translations: []
+    },
     '7-9': { vocabulary: [], spelling: [], sentences: [], grammar: [], reading: [], translations: [], alphabet: [], numbers: [] },
   },
   serbian: {
