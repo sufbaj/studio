@@ -11,12 +11,7 @@ import { Loader2, Sparkles, Send, User, Bot } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import type { Grade, Language } from '@/lib/types';
-
-
-type ChatMessage = {
-  role: 'user' | 'model';
-  content: string;
-};
+import type { ChatMessage } from '@/ai/flows/chatbot-schema';
 
 function toTitleCase(str: string): 'Swedish' | 'Bosnian' | 'Croatian' | 'Serbian' {
   if (!str) return 'Bosnian'; // Default

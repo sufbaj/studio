@@ -5,7 +5,8 @@ import type { TranslatorInput } from '@/ai/flows/translator-flow';
 import { reviewText } from '@/ai/flows/ai-content-review';
 import type { AiReviewInput } from '@/ai/flows/ai-content-review';
 import { chat } from '@/ai/flows/chatbot-flow';
-import type { ChatbotInput, ChatMessageSchema } from '@/ai/flows/chatbot-flow';
+import { ChatbotInputSchema } from '@/ai/flows/chatbot-schema';
+import type { ChatbotInput } from '@/ai/flows/chatbot-schema';
 import { z } from 'zod';
 
 const TranslatorInputSchema = z.object({
@@ -58,15 +59,8 @@ export async function reviewTextAction(input: AiReviewInput) {
     }
 }
 
-const ChatbotInputValidationSchema = z.object({
-    history: z.array(ChatMessageSchema),
-    language: z.enum(['Bosnian', 'Croatian', 'Serbian']),
-    grade: z.enum(['1-3', '4-6', '7-9']),
-});
-
-
 export async function chatbotAction(input: ChatbotInput) {
-    const validatedInput = ChatbotInputValidationSchema.safeParse(input);
+    const validatedInput = ChatbotInputSchema.safeParse(input);
 
     if (!validatedInput.success) {
         return { error: validatedInput.error.errors.map(e => e.message).join(', ') };

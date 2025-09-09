@@ -9,19 +9,9 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { ChatbotInputSchema } from './chatbot-schema';
+import type { ChatbotInput } from './chatbot-schema';
 
-// Defines the structure for a single message in the chat history
-export const ChatMessageSchema = z.object({
-  role: z.enum(['user', 'model']),
-  content: z.string(),
-});
-
-export const ChatbotInputSchema = z.object({
-  history: z.array(ChatMessageSchema).describe('The chat history between the user and the model.'),
-  language: z.enum(['Bosnian', 'Croatian', 'Serbian']).describe('The primary language context for the student.'),
-  grade: z.enum(['1-3', '4-6', '7-9']).describe('The grade level of the student.'),
-});
-export type ChatbotInput = z.infer<typeof ChatbotInputSchema>;
 
 const ChatbotOutputSchema = z.object({
   response: z.string().describe('The chatbot\'s response to the user.'),
