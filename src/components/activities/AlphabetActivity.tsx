@@ -37,7 +37,7 @@ export function AlphabetActivity() {
                     {Array.isArray(letter) ? letter[1] : ''}
                    </span>
                 </div>
-                 <div className="relative w-full h-24 mt-2 rounded-md overflow-hidden border-2 border-primary">
+                 <div className="relative w-full h-24 mt-2 rounded-md overflow-hidden">
                     <Image 
                         src={exampleImage} 
                         alt={exampleWord} 
