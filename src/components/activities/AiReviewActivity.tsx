@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2, Bot, Languages, Check, Pilcrow } from 'lucide-react';
 import type { AiReviewOutput } from '@/ai/flows/ai-content-review';
 import { Separator } from '../ui/separator';
+import { cn } from '@/lib/utils';
 
 function toTitleCase(str: string | null): 'Swedish' | 'Bosnian' | 'Croatian' | 'Serbian' {
   if (!str) return 'Bosnian'; // Default
@@ -20,6 +21,8 @@ function toTitleCase(str: string | null): 'Swedish' | 'Bosnian' | 'Croatian' | '
   return 'Bosnian';
 }
 
+const MAX_CHARS = 10000;
+
 export function AiReviewActivity() {
   const { language } = useAppContext();
   const { toast } = useToast();
@@ -29,8 +32,15 @@ export function AiReviewActivity() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleReview = async () => {
-    if (!sourceText.trim()) {
+    if (!sourceText.trim() || sourceText.length > MAX_CHARS) {
       setReview(null);
+       if (sourceText.length > MAX_CHARS) {
+        toast({
+            title: 'För mycket text',
+            description: `Texten får inte innehålla mer än ${MAX_CHARS} tecken.`,
+            variant: 'destructive',
+        });
+       }
       return;
     }
 
@@ -72,6 +82,9 @@ export function AiReviewActivity() {
     }
   };
 
+  const charCount = sourceText.length;
+  const isOverLimit = charCount > MAX_CHARS;
+
   return (
     <div>
       <h2 className="text-3xl font-headline font-bold mb-4">AI återkoppling</h2>
@@ -90,11 +103,15 @@ export function AiReviewActivity() {
             value={sourceText}
             onChange={(e) => setSourceText(e.target.value)}
             onKeyDown={handleKeyDown}
-            rows={6}
+            rows={8}
+            maxLength={MAX_CHARS + 500} // Allow typing past limit to not be annoying
           />
+          <div className="text-right text-sm text-muted-foreground mt-2">
+            <span className={cn(isOverLimit ? 'text-destructive' : '')}>{charCount}</span> / {MAX_CHARS}
+          </div>
         </CardContent>
         <CardFooter className="flex-col items-start gap-4">
-          <Button onClick={handleReview} disabled={isLoading || !sourceText.trim()}>
+          <Button onClick={handleReview} disabled={isLoading || !sourceText.trim() || isOverLimit}>
             {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Bot className="mr-2 h-4 w-4" />}
             Granska text
           </Button>
