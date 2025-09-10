@@ -62,8 +62,8 @@ export async function translateTextAction(input: TranslatorInput) {
 
 
 const AiReviewInputSchema = z.object({
-    text: z.string().min(2, "Texten måste innehålla minst 2 tecken.").max(8000, "Texten får inte innehålla mer än 8000 tecken."),
-    language: z.enum(['Bosnian', 'Croatian', 'Serbian', 'Swedish']),
+    text: z.string().min(2, "Texten måste innehålla minst 2 tecken.").max(10000, "Texten får inte innehålla mer än 10000 tecken."),
+    language: z.enum(['Swedish', 'Bosnian', 'Croatian', 'Serbian']),
 });
 
 export async function reviewTextAction(input: AiReviewInput) {
