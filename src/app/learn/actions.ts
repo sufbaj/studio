@@ -5,6 +5,32 @@ import type { TranslatorInput } from '@/ai/flows/translator-flow';
 import { reviewText } from '@/ai/flows/ai-content-review';
 import type { AiReviewInput } from '@/ai/flows/ai-content-review';
 import { z } from 'zod';
+import { chatbot } from '@/ai/flows/chatbot-flow';
+import type { ChatbotInput } from '@/ai/flows/chatbot-schema';
+import { ChatbotInputSchema } from '@/ai/flows/chatbot-schema';
+import { generateSpeech } from '@/ai/flows/tts-flow';
+import type { TtsInput } from '@/ai/flows/tts-flow';
+
+const TtsInputSchema = z.object({
+    text: z.string().min(1, "Texten kan inte vara tom."),
+});
+
+export async function generateSpeechAction(input: TtsInput) {
+    const validatedInput = TtsInputSchema.safeParse(input);
+
+    if (!validatedInput.success) {
+        return { error: validatedInput.error.errors.map(e => e.message).join(', ') };
+    }
+
+    try {
+        const result = await generateSpeech(validatedInput.data);
+        return { audioData: result.audioData };
+    } catch (error) {
+        console.error("AI TTS failed:", error);
+        return { error: "Kunde inte ansluta till AI-tjänsten." };
+    }
+}
+
 
 const TranslatorInputSchema = z.object({
     text: z.string().min(1, "Texten kan inte vara tom."),
@@ -52,6 +78,22 @@ export async function reviewTextAction(input: AiReviewInput) {
         return { review: result };
     } catch (error) {
         console.error("AI review failed:", error);
+        return { error: "Kunde inte ansluta till AI-tjänsten." };
+    }
+}
+
+export async function chatbotAction(input: ChatbotInput) {
+    const validatedInput = ChatbotInputSchema.safeParse(input);
+
+    if (!validatedInput.success) {
+        return { error: validatedInput.error.errors.map(e => e.message).join(', ') };
+    }
+
+    try {
+        const result = await chatbot(validatedInput.data);
+        return { response: result.response };
+    } catch (error) {
+        console.error("AI chatbot failed:", error);
         return { error: "Kunde inte ansluta till AI-tjänsten." };
     }
 }
