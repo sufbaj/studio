@@ -73,7 +73,7 @@ export function TranslatorActivity() {
       if (result.error) {
         setError(result.error);
         toast({
-          title: 'Ett fel uppstod',
+          title: 'Došlo je do greške',
           description: result.error,
           variant: 'destructive',
         });
@@ -81,11 +81,11 @@ export function TranslatorActivity() {
         setTranslatedText(result.translation);
       }
     } catch (err) {
-      const errorMessage = 'Kunde inte ansluta till AI. Försök igen senare.';
+      const errorMessage = 'Povezivanje s AI nije uspjelo. Pokušajte ponovo kasnije.';
       setError(errorMessage);
       console.error(err);
       toast({
-        title: 'Ett oväntat fel uppstod',
+        title: 'Neočekivana greška',
         description: errorMessage,
         variant: 'destructive',
       });
@@ -121,9 +121,9 @@ export function TranslatorActivity() {
 
   return (
     <div>
-      <h2 className="text-3xl font-headline font-bold mb-4">Översättare</h2>
+      <h2 className="text-3xl font-headline font-bold mb-4">Prevoditelj</h2>
       <p className="text-muted-foreground mb-6">
-        Använd detta verktyg för att snabbt översätta ord och meningar. Skicka in med <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Cmd/Ctrl</kbd> + <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd>.
+        Koristite ovaj alat za brzo prevođenje riječi i rečenica. Pošaljite tekst s <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Cmd/Ctrl</kbd> + <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd>.
       </p>
 
       <Card>
@@ -131,8 +131,8 @@ export function TranslatorActivity() {
           <div className="flex items-center gap-4">
             <Languages className="w-8 h-8 text-primary" />
             <div>
-                <CardTitle>AI Översättare</CardTitle>
-                <CardDescription>Översätt mellan {getLanguageDisplayName(sourceLang)} och {getLanguageDisplayName(targetLang)}</CardDescription>
+                <CardTitle>AI Prevoditelj</CardTitle>
+                <CardDescription>Prevodite između jezika: {getLanguageDisplayName(sourceLang)} i {getLanguageDisplayName(targetLang)}</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -141,7 +141,7 @@ export function TranslatorActivity() {
             <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(sourceLang)}</label>
                 <Textarea
-                    placeholder={`Skriv text på ${getLanguageDisplayName(sourceLang)}...`}
+                    placeholder={`Napišite tekst na jeziku: ${getLanguageDisplayName(sourceLang)}...`}
                     value={sourceText}
                     onChange={(e) => setSourceText(e.target.value)}
                     onKeyDown={handleKeyDown}
@@ -153,7 +153,7 @@ export function TranslatorActivity() {
                 <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(targetLang)}</label>
                 <div className="relative">
                 <Textarea
-                    placeholder={isLoading ? "Översätter..." : "Översättning..."}
+                    placeholder={isLoading ? "Prevođenje..." : "Prijevod..."}
                     value={translatedText}
                     readOnly
                     rows={6}
@@ -165,14 +165,14 @@ export function TranslatorActivity() {
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 my-4 md:my-0">
                 <Button variant="outline" size="icon" onClick={handleSwitchLanguages} disabled={isLoading}>
                     <ArrowRightLeft className="w-5 h-5" />
-                    <span className="sr-only">Byt språk</span>
+                    <span className="sr-only">Promijeni jezike</span>
                 </Button>
             </div>
           </div>
 
            {error && (
              <Alert variant="destructive" className="mt-4">
-                <AlertTitle>Fel vid översättning</AlertTitle>
+                <AlertTitle>Greška pri prevođenju</AlertTitle>
                 <AlertDescription>{error}</AlertDescription>
              </Alert>
            )}
@@ -181,19 +181,18 @@ export function TranslatorActivity() {
         <CardFooter className="flex-col items-start gap-4 border-t pt-6">
             {showGenderSelector && (
               <div className='w-full'>
-                  <Label>Gramatički rod (valfritt)</Label>
+                  <Label>Gramatički rod (opcionalno)</Label>
                   <RadioGroup 
                       onValueChange={(value) => setGender(value as GenderOption)} 
                       value={gender}
                       className="flex items-center gap-6 mt-2"
-                      disabled={isLoading}
                   >
                       <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="male" id="male" />
+                          <RadioGroupItem value="male" id="male" disabled={isLoading} />
                           <Label htmlFor="male">Muški rod</Label>
                       </div>
                       <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="female" id="female" />
+                          <RadioGroupItem value="female" id="female" disabled={isLoading} />
                           <Label htmlFor="female">Ženski rod</Label>
                       </div>
                   </RadioGroup>
@@ -202,7 +201,7 @@ export function TranslatorActivity() {
             )}
              <Button onClick={handleTranslate} disabled={isLoading || !sourceText.trim()}>
               {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-              Översätt
+              Prevedi
             </Button>
         </CardFooter>
       </Card>

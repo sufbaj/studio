@@ -31,31 +31,36 @@ import {
   BookOpen,
   CaseUpper,
   Hash,
+  Sparkles,
 } from 'lucide-react';
-import type { Language, Grade, Activity } from '@/lib/types';
+import type { Language, Grade } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const navItems = [
   { href: 'alphabet', icon: CaseUpper, label: 'Alfabet' },
-  { href: 'numbers', icon: Hash, label: 'Siffror' },
-  { href: 'vocabulary', icon: BookText, label: 'Ordförråd' },
-  { href: 'sentences', icon: MessageSquare, label: 'Meningar' },
-  { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },
-  { href: 'spelling', icon: FileText, label: 'Stavning' },
-  { href: 'reading', icon: BookOpen, label: 'Läsförståelse' },
-  { href: 'translation', icon: Languages, label: 'Svenska till modersmål' },
-  { href: 'translator', icon: Languages, label: 'Översättare' },
-  { href: 'ai-review', icon: Bot, label: 'AI-återkoppling' },
+  { href: 'numbers', icon: Hash, label: 'Brojevi' },
+  { href: 'vocabulary', icon: BookText, label: 'Riječnik' },
+  { href: 'sentences', icon: MessageSquare, label: 'Rečenice' },
+  { href: 'grammar', icon: SpellCheck, label: 'Gramatika' },
+  { href: 'spelling', icon: FileText, label: 'Pravopis' },
+  { href: 'reading', icon: BookOpen, label: 'Čitanje' },
+  { href: 'translation', icon: Languages, label: 'Prevođenje' },
 ];
+
+const tools = [
+    { href: 'translator', icon: Languages, label: 'Prevoditelj' },
+    { href: 'ai-review', icon: Bot, label: 'AI Lektor' },
+    { href: 'ai-assistant', icon: Sparkles, label: 'AI Asistent' },
+]
 
 function getLanguageDisplayName(language: Language) {
     switch (language) {
       case 'bosnian':
-        return 'Bosniska';
+        return 'Bosanski';
       case 'croatian':
-        return 'Kroatiska';
+        return 'Hrvatski';
       case 'serbian':
-        return 'Serbiska';
+        return 'Srpski';
       default:
         return '';
     }
@@ -84,24 +89,43 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
     );
   }
 
+  const getActivePath = (href: string) => {
+    return pathname.includes(href) ? 'bg-sidebar-accent text-sidebar-accent-foreground' : '';
+  }
+
   return (
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader>
           <div className="flex items-center gap-2">
-            <Logo className="w-7 h-7 text-primary" />
-            <h2 className="text-lg font-headline font-semibold">LinguAIbks</h2>
+            <Logo className="w-7 h-7 text-white" />
+            <h2 className="text-lg font-headline font-semibold text-white">LinguAIbks</h2>
           </div>
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
             <SidebarGroup>
-              <SidebarGroupLabel>Övningar</SidebarGroupLabel>
+              <SidebarGroupLabel className="text-sidebar-foreground/70">Vježbe</SidebarGroupLabel>
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
-                  <Button asChild variant="ghost" className="w-full justify-start">
+                  <Button asChild variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
                     <Link href={`/learn/${item.href}?${searchParams.toString()}`}
-                      className={pathname.includes(item.href) ? 'bg-accent text-accent-foreground' : ''}
+                      className={getActivePath(item.href)}
+                    >
+                      <item.icon className="w-4 h-4 mr-2" />
+                      {item.label}
+                    </Link>
+                  </Button>
+                </SidebarMenuItem>
+              ))}
+            </SidebarGroup>
+            <SidebarGroup>
+              <SidebarGroupLabel className="text-sidebar-foreground/70">Alati</SidebarGroupLabel>
+               {tools.map((item) => (
+                <SidebarMenuItem key={item.href}>
+                  <Button asChild variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+                    <Link href={`/learn/${item.href}?${searchParams.toString()}`}
+                      className={getActivePath(item.href)}
                     >
                       <item.icon className="w-4 h-4 mr-2" />
                       {item.label}
@@ -119,14 +143,14 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
             <SidebarTrigger className="md:hidden" />
             <div>
               <h1 className="text-xl font-headline font-semibold">
-                {getLanguageDisplayName(language)} - Årskurs {grade}
+                {getLanguageDisplayName(language)} - {grade}. razred
               </h1>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 p-2 rounded-lg bg-accent/50">
+            <div className="flex items-center gap-2 p-2 rounded-lg bg-yellow-100 dark:bg-yellow-900/50">
               <Award className="w-6 h-6 text-yellow-500" />
-              <span className="text-lg font-bold">{score}{maxScore > 0 ? ` / ${maxScore}` : ''} poäng</span>
+              <span className="text-lg font-bold">{score}{maxScore > 0 ? ` / ${maxScore}` : ''} poena</span>
             </div>
             <Button asChild variant="outline" size="icon">
               <Link href="/">

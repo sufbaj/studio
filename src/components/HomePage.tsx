@@ -10,9 +10,9 @@ import { cn } from '@/lib/utils';
 import type { Grade, Language } from '@/lib/types';
 
 const grades: { id: Grade; label: string }[] = [
-  { id: '1-3', label: '1-3. razreda' },
-  { id: '4-6', label: '4-6. razreda' },
-  { id: '7-9', label: '7-9. razreda' },
+  { id: '1-3', label: '1-3. razred' },
+  { id: '4-6', label: '4-6. razred' },
+  { id: '7-9', label: '7-9. razred' },
 ];
 
 const languages: { id: Language; label: string }[] = [
@@ -62,26 +62,26 @@ export function HomePage() {
   };
 
   return (
-    <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 relative">
+    <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 relative bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-blue-900">
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-4 mb-4">
           <Logo className="h-12 w-12 text-primary" />
-          <h1 className="text-5xl font-headline font-bold tracking-tight">LinguAIbks</h1>
+          <h1 className="text-5xl font-headline font-bold tracking-tight text-gray-800 dark:text-gray-100">LinguAIbks</h1>
         </div>
-        <p className="text-xl text-muted-foreground">Učenje bosanskog, hrvatskog i srpskog jezika.</p>
+        <p className="text-xl text-muted-foreground">Moderna platforma za učenje bosanskog, hrvatskog i srpskog jezika.</p>
       </div>
 
       <div className="w-full max-w-4xl">
         <AnimatePresence mode="wait">
           {step === 'grade' && (
             <motion.div key="grade" initial="hidden" animate="visible" exit="exit">
-              <h2 className="text-3xl font-headline font-semibold text-center mb-8">Izaberi svoj razred da bi počeo</h2>
+              <h2 className="text-3xl font-headline font-semibold text-center mb-8 text-gray-700 dark:text-gray-200">Prvo izaberi svoj razred</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {grades.map((grade, i) => (
                   <motion.div key={grade.id} custom={i} variants={cardVariants}>
                     <Card
                       onClick={() => handleGradeSelect(grade.id)}
-                      className="cursor-pointer transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:border-primary"
+                      className="cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary bg-white/50 backdrop-blur-sm"
                     >
                       <CardHeader>
                         <CardTitle className="text-center text-2xl font-semibold">{grade.label}</CardTitle>
@@ -95,14 +95,14 @@ export function HomePage() {
 
           {step === 'language' && (
             <motion.div key="language" initial="hidden" animate="visible" exit="exit">
-               <h2 className="text-3xl font-headline font-semibold text-center mb-8">Koji jezik želiš da vježbaš?</h2>
+               <h2 className="text-3xl font-headline font-semibold text-center mb-8 text-gray-700 dark:text-gray-200">Koji jezik želiš vježbati?</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {languages.map((lang, i) => (
                   <motion.div key={lang.id} custom={i} variants={cardVariants}>
                      <Card
                       onClick={() => handleLanguageSelect(lang.id)}
                       className={cn(
-                        'cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl',
+                        'cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/50 backdrop-blur-sm',
                         selectedLanguage === lang.id ? 'border-primary ring-2 ring-primary' : 'hover:border-primary'
                       )}
                     >
@@ -126,18 +126,14 @@ export function HomePage() {
             animate={{ opacity: 1, y: 0, transition: { delay: 0.5 } }}
             exit={{ opacity: 0, y: 20 }}
         >
-          <Button variant="outline" size="lg" onClick={handleBack}>
+          <Button variant="outline" size="lg" onClick={handleBack} className="bg-white/80">
             Nazad
           </Button>
           <Button 
             size="lg"
             onClick={handleStart} 
             disabled={!selectedLanguage}
-            className="bg-primary hover:bg-primary/90"
-            style={{
-                backgroundColor: 'hsl(var(--primary))',
-                color: 'hsl(var(--primary-foreground))'
-            }}
+            className="bg-primary hover:bg-primary/90 shadow-lg"
           >
             Započni vježbe
           </Button>

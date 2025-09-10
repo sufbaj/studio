@@ -41,9 +41,10 @@ export function AiAssistantActivity() {
 
   useEffect(() => {
     resetScore();
-    if(language) {
+    if(language && messages.length === 0) {
         setMessages([getInitialMessage(language)]);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetScore, language, getInitialMessage]);
   
   useEffect(() => {
@@ -59,20 +60,21 @@ export function AiAssistantActivity() {
     if (!input.trim() || !language || !grade) return;
     
     const userMessage: ChatMessage = { role: 'user', content: input };
-    setMessages((prev) => [...prev, userMessage]);
+    const currentMessages = [...messages, userMessage];
+    setMessages(currentMessages);
     setInput('');
     setIsLoading(true);
 
     try {
       const result = await chatbotAction({
-        history: [...messages, userMessage],
+        history: currentMessages,
         language: toTitleCase(language),
         grade: grade as Grade,
       });
 
       if (result.error) {
         toast({
-          title: 'Ett fel uppstod',
+          title: 'Došlo je do greške',
           description: result.error,
           variant: 'destructive',
         });
@@ -84,8 +86,8 @@ export function AiAssistantActivity() {
     } catch (error) {
       console.error(error);
       toast({
-        title: 'Ett oväntat fel uppstod',
-        description: 'Kunde inte ansluta till AI. Försök igen senare.',
+        title: 'Neočekivana greška',
+        description: 'Povezivanje s AI nije uspjelo. Pokušajte ponovo kasnije.',
         variant: 'destructive',
       });
       setMessages(prev => prev.slice(0, -1)); // Remove user message on error
@@ -97,7 +99,9 @@ export function AiAssistantActivity() {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      handleSend();
+      if (!isLoading) {
+        handleSend();
+      }
     }
   };
 

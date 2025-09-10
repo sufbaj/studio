@@ -2,23 +2,42 @@ import type { SVGProps } from 'react';
 
 export const Logo = (props: SVGProps<SVGSVGElement>) => (
     <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
-        <defs>
-            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FF4500" /> 
-                <stop offset="100%" stopColor="#FF8C00" />
-            </linearGradient>
-        </defs>
-        <g opacity="0.9">
-            <rect x="4" y="4" width="10" height="10" rx="2" fill="url(#grad1)" />
-            <rect x="10" y="10" width="10" height="10" rx="2" fill="url(#grad1)" fillOpacity="0.8" />
-             <rect x="7" y="7" width="10" height="10" rx="2" fill="url(#grad1)" fillOpacity="0.6" />
-        </g>
+        <path
+            d="M12 2L2 7V17L12 22L22 17V7L12 2Z"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="currentColor"
+            fillOpacity="0.1"
+        />
+        <path
+            d="M2 7L12 12L22 7"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path
+            d="M12 12V22"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path
+            d="M17 4.5L7 9.5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
     </svg>
 );
