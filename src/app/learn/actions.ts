@@ -5,7 +5,7 @@ import type { TranslatorInput } from '@/ai/flows/translator-flow';
 import { reviewText } from '@/ai/flows/ai-content-review';
 import type { AiReviewInput } from '@/ai/flows/ai-content-review';
 import { z } from 'zod';
-import { chatbot } from '@/ai/flows/chatbot-flow';
+import { chat } from '@/ai/flows/chatbot-flow';
 import type { ChatbotInput } from '@/ai/flows/chatbot-schema';
 import { ChatbotInputSchema } from '@/ai/flows/chatbot-schema';
 import { generateSpeech } from '@/ai/flows/tts-flow';
@@ -90,7 +90,7 @@ export async function chatbotAction(input: ChatbotInput) {
     }
 
     try {
-        const result = await chatbot(validatedInput.data);
+        const result = await chat(validatedInput.data);
         return { response: result.response };
     } catch (error) {
         console.error("AI chatbot failed:", error);
