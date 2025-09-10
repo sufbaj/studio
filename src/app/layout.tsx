@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'LinguAI',
+  title: 'LinguAIbks',
   description: 'Učenje bosanskog, hrvatskog i srpskog jezika.',
 };
 
