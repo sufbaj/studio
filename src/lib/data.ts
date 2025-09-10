@@ -146,6 +146,16 @@ export const data: LanguageData = {
         { id: 63, word: 'jezero', translation: 'sjö' },
         { id: 64, word: 'planina', translation: 'berg' },
         { id: 65, word: 'šuma', translation: 'skog' },
+        { id: 66, word: 'avlija', translation: 'gård' },
+        { id: 67, word: 'merak', translation: 'njutning' },
+        { id: 68, word: 'mahrama', translation: 'huvudduk' },
+        { id: 69, word: 'sevdah', translation: 'kärlekssorg' },
+        { id: 70, word: 'bašča', translation: 'trädgård' },
+        { id: 71, word: 'čaršija', translation: 'marknad' },
+        { id: 72, word: 'džezva', translation: 'kaffekanna' },
+        { id: 73, word: 'fildžan', translation: 'kaffekopp' },
+        { id: 74, word: 'sokak', translation: 'gränd' },
+        { id: 75, word: 'komšija', translation: 'granne' },
       ],
       spelling: [
         { id: 1, sentence: 'Moja mama pije ___.', blank: 'kafu', options: ['stolicu', 'kafu', 'lopatom'] },
@@ -185,7 +195,9 @@ export const data: LanguageData = {
         { id: 35, sentence: '___ je slatko.', blank: 'Grožđe', options: ['Grožđe', 'Grozđe', 'Grožde'] },
         { id: 36, sentence: 'U ___ se peče pita.', blank: 'tepsiji', options: ['tepsiji', 'tefsiji', 'tesiji'] },
         { id: 37, sentence: 'Vidio sam ___ na nebu.', blank: 'dugu', options: ['dugu', 'duhu', 'dugu'] },
-        { id: 38, sentence: 'Danas je moj ___.', blank: 'rođendan', options: ['rođendan', 'rođendan', 'rodjendan'] }
+        { id: 38, sentence: 'Danas je moj ___.', blank: 'rođendan', options: ['rođendan', 'rođendan', 'rodjendan'] },
+        { id: 39, sentence: 'Ovo ___ auto.', blank: 'nije', options: ['nije', 'nie', 'nje'] },
+        { id: 40, sentence: 'Ona ne ___ da dođe.', blank: 'želi', options: ['želi', 'želie', 'želji'] },
       ],
       sentences: [
         { id: 1, sentence: 'Dječak čita knjigu.' },
@@ -222,7 +234,12 @@ export const data: LanguageData = {
         { id: 32, sentence: 'Volim piti topli čaj.' },
         { id: 33, sentence: 'U zoološkom vrtu živi lav.' },
         { id: 34, sentence: 'Učimo slova u školi.' },
-        { id: 35, sentence: 'Jabuka je zdravo voće.' }
+        { id: 35, sentence: 'Jabuka je zdravo voće.' },
+        { id: 36, sentence: 'Adnan je moj najbolji drug.' },
+        { id: 37, sentence: 'Emina ima dugu plavu kosu.' },
+        { id: 38, sentence: 'Idemo u avliju da se igramo.' },
+        { id: 39, sentence: 'Nana pravi pitu u tepsiji.' },
+        { id: 40, sentence: 'Naša mačka voli da se mazi.' },
       ],
       grammar: [
         { id: 1, sentence: 'Dječak ___ loptu.', blank: 'ima', options: ['ima', 'imaju', 'imamo'], explanation: 'Subjekt u jednini (dječak) zahtijeva glagol u trećem licu jednine (ima).' },
@@ -239,7 +256,12 @@ export const data: LanguageData = {
         { id: 12, sentence: 'Učim ___ bosanski jezik.', blank: 'da govorim', options: ['govoriti', 'da govorim', 'govoreći'], explanation: 'Konstrukcija "učiti da" se često koristi za izražavanje učenja vještine.' },
         { id: 13, sentence: 'Vidio sam ___ psa.', blank: 'velikog', options: ['velik', 'velikog', 'velikom'], explanation: 'Akuzativ (koga/šta vidim?) zahtijeva pridjev u akuzativu muškog roda (velikog).' },
         { id: 14, sentence: 'Sjedim na ___ stolici.', blank: 'maloj', options: ['mala', 'malu', 'maloj'], explanation: 'Lokativ (na čemu sjedim?) zahtijeva pridjev u lokativu ženskog roda (maloj).' },
-        { id: 15, sentence: 'Danas ___ padati kiša.', blank: 'će', options: ['će', 'ću', 'ćemo'], explanation: 'Futur I (buduće vrijeme) za 3. lice jednine tvori se s pomoćnim glagolom "će".' }
+        { id: 15, sentence: 'Danas ___ padati kiša.', blank: 'će', options: ['će', 'ću', 'ćemo'], explanation: 'Futur I (buduće vrijeme) za 3. lice jednine tvori se s pomoćnim glagolom "će".' },
+        { id: 16, sentence: 'Gdje si ___?', blank: 'bio', options: ['bio', 'bila', 'bilo'], explanation: 'Ako je pitanje upućeno muškoj osobi, koristi se glagolski pridjev radni "bio".' },
+        { id: 17, sentence: 'Šta ___ radili jučer?', blank: 'ste', options: ['si', 'ste', 'smo'], explanation: 'Glagol "biti" u perfektu za 2. lice množine (vi) glasi "ste".' },
+        { id: 18, sentence: 'Ovo je cvijet ___ lijepo miriše.', blank: 'koji', options: ['koji', 'koja', 'koje'], explanation: 'Odnosna zamjenica "koji" se odnosi na imenicu "cvijet" (muški rod).' },
+        { id: 19, sentence: 'Ne ___ to uraditi.', blank: 'mogu', options: ['mogu', 'možeš', 'može'], explanation: 'Glagol "moći" u prezentu za 1. lice jednine (ja) glasi "mogu".' },
+        { id: 20, sentence: 'Da ___ novca, kupio bih auto.', blank: 'imam', options: ['imam', 'imaš', 'ima'], explanation: 'Uvjetne (kondicionalne) rečenice često koriste prezent u zavisnoj rečenici.' },
       ],
       reading: [
         {
@@ -275,6 +297,17 @@ export const data: LanguageData = {
             { id: 4, question: "Koji poklon joj se najviše svidio?", options: ["Lopta", "Lutka i slikovnica", "Bicikl"], answer: "Lutka i slikovnica" },
             { id: 5, question: "Kako se Lejla osjećala?", options: ["Tužno", "Ljutito", "Sretno"], answer: "Sretno" }
           ]
+        },
+        {
+            id: 4,
+            title: "Zima na selu",
+            text: "Došla je zima. Snijeg je prekrio cijelo selo. Tarik i njegova sestra Ema su se obradovali snijegu. Obukli su tople jakne, kape i rukavice. Izašli su u avliju i pravili Snješka Bijelića. Oči su mu napravili od dva ugljena, a nos od mrkve. Poslije su se grudvali i smijali. Bilo im je jako zabavno.",
+            questions: [
+              { id: 1, question: "Koje godišnje doba je došlo?", options: ["Ljeto", "Jesen", "Zima"], answer: "Zima" },
+              { id: 2, question: "Šta su Tarik i Ema pravili?", options: ["Kuću od snijega", "Anđela u snijegu", "Snješka Bijelića"], answer: "Snješka Bijelića" },
+              { id: 3, question: "Od čega su napravili nos Snješku?", options: ["Od kamena", "Od mrkve", "Od dugmeta"], answer: "Od mrkve" },
+              { id: 4, question: "Šta su radili poslije pravljenja Snješka?", options: ["Pili čaj", "Grudvali se", "Gledali TV"], answer: "Grudvali se" }
+            ]
         }
       ],
       translations: [
@@ -303,6 +336,11 @@ export const data: LanguageData = {
         { id: 23, type: 'sentence', source: 'Min syster är glad.', target: 'Moja sestra je sretna.' },
         { id: 24, type: 'sentence', source: 'Idag är en vacker dag.', target: 'Danas je lijep dan.' },
         { id: 25, type: 'sentence', source: 'Jag älskar att äta glass.', target: 'Volim jesti sladoled.' },
+        { id: 26, type: 'word', source: 'bröd', target: 'hljeb' },
+        { id: 27, type: 'word', source: 'mjölk', target: 'mlijeko' },
+        { id: 28, type: 'sentence', source: 'Jag dricker mjölk varje morgon.', target: 'Pijem mlijeko svako jutro.' },
+        { id: 29, type: 'word', source: 'glädje', target: 'radost' },
+        { id: 30, type: 'sentence', source: 'Barnen leker med glädje.', target: 'Djeca se igraju s radošću.' },
       ]
     },
     '4-6': {
@@ -349,6 +387,11 @@ export const data: LanguageData = {
         { id: 138, word: 'društvo', translation: 'samhälle' },
         { id: 139, word: 'sloboda', translation: 'frihet' },
         { id: 140, word: 'mir', translation: 'fred' },
+        { id: 141, word: 'uspjeh', translation: 'framgång' },
+        { id: 142, word: 'neuspjeh', translation: 'misslyckande' },
+        { id: 143, word: 'izazov', translation: 'utmaning' },
+        { id: 144, word: 'prilika', translation: 'möjlighet' },
+        { id: 145, word: 'promjena', translation: 'förändring' },
       ],
       spelling: [
         { id: 101, sentence: 'Snijeg je prekrio ___ grad.', blank: 'cijeli', options: ['cijeli', 'cjeli', 'cioli'] },
@@ -370,7 +413,12 @@ export const data: LanguageData = {
         { id: 117, sentence: '___ je glavni grad Švedske.', blank: 'Stockholm', options: ['Stokholm', 'Stockholm', 'Štokholm'] },
         { id: 118, sentence: 'Ovo je ___ odluka.', blank: 'konačna', options: ['konačna', 'konaćna', 'konacna'] },
         { id: 119, sentence: 'Učio sam o ___ ratu.', blank: 'svjetskom', options: ['svjetskom', 'svjeckom', 'svetskom'] },
-        { id: 120, sentence: 'On je ___ dječak.', blank: 'stidljiv', options: ['stidljiv', 'stidljiv', 'stidljiw'] }
+        { id: 120, sentence: 'On je ___ dječak.', blank: 'stidljiv', options: ['stidljiv', 'stidljiv', 'stidljiw'] },
+        { id: 121, sentence: 'Nikad ne reci ___.', blank: 'nikad', options: ['nikad', 'nikada', 'nikad'] },
+        { id: 122, sentence: 'Čuo sam ___ vijesti.', blank: 'najnovije', options: ['najnovije', 'naj novije', 'najnovie'] },
+        { id: 123, sentence: 'To je ___ nemoguće.', blank: 'potpuno', options: ['potpuno', 'podpuno', 'potpuno'] },
+        { id: 124, sentence: 'On je moj ___ komšija.', blank: 'prvi', options: ['prvi', 'prvij', 'pervi'] },
+        { id: 125, sentence: 'Uradio je to bez ___.', blank: 'greške', options: ['greške', 'grješke', 'grešaka'] },
       ],
       sentences: [
         { id: 101, sentence: 'Danas je u Sarajevu padala jaka kiša.' },
@@ -392,7 +440,12 @@ export const data: LanguageData = {
         { id: 117, sentence: 'Moramo čuvati naš okoliš za buduće generacije.' },
         { id: 118, sentence: 'Volim čitati knjige o dalekim zemljama.' },
         { id: 119, sentence: 'Svaki čovjek ima pravo na slobodu i sreću.' },
-        { id: 120, sentence: 'Sport nas uči timskom radu i disciplini.' }
+        { id: 120, sentence: 'Sport nas uči timskom radu i disciplini.' },
+        { id: 121, sentence: 'Sutra putujem u drugi grad da posjetim rodbinu.' },
+        { id: 122, sentence: 'Naša škola organizuje takmičenje iz matematike.' },
+        { id: 123, sentence: 'Veoma sam sretan zbog tvog uspjeha.' },
+        { id: 124, sentence: 'Naučio sam mnogo novih riječi na kursu jezika.' },
+        { id: 125, sentence: 'Promjena je jedina konstanta u životu.' },
       ],
       grammar: [
         { id: 101, sentence: 'Putujem ___ za Sarajevo.', blank: 'avionom', options: ['avion', 'aviona', 'avionom'], explanation: 'Instrumental sredstva (čime putujem?) zahtijeva nastavak -om za imenice muškog roda.' },
@@ -410,6 +463,11 @@ export const data: LanguageData = {
         { id: 113, sentence: 'Da sam znao, ___ bih ti pomogao.', blank: 'bio', options: ['bio', 'budem', 'ću'], explanation: 'Kondicional II (prošla mogućnost) tvori se od kondicionala I glagola "biti" (bio bih) i glagolskog pridjeva radnog (pomogao).' },
         { id: 114, sentence: 'Knjiga ___ je na stolu je moja.', blank: 'koja', options: ['koja', 'koje', 'koji'], explanation: 'Odnosna zamjenica "koja" se odnosi na imenicu "knjiga" (ženski rod, jednina).' },
         { id: 115, sentence: '___ uči, taj će i znati.', blank: 'Ko', options: ['Ko', 'Što', 'Koji'], explanation: 'Upitno-odnosna zamjenica "ko" se koristi za živa bića u funkciji subjekta.' },
+        { id: 116, sentence: 'Molim te, dodaj mi ___ soli.', blank: 'malo', options: ['malo', 'mnogo', 'nekoliko'], explanation: 'Za nebrojive imenice poput "so" koristi se prilog "malo".' },
+        { id: 117, sentence: 'Svi ___ sretni zbog pobjede.', blank: 'su bili', options: ['je bio', 'su bili', 'smo bili'], explanation: 'Perfekt za 3. lice množine muškog roda (svi) glasi "su bili".' },
+        { id: 118, sentence: 'On je bolji ___ mene.', blank: 'od', options: ['od', 'nego', 'kao'], explanation: 'Komparativ se u bosanskom jeziku tvori pomoću prijedloga "od".' },
+        { id: 119, sentence: 'Kuća se nalazi ___ brda.', blank: 'pored', options: ['pored', 'na', 'u'], explanation: 'Prijedlog "pored" označava blizinu.' },
+        { id: 120, sentence: 'Sjedim ___ tebe.', blank: 'pored', options: ['pored', 'na', 'sa'], explanation: 'Prijedlog "pored" se koristi za označavanje mjesta.' },
       ],
       reading: [
         {
@@ -446,6 +504,17 @@ export const data: LanguageData = {
             { id: 4, question: "Na koju listu su upisane nekropole sa stećcima?", options: ["Listu ugrožene baštine", "UNESCO-vu listu svjetske baštine", "Listu sedam svjetskih čuda"], answer: "UNESCO-vu listu svjetske baštine" },
             { id: 5, question: "U kojem periodu se pojavljuju stećci?", options: ["Od 12. do 16. stoljeća", "U antičko doba", "U 19. stoljeću"], answer: "Od 12. do 16. stoljeća" }
           ]
+        },
+        {
+          id: 104,
+          title: "Vodenice",
+          text: "Vodenice su stari mlinovi koje pokreće snaga vode. Nekada su bile veoma važne za život na selu. Ljudi su u njima mljeli žito, najčešće pšenicu i kukuruz, kako bi dobili brašno za hljeb. Voda iz rijeke ili potoka se usmjeravala posebnim kanalom do velikog drvenog točka. Točak se okretao i pokretao teški mlinski kamen koji je mrvio zrno. Zvuk vodenice i miris svježeg brašna bili su dio svakodnevice. Danas je malo vodenica koje još rade, ali one predstavljaju važan dio naše tradicije i podsjećaju nas na neka davna vremena.",
+          questions: [
+            { id: 1, question: "Šta su vodenice?", options: ["Stare pekare", "Stari mlinovi na vodu", "Stare pilane"], answer: "Stari mlinovi na vodu" },
+            { id: 2, question: "Šta se mljelo u vodenicama?", options: ["Kafa", "Šećer", "Žito"], answer: "Žito" },
+            { id: 3, question: "Šta pokreće vodenicu?", options: ["Vjetar", "Voda", "Para"], answer: "Voda" },
+            { id: 4, question: "Šta vodenice predstavljaju danas?", options: ["Važan dio industrije", "Važan dio tradicije", "Glavni izvor brašna"], answer: "Važan dio tradicije" }
+          ]
         }
       ],
       translations: [
@@ -468,7 +537,12 @@ export const data: LanguageData = {
         { id: 117, type: 'sentence', source: 'Teknologin förändrar världen.', target: 'Tehnologija mijenja svijet.' },
         { id: 118, type: 'sentence', source: 'Utbildning är mycket viktigt.', target: 'Obrazovanje je veoma važno.' },
         { id: 119, type: 'sentence', source: 'Jag gillar att resa och upptäcka nya platser.', target: 'Volim putovati i otkrivati nova mjesta.' },
-        { id: 120, type: 'sentence', source: 'Vi måste skydda vår miljö.', target: 'Moramo čuvati naš okoliš.' }
+        { id: 120, type: 'sentence', source: 'Vi måste skydda vår miljö.', target: 'Moramo čuvati naš okoliš.' },
+        { id: 121, type: 'word', source: 'utmaning', target: 'izazov' },
+        { id: 122, type: 'word', source: 'möjlighet', target: 'prilika' },
+        { id: 123, type: 'sentence', source: 'Varje dag är en ny möjlighet.', target: 'Svaki dan je nova prilika.' },
+        { id: 124, type: 'word', source: 'framgång', target: 'uspjeh' },
+        { id: 125, type: 'sentence', source: 'Jag önskar dig all framgång.', target: 'Želim ti svaki uspjeh.' },
       ]
     },
     '7-9': {
@@ -493,6 +567,16 @@ export const data: LanguageData = {
           { id: 418, word: 'sociologija', translation: 'sociologi' },
           { id: 419, word: 'baština', translation: 'arv' },
           { id: 420, word: 'umjetna inteligencija', translation: 'artificiell intelligens' },
+          { id: 421, word: 'argument', translation: 'argument' },
+          { id: 422, word: 'kritika', translation: 'kritik' },
+          { id: 423, word: 'analiza', translation: 'analys' },
+          { id: 424, word: 'koncept', translation: 'koncept' },
+          { id: 425, word: 'teorija', translation: 'teori' },
+          { id: 426, word: 'hipoteza', translation: 'hypotes' },
+          { id: 427, word: 'zaključak', translation: 'slutsats' },
+          { id: 428, word: 'princip', translation: 'princip' },
+          { id: 429, word: 'strategija', translation: 'strategi' },
+          { id: 430, word: 'perspektiva', translation: 'perspektiv' },
         ],
         sentences: [
           { id: 401, sentence: 'Zaštita okoliša je globalna odgovornost svih nas.' },
@@ -515,6 +599,11 @@ export const data: LanguageData = {
           { id: 418, sentence: 'Civilni dijalog je neophodan za rješavanje društvenih sukoba.' },
           { id: 419, sentence: 'Inovacije u nauci i tehnologiji pokreću napredak čovječanstva.' },
           { id: 420, sentence: 'Socijalna pravda je cilj kojem bi sva društva trebala težiti.' },
+          { id: 421, sentence: 'Potrebno je pažljivo analizirati sve argumente prije donošenja zaključka.' },
+          { id: 422, sentence: 'Njegova teorija se zasniva na detaljnom istraživanju.' },
+          { id: 423, sentence: 'Moramo razmotriti problem iz različitih perspektiva.' },
+          { id: 424, sentence: 'Ključno je razumjeti osnovne principe demokratije.' },
+          { id: 425, sentence: 'Dugoročna strategija je neophodna za postizanje uspjeha.' },
         ],
         grammar: [
           { id: 401, sentence: 'Kada ___ završio zadaću, izašao bih vani.', blank: 'bih', options: ['bih', 'bi', 'bismo'], explanation: 'Kondicional I. (pogodbeni način) za 1. lice jednine glasi "bih + glagolski pridjev radni".' },
@@ -532,6 +621,11 @@ export const data: LanguageData = {
           { id: 413, sentence: 'Trebao ___ ranije doći.', blank: 'si', options: ['sam', 'si', 'je'], explanation: 'Aorist pomoćnog glagola "htjeti" u 2. licu jednine (ti si trebao) se često izostavlja, ali glagolski pridjev radni ostaje. Ovdje je greška, treba biti "Trebao si". Rečenica implicira drugo lice.' },
           { id: 414, sentence: 'Pišem pismo ___ olovkom.', blank: 'novom', options: ['nova', 'novom', 'novoj'], explanation: 'Instrumental (čime pišem?) zahtijeva pridjev u instrumentalu ženskog roda (novom).' },
           { id: 415, sentence: 'Ne znam ___ da li će doći.', blank: 'hoće', options: ['hoće', 'hoću', 'bude'], explanation: 'Za izražavanje buduće radnje u zavisnoj rečenici, koristi se prezent pomoćnog glagola "htjeti".' },
+          { id: 416, sentence: 'Oni ___ došli na vrijeme.', blank: 'nisu', options: ['nisu', 'nije', 'nismo'], explanation: 'Odrični oblik perfekta za 3. lice množine glasi "nisu".' },
+          { id: 417, sentence: 'Da li ___ ikad bio u Italiji?', blank: 'si', options: ['si', 'sam', 'ste'], explanation: 'Upitni oblik perfekta za 2. lice jednine muškog roda.' },
+          { id: 418, sentence: 'Učenici, ___ su uradili zadaću, mogu ići kući.', blank: 'koji', options: ['koji', 'koja', 'koje'], explanation: 'Odnosna zamjenica "koji" u nominativu množine muškog roda.' },
+          { id: 419, sentence: 'To je kuća u ___ sam odrastao.', blank: 'kojoj', options: ['koja', 'koju', 'kojoj'], explanation: 'Odnosna zamjenica u lokativu jednine ženskog roda.' },
+          { id: 420, sentence: 'On trči ___ od svih.', blank: 'najbrže', options: ['brže', 'brzo', 'najbrže'], explanation: 'Superlativ priloga "brzo" je "najbrže".' },
         ],
         spelling: [
           { id: 401, sentence: 'U ___ smislu, bili ste u pravu.', blank: 'suštini', options: ['suštini', 'suštini', 'sušćini'] },
@@ -554,6 +648,11 @@ export const data: LanguageData = {
           { id: 418, sentence: 'Treba nam ___ rješenje.', blank: 'dugoročno', options: ['dugoročno', 'dugoroćno', 'dugoročno'] },
           { id: 419, sentence: '___ se ne isplati.', blank: 'Lijenost', options: ['Lijenost', 'Ljenost', 'Lijenost'] },
           { id: 420, sentence: 'To je pitanje ___.', blank: 'principa', options: ['principa', 'principa', 'principa'] },
+          { id: 421, sentence: 'Uvijek je bio ___ prema starijima.', blank: 'ljubazan', options: ['ljubazan', 'lubezan', 'ljubasan'] },
+          { id: 422, sentence: 'Njegova izjava je izazvala ___.', blank: 'kontroverzu', options: ['kontroverzu', 'kontraverzu', 'kontrowerzu'] },
+          { id: 423, sentence: 'Ne mogu da vjerujem u njegovu ___.', blank: 'naivnost', options: ['naivnost', 'naivnos', 'naivost'] },
+          { id: 424, sentence: 'Ovo je ___ dokaz.', blank: 'nepobitan', options: ['nepobitan', 'nepobitan', 'nepobitan'] },
+          { id: 425, sentence: 'Njegovo ponašanje je ___.', blank: 'neprihvatljivo', options: ['neprihvatljivo', 'neprihvatljivo', 'ne prihvatljivo'] },
         ],
         reading: [
           {
@@ -591,6 +690,17 @@ export const data: LanguageData = {
                 { id: 4, question: "Koja je jedna od etičkih dilema vezanih za UI?", options: ["Hoće li UI postati previše kreativna", "Pitanje gubitka radnih mjesta", "Hoće li UI pisati bolje knjige od ljudi"], answer: "Pitanje gubitka radnih mjesta" },
                 { id: 5, question: "Kako je ključno razvijati UI?", options: ["Što je brže moguće, bez obzira na posljedice", "Samo u vojne svrhe", "Na odgovoran način, minimizirajući rizike"], answer: "Na odgovoran način, minimizirajući rizike" }
               ]
+          },
+          {
+            id: 404,
+            title: "Održivi razvoj",
+            text: "Održivi razvoj je koncept koji teži zadovoljavanju potreba sadašnjih generacija, a da se pritom ne ugrozi mogućnost budućih generacija da zadovolje svoje potrebe. On se temelji na tri stuba: ekonomskom, socijalnom i ekološkom. Ekonomski stub podrazumijeva stvaranje stabilne i konkurentne privrede. Socijalni stub se odnosi na pravednost, jednakost i brigu o zdravlju i obrazovanju. Ekološki stub naglašava zaštitu okoliša, očuvanje prirodnih resursa i biodiverziteta. Samo balansom između ova tri stuba možemo osigurati dugoročni prosperitet i kvalitet života za sve stanovnike planete.",
+            questions: [
+              { id: 1, question: "Šta je glavni cilj održivog razvoja?", options: ["Maksimalan profit", "Zadovoljavanje potreba sadašnjosti bez ugrožavanja budućnosti", "Brza industrijalizacija"], answer: "Zadovoljavanje potreba sadašnjosti bez ugrožavanja budućnosti" },
+              { id: 2, question: "Na koja tri stuba se temelji održivi razvoj?", options: ["Industrija, poljoprivreda, turizam", "Ekonomski, socijalni i ekološki", "Politički, vojni i kulturni"], answer: "Ekonomski, socijalni i ekološki" },
+              { id: 3, question: "Na šta se odnosi ekološki stub?", options: ["Samo na reciklažu", "Na zaštitu okoliša i očuvanje resursa", "Na izgradnju fabrika"], answer: "Na zaštitu okoliša i očuvanje resursa" },
+              { id: 4, question: "Šta je neophodno za dugoročni prosperitet?", options: ["Fokus samo na ekonomiju", "Zanemarivanje okoliša", "Balans između ekonomskog, socijalnog i ekološkog stuba"], answer: "Balans između ekonomskog, socijalnog i ekološkog stuba" }
+            ]
           }
         ],
         translations: [
@@ -613,7 +723,12 @@ export const data: LanguageData = {
             { id: 417, type: 'sentence', source: 'Filosofi hjälper oss att tänka kritiskt.', target: 'Filozofija nam pomaže da razmišljamo kritički.' },
             { id: 418, type: 'sentence', source: 'Kulturellt arv är en viktig del av vår identitet.', target: 'Kulturna baština je važan dio našeg identiteta.' },
             { id: 419, type: 'sentence', source: 'Globaliseringen har både fördelar och nackdelar.', target: 'Globalizacija ima i prednosti i nedostatke.' },
-            { id: 420, type: 'sentence', source: 'Artificiell intelligens utvecklas snabbt.', target: 'Umjetna inteligencija se brzo razvija.' }
+            { id: 420, type: 'sentence', source: 'Artificiell intelligens utvecklas snabbt.', target: 'Umjetna inteligencija se brzo razvija.' },
+            { id: 421, type: 'word', source: 'analys', target: 'analiza' },
+            { id: 422, type: 'word', source: 'strategi', target: 'strategija' },
+            { id: 423, type: 'sentence', source: 'En grundlig analys är nödvändig.', target: 'Temeljita analiza je neophodna.' },
+            { id: 424, type: 'word', source: 'perspektiv', target: 'perspektiva' },
+            { id: 425, type: 'sentence', source: 'Det är viktigt att ha olika perspektiv.', target: 'Važno je imati različite perspektive.' },
         ],
         alphabet: [],
         numbers: [],
@@ -668,7 +783,17 @@ export const data: LanguageData = {
         { id: 42, word: 'vrijeme', translation: 'tid' },
         { id: 43, word: 'pitanje', translation: 'fråga' },
         { id: 44, word: 'odgovor', translation: 'svar' },
-        { id: 45, word: 'problem', translation: 'problem' }
+        { id: 45, word: 'problem', translation: 'problem' },
+        { id: 46, word: 'dječak', translation: 'pojke' },
+        { id: 47, word: 'djevojčica', translation: 'flicka' },
+        { id: 48, word: 'more', translation: 'hav' },
+        { id: 49, word: 'oblak', translation: 'moln' },
+        { id: 50, word: 'kiša', translation: 'regn' },
+        { id: 51, word: 'snijeg', translation: 'snö' },
+        { id: 52, word: 'prst', translation: 'finger' },
+        { id: 53, word: 'glava', translation: 'huvud' },
+        { id: 54, word: 'noga', translation: 'ben' },
+        { id: 55, word: 'ruka', translation: 'hand' },
       ],
       spelling: [
         { id: 1, sentence: 'Učiteljica nosi ___.', blank: 'naočale', options: ['naočale', 'naočare', 'naoćale'] },
@@ -694,7 +819,17 @@ export const data: LanguageData = {
         { id: 21, sentence: 'U sobi je upaljena ___.', blank: 'svijeća', options: ['svijeća', 'sviječa', 'sveća'] },
         { id: 22, sentence: 'Boli me desno ___.', blank: 'rame', options: ['rame', 'ramje', 'ranje'] },
         { id: 23, sentence: 'Mačka prede u ___.', blank: 'krilu', options: ['krilu', 'krinju', 'krillu'] },
-        { id: 24, sentence: 'U ___ se kuha kava.', blank: 'džezvi', options: ['džezvi', 'đezvi', 'djezvi'] }
+        { id: 24, sentence: 'U ___ se kuha kava.', blank: 'džezvi', options: ['džezvi', 'đezvi', 'djezvi'] },
+        { id: 25, sentence: 'Vidio sam ___ na nebu.', blank: 'zvijezdu', options: ['zvjezdu', 'zvijezdu', 'zvezdu'] },
+        { id: 26, sentence: 'Ovo je ___ priča.', blank: 'dječja', options: ['dječja', 'diječja', 'dečja'] },
+        { id: 27, sentence: 'Nisam ___ što se dogodilo.', blank: 'vidio', options: ['vidio', 'vidjeo', 'vido'] },
+        { id: 28, sentence: 'Ona je ___ djevojka.', blank: 'lijepa', options: ['ljepa', 'lijepa', 'liepa'] },
+        { id: 29, sentence: 'Treba mi ___ vremena.', blank: 'više', options: ['više', 'vishe', 'više'] },
+        { id: 30, sentence: 'Ne razumijem tvoje ___.', blank: 'riječi', options: ['riječi', 'rječi', 'rieči'] },
+        { id: 31, sentence: 'To je bio ___ potez.', blank: 'pogrešan', options: ['pogrješan', 'pogrešan', 'pogriješan'] },
+        { id: 32, sentence: 'On je ___ čovjek.', blank: 'pošten', options: ['pošten', 'pošten', 'pošten'] },
+        { id: 33, sentence: 'Ovo je ___ vijest.', blank: 'istinita', options: ['istinita', 'istinjita', 'istinita'] },
+        { id: 34, sentence: '___ je bila ukusna.', blank: 'Večera', options: ['Večera', 'Većera', 'Večera'] },
       ],
       sentences: [
         { id: 1, sentence: 'Dječak čita knjigu.' },
@@ -721,14 +856,34 @@ export const data: LanguageData = {
         { id: 22, sentence: 'Vlak putuje brzo.' },
         { id: 23, sentence: 'On ima novu igračku.' },
         { id: 24, sentence: 'Ona pjeva lijepu pjesmu.' },
-        { id: 25, sentence: 'Idemo sutra na izlet.' }
+        { id: 25, sentence: 'Idemo sutra na izlet.' },
+        { id: 26, sentence: 'Ana živi u Zagrebu.' },
+        { id: 27, sentence: 'Luka vozi novi bicikl.' },
+        { id: 28, sentence: 'Volim jesti topli kruh.' },
+        { id: 29, sentence: 'Ljeti idemo na more.' },
+        { id: 30, sentence: 'Moja obitelj je velika.' },
+        { id: 31, sentence: 'Učimo hrvatski jezik.' },
+        { id: 32, sentence: 'Idemo u kazalište večeras.' },
+        { id: 33, sentence: 'Učiteljica je vrlo ljubazna.' },
+        { id: 34, sentence: 'Imam puno prijatelja.' },
+        { id: 35, sentence: 'Danas je sunčan dan.' },
       ],
       grammar: [
         { id: 1, sentence: 'Dječak ___ loptu.', blank: 'ima', options: ['ima', 'imaju', 'imamo'], explanation: 'Subjekt u jednini (dječak) zahtijeva glagol u trećem licu jednine (ima).' },
         { id: 2, sentence: 'Djevojčice se ___.', blank: 'igraju', options: ['igra', 'igraš', 'igraju'], explanation: 'Subjekt u množini (djevojčice) zahtijeva glagol u trećem licu množine (igraju).' },
         { id: 3, sentence: 'Ovo je ___ kuća.', blank: 'moja', options: ['moj', 'moja', 'moje'], explanation: 'Imenica "kuća" je ženskog roda, pa posvojna zamjenica mora biti u ženskom rodu (moja).' },
         { id: 4, sentence: 'Idem u ___ grad.', blank: 'velik', options: ['velik', 'velika', 'veliko'], explanation: 'Imenica "grad" je muškog roda, pa pridjev mora biti u muškom rodu (velik).' },
-        { id: 5, sentence: 'Jedem ___ jabuku.', blank: 'crvenu', options: ['crveni', 'crvena', 'crvenu'], explanation: 'U akuzativu jednine ženskog roda, pridjev "crven" ima oblik "crvenu".' }
+        { id: 5, sentence: 'Jedem ___ jabuku.', blank: 'crvenu', options: ['crveni', 'crvena', 'crvenu'], explanation: 'U akuzativu jednine ženskog roda, pridjev "crven" ima oblik "crvenu".' },
+        { id: 6, sentence: 'Mi ___ u parku.', blank: 'smo', options: ['sam', 'si', 'smo'], explanation: 'Glagol "biti" u prezentu za 1. lice množine (mi) glasi "smo".' },
+        { id: 7, sentence: 'Oni ___ iz Zagreba.', blank: 'su', options: ['je', 'smo', 'su'], explanation: 'Glagol "biti" u prezentu za 3. lice množine (oni) glasi "su".' },
+        { id: 8, sentence: 'Ovo je ___ automobil.', blank: 'tatin', options: ['tatin', 'tatina', 'tatino'], explanation: 'Imenica "automobil" je muškog roda, pa posvojni pridjev mora biti u muškom rodu (tatin).' },
+        { id: 9, sentence: 'Mačka spava na ___.', blank: 'krovu', options: ['krov', 'krova', 'krovu'], explanation: 'Lokativ (gdje spava?) zahtijeva nastavak -u za imenice muškog roda.' },
+        { id: 10, sentence: 'Idem u školu ___ vlakom.', blank: 's', options: ['s', 'sa', 'za'], explanation: 'Prijedlog "s" koristi se ispred riječi koje ne počinju sa s, š, z, ž ili suglasničkim skupinama.' },
+        { id: 11, sentence: 'Ana je ___ od Ive.', blank: 'viša', options: ['visoka', 'viša', 'najviša'], explanation: 'Komparativ od pridjeva "visok" glasi "viša".' },
+        { id: 12, sentence: 'Učim ___ hrvatski jezik.', blank: 'govoriti', options: ['govoriti', 'da govorim', 'govoreći'], explanation: 'U hrvatskom standardnom jeziku, uz glagol "učiti" koristi se infinitiv.' },
+        { id: 13, sentence: 'Vidio sam ___ psa.', blank: 'velikoga', options: ['velik', 'velikoga', 'velikomu'], explanation: 'Akuzativ (koga/što vidim?) zahtijeva pridjev u akuzativu muškog roda (velikoga).' },
+        { id: 14, sentence: 'Sjedim na ___ stolcu.', blank: 'malenom', options: ['malen', 'malenu', 'malenom'], explanation: 'Lokativ (na čemu sjedim?) zahtijeva pridjev u lokativu muškog roda (malenom).' },
+        { id: 15, sentence: 'Danas ___ padati kiša.', blank: 'će', options: ['će', 'ću', 'ćemo'], explanation: 'Futur I. za 3. lice jednine tvori se s pomoćnim glagolom "će" i infinitivom.' },
       ],
       reading: [
         {
@@ -752,6 +907,18 @@ export const data: LanguageData = {
             { id: 3, question: "Što Ivan baca Piku?", options: ["Kamen", "Granu", "Lopticu"], answer: "Lopticu" },
             { id: 4, question: "Gdje Piko spava?", options: ["U Ivanovom krevetu", "U svojoj kućici", "Na stablu"], answer: "U svojoj kućici" }
           ]
+        },
+        {
+          id: 3,
+          title: "Rođendan",
+          text: "Danas je Marin rođendan. On puni osam godina. Mama mu je ispekla veliku čokoladnu tortu. Marin je pozvao svoje prijatelje na proslavu. Dobio je mnogo darova. Najviše mu se svidio novi nogometni dres i lopta. Svi su zajedno pjevali rođendansku pjesmu i igrali se u vrtu. Marin je bio vrlo sretan.",
+          questions: [
+            { id: 1, question: "Čiji je rođendan?", options: ["Mamin", "Marinov", "Prijateljev"], answer: "Marinov" },
+            { id: 2, question: "Koliko godina Marin puni?", options: ["Sedam", "Osam", "Devet"], answer: "Osam" },
+            { id: 3, question: "Što mu je mama ispekla?", options: ["Kolače", "Pitu", "Tortu"], answer: "Tortu" },
+            { id: 4, question: "Koji dar mu se najviše svidio?", options: ["Igračka", "Nogometni dres i lopta", "Knjiga"], answer: "Nogometni dres i lopta" },
+            { id: 5, question: "Kako se Marin osjećao?", options: ["Tužno", "Ljutito", "Sretno"], answer: "Sretno" }
+          ]
         }
       ],
       translations: [
@@ -770,6 +937,16 @@ export const data: LanguageData = {
         { id: 13, type: 'sentence', source: 'Hunden springer snabbt.', target: 'Pas trči brzo.' },
         { id: 14, type: 'sentence', source: 'Vi går till skolan.', target: 'Mi idemo u školu.' },
         { id: 15, type: 'sentence', source: 'Min pappa kör bilen.', target: 'Moj tata vozi automobil.' },
+        { id: 16, type: 'word', source: 'lärare', target: 'učitelj' },
+        { id: 17, type: 'word', source: 'blomma', target: 'cvijet' },
+        { id: 18, type: 'word', source: 'vatten', target: 'voda' },
+        { id: 19, type: 'word', source: 'vän', target: 'prijatelj' },
+        { id: 20, type: 'word', source: 'fönster', target: 'prozor' },
+        { id: 21, type: 'sentence', source: 'Jag bor i ett stort hus.', target: 'Živim u velikoj kući.' },
+        { id: 22, type: 'sentence', source: 'Katten sover på stolen.', target: 'Mačka spava na stolcu.' },
+        { id: 23, type: 'sentence', source: 'Min syster är glad.', target: 'Moja sestra je sretna.' },
+        { id: 24, type: 'sentence', source: 'Idag är en vacker dag.', target: 'Danas je lijep dan.' },
+        { id: 25, type: 'sentence', source: 'Jag älskar att äta glass.', target: 'Volim jesti sladoled.' },
       ]
     },
     '4-6': {
@@ -805,7 +982,17 @@ export const data: LanguageData = {
         { id: 227, word: 'budućnost', translation: 'framtid' },
         { id: 228, word: 'prošlost', translation: 'dåtid' },
         { id: 229, word: 'sadašnjost', translation: 'nutid' },
-        { id: 230, word: 'svijet', translation: 'värld' }
+        { id: 230, word: 'svijet', translation: 'värld' },
+        { id: 231, word: 'uspjeh', translation: 'framgång' },
+        { id: 232, word: 'neuspjeh', translation: 'misslyckande' },
+        { id: 233, word: 'izazov', translation: 'utmaning' },
+        { id: 234, word: 'prilika', translation: 'möjlighet' },
+        { id: 235, word: 'promjena', translation: 'förändring' },
+        { id: 236, word: 'kultura', translation: 'kultur' },
+        { id: 237, word: 'obrazovanje', translation: 'utbildning' },
+        { id: 238, word: 'okoliš', translation: 'miljö' },
+        { id: 239, word: 'sloboda', translation: 'frihet' },
+        { id: 240, word: 'mir', translation: 'fred' },
       ],
       spelling: [
         { id: 201, sentence: 'Gledam ___ kroz prozor.', blank: 'zvijezde', options: ['zvijezde', 'zvjezde', 'zvezde'] },
@@ -815,9 +1002,19 @@ export const data: LanguageData = {
         { id: 205, sentence: 'U ___ ima puno zanimljivih knjiga.', blank: 'knjižnici', options: ['knjižnici', 'knjižnjici', 'knjižnici'] },
         { id: 206, sentence: 'Ljeti volim jesti svježe ___.', blank: 'povrće', options: ['povrće', 'povrče', 'povrce'] },
         { id: 207, sentence: 'Njegov ___ je liječnik.', blank: 'stric', options: ['stric', 'štrice', 'stric'] },
-        { id: 208, sentence: 'U ___ se dogodilo čudo.', blank: 'slučaju', options: ['slučaju', 'slućaju', 'slučaju'] },
-        { id: 209, sentence: 'Imam puno ___ za vikend.', blank: 'obaveza', options: ['obaveza', 'obaveza', 'obveza'] },
+        { id: 208, sentence: 'U tom ___ se dogodilo čudo.', blank: 'slučaju', options: ['slučaju', 'slućaju', 'slučaju'] },
+        { id: 209, sentence: 'Imam puno ___ za vikend.', blank: 'obveza', options: ['obaveza', 'obaveza', 'obveza'] },
         { id: 210, sentence: 'U školi učimo o ___.', blank: 'povijesti', options: ['povijesti', 'povjesti', 'povijesti'] },
+        { id: 211, sentence: 'Nikad ne reci ___.', blank: 'nikad', options: ['nikad', 'nikada', 'nikad'] },
+        { id: 212, sentence: 'Čuo sam ___ vijesti.', blank: 'najnovije', options: ['najnovije', 'naj novije', 'najnovie'] },
+        { id: 213, sentence: 'To je ___ nemoguće.', blank: 'potpuno', options: ['potpuno', 'podpuno', 'potpuno'] },
+        { id: 214, sentence: 'On je moj ___ susjed.', blank: 'prvi', options: ['prvi', 'prvij', 'pervi'] },
+        { id: 215, sentence: 'Uradio je to bez ___.', blank: 'pogrješke', options: ['greške', 'pogrješke', 'pogrešaka'] },
+        { id: 216, sentence: 'On je ___ na mene.', blank: 'ljut', options: ['ljut', 'ljut', 'bijesan'] },
+        { id: 217, sentence: 'Ne znam ___ to učiniti.', blank: 'kako', options: ['kako', 'kako', 'kako'] },
+        { id: 218, sentence: '___ ću ti pomoći.', blank: 'Pokušat', options: ['Pokušat', 'Pokušati', 'Pokušati ću'] },
+        { id: 219, sentence: 'Ovo je ___ film.', blank: 'najbolji', options: ['najbolji', 'naj bolji', 'najbolji'] },
+        { id: 220, sentence: 'Molim te, donesi mi ___ vode.', blank: 'čašu', options: ['čašu', 'čaše', 'čaša'] },
       ],
       sentences: [
         { id: 201, sentence: 'Zrakoplov za Zagreb polijeće uskoro.' },
@@ -829,7 +1026,17 @@ export const data: LanguageData = {
         { id: 207, sentence: 'Slušam hrvatsku glazbu na radiju.' },
         { id: 208, sentence: 'Kazalište večeras prikazuje novu predstavu.' },
         { id: 209, sentence: 'Znanost nam pomaže razumjeti svijet oko nas.' },
-        { id: 210, sentence: 'Veselim se budućnosti i novim izazovima.' }
+        { id: 210, sentence: 'Veselim se budućnosti i novim izazovima.' },
+        { id: 211, sentence: 'Sutra putujem u drugi grad posjetiti rodbinu.' },
+        { id: 212, sentence: 'Naša škola organizira natjecanje iz matematike.' },
+        { id: 213, sentence: 'Jako sam sretan zbog tvog uspjeha.' },
+        { id: 214, sentence: 'Naučio sam mnogo novih riječi na tečaju jezika.' },
+        { id: 215, sentence: 'Promjena je jedina konstanta u životu.' },
+        { id: 216, sentence: 'Luka je najbolji učenik u razredu.' },
+        { id_217, sentence: 'Iva svira klavir vrlo lijepo.' },
+        { id_218, sentence: 'Na tržnici prodaju svježe voće i povrće.' },
+        { id_219, sentence: 'More je danas mirno i toplo.' },
+        { id_220, sentence: 'Moramo čuvati naš okoliš za buduće naraštaje.' },
       ],
       grammar: [
         { id: 201, sentence: 'Putujem ___ za Zagreb.', blank: 'vlakom', options: ['vlak', 'vlaka', 'vlakom'], explanation: 'Instrumental sredstva (čime putujem?) zahtijeva nastavak -om za imenice muškog roda.' },
@@ -841,7 +1048,12 @@ export const data: LanguageData = {
         { id: 207, sentence: 'Učenici ___ pripremaju za natjecanje.', blank: 'se', options: ['se', 'si', 'su'], explanation: 'Povratni glagol "pripremati se" zahtijeva povratnu zamjenicu "se".' },
         { id: 208, sentence: 'Idem u šetnju ___ svojim psom.', blank: 'sa', options: ['s', 'sa', 'z'], explanation: 'Prijedlog "sa" se rabi ispred riječi koje počinju suglasnicima s, z, š, ž ili suglasničkim skupinama gdje je teško izgovoriti "s".' },
         { id: 209, sentence: 'Rijeka Sava protječe ___ Zagreb.', blank: 'kroz', options: ['u', 'na', 'kroz'], explanation: 'Prijedlog "kroz" označava kretanje kroz neki prostor.' },
-        { id: 210, sentence: 'Zagreb je poznat po ___ katedrali.', blank: 'svojoj', options: ['svoj', 'svoja', 'svojoj'], explanation: 'Lokativ (o čemu je poznat?) s prijedlogom "po" zahtijeva posvojnu zamjenicu u lokativu (svojoj).' }
+        { id: 210, sentence: 'Zagreb je poznat po ___ katedrali.', blank: 'svojoj', options: ['svoj', 'svoja', 'svojoj'], explanation: 'Lokativ (o čemu je poznat?) s prijedlogom "po" zahtijeva posvojnu zamjenicu u lokativu (svojoj).' },
+        { id: 211, sentence: 'Molim te, dodaj mi ___ soli.', blank: 'malo', options: ['malo', 'mnogo', 'nekoliko'], explanation: 'Za nebrojive imenice poput "sol" koristi se prilog "malo".' },
+        { id: 212, sentence: 'Svi ___ sretni zbog pobjede.', blank: 'su bili', options: ['je bio', 'su bili', 'smo bili'], explanation: 'Perfekt za 3. lice množine muškog roda (svi) glasi "su bili".' },
+        { id: 213, sentence: 'On je bolji ___ mene.', blank: 'od', options: ['od', 'nego', 'kao'], explanation: 'Komparativ se u hrvatskom jeziku tvori pomoću prijedloga "od".' },
+        { id: 214, sentence: 'Kuća se nalazi ___ brda.', blank: 'pokraj', options: ['pokraj', 'na', 'u'], explanation: 'Prijedlog "pokraj" označava blizinu.' },
+        { id: 215, sentence: 'Sjedim ___ tebe.', blank: 'pored', options: ['pored', 'na', 'sa'], explanation: 'Prijedlog "pored" se koristi za označavanje mjesta.' },
       ],
       reading: [
         {
@@ -865,6 +1077,17 @@ export const data: LanguageData = {
             { id: 3, question: "Kamo su otišli na izlet brodom?", options: ["Na Paklene otoke", "Na Vis", "Na Korčulu"], answer: "Na Paklene otoke" },
             { id: 4, question: "Koji okus sladoleda Luka najviše voli?", options: ["Jagodu", "Čokoladu", "Vaniliju"], answer: "Čokoladu" }
           ]
+        },
+        {
+          id: 203,
+          title: "Plitvička jezera",
+          text: "Nacionalni park Plitvička jezera najstariji je i najveći nacionalni park u Republici Hrvatskoj. Park je poznat po 16 kaskadno poredanih jezera. Boja jezera se neprestano mijenja od tirkizne do zelene, ovisno o količini minerala u vodi i kutu pod kojim pada sunčeva svjetlost. Jezera su povezana slapovima, od kojih je najviši Veliki slap. Kroz park vode drvene staze i mostići koji omogućuju posjetiteljima da uživaju u ljepoti prirode. Zbog svoje jedinstvene ljepote, Plitvička jezera uvrštena su na UNESCO-ov popis svjetske baštine.",
+          questions: [
+            { id: 1, question: "Koliko jezera ima u Nacionalnom parku Plitvička jezera?", options: ["12", "16", "20"], answer: "16" },
+            { id: 2, question: "Kako se zove najviši slap?", options: ["Mali slap", "Veliki slap", "Plitvički slap"], answer: "Veliki slap" },
+            { id: 3, question: "O čemu ovisi boja jezera?", options: ["O temperaturi vode", "O količini minerala i kutu sunčeve svjetlosti", "O dubini jezera"], answer: "O količini minerala i kutu sunčeve svjetlosti" },
+            { id: 4, question: "Na koji popis su uvrštena Plitvička jezera?", options: ["Popis svjetskih čuda", "UNESCO-ov popis svjetske baštine", "Popis ugroženih parkova"], answer: "UNESCO-ov popis svjetske baštine" }
+          ]
         }
       ],
       translations: [
@@ -877,7 +1100,17 @@ export const data: LanguageData = {
         { id: 207, type: 'sentence', source: 'Vår familj åker på semester till havet.', target: 'Naša obitelj ide na odmor na more.' },
         { id: 208, type: 'sentence', source: 'Zagreb är huvudstaden i Kroatien.', target: 'Zagreb je glavni grad Hrvatske.' },
         { id: 209, type: 'sentence', source: 'Fotboll är en mycket populär sport.', target: 'Nogomet je vrlo popularan sport.' },
-        { id: 210, type: 'sentence', source: 'Lana lyssnar på musik i sitt rum.', target: 'Lana sluša glazbu u svojoj sobi.' }
+        { id: 210, type: 'sentence', source: 'Lana lyssnar på musik i sitt rum.', target: 'Lana sluša glazbu u svojoj sobi.' },
+        { id: 211, type: 'word', source: 'kärlek', target: 'ljubav' },
+        { id: 212, type: 'word', source: 'frihet', target: 'sloboda' },
+        { id: 213, type: 'word', source: 'hälsa', target: 'zdravlje' },
+        { id: 214, type: 'word', source: 'natur', target: 'priroda' },
+        { id: 215, type: 'word', source: 'konst', target: 'umjetnost' },
+        { id: 216, type: 'sentence', source: 'Jag läser en intressant bok.', target: 'Čitam zanimljivu knjigu.' },
+        { id: 217, type: 'sentence', source: 'Tekniken förändrar världen.', target: 'Tehnologija mijenja svijet.' },
+        { id: 218, type: 'sentence', source: 'Utbildning är mycket viktigt.', target: 'Obrazovanje je vrlo važno.' },
+        { id: 219, type: 'sentence', source: 'Jag gillar att resa och upptäcka nya platser.', target: 'Volim putovati i otkrivati nova mjesta.' },
+        { id: 220, type: 'sentence', source: 'Vi måste skydda vår miljö.', target: 'Moramo čuvati naš okoliš.' },
       ]
     },
     '7-9': {
@@ -892,6 +1125,26 @@ export const data: LanguageData = {
         { id: 508, word: 'znanost', translation: 'vetenskap' },
         { id: 509, word: 'odgovornost', translation: 'ansvar' },
         { id: 510, word: 'ravnopravnost', translation: 'jämställdhet' },
+        { id: 511, word: 'demokracija', translation: 'demokrati' },
+        { id: 512, word: 'ustav', translation: 'grundlag' },
+        { id: 513, word: 'ljudska prava', translation: 'mänskliga rättigheter' },
+        { id: 514, word: 'kultura', translation: 'kultur' },
+        { id: 515, word: 'civilizacija', translation: 'civilisation' },
+        { id: 516, word: 'filozofija', translation: 'filosofi' },
+        { id: 517, word: 'psihologija', translation: 'psykologi' },
+        { id: 518, word: 'sociologija', translation: 'sociologi' },
+        { id: 519, word: 'baština', translation: 'arv' },
+        { id: 520, word: 'umjetna inteligencija', translation: 'artificiell intelligens' },
+        { id: 521, word: 'argument', translation: 'argument' },
+        { id: 522, word: 'kritika', translation: 'kritik' },
+        { id: 523, word: 'analiza', translation: 'analys' },
+        { id: 524, word: 'koncept', translation: 'koncept' },
+        { id: 525, word: 'teorija', translation: 'teori' },
+        { id: 526, word: 'hipoteza', translation: 'hypotes' },
+        { id: 527, word: 'zaključak', translation: 'slutsats' },
+        { id: 528, word: 'načelo', translation: 'princip' },
+        { id: 529, word: 'strategija', translation: 'strategi' },
+        { id: 530, word: 'perspektiva', translation: 'perspektiv' },
       ],
       sentences: [
         { id: 501, sentence: 'Zaštita okoliša globalna je odgovornost svih nas.' },
@@ -900,10 +1153,20 @@ export const data: LanguageData = {
         { id: 504, sentence: 'Političke odluke utječu na gospodarsko stanje u državi.' },
         { id: 505, sentence: 'Obrazovanje je ključno za razvoj kritičkoga mišljenja.' },
         { id: 506, sentence: 'Ustav Republike Hrvatske jamči ravnopravnost svih građana.' },
-        { id: 507, sentence: 'Znanstveni napredak omogućuje liječenje mnogih bolesti.' },
+        { id_507, sentence: 'Znanstveni napredak omogućuje liječenje mnogih bolesti.' },
         { id: 508, sentence: 'Globalizacija je dovela do veće povezanosti među kulturama.' },
         { id: 509, sentence: 'Svaki pojedinac ima važnu ulogu u izgradnji demokratskoga društva.' },
         { id: 510, sentence: 'Klimatske promjene predstavljaju ozbiljnu prijetnju budućnosti planeta.' },
+        { id: 511, sentence: 'Ljudska prava su temelj svakoga pravednog društva.' },
+        { id: 512, sentence: 'Filozofija postavlja pitanja o smislu postojanja.' },
+        { id: 513, sentence: 'Psihologija proučava ljudsko ponašanje i mentalne procese.' },
+        { id: 514, sentence: 'Kulturna baština jednoga naroda od neprocjenjive je vrijednosti.' },
+        { id: 515, sentence: 'Umjetna inteligencija ima potencijal transformirati naš svijet.' },
+        { id: 516, sentence: 'Važno je razvijati medijsku pismenost u digitalnom dobu.' },
+        { id: 517, sentence: 'Održivi razvoj teži usklađivanju gospodarskih i ekoloških ciljeva.' },
+        { id: 518, sentence: 'Građanski dijalog nužan je za rješavanje društvenih sukoba.' },
+        { id: 519, sentence: 'Inovacije u znanosti i tehnologiji pokreću napredak čovječanstva.' },
+        { id: 520, sentence: 'Socijalna pravda cilj je kojemu bi sva društva trebala težiti.' },
       ],
       grammar: [
         { id: 501, sentence: 'Kada ___ završio zadaću, izišao bih van.', blank: 'bih', options: ['bih', 'bi', 'bismo'], explanation: 'Kondicional I. za 1. lice jednine glasi "bih + glagolski pridjev radni".' },
@@ -916,6 +1179,11 @@ export const data: LanguageData = {
         { id: 508, sentence: 'Učinit ću to ___ se odmorim.', blank: 'čim', options: ['čim', 'dok', 'jer'], explanation: 'Vremenski veznik "čim" označava radnju koja će se dogoditi neposredno nakon druge radnje.' },
         { id: 509, sentence: 'Sastanak, ___ je bio zakazan za petak, odgođen je.', blank: 'koji', options: ['koji', 'čiji', 'kojemu'], explanation: 'Odnosna zamjenica "koji" u nominativu jednine muškog roda odnosi se na "sastanak".' },
         { id: 510, sentence: 'Nije došao ___ bolesti.', blank: 'zbog', options: ['zbog', 'usprkos', 'za'], explanation: 'Prijedlog "zbog" se koristi za izricanje uzroka.' },
+        { id: 511, sentence: 'Svi su bili sretni ___ mene.', blank: 'osim', options: ['osim', 'pored', 'bez'], explanation: 'Prijedlog "osim" s genitivom se koristi za izuzimanje.' },
+        { id: 512, sentence: 'Razgovarali smo o ___ problemima.', blank: 'različitim', options: ['različiti', 'različitim', 'različitih'], explanation: 'Lokativ množine (o čemu?) zahtijeva pridjev u lokativu množine (različitim).' },
+        { id: 513, sentence: 'Trebao ___ si ranije doći.', blank: 'si', options: ['sam', 'si', 'je'], explanation: 'Perfekt glagola "trebati" u 2. licu jednine glasi "trebao si".' },
+        { id: 514, sentence: 'Pišem pismo ___ olovkom.', blank: 'novom', options: ['nova', 'novom', 'novoj'], explanation: 'Instrumental (čime pišem?) zahtijeva pridjev u instrumentalu ženskog roda (novom).' },
+        { id: 515, sentence: 'Ne znam hoće ___ doći.', blank: 'li', options: ['li', 'da li', 'će'], explanation: 'Upitna čestica "li" dolazi iza enklitičkog oblika pomoćnog glagola "htjeti".' },
       ],
       spelling: [
         { id: 501, sentence: 'U ___ ste bili u pravu.', blank: 'biti', options: ['biti', 'bit', 'bîti'] },
@@ -928,6 +1196,16 @@ export const data: LanguageData = {
         { id: 508, sentence: 'To je ___ zadatak.', blank: 'složen', options: ['složen', 'složan', 'složen'] },
         { id: 509, sentence: 'Donijeli su ___ odluku.', blank: 'jednoglasnu', options: ['jednoglasnu', 'jedno glasnu', 'jednoglasnu'] },
         { id: 510, sentence: '___ je važna za mentalno zdravlje.', blank: 'Psihologija', options: ['Psihologija', 'Psikologija', 'Sihologija'] },
+        { id: 511, sentence: 'Njegova ___ je nepodnošljiva.', blank: 'drskost', options: ['drskost', 'drzskost', 'drskost'] },
+        { id: 512, sentence: 'To je bio ___ potez.', blank: 'ishitren', options: ['ishitren', 'izhitren', 'ishitren'] },
+        { id: 513, sentence: 'Moramo se boriti protiv ___.', blank: 'korupcije', options: ['korupcije', 'korumpcije', 'korupcie'] },
+        { id: 514, sentence: 'Ovo je ___ prilika.', blank: 'jedinstvena', options: ['jedinstvena', 'jedinstvena', 'jedinstvenna'] },
+        { id: 515, sentence: 'On je ___ za taj posao.', blank: 'kompetentan', options: ['kompetentan', 'kompetentan', 'konpetentan'] },
+        { id: 516, sentence: '___ razvoj je ključan.', blank: 'Gospodarski', options: ['Ekonomski', 'Gospodarski', 'Gospodarski'] },
+        { id: 517, sentence: 'Dobili smo ___ odgovor.', blank: 'potvrdan', options: ['potvrdan', 'potvrdan', 'potvrda'] },
+        { id: 518, sentence: 'Treba nam ___ rješenje.', blank: 'dugoročno', options: ['dugoročno', 'dugoroćno', 'dugoročno'] },
+        { id: 519, sentence: '___ se ne isplati.', blank: 'Lijenost', options: ['Lijenost', 'Ljenost', 'Lijenost'] },
+        { id: 520, sentence: 'To je pitanje ___.', blank: 'načela', options: ['principa', 'načela', 'principa'] },
       ],
       reading: [
         {
@@ -953,6 +1231,17 @@ export const data: LanguageData = {
               { id: 4, question: "U kojoj je još državi Meštrović proveo velik dio života?", options: ["U Francuskoj", "U Italiji", "U SAD-u"], answer: "U SAD-u" },
               { id: 5, question: "Koji spomenik se nalazi u Splitu?", options: ["Grgur Ninski", "Povijest Hrvata", "Zdenac života"], answer: "Grgur Ninski" }
             ]
+        },
+        {
+          id: 503,
+          title: "Medijska pismenost",
+          text: "U današnjem svijetu, gdje smo okruženi informacijama iz različitih izvora poput interneta, televizije i društvenih mreža, medijska pismenost je izuzetno važna vještina. Medijska pismenost znači sposobnost pronalaženja, analiziranja, vrednovanja i stvaranja informacija u različitim oblicima. To nam pomaže da prepoznamo lažne vijesti (eng. 'fake news'), razumijemo kako mediji utječu na naša mišljenja i postanemo odgovorni korisnici i stvaratelji informacija. Kritičko razmišljanje ključan je dio medijske pismenosti. Uvijek bismo trebali postaviti pitanje tko je autor informacije, koja je njezina svrha, te provjeriti informaciju u više neovisnih izvora prije nego što je prihvatimo kao istinitu.",
+          questions: [
+            { id: 1, question: "Što je medijska pismenost?", options: ["Sposobnost brzog čitanja", "Sposobnost analiziranja i vrednovanja informacija", "Sposobnost programiranja"], answer: "Sposobnost analiziranja i vrednovanja informacija" },
+            { id: 2, question: "U čemu nam pomaže medijska pismenost?", options: ["Da postanemo popularni na društvenim mrežama", "Da prepoznamo lažne vijesti", "Da naučimo strane jezike"], answer: "Da prepoznamo lažne vijesti" },
+            { id: 3, question: "Koji je ključan dio medijske pismenosti?", options: ["Brzo tipkanje", "Kritičko razmišljanje", "Lijepo pisanje"], answer: "Kritičko razmišljanje" },
+            { id: 4, question: "Što bismo trebali učiniti prije prihvaćanja informacije kao istinite?", options: ["Odmah je podijeliti s prijateljima", "Provjeriti je u više neovisnih izvora", "Vjerovati joj ako ima puno lajkova"], answer: "Provjeriti je u više neovisnih izvora" },
+          ]
         }
       ],
       translations: [
@@ -965,7 +1254,17 @@ export const data: LanguageData = {
         { id: 507, type: 'sentence', source: 'Teknologins utveckling har förändrat våra liv.', target: 'Razvoj tehnologije promijenio je naše živote.' },
         { id: 508, type: 'sentence', source: 'Det är viktigt att ta ansvar för sina handlingar.', target: 'Važno je preuzeti odgovornost za svoje postupke.' },
         { id: 509, type: 'sentence', source: 'Utbildning är nyckeln till en bättre framtid.', target: 'Obrazovanje je ključ za bolju budućnost.' },
-        { id: 510, type: 'sentence', source: 'Alla medborgare bör ha samma rättigheter och skyldigheter.', target: 'Svi građani trebaju imati ista prava i obveze.' }
+        { id: 510, type: 'sentence', source: 'Alla medborgare bör ha samma rättigheter och skyldigheter.', target: 'Svi građani trebaju imati ista prava i obveze.' },
+        { id: 511, type: 'word', source: 'demokrati', target: 'demokracija' },
+        { id: 512, type: 'word', source: 'grundlag', target: 'ustav' },
+        { id: 513, type: 'word', source: 'mänskliga rättigheter', target: 'ljudska prava' },
+        { id: 514, type: 'word', source: 'kultur', target: 'kultura' },
+        { id: 515, type: 'word', source: 'filosofi', target: 'filozofija' },
+        { id: 516, type: 'sentence', source: 'Demokrati bygger på folkets vilja.', target: 'Demokracija se temelji na volji naroda.' },
+        { id: 517, type: 'sentence', source: 'Filosofi hjälper oss att tänka kritiskt.', target: 'Filozofija nam pomaže da razmišljamo kritički.' },
+        { id: 518, type: 'sentence', source: 'Kulturellt arv är en viktig del av vår identitet.', target: 'Kulturna baština važan je dio našeg identiteta.' },
+        { id: 519, type: 'sentence', source: 'Globaliseringen har både fördelar och nackdelar.', target: 'Globalizacija ima i prednosti i nedostatke.' },
+        { id: 520, type: 'sentence', source: 'Artificiell intelligens utvecklas snabbt.', target: 'Umjetna inteligencija brzo se razvija.' },
       ],
       alphabet: [],
       numbers: [],
