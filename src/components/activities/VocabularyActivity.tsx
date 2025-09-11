@@ -21,9 +21,35 @@ type QuizItem = {
   options: QuizOption[];
 };
 
+const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
+    const isBosnian = language === 'bosnian';
+    const isSerbian = language === 'serbian';
+
+    let title = 'Rječnik';
+    if (isBosnian) title = 'Rječnik';
+    if (isSerbian) title = 'Rečnik';
+
+    return {
+        title: title,
+        noExercises: isSerbian ? 'Nema dostupnih reči za odabrana podešavanja.' : 'Nema dostupnih riječi za odabrane postavke.',
+        newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
+        howToSay: (lang: string) => isSerbian ? `Kako se kaže na ${lang}:` : `Kako se kaže na ${lang}:`,
+        correctToastTitle: 'Tačno!',
+        correctToastDescription: '+10 poena',
+        incorrectToastTitle: 'Netačno!',
+        incorrectToastDescription: 'Više sreće drugi put!',
+        next: 'Dalje',
+        showResults: isSerbian ? 'Prikaži rezultate' : 'Prikaži rezultate',
+        finished: 'Bravo!',
+        correctOutOf: (c: number, t: number) => isSerbian ? `Imali ste ${c} od ${t} tačnih odgovora.` : `Imali ste ${c} od ${t} tačnih odgovora.`,
+        playAgain: isSerbian ? 'Igraj ponovo' : 'Igraj ponovo',
+    };
+}
+
 export function VocabularyActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
+  const s = getStrings(language);
   const [quizItems, setQuizItems] = useState<QuizItem[]>([]);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<QuizOption | null>(null);
@@ -77,13 +103,13 @@ export function VocabularyActivity() {
       setCorrectAnswers((prev) => prev + 1);
       updateScore(10);
       toast({
-        title: 'Tačno!',
-        description: '+10 poena',
+        title: s.correctToastTitle,
+        description: s.correctToastDescription,
       });
     } else {
       toast({
-        title: 'Netačno!',
-        description: 'Više sreće drugi put!',
+        title: s.incorrectToastTitle,
+        description: s.incorrectToastDescription,
         variant: 'destructive',
       });
     }
@@ -115,15 +141,11 @@ export function VocabularyActivity() {
     }
   }
   
-  const getTitle = () => {
-    return 'Rječnik';
-  }
-
   if (!language || !grade || quizItems.length === 0) {
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">Rječnik</h2>
-        <p>Nema dostupnih riječi za odabrane postavke.</p>
+        <h2 className="text-2xl font-headline mb-4">{s.title}</h2>
+        <p>{s.noExercises}</p>
       </div>
     );
   }
@@ -134,7 +156,7 @@ export function VocabularyActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">{getTitle()}</h2>
+        <h2 className="text-3xl font-headline font-bold">{s.title}</h2>
          {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentItemIndex + 1} / {quizItems.length}
@@ -142,7 +164,7 @@ export function VocabularyActivity() {
          )}
         <Button onClick={generateQuiz} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Nove vježbe
+          {s.newExercises}
         </Button>
       </div>
       
@@ -160,7 +182,7 @@ export function VocabularyActivity() {
           <Card className="overflow-hidden">
              <CardContent className="p-6 flex flex-col justify-center items-center bg-muted/50 min-h-[120px]">
               <div className="text-center">
-                <p className="text-muted-foreground">Kako se kaže na {getLanguageDisplayName()}:</p>
+                <p className="text-muted-foreground">{s.howToSay(getLanguageDisplayName())}</p>
                  <div className="flex items-center gap-4">
                     <p className="text-3xl font-bold font-headline text-foreground">{currentQuizItem.item.translation}</p>
                  </div>
@@ -192,7 +214,7 @@ export function VocabularyActivity() {
                   <div className="flex items-center justify-end mt-6">
                     {isAnswered && (
                       <Button onClick={nextQuestion} size="lg">
-                         {currentItemIndex < quizItems.length - 1 ? 'Dalje' : 'Prikaži rezultate'}
+                         {currentItemIndex < quizItems.length - 1 ? s.next : s.showResults}
                       </Button>
                     )}
                   </div>
@@ -202,11 +224,11 @@ export function VocabularyActivity() {
         </AnimatePresence>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">Bravo!</h3>
-            <p className="text-lg mb-6">Imali ste {correctAnswers} od {quizItems.length} tačnih odgovora.</p>
+            <h3 className="text-2xl font-headline mb-4">{s.finished}</h3>
+            <p className="text-lg mb-6">{s.correctOutOf(correctAnswers, quizItems.length)}</p>
             <Button onClick={generateQuiz}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Igraj ponovo
+                {s.playAgain}
             </Button>
         </Card>
       )}

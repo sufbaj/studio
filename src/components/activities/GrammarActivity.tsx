@@ -11,9 +11,33 @@ import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
+const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
+    const isSerbian = language === 'serbian';
+    return {
+        title: isSerbian ? 'Gramatika: Popuni prazninu' : 'Gramatika: Popuni prazninu',
+        noExercises: isSerbian ? 'Nema dostupnih gramatičkih vežbi.' : 'Nema dostupnih gramatičkih vježbi.',
+        newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
+        check: isSerbian ? 'Proveri' : 'Provjeri',
+        correctToastTitle: 'Tačno!',
+        correctToastDescription: 'Sjajno! +15 poena.',
+        incorrectToastTitle: 'Netačno!',
+        incorrectToastDescription: (answer: string) => isSerbian ? `Tačan odgovor je bio "${answer}".` : `Tačan odgovor je bio "${answer}".`,
+        correct: 'Tačno!',
+        incorrect: 'Netačno!',
+        explanation: isSerbian ? 'Objašnjenje' : 'Objašnjenje',
+        nextQuestion: isSerbian ? 'Sledeće pitanje' : 'Sljedeće pitanje',
+        showResults: isSerbian ? 'Prikaži rezultate' : 'Prikaži rezultate',
+        finished: 'Vežba je gotova!',
+        correctOutOf: (c: number, t: number) => isSerbian ? `Imali ste ${c} od ${t} tačnih odgovora.` : `Imali ste ${c} od ${t} tačnih odgovora.`,
+        practiceAgain: isSerbian ? 'Vežbaj ponovo' : 'Vježbaj ponovo',
+    };
+}
+
 export function GrammarActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
+  const s = getStrings(language);
+
   const [exercises, setExercises] = useState<GrammarItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -50,9 +74,9 @@ export function GrammarActivity() {
     if (correct) {
       updateScore(15);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: "Tačno!", description: "Sjajno! +15 poena." });
+      toast({ title: s.correctToastTitle, description: s.correctToastDescription });
     } else {
-      toast({ title: "Netačno!", description: `Tačan odgovor je bio "${exercises[currentExerciseIndex].blank}".`, variant: "destructive" });
+      toast({ title: s.incorrectToastTitle, description: s.incorrectToastDescription(exercises[currentExerciseIndex].blank), variant: "destructive" });
     }
   };
 
@@ -73,8 +97,8 @@ export function GrammarActivity() {
   if (!language || !grade || exercises.length === 0) {
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">Gramatika</h2>
-        <p>Nema dostupnih gramatičkih vježbi.</p>
+        <h2 className="text-2xl font-headline mb-4">{s.title}</h2>
+        <p>{s.noExercises}</p>
       </div>
     );
   }
@@ -84,7 +108,7 @@ export function GrammarActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Gramatika: Popuni prazninu</h2>
+        <h2 className="text-3xl font-headline font-bold">{s.title}</h2>
         {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentExerciseIndex + 1} / {exercises.length}
@@ -92,7 +116,7 @@ export function GrammarActivity() {
          )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Nove vježbe
+          {s.newExercises}
         </Button>
       </div>
       
@@ -134,23 +158,23 @@ export function GrammarActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-6 flex-col gap-4">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">Provjeri</Button>
+              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{s.check}</Button>
             ) : (
               <div className="text-center w-full">
                  {selectedOption === currentExercise.blank ? (
-                    <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> Tačno!</p>
+                    <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> {s.correct}</p>
                  ) : (
-                    <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> Netačno! Tačan odgovor: {currentExercise.blank}</p>
+                    <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> {s.incorrect} {s.incorrectToastDescription(currentExercise.blank)}</p>
                  )}
                 <Alert className="mb-4 text-left">
                   <Lightbulb className="h-4 w-4" />
-                  <AlertTitle>Objašnjenje</AlertTitle>
+                  <AlertTitle>{s.explanation}</AlertTitle>
                   <AlertDescription>
                     {currentExercise.explanation}
                   </AlertDescription>
                 </Alert>
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? 'Sljedeće pitanje' : 'Prikaži rezultate'}
+                    {currentExerciseIndex < exercises.length - 1 ? s.nextQuestion : s.showResults}
                 </Button>
               </div>
             )}
@@ -158,11 +182,11 @@ export function GrammarActivity() {
         </Card>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">Vježba je gotova!</h3>
-            <p className="text-lg mb-6">Imali ste {correctAnswers} od {exercises.length} tačnih odgovora.</p>
+            <h3 className="text-2xl font-headline mb-4">{s.finished}</h3>
+            <p className="text-lg mb-6">{s.correctOutOf(correctAnswers, exercises.length)}</p>
             <Button onClick={generateExercises}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Vježbaj ponovo
+                {s.practiceAgain}
             </Button>
         </Card>
       )}

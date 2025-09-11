@@ -10,9 +10,32 @@ import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 
+const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
+    const isSerbian = language === 'serbian';
+    return {
+        title: 'Pravopis: Popuni prazninu',
+        noExercises: isSerbian ? 'Nema dostupnih vežbi za pravopis.' : 'Nema dostupnih vježbi za pravopis.',
+        newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
+        check: isSerbian ? 'Proveri odgovor' : 'Provjeri odgovor',
+        correctToastTitle: 'Tačno!',
+        correctToastDescription: 'Bravo! +10 poena.',
+        incorrectToastTitle: 'Netačno!',
+        incorrectToastDescription: (answer: string) => isSerbian ? `Tačan odgovor je bio "${answer}".` : `Tačan odgovor je bio "${answer}".`,
+        correct: 'Tačno!',
+        incorrect: 'Netačno!',
+        nextQuestion: isSerbian ? 'Sledeće pitanje' : 'Sljedeće pitanje',
+        showResults: isSerbian ? 'Prikaži rezultate' : 'Prikaži rezultate',
+        finished: 'Sjajno napisano!',
+        correctOutOf: (c: number, t: number) => isSerbian ? `Imali ste ${c} od ${t} tačnih odgovora.` : `Imali ste ${c} od ${t} tačnih odgovora.`,
+        practiceAgain: isSerbian ? 'Uradi vežbu ponovo' : 'Uradi vježbu ponovo',
+    };
+}
+
 export function SpellingActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
+  const s = getStrings(language);
+
   const [exercises, setExercises] = useState<SpellingItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -49,9 +72,9 @@ export function SpellingActivity() {
     if (correct) {
       updateScore(10);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: "Tačno!", description: "Bravo! +10 poena." });
+      toast({ title: s.correctToastTitle, description: s.correctToastDescription });
     } else {
-      toast({ title: "Netačno!", description: `Tačan odgovor je bio "${exercises[currentExerciseIndex].blank}".`, variant: "destructive" });
+      toast({ title: s.incorrectToastTitle, description: s.incorrectToastDescription(exercises[currentExerciseIndex].blank), variant: "destructive" });
     }
   };
 
@@ -72,8 +95,8 @@ export function SpellingActivity() {
   if (!language || !grade || exercises.length === 0) {
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">Pravopis</h2>
-        <p>Nema dostupnih vježbi za pravopis.</p>
+        <h2 className="text-2xl font-headline mb-4">{s.title}</h2>
+        <p>{s.noExercises}</p>
       </div>
     );
   }
@@ -83,7 +106,7 @@ export function SpellingActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Pravopis: Popuni prazninu</h2>
+        <h2 className="text-3xl font-headline font-bold">{s.title}</h2>
          {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentExerciseIndex + 1} / {exercises.length}
@@ -91,7 +114,7 @@ export function SpellingActivity() {
          )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Nove vježbe
+          {s.newExercises}
         </Button>
       </div>
       
@@ -131,16 +154,16 @@ export function SpellingActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-6">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">Provjeri odgovor</Button>
+              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{s.check}</Button>
             ) : (
               <div className="text-center">
                  {selectedOption === currentExercise.blank ? (
-                    <p className="flex items-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> Tačno!</p>
+                    <p className="flex items-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> {s.correct}</p>
                  ) : (
-                    <p className="flex items-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> Netačno! Tačan odgovor: {currentExercise.blank}</p>
+                    <p className="flex items-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> {s.incorrect} {s.incorrectToastDescription(currentExercise.blank)}</p>
                  )}
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? "Sljedeće pitanje" : "Prikaži rezultate"}
+                    {currentExerciseIndex < exercises.length - 1 ? s.nextQuestion : s.showResults}
                 </Button>
               </div>
             )}
@@ -148,11 +171,11 @@ export function SpellingActivity() {
         </Card>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">Sjajno napisano!</h3>
-            <p className="text-lg mb-6">Imali ste {correctAnswers} od {exercises.length} tačnih odgovora.</p>
+            <h3 className="text-2xl font-headline mb-4">{s.finished}</h3>
+            <p className="text-lg mb-6">{s.correctOutOf(correctAnswers, exercises.length)}</p>
             <Button onClick={generateExercises}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Uradi vježbu ponovo
+                {s.practiceAgain}
             </Button>
         </Card>
       )}

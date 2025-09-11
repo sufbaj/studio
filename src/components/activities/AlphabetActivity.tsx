@@ -5,8 +5,20 @@ import { data } from '@/lib/data';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
 
+const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
+    const isSerbian = language === 'serbian';
+    return {
+        title: isSerbian ? 'Alfabet (latinica)' : 'Alfabet (latinsko pismo)',
+        description: isSerbian
+            ? 'Ovde je pregled slova azbuke, zajedno sa primerima reči i slika.'
+            : 'Ovdje je pregled slova abecede, zajedno s primjerima riječi i slika.',
+    };
+}
+
+
 export function AlphabetActivity() {
   const { language, grade } = useAppContext();
+  const s = getStrings(language);
 
   const alphabet = (language && grade && data[language][grade].alphabet) || [];
 
@@ -16,9 +28,9 @@ export function AlphabetActivity() {
 
   return (
     <div>
-      <h2 className="text-3xl font-headline font-bold mb-4">Alfabet (latinsko pismo)</h2>
+      <h2 className="text-3xl font-headline font-bold mb-4">{s.title}</h2>
       <p className="text-muted-foreground mb-6">
-        Ovdje je pregled slova abecede, zajedno s primjerima riječi i slika.
+        {s.description}
       </p>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

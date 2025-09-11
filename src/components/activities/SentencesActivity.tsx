@@ -16,9 +16,33 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
+const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
+    const isSerbian = language === 'serbian';
+    return {
+        title: isSerbian ? 'Sastavi rečenicu' : 'Sastavi rečenicu',
+        description: isSerbian ? 'Postavi reči u pravilan redosled.' : 'Postavi riječi u pravilan redoslijed.',
+        noExercises: isSerbian ? 'Nema dostupnih vežbi.' : 'Nema dostupnih vježbi.',
+        newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
+        check: isSerbian ? 'Proveri' : 'Provjeri',
+        correctToastTitle: 'Tačno!',
+        correctToastDescription: 'Sjajno! +20 poena.',
+        incorrectToastTitle: 'Netačno!',
+        incorrectToastDescription: (answer: string) => isSerbian ? `Tačna rečenica je: "${answer}"` : `Tačna rečenica je: "${answer}"`,
+        correct: 'Tačno!',
+        incorrect: 'Netačno!',
+        nextSentence: isSerbian ? 'Sledeća rečenica' : 'Sljedeća rečenica',
+        showResults: isSerbian ? 'Prikaži rezultate' : 'Prikaži rezultate',
+        finished: 'Vežba je gotova!',
+        correctlyAssembled: (c: number, t: number) => isSerbian ? `Tačno ste sastavili ${c} od ${t} rečenica.` : `Tačno ste sastavili ${c} od ${t} rečenica.`,
+        practiceAgain: isSerbian ? 'Vežbaj ponovo' : 'Vježbaj ponovo',
+        dropHere: isSerbian ? 'Postavi reči ovde' : 'Postavi riječi ovdje',
+    };
+}
+
 export function SentencesActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
+  const s = getStrings(language);
 
   const [exercises, setExercises] = useState<SentenceItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -77,9 +101,9 @@ export function SentencesActivity() {
     if (correct) {
       updateScore(20);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: "Tačno!", description: "Sjajno! +20 poena." });
+      toast({ title: s.correctToastTitle, description: s.correctToastDescription });
     } else {
-      toast({ title: "Netačno!", description: `Tačan odgovor je: "${currentExercise.sentence}"`, variant: "destructive" });
+      toast({ title: s.incorrectToastTitle, description: s.incorrectToastDescription(currentExercise.sentence), variant: "destructive" });
     }
   };
 
@@ -96,8 +120,8 @@ export function SentencesActivity() {
   if (!language || !grade || exercises.length === 0) {
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">Sastavljanje rečenica</h2>
-        <p>Nema dostupnih vježbi.</p>
+        <h2 className="text-2xl font-headline mb-4">{s.title}</h2>
+        <p>{s.noExercises}</p>
       </div>
     );
   }
@@ -107,7 +131,7 @@ export function SentencesActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Sastavi rečenicu</h2>
+        <h2 className="text-3xl font-headline font-bold">{s.title}</h2>
         {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentExerciseIndex + 1} / {exercises.length}
@@ -115,7 +139,7 @@ export function SentencesActivity() {
          )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Nove vježbe
+          {s.newExercises}
         </Button>
       </div>
       
@@ -125,7 +149,7 @@ export function SentencesActivity() {
         <Card>
           <CardHeader>
             <CardTitle className="text-center text-lg md:text-xl text-muted-foreground">
-              Postavi riječi u pravilan redoslijed.
+              {s.description}
             </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-4 items-center">
@@ -148,7 +172,7 @@ export function SentencesActivity() {
                  </motion.div>
               ))}
                {answerWords.length === 0 && (
-                <p className="text-muted-foreground">Postavi riječi ovdje</p>
+                <p className="text-muted-foreground">{s.dropHere}</p>
                )}
             </div>
             
@@ -171,21 +195,21 @@ export function SentencesActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-6 flex-col gap-4">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={wordBank.length > 0} size="lg">Provjeri</Button>
+              <Button onClick={checkAnswer} disabled={wordBank.length > 0} size="lg">{s.check}</Button>
             ) : (
               <>
                  {isCorrect ? (
                     <div className="flex items-center gap-4">
-                        <p className="flex items-center gap-2 text-green-600 text-xl font-bold"><CheckCircle /> Tačno!</p>
+                        <p className="flex items-center gap-2 text-green-600 text-xl font-bold"><CheckCircle /> {s.correct}</p>
                     </div>
                  ) : (
                     <div className="text-center">
-                        <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold"><XCircle /> Netačno!</p>
-                        <p className="text-muted-foreground mt-1">Tačna rečenica je: "{currentExercise.sentence}"</p>
+                        <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold"><XCircle /> {s.incorrect}</p>
+                        <p className="text-muted-foreground mt-1">{s.incorrectToastDescription(currentExercise.sentence)}</p>
                     </div>
                  )}
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? 'Sljedeća rečenica' : 'Prikaži rezultate'}
+                    {currentExerciseIndex < exercises.length - 1 ? s.nextSentence : s.showResults}
                 </Button>
               </>
             )}
@@ -193,11 +217,11 @@ export function SentencesActivity() {
         </Card>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">Vježba je gotova!</h3>
-            <p className="text-lg mb-6">Tačno ste sastavili {correctAnswers} od {exercises.length} rečenica.</p>
+            <h3 className="text-2xl font-headline mb-4">{s.finished}</h3>
+            <p className="text-lg mb-6">{s.correctlyAssembled(correctAnswers, exercises.length)}</p>
             <Button onClick={generateExercises}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Vježbaj ponovo
+                {s.practiceAgain}
             </Button>
         </Card>
       )}
