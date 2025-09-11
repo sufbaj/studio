@@ -44,6 +44,7 @@ const navItems = [
   { href: 'grammar', icon: SpellCheck, label: 'Gramatika' },
   { href: 'spelling', icon: FileText, label: 'Pravopis' },
   { href: 'reading', icon: BookOpen, label: 'Čitanje' },
+  { href: 'translation', icon: Languages, label: 'Prevođenje' },
 ];
 
 const toolItems = [
