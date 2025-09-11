@@ -36,8 +36,8 @@ export function AiReviewActivity() {
       setReview(null);
        if (sourceText.length > MAX_CHARS) {
         toast({
-            title: 'Previše teksta',
-            description: `Tekst ne smije sadržavati više od ${MAX_CHARS} znakova.`,
+            title: 'För mycket text',
+            description: `Texten får inte innehålla mer än ${MAX_CHARS} tecken.`,
             variant: 'destructive',
         });
        }
@@ -54,7 +54,7 @@ export function AiReviewActivity() {
 
       if (result.error) {
         toast({
-          title: 'Došlo je do greške',
+          title: 'Ett fel uppstod',
           description: result.error,
           variant: 'destructive',
         });
@@ -65,8 +65,8 @@ export function AiReviewActivity() {
     } catch (error) {
       console.error(error);
       toast({
-        title: 'Neočekivana greška',
-        description: 'Povezivanje s AI nije uspjelo. Pokušajte ponovo kasnije.',
+        title: 'Oväntat fel',
+        description: 'Anslutningen till AI misslyckades. Försök igen senare.',
         variant: 'destructive',
       });
       setReview(null);
@@ -87,19 +87,19 @@ export function AiReviewActivity() {
 
   return (
     <div>
-      <h2 className="text-3xl font-headline font-bold mb-4">AI Lektor</h2>
+      <h2 className="text-3xl font-headline font-bold mb-4">AI-granskare</h2>
       <p className="text-muted-foreground mb-6">
-        Napišite tekst na švedskom ili na nekom od BHS jezika i dobijte trenutnu povratnu informaciju i prijevod od AI.
-        Tekst možete poslati kombinacijom tipki <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Cmd/Ctrl</kbd> + <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd>.
+        Skriv en text på svenska eller BKS-språken och få omedelbar feedback och översättning från AI.
+        Du kan skicka texten med kortkommandot <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Cmd/Ctrl</kbd> + <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd>.
       </p>
 
       <Card>
         <CardHeader>
-          <CardTitle>Napišite svoj tekst ovdje</CardTitle>
+          <CardTitle>Skriv din text här</CardTitle>
         </CardHeader>
         <CardContent>
           <Textarea
-            placeholder="Napišite nekoliko rečenica..."
+            placeholder="Skriv några meningar..."
             value={sourceText}
             onChange={(e) => setSourceText(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -113,7 +113,7 @@ export function AiReviewActivity() {
         <CardFooter className="flex-col items-start gap-4">
           <Button onClick={handleReview} disabled={isLoading || !sourceText.trim() || isOverLimit}>
             {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Bot className="mr-2 h-4 w-4" />}
-            Lektoriši tekst
+            Granska text
           </Button>
         </CardFooter>
       </Card>
@@ -122,7 +122,7 @@ export function AiReviewActivity() {
         <Card className="mt-6">
           <CardContent className="p-6 flex flex-col items-center justify-center gap-4 text-muted-foreground">
             <Loader2 className="h-8 w-8 animate-spin" />
-            <p>AI analizira vaš tekst...</p>
+            <p>AI analyserar din text...</p>
           </CardContent>
         </Card>
       )}
@@ -130,13 +130,13 @@ export function AiReviewActivity() {
       {review && (
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>Rezultati analize</CardTitle>
-            <CardDescription>Ovdje su prijevod i povratne informacije za vaš tekst.</CardDescription>
+            <CardTitle>Analysresultat</CardTitle>
+            <CardDescription>Här är översättningen och feedbacken för din text.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
-                <Languages className="w-5 h-5 text-primary" /> Prijevod
+                <Languages className="w-5 h-5 text-primary" /> Översättning
               </h3>
               <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.translation}</p>
             </div>
@@ -145,7 +145,7 @@ export function AiReviewActivity() {
 
             <div>
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
-                <Pilcrow className="w-5 h-5 text-primary" /> Ispravljeni tekst
+                <Pilcrow className="w-5 h-5 text-primary" /> Korrigerad text
               </h3>
               <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.correctedText}</p>
             </div>
@@ -154,7 +154,7 @@ export function AiReviewActivity() {
 
             <div>
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
-                <Check className="w-5 h-5 text-primary" /> Povratne informacije
+                <Check className="w-5 h-5 text-primary" /> Feedback
               </h3>
               <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.feedback}</p>
             </div>

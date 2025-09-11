@@ -16,9 +16,9 @@ export function AlphabetActivity() {
 
   return (
     <div>
-      <h2 className="text-3xl font-headline font-bold mb-4">Latinica</h2>
+      <h2 className="text-3xl font-headline font-bold mb-4">Alfabet (latinskt)</h2>
       <p className="text-muted-foreground mb-6">
-        Pregledajte slova abecede, zajedno s primjerima riječi i slika.
+        Se en översikt över alfabetets bokstäver, tillsammans med exempelord och bilder.
       </p>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

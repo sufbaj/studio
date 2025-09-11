@@ -24,62 +24,30 @@ interface ReadingActivityStrings {
   correctAnswersOutOf: (correct: number, total: number) => string;
   practiceAgain: string;
   noExercises: string;
-  correctToast: string;
-  incorrectToast: (answer: string) => string;
+  correctToastTitle: string;
+  correctToastDescription: string;
+  incorrectToastTitle: string;
+  incorrectToastDescription: (answer: string) => string;
 }
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null): ReadingActivityStrings => {
-  switch (language) {
-    case 'serbian':
-      return {
-        title: 'Razumevanje pročitanog',
-        question: 'Pitanje',
-        of: 'od',
-        newExercises: 'Nove vežbe',
-        checkAnswer: 'Proveri odgovor',
-        nextQuestion: 'Sledeće pitanje',
-        seeResults: 'Vidi rezultate',
-        exerciseFinished: 'Vežba završena!',
-        correctAnswersOutOf: (c, t) => `Imali ste ${c} od ${t} tačnih odgovora.`,
-        practiceAgain: 'Vežbaj ponovo',
-        noExercises: 'Nema dostupnih vežbi.',
-        correctToast: 'Tačno! Sjajno! +15 poena.',
-        incorrectToast: (a) => `Netačno! Tačan odgovor je "${a}".`,
-      };
-    case 'croatian':
-      return {
-        title: 'Razumijevanje pročitanog',
-        question: 'Pitanje',
-        of: 'od',
-        newExercises: 'Nove vježbe',
-        checkAnswer: 'Provjeri odgovor',
-        nextQuestion: 'Sljedeće pitanje',
-        seeResults: 'Vidi rezultate',
-        exerciseFinished: 'Vježba završena!',
-        correctAnswersOutOf: (c, t) => `Imali ste ${c} od ${t} točnih odgovora.`,
-        practiceAgain: 'Vježbaj ponovno',
-        noExercises: 'Nema dostupnih vježbi.',
-        correctToast: 'Točno! Sjajno! +15 bodova.',
-        incorrectToast: (a) => `Netočno! Točan odgovor je "${a}".`,
-      };
-    case 'bosnian':
-    default:
-      return {
-        title: 'Razumijevanje pročitanog',
-        question: 'Pitanje',
-        of: 'od',
-        newExercises: 'Nove vježbe',
-        checkAnswer: 'Provjeri odgovor',
-        nextQuestion: 'Sljedeće pitanje',
-        seeResults: 'Vidi rezultate',
-        exerciseFinished: 'Vježba završena!',
-        correctAnswersOutOf: (c, t) => `Imali ste ${c} od ${t} tačnih odgovora.`,
-        practiceAgain: 'Vježbaj ponovo',
-        noExercises: 'Nema dostupnih vježbi.',
-        correctToast: 'Tačno! Sjajno! +15 poena.',
-        incorrectToast: (a) => `Netačno! Tačan odgovor je "${a}".`,
-      };
-  }
+    return {
+      title: 'Läsförståelse',
+      question: 'Fråga',
+      of: 'av',
+      newExercises: 'Nya övningar',
+      checkAnswer: 'Kontrollera svar',
+      nextQuestion: 'Nästa fråga',
+      seeResults: 'Visa resultat',
+      exerciseFinished: 'Övningen är klar!',
+      correctAnswersOutOf: (c, t) => `Du hade ${c} av ${t} rätta svar.`,
+      practiceAgain: 'Öva igen',
+      noExercises: 'Inga övningar tillgängliga.',
+      correctToastTitle: 'Rätt!',
+      correctToastDescription: 'Snyggt! +15 poäng.',
+      incorrectToastTitle: 'Fel!',
+      incorrectToastDescription: (a) => `Rätt svar var "${a}".`,
+    };
 }
 
 export function ReadingActivity() {
@@ -139,9 +107,9 @@ export function ReadingActivity() {
     if (correct) {
       updateScore(15);
       setTotalCorrectAnswers(prev => prev + 1);
-      toast({ title: s.correctToast.split('!')[0], description: s.correctToast.split('!')[1] });
+      toast({ title: s.correctToastTitle, description: s.correctToastDescription });
     } else {
-      toast({ title: "Netačno!", description: s.incorrectToast(currentQuestion.answer), variant: "destructive" });
+      toast({ title: s.incorrectToastTitle, description: s.incorrectToastDescription(currentQuestion.answer), variant: "destructive" });
     }
   };
 

@@ -77,13 +77,13 @@ export function VocabularyActivity() {
       setCorrectAnswers((prev) => prev + 1);
       updateScore(10);
       toast({
-        title: 'Tačno!',
-        description: '+10 poena',
+        title: 'Rätt!',
+        description: '+10 poäng',
       });
     } else {
       toast({
-        title: 'Netačno!',
-        description: 'Više sreće sljedeći put!',
+        title: 'Fel!',
+        description: 'Bättre lycka nästa gång!',
         variant: 'destructive',
       });
     }
@@ -105,26 +105,25 @@ export function VocabularyActivity() {
     if (!language) return '';
     switch (language) {
       case 'bosnian':
-        return 'bosanskom';
+        return 'bosniska';
       case 'croatian':
-        return 'hrvatskom';
+        return 'kroatiska';
       case 'serbian':
-        return 'srpskom';
+        return 'serbiska';
       default:
         return '';
     }
   }
   
   const getTitle = () => {
-    if (!language) return 'Rječnik';
-    return language === 'serbian' ? 'Rečnik' : 'Rječnik';
+    return 'Ordförråd';
   }
 
   if (!language || !grade || quizItems.length === 0) {
     return (
       <div className="text-center">
         <h2 className="text-2xl font-headline mb-4">Ordförråd</h2>
-        <p>Nema dostupnih riječi za odabrane postavke.</p>
+        <p>Inga ord tillgängliga för de valda inställningarna.</p>
       </div>
     );
   }
@@ -143,7 +142,7 @@ export function VocabularyActivity() {
          )}
         <Button onClick={generateQuiz} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
+          Nya övningar
         </Button>
       </div>
       
@@ -161,7 +160,7 @@ export function VocabularyActivity() {
           <Card className="overflow-hidden">
              <CardContent className="p-6 flex flex-col justify-center items-center bg-muted/50 min-h-[120px]">
               <div className="text-center">
-                <p className="text-muted-foreground">Kako se na {getLanguageDisplayName()} kaže:</p>
+                <p className="text-muted-foreground">Vad heter följande på {getLanguageDisplayName()}:</p>
                  <div className="flex items-center gap-4">
                     <p className="text-3xl font-bold font-headline text-foreground">{currentQuizItem.item.translation}</p>
                  </div>
@@ -193,7 +192,7 @@ export function VocabularyActivity() {
                   <div className="flex items-center justify-end mt-6">
                     {isAnswered && (
                       <Button onClick={nextQuestion} size="lg">
-                         {currentItemIndex < quizItems.length - 1 ? (language === 'serbian' ? 'Sledeće' : 'Sljedeće') : 'Vidi rezultate'}
+                         {currentItemIndex < quizItems.length - 1 ? 'Nästa' : 'Visa resultat'}
                       </Button>
                     )}
                   </div>
@@ -204,10 +203,10 @@ export function VocabularyActivity() {
       ) : (
         <Card className="text-center p-8">
             <h3 className="text-2xl font-headline mb-4">Bravo!</h3>
-            <p className="text-lg mb-6">Imali ste {correctAnswers} od {quizItems.length} tačnih odgovora.</p>
+            <p className="text-lg mb-6">Du hade {correctAnswers} av {quizItems.length} rätta svar.</p>
             <Button onClick={generateQuiz}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Igraj ponovo
+                Spela igen
             </Button>
         </Card>
       )}

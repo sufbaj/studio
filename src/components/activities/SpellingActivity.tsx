@@ -49,7 +49,7 @@ export function SpellingActivity() {
     if (correct) {
       updateScore(10);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: "Korrekt!", description: "Bra jobbat! +10 poäng." });
+      toast({ title: "Rätt!", description: "Bra jobbat! +10 poäng." });
     } else {
       toast({ title: "Fel!", description: `Rätt svar var "${exercises[currentExerciseIndex].blank}".`, variant: "destructive" });
     }
@@ -72,7 +72,7 @@ export function SpellingActivity() {
   if (!language || !grade || exercises.length === 0) {
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">Stavning</h2>
+        <h2 className="text-2xl font-headline mb-4">Rättstavning</h2>
         <p>Inga stavningsövningar tillgängliga.</p>
       </div>
     );
@@ -83,7 +83,7 @@ export function SpellingActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Stavning: Fyll i luckan</h2>
+        <h2 className="text-3xl font-headline font-bold">Rättstavning: Fyll i luckan</h2>
          {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentExerciseIndex + 1} / {exercises.length}
@@ -91,7 +91,7 @@ export function SpellingActivity() {
          )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
+          Nya övningar
         </Button>
       </div>
       
@@ -148,7 +148,7 @@ export function SpellingActivity() {
         </Card>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">Bra stavat!</h3>
+            <h3 className="text-2xl font-headline mb-4">Snyggt stavat!</h3>
             <p className="text-lg mb-6">Du fick {correctAnswers} av {exercises.length} rätt.</p>
             <Button onClick={generateExercises}>
                 <RefreshCw className="w-4 h-4 mr-2" />

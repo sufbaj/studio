@@ -50,9 +50,9 @@ export function GrammarActivity() {
     if (correct) {
       updateScore(15);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: "Tačno!", description: "Sjajno! +15 poena." });
+      toast({ title: "Rätt!", description: "Snyggt! +15 poäng." });
     } else {
-      toast({ title: "Netačno!", description: `Tačan odgovor je "${exercises[currentExerciseIndex].blank}".`, variant: "destructive" });
+      toast({ title: "Fel!", description: `Rätt svar var "${exercises[currentExerciseIndex].blank}".`, variant: "destructive" });
     }
   };
 
@@ -73,8 +73,8 @@ export function GrammarActivity() {
   if (!language || !grade || exercises.length === 0) {
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">Gramatika</h2>
-        <p>Nema dostupnih gramatičkih vježbi.</p>
+        <h2 className="text-2xl font-headline mb-4">Grammatik</h2>
+        <p>Det finns inga grammatikövningar tillgängliga.</p>
       </div>
     );
   }
@@ -84,7 +84,7 @@ export function GrammarActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Gramatika: Popuni prazninu</h2>
+        <h2 className="text-3xl font-headline font-bold">Grammatik: Fyll i luckan</h2>
         {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentExerciseIndex + 1} / {exercises.length}
@@ -92,7 +92,7 @@ export function GrammarActivity() {
          )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          {language === 'serbian' ? 'Nove vežbe' : 'Nove vježbe'}
+          Nya övningar
         </Button>
       </div>
       
@@ -134,23 +134,23 @@ export function GrammarActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-6 flex-col gap-4">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{language === 'serbian' ? 'Proveri' : 'Provjeri'}</Button>
+              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">Kontrollera</Button>
             ) : (
               <div className="text-center w-full">
                  {selectedOption === currentExercise.blank ? (
-                    <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> Tačno!</p>
+                    <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> Rätt!</p>
                  ) : (
-                    <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> Netačno! Tačan odgovor: {currentExercise.blank}</p>
+                    <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> Fel! Rätt svar: {currentExercise.blank}</p>
                  )}
                 <Alert className="mb-4 text-left">
                   <Lightbulb className="h-4 w-4" />
-                  <AlertTitle>Objašnjenje</AlertTitle>
+                  <AlertTitle>Förklaring</AlertTitle>
                   <AlertDescription>
                     {currentExercise.explanation}
                   </AlertDescription>
                 </Alert>
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? (language === 'serbian' ? 'Sledeće pitanje' : 'Sljedeće pitanje') : 'Vidi rezultate'}
+                    {currentExerciseIndex < exercises.length - 1 ? 'Nästa fråga' : 'Visa resultat'}
                 </Button>
               </div>
             )}
@@ -158,11 +158,11 @@ export function GrammarActivity() {
         </Card>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">Vježba završena!</h3>
-            <p className="text-lg mb-6">Imali ste {correctAnswers} od {exercises.length} tačnih odgovora.</p>
+            <h3 className="text-2xl font-headline mb-4">Övningen är klar!</h3>
+            <p className="text-lg mb-6">Du hade {correctAnswers} av {exercises.length} rätta svar.</p>
             <Button onClick={generateExercises}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Vježbaj ponovo
+                Öva igen
             </Button>
         </Card>
       )}

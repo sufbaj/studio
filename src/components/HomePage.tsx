@@ -10,15 +10,15 @@ import { cn } from '@/lib/utils';
 import type { Grade, Language } from '@/lib/types';
 
 const grades: { id: Grade; label: string }[] = [
-  { id: '1-3', label: '1-3. razred' },
-  { id: '4-6', label: '4-6. razred' },
-  { id: '7-9', label: '7-9. razred' },
+  { id: '1-3', label: 'Årskurs 1-3' },
+  { id: '4-6', label: 'Årskurs 4-6' },
+  { id: '7-9', label: 'Årskurs 7-9' },
 ];
 
 const languages: { id: Language; label: string }[] = [
-  { id: 'bosnian', label: 'Bosanski' },
-  { id: 'croatian', label: 'Hrvatski' },
-  { id: 'serbian', label: 'Srpski' },
+  { id: 'bosnian', label: 'Bosniska' },
+  { id: 'croatian', label: 'Kroatiska' },
+  { id: 'serbian', label: 'Serbiska' },
 ];
 
 export function HomePage() {
@@ -68,14 +68,14 @@ export function HomePage() {
           <Logo className="h-12 w-12 text-primary" />
           <h1 className="text-5xl font-headline font-bold tracking-tight text-gray-800 dark:text-gray-100">LinguAIbks</h1>
         </div>
-        <p className="text-xl text-muted-foreground">Moderna platforma za učenje bosanskog, hrvatskog i srpskog jezika.</p>
+        <p className="text-xl text-muted-foreground">En modern plattform för att lära sig bosniska, kroatiska och serbiska.</p>
       </div>
 
       <div className="w-full max-w-4xl">
         <AnimatePresence mode="wait">
           {step === 'grade' && (
             <motion.div key="grade" initial="hidden" animate="visible" exit="exit">
-              <h2 className="text-3xl font-headline font-semibold text-center mb-8 text-gray-700 dark:text-gray-200">Prvo izaberi svoj razred</h2>
+              <h2 className="text-3xl font-headline font-semibold text-center mb-8 text-gray-700 dark:text-gray-200">Välj först din årskurs</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {grades.map((grade, i) => (
                   <motion.div key={grade.id} custom={i} variants={cardVariants}>
@@ -95,7 +95,7 @@ export function HomePage() {
 
           {step === 'language' && (
             <motion.div key="language" initial="hidden" animate="visible" exit="exit">
-               <h2 className="text-3xl font-headline font-semibold text-center mb-8 text-gray-700 dark:text-gray-200">Koji jezik želiš vježbati?</h2>
+               <h2 className="text-3xl font-headline font-semibold text-center mb-8 text-gray-700 dark:text-gray-200">Vilket språk vill du öva på?</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {languages.map((lang, i) => (
                   <motion.div key={lang.id} custom={i} variants={cardVariants}>
@@ -127,7 +127,7 @@ export function HomePage() {
             exit={{ opacity: 0, y: 20 }}
         >
           <Button variant="outline" size="lg" onClick={handleBack} className="bg-white/80">
-            Nazad
+            Tillbaka
           </Button>
           <Button 
             size="lg"
@@ -135,7 +135,7 @@ export function HomePage() {
             disabled={!selectedLanguage}
             className="bg-primary hover:bg-primary/90 shadow-lg"
           >
-            Započni vježbe
+            Starta övningar
           </Button>
         </motion.div>
       )}

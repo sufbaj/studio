@@ -34,69 +34,25 @@ interface TranslationActivityStrings {
 
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null): TranslationActivityStrings => {
-    switch (language) {
-      case 'serbian':
-        return {
-          title: 'Švedski na maternji jezik',
-          noExercises: 'Nema dostupnih vežbi za prevođenje.',
-          newExercises: 'Nove vežbe',
-          translateWord: (lang) => `Prevedi sledeću reč na ${lang}:`,
-          translateSentence: (lang) => `Prevedi sledeću rečenicu na ${lang}:`,
-          enterTranslation: 'Unesi prevod...',
-          check: 'Proveri',
-          correct: 'Tačno!',
-          greatJob: 'Sjajno!',
-          incorrect: 'Netačno!',
-          correctAnswerIs: 'Tačan odgovor je:',
-          nextWord: 'Sledeća reč',
-          nextSentence: 'Sledeća rečenica',
-          seeResults: 'Vidi rezultate',
-          exerciseFinished: 'Vežba završena!',
-          correctTranslationsOutOf: (c, t) => `Imali ste ${c} od ${t} tačnih prevoda.`,
-          practiceAgain: 'Vežbaj ponovo',
-        };
-      case 'croatian':
-        return {
-          title: 'Švedski na materinski jezik',
-          noExercises: 'Nema dostupnih vježbi za prevođenje.',
-          newExercises: 'Nove vježbe',
-          translateWord: (lang) => `Prevedi sljedeću riječ na ${lang}:`,
-          translateSentence: (lang) => `Prevedi sljedeću rečenicu na ${lang}:`,
-          enterTranslation: 'Unesi prijevod...',
-          check: 'Provjeri',
-          correct: 'Točno!',
-          greatJob: 'Sjajno!',
-          incorrect: 'Netočno!',
-          correctAnswerIs: 'Točan odgovor je:',
-          nextWord: 'Sljedeća riječ',
-          nextSentence: 'Sljedeća rečenica',
-          seeResults: 'Vidi rezultate',
-          exerciseFinished: 'Vježba završena!',
-          correctTranslationsOutOf: (c, t) => `Imali ste ${c} od ${t} točnih prijevoda.`,
-          practiceAgain: 'Vježbaj ponovno',
-        };
-      case 'bosnian':
-      default:
-        return {
-          title: 'Švedski na bosanski jezik',
-          noExercises: 'Nema dostupnih vježbi za prevođenje.',
-          newExercises: 'Nove vježbe',
-          translateWord: (lang) => `Prevedi sljedeću riječ na ${lang}:`,
-          translateSentence: (lang) => `Prevedi sljedeću rečenicu na ${lang}:`,
-          enterTranslation: 'Unesi prijevod...',
-          check: 'Provjeri',
-          correct: 'Tačno!',
-          greatJob: 'Sjajno!',
-          incorrect: 'Netačno!',
-          correctAnswerIs: 'Tačan odgovor je:',
-          nextWord: 'Sljedeća riječ',
-          nextSentence: 'Sljedeća rečenica',
-          seeResults: 'Vidi rezultate',
-          exerciseFinished: 'Vježba završena!',
-          correctTranslationsOutOf: (c, t) => `Imali ste ${c} od ${t} tačnih prijevoda.`,
-          practiceAgain: 'Vježbaj ponovo',
-        };
-    }
+    return {
+      title: 'Svenska till modersmål',
+      noExercises: 'Inga översättningsövningar tillgängliga.',
+      newExercises: 'Nya övningar',
+      translateWord: (lang) => `Översätt följande ord till ${lang}:`,
+      translateSentence: (lang) => `Översätt följande mening till ${lang}:`,
+      enterTranslation: 'Skriv in översättning...',
+      check: 'Kontrollera',
+      correct: 'Rätt!',
+      greatJob: 'Snyggt!',
+      incorrect: 'Fel!',
+      correctAnswerIs: 'Rätt svar är:',
+      nextWord: 'Nästa ord',
+      nextSentence: 'Nästa mening',
+      seeResults: 'Visa resultat',
+      exerciseFinished: 'Övningen är klar!',
+      correctTranslationsOutOf: (c, t) => `Du hade ${c} av ${t} rätta översättningar.`,
+      practiceAgain: 'Öva igen',
+    };
   }
 
 export function TranslationActivity() {
@@ -139,11 +95,11 @@ export function TranslationActivity() {
     if (!language) return '';
     switch (language) {
       case 'bosnian':
-        return 'bosanski';
+        return 'bosniska';
       case 'croatian':
-        return 'hrvatski';
+        return 'kroatiska';
       case 'serbian':
-        return 'srpski';
+        return 'serbiska';
       default:
         return '';
     }
@@ -161,7 +117,7 @@ export function TranslationActivity() {
       const points = currentExercise.type === 'sentence' ? 20 : 10;
       updateScore(points);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: s.correct, description: `${s.greatJob} +${points} poena.` });
+      toast({ title: s.correct, description: `${s.greatJob} +${points} poäng.` });
     } else {
       toast({ title: s.incorrect, description: `${s.correctAnswerIs} "${currentExercise.target}".`, variant: "destructive" });
     }

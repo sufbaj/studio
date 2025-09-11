@@ -45,9 +45,9 @@ export function TranslatorActivity() {
   const getLanguageDisplayName = (lang: LanguageOption) => {
     switch (lang) {
       case 'Swedish': return 'Svenska';
-      case 'Bosnian': return 'Bosanski';
-      case 'Croatian': return 'Hrvatski';
-      case 'Serbian': return 'Srpski';
+      case 'Bosnian': return 'Bosniska';
+      case 'Croatian': return 'Kroatiska';
+      case 'Serbian': return 'Serbiska';
     }
   }
 
@@ -73,7 +73,7 @@ export function TranslatorActivity() {
       if (result.error) {
         setError(result.error);
         toast({
-          title: 'Došlo je do greške',
+          title: 'Ett fel uppstod',
           description: result.error,
           variant: 'destructive',
         });
@@ -81,11 +81,11 @@ export function TranslatorActivity() {
         setTranslatedText(result.translation);
       }
     } catch (err) {
-      const errorMessage = 'Povezivanje s AI nije uspjelo. Pokušajte ponovo kasnije.';
+      const errorMessage = 'Anslutningen till AI misslyckades. Försök igen senare.';
       setError(errorMessage);
       console.error(err);
       toast({
-        title: 'Neočekivana greška',
+        title: 'Oväntat fel',
         description: errorMessage,
         variant: 'destructive',
       });
@@ -121,9 +121,9 @@ export function TranslatorActivity() {
 
   return (
     <div>
-      <h2 className="text-3xl font-headline font-bold mb-4">Prevoditelj</h2>
+      <h2 className="text-3xl font-headline font-bold mb-4">Översättare</h2>
       <p className="text-muted-foreground mb-6">
-        Koristite ovaj alat za brzo prevođenje riječi i rečenica. Pošaljite tekst s <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Cmd/Ctrl</kbd> + <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd>.
+        Använd detta verktyg för att snabbt översätta ord och meningar. Skicka texten med <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Cmd/Ctrl</kbd> + <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd>.
       </p>
 
       <Card>
@@ -131,8 +131,8 @@ export function TranslatorActivity() {
           <div className="flex items-center gap-4">
             <Languages className="w-8 h-8 text-primary" />
             <div>
-                <CardTitle>AI Prevoditelj</CardTitle>
-                <CardDescription>Prevodite između jezika: {getLanguageDisplayName(sourceLang)} i {getLanguageDisplayName(targetLang)}</CardDescription>
+                <CardTitle>AI-översättare</CardTitle>
+                <CardDescription>Översätt mellan språken: {getLanguageDisplayName(sourceLang)} och {getLanguageDisplayName(targetLang)}</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -141,7 +141,7 @@ export function TranslatorActivity() {
             <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(sourceLang)}</label>
                 <Textarea
-                    placeholder={`Napišite tekst na jeziku: ${getLanguageDisplayName(sourceLang)}...`}
+                    placeholder={`Skriv text på ${getLanguageDisplayName(sourceLang)}...`}
                     value={sourceText}
                     onChange={(e) => setSourceText(e.target.value)}
                     onKeyDown={handleKeyDown}
@@ -153,7 +153,7 @@ export function TranslatorActivity() {
                 <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(targetLang)}</label>
                 <div className="relative">
                 <Textarea
-                    placeholder={isLoading ? "Prevođenje..." : "Prijevod..."}
+                    placeholder={isLoading ? "Översätter..." : "Översättning..."}
                     value={translatedText}
                     readOnly
                     rows={6}
@@ -165,14 +165,14 @@ export function TranslatorActivity() {
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 my-4 md:my-0">
                 <Button variant="outline" size="icon" onClick={handleSwitchLanguages} disabled={isLoading}>
                     <ArrowRightLeft className="w-5 h-5" />
-                    <span className="sr-only">Promijeni jezike</span>
+                    <span className="sr-only">Byt språk</span>
                 </Button>
             </div>
           </div>
 
            {error && (
              <Alert variant="destructive" className="mt-4">
-                <AlertTitle>Greška pri prevođenju</AlertTitle>
+                <AlertTitle>Översättningsfel</AlertTitle>
                 <AlertDescription>{error}</AlertDescription>
              </Alert>
            )}
@@ -181,7 +181,7 @@ export function TranslatorActivity() {
         <CardFooter className="flex-col items-start gap-4 border-t pt-6">
             {showGenderSelector && (
               <div className='w-full'>
-                  <Label>Gramatički rod (opcionalno)</Label>
+                  <Label>Grammatiskt genus (valfritt)</Label>
                   <RadioGroup 
                       onValueChange={(value) => setGender(value as GenderOption)} 
                       value={gender}
@@ -189,19 +189,19 @@ export function TranslatorActivity() {
                   >
                       <div className="flex items-center space-x-2">
                           <RadioGroupItem value="male" id="male" disabled={isLoading} />
-                          <Label htmlFor="male">Muški rod</Label>
+                          <Label htmlFor="male">Maskulinum</Label>
                       </div>
                       <div className="flex items-center space-x-2">
                           <RadioGroupItem value="female" id="female" disabled={isLoading} />
-                          <Label htmlFor="female">Ženski rod</Label>
+                          <Label htmlFor="female">Femininum</Label>
                       </div>
                   </RadioGroup>
-                  <Button variant="link" size="sm" className="px-0 h-auto mt-1" onClick={() => setGender(undefined)} disabled={isLoading}>Poništi odabir</Button>
+                  <Button variant="link" size="sm" className="px-0 h-auto mt-1" onClick={() => setGender(undefined)} disabled={isLoading}>Avmarkera</Button>
               </div>
             )}
              <Button onClick={handleTranslate} disabled={isLoading || !sourceText.trim()}>
               {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-              Prevedi
+              Översätt
             </Button>
         </CardFooter>
       </Card>

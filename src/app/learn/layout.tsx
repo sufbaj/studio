@@ -38,28 +38,28 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const navItems = [
   { href: 'alphabet', icon: CaseUpper, label: 'Alfabet' },
-  { href: 'numbers', icon: Hash, label: 'Brojevi' },
-  { href: 'vocabulary', icon: BookText, label: 'Riječnik' },
-  { href: 'sentences', icon: MessageSquare, label: 'Rečenice' },
-  { href: 'grammar', icon: SpellCheck, label: 'Gramatika' },
-  { href: 'spelling', icon: FileText, label: 'Pravopis' },
-  { href: 'reading', icon: BookOpen, label: 'Čitanje' },
-  { href: 'translation', icon: Languages, label: 'Prevođenje' },
+  { href: 'numbers', icon: Hash, label: 'Siffror' },
+  { href: 'vocabulary', icon: BookText, label: 'Ordförråd' },
+  { href: 'sentences', icon: MessageSquare, label: 'Meningar' },
+  { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },
+  { href: 'spelling', icon: FileText, label: 'Rättstavning' },
+  { href: 'reading', icon: BookOpen, label: 'Läsning' },
+  { href: 'translation', icon: Languages, label: 'Översättning' },
 ];
 
 const toolItems = [
-    { href: 'translator', icon: Languages, label: 'Prevoditelj' },
-    { href: 'ai-review', icon: Bot, label: 'AI Lektor' },
+    { href: 'translator', icon: Languages, label: 'Översättare' },
+    { href: 'ai-review', icon: Bot, label: 'AI-granskare' },
 ]
 
 function getLanguageDisplayName(language: Language) {
     switch (language) {
       case 'bosnian':
-        return 'Bosanski';
+        return 'Bosniska';
       case 'croatian':
-        return 'Hrvatski';
+        return 'Kroatiska';
       case 'serbian':
-        return 'Srpski';
+        return 'Serbiska';
       default:
         return '';
     }
@@ -104,7 +104,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
         <SidebarContent>
           <SidebarMenu>
             <SidebarGroup>
-              <SidebarGroupLabel className="text-sidebar-foreground/70">Vježbe</SidebarGroupLabel>
+              <SidebarGroupLabel className="text-sidebar-foreground/70">Övningar</SidebarGroupLabel>
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
                   <Button asChild variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
@@ -120,7 +120,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
             </SidebarGroup>
             <SidebarSeparator />
             <SidebarGroup>
-                <SidebarGroupLabel className="text-sidebar-foreground/70">Alati</SidebarGroupLabel>
+                <SidebarGroupLabel className="text-sidebar-foreground/70">Verktyg</SidebarGroupLabel>
                 {toolItems.map((item) => (
                     <SidebarMenuItem key={item.href}>
                     <Button asChild variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
@@ -143,14 +143,14 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
             <SidebarTrigger className="md:hidden" />
             <div>
               <h1 className="text-xl font-headline font-semibold">
-                {getLanguageDisplayName(language)} - {grade}. razred
+                {getLanguageDisplayName(language)} - Årskurs {grade}
               </h1>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 p-2 rounded-lg bg-yellow-100 dark:bg-yellow-900/50">
               <Award className="w-6 h-6 text-yellow-500" />
-              <span className="text-lg font-bold">{score}{maxScore > 0 ? ` / ${maxScore}` : ''} poena</span>
+              <span className="text-lg font-bold">{score}{maxScore > 0 ? ` / ${maxScore}` : ''} poäng</span>
             </div>
             <Button asChild variant="outline" size="icon">
               <Link href="/">
