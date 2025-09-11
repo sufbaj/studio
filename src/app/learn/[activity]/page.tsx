@@ -8,8 +8,6 @@ import { SentencesActivity } from '@/components/activities/SentencesActivity';
 import { GrammarActivity } from '@/components/activities/GrammarActivity';
 import { ReadingActivity } from '@/components/activities/ReadingActivity';
 import { TranslationActivity } from '@/components/activities/TranslationActivity';
-import { TranslatorActivity } from '@/components/activities/TranslatorActivity';
-import { AiReviewActivity } from '@/components/activities/AiReviewActivity';
 import { AlphabetActivity } from '@/components/activities/AlphabetActivity';
 import { NumbersActivity } from '@/components/activities/NumbersActivity';
 
