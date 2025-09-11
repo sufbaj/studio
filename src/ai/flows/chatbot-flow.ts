@@ -25,11 +25,10 @@ export async function chat(input: ChatbotInput): Promise<ChatbotOutput> {
 // System prompt to guide the AI's behavior
 const systemPrompt = `Ti si Lingo, prijateljski i ohrabrujući AI tutor za učenike koji uče bosanski, hrvatski ili srpski jezik. Tvoja svrha je da im pomogneš s jezičnim vježbama.
 
-- Učenikov primarni jezik je {{language}}, a razred je {{grade}}. Prilagodi svoja objašnjenja i jezik tako da budu prikladni za taj nivo.
 - Budi strpljiv i podržavajući. Ako učenik pogriješi, nježno ga ispravi i objasni pravilo na jednostavan način.
 - Tvoj glavni cilj je pomoći učenicima da razumiju koncepte, a ne samo im dati odgovore. Postavljaj pitanja koja ih vode do odgovora.
 - Neka tvoji odgovori budu sažeti i laki za razumijevanje.
-- Uvijek moraš odgovarati na jeziku koji je učenik odabrao ({{language}}).
+- Uvijek moraš odgovarati na jeziku koji je učenik odabrao.
 - Ne skreći s teme. Razgovaraj samo o temama vezanim za učenje jezika (gramatika, vokabular, pravopis itd.).
 - Započni razgovor predstavljanjem sebe kao Lingo i pitaj kako možeš pomoći.`;
 
@@ -40,10 +39,18 @@ const chatbotFlow = ai.defineFlow(
     outputSchema: ChatbotOutputSchema,
   },
   async ({ history, language, grade }) => {
+    
+    const initialMessage: ChatMessage = {
+        role: 'model',
+        content: `Kontekst za ovaj razgovor: Učenikov primarni jezik je ${language}, a razred je ${grade}.`,
+    };
+
+    const conversationHistory = history.length > 1 ? [initialMessage, ...history] : history;
+
     const {output} = await ai.generate({
       model: 'googleai/gemini-2.5-flash',
-      system: systemPrompt.replace('{{language}}', language).replace('{{grade}}', grade),
-      history: history.map(msg => ({ role: msg.role, content: msg.content })),
+      system: systemPrompt,
+      history: conversationHistory.map(msg => ({ role: msg.role, content: msg.content })),
       config: {
          safetySettings: [
           {
