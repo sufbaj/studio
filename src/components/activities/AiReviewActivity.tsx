@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { reviewTextAction } from '@/app/learn/actions';
-import { useToast } from '@/hooks/use-toast';
 import { Loader2, Bot, Languages, Check, Pilcrow } from 'lucide-react';
 import type { AiReviewOutput } from '@/ai/flows/ai-content-review';
 import { Separator } from '../ui/separator';
@@ -25,7 +24,6 @@ const MAX_CHARS = 2000;
 
 export function AiReviewActivity() {
   const { language } = useAppContext();
-  const { toast } = useToast();
 
   const [sourceText, setSourceText] = useState('');
   const [review, setReview] = useState<AiReviewOutput | null>(null);
@@ -158,7 +156,7 @@ export function AiReviewActivity() {
             </div>
 
             <Separator />
-
+            
             <div>
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
                 <Check className="w-5 h-5 text-primary" /> {s.feedback}
@@ -167,7 +165,7 @@ export function AiReviewActivity() {
             </div>
 
             <Separator />
-            
+
             <div>
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
                 <Languages className="w-5 h-5 text-primary" /> {s.translation}
