@@ -25,7 +25,6 @@ import {
   SpellCheck,
   FileText,
   Languages,
-  Bot,
   Home,
   Award,
   BookOpen,
