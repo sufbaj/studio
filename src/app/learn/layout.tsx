@@ -47,7 +47,7 @@ const navItems = [
 ];
 
 const toolItems = [
-    { href: 'translation', icon: Languages, label: 'Prevoditelj' },
+    { href: 'translator', icon: Languages, label: 'Prevoditelj' },
     { href: 'ai-review', icon: Bot, label: 'AI Lektor' },
 ]
 

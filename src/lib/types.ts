@@ -9,6 +9,7 @@ export type Activity =
   | 'translation'
   | 'alphabet'
   | 'numbers'
+  | 'translator'
   | 'ai-review';
 
 export interface VocabularyItem {
