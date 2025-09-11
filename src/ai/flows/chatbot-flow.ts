@@ -43,7 +43,7 @@ const chatbotFlow = ai.defineFlow(
     const {output} = await ai.generate({
       model: 'googleai/gemini-2.5-flash',
       system: systemPrompt.replace('{{language}}', language).replace('{{grade}}', grade),
-      history: history.map(msg => ({...msg, parts: [{text: msg.content}]})),
+      history: history,
       config: {
          safetySettings: [
           {
