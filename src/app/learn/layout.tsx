@@ -46,11 +46,6 @@ const navItems = [
   { href: 'translation', icon: Languages, label: 'Prevođenje' },
 ];
 
-const tools = [
-    { href: 'translator', icon: Languages, label: 'Prevoditelj' },
-    { href: 'ai-review', icon: Bot, label: 'AI Lektor' },
-]
-
 function getLanguageDisplayName(language: Language) {
     switch (language) {
       case 'bosnian':
@@ -105,21 +100,6 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
             <SidebarGroup>
               <SidebarGroupLabel className="text-sidebar-foreground/70">Vježbe</SidebarGroupLabel>
               {navItems.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                  <Button asChild variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-                    <Link href={`/learn/${item.href}?${searchParams.toString()}`}
-                      className={getActivePath(item.href)}
-                    >
-                      <item.icon className="w-4 h-4 mr-2" />
-                      {item.label}
-                    </Link>
-                  </Button>
-                </SidebarMenuItem>
-              ))}
-            </SidebarGroup>
-            <SidebarGroup>
-              <SidebarGroupLabel className="text-sidebar-foreground/70">Alati</SidebarGroupLabel>
-               {tools.map((item) => (
                 <SidebarMenuItem key={item.href}>
                   <Button asChild variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
                     <Link href={`/learn/${item.href}?${searchParams.toString()}`}
