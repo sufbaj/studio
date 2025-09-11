@@ -34,6 +34,7 @@ import {
 } from 'lucide-react';
 import type { Language, Grade } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 
 const navItems = [
   { href: 'alphabet', icon: CaseUpper, label: 'Alfabet' },
@@ -87,9 +88,9 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
     );
   }
 
-  const getActivePath = (href: string) => {
-    return pathname.includes(href) ? 'bg-sidebar-accent text-sidebar-accent-foreground' : '';
-  }
+  const isLinkActive = (href: string) => {
+    return pathname.includes(href);
+  };
 
   return (
     <SidebarProvider>
@@ -106,10 +107,8 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
               <SidebarGroupLabel className="text-sidebar-foreground/70">Övningar</SidebarGroupLabel>
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
-                  <Button asChild variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-                    <Link href={`/learn/${item.href}?${searchParams.toString()}`}
-                      className={getActivePath(item.href)}
-                    >
+                  <Button asChild variant="ghost" className={cn("w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground", isLinkActive(item.href) && "bg-sidebar-accent text-sidebar-accent-foreground")}>
+                    <Link href={`/learn/${item.href}?${searchParams.toString()}`}>
                       <item.icon className="w-4 h-4 mr-2" />
                       {item.label}
                     </Link>
@@ -122,10 +121,8 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
                 <SidebarGroupLabel className="text-sidebar-foreground/70">Verktyg</SidebarGroupLabel>
                 {toolItems.map((item) => (
                     <SidebarMenuItem key={item.href}>
-                    <Button asChild variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-                        <Link href={`/learn/${item.href}?${searchParams.toString()}`}
-                        className={getActivePath(item.href)}
-                        >
+                    <Button asChild variant="ghost" className={cn("w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground", isLinkActive(item.href) && "bg-sidebar-accent text-sidebar-accent-foreground")}>
+                        <Link href={`/learn/${item.href}?${searchParams.toString()}`}>
                         <item.icon className="w-4 h-4 mr-2" />
                         {item.label}
                         </Link>
