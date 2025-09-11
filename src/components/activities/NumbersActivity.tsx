@@ -16,9 +16,9 @@ export function NumbersActivity() {
 
   return (
     <div>
-      <h2 className="text-3xl font-headline font-bold mb-4">Siffror</h2>
+      <h2 className="text-3xl font-headline font-bold mb-4">Brojevi</h2>
       <p className="text-muted-foreground mb-6">
-        Se en översikt över siffrorna från 0 till 100.
+        Pregled brojeva od 0 do 100.
       </p>
 
       <ScrollArea className="h-[70vh]">

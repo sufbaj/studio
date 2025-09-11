@@ -32,21 +32,21 @@ interface ReadingActivityStrings {
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null): ReadingActivityStrings => {
     return {
-      title: 'Läsförståelse',
-      question: 'Fråga',
-      of: 'av',
-      newExercises: 'Nya övningar',
-      checkAnswer: 'Kontrollera svar',
-      nextQuestion: 'Nästa fråga',
-      seeResults: 'Visa resultat',
-      exerciseFinished: 'Övningen är klar!',
-      correctAnswersOutOf: (c, t) => `Du hade ${c} av ${t} rätta svar.`,
-      practiceAgain: 'Öva igen',
-      noExercises: 'Inga övningar tillgängliga.',
-      correctToastTitle: 'Rätt!',
-      correctToastDescription: 'Snyggt! +15 poäng.',
-      incorrectToastTitle: 'Fel!',
-      incorrectToastDescription: (a) => `Rätt svar var "${a}".`,
+      title: 'Čitanje s razumijevanjem',
+      question: 'Pitanje',
+      of: 'od',
+      newExercises: 'Nove vježbe',
+      checkAnswer: 'Provjeri odgovor',
+      nextQuestion: 'Sljedeće pitanje',
+      seeResults: 'Prikaži rezultate',
+      exerciseFinished: 'Vježba je gotova!',
+      correctAnswersOutOf: (c, t) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+      practiceAgain: 'Vježbaj ponovo',
+      noExercises: 'Nema dostupnih vježbi.',
+      correctToastTitle: 'Tačno!',
+      correctToastDescription: 'Sjajno! +15 poena.',
+      incorrectToastTitle: 'Netačno!',
+      incorrectToastDescription: (a) => `Tačan odgovor je bio "${a}".`,
     };
 }
 

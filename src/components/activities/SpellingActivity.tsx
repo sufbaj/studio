@@ -49,9 +49,9 @@ export function SpellingActivity() {
     if (correct) {
       updateScore(10);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: "Rätt!", description: "Bra jobbat! +10 poäng." });
+      toast({ title: "Tačno!", description: "Bravo! +10 poena." });
     } else {
-      toast({ title: "Fel!", description: `Rätt svar var "${exercises[currentExerciseIndex].blank}".`, variant: "destructive" });
+      toast({ title: "Netačno!", description: `Tačan odgovor je bio "${exercises[currentExerciseIndex].blank}".`, variant: "destructive" });
     }
   };
 
@@ -72,8 +72,8 @@ export function SpellingActivity() {
   if (!language || !grade || exercises.length === 0) {
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">Rättstavning</h2>
-        <p>Inga stavningsövningar tillgängliga.</p>
+        <h2 className="text-2xl font-headline mb-4">Pravopis</h2>
+        <p>Nema dostupnih vježbi za pravopis.</p>
       </div>
     );
   }
@@ -83,7 +83,7 @@ export function SpellingActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">Rättstavning: Fyll i luckan</h2>
+        <h2 className="text-3xl font-headline font-bold">Pravopis: Popuni prazninu</h2>
          {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentExerciseIndex + 1} / {exercises.length}
@@ -91,7 +91,7 @@ export function SpellingActivity() {
          )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Nya övningar
+          Nove vježbe
         </Button>
       </div>
       
@@ -131,16 +131,16 @@ export function SpellingActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-6">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">Kontrollera svar</Button>
+              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">Provjeri odgovor</Button>
             ) : (
               <div className="text-center">
                  {selectedOption === currentExercise.blank ? (
-                    <p className="flex items-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> Rätt!</p>
+                    <p className="flex items-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> Tačno!</p>
                  ) : (
-                    <p className="flex items-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> Fel! Rätt svar: {currentExercise.blank}</p>
+                    <p className="flex items-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> Netačno! Tačan odgovor: {currentExercise.blank}</p>
                  )}
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? "Nästa fråga" : "Visa resultat"}
+                    {currentExerciseIndex < exercises.length - 1 ? "Sljedeće pitanje" : "Prikaži rezultate"}
                 </Button>
               </div>
             )}
@@ -148,11 +148,11 @@ export function SpellingActivity() {
         </Card>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">Snyggt stavat!</h3>
-            <p className="text-lg mb-6">Du fick {correctAnswers} av {exercises.length} rätt.</p>
+            <h3 className="text-2xl font-headline mb-4">Sjajno napisano!</h3>
+            <p className="text-lg mb-6">Imali ste {correctAnswers} od {exercises.length} tačnih odgovora.</p>
             <Button onClick={generateExercises}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Gör om övningen
+                Uradi vježbu ponovo
             </Button>
         </Card>
       )}
