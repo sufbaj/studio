@@ -44,7 +44,7 @@ const navItems = [
   { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },
   { href: 'spelling', icon: FileText, label: 'Rättstavning' },
   { href: 'reading', icon: BookOpen, label: 'Läsförståelse' },
-  { href: 'translation', icon: Languages, label: 'Översättning' },
+  { href: 'translation', icon: Languages, label: 'Svenska till modersmål' },
 ];
 
 const toolItems = [
