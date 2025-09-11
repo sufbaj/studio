@@ -10,6 +10,8 @@ import { ReadingActivity } from '@/components/activities/ReadingActivity';
 import { AlphabetActivity } from '@/components/activities/AlphabetActivity';
 import { NumbersActivity } from '@/components/activities/NumbersActivity';
 import { TranslationActivity } from '@/components/activities/TranslationActivity';
+import { TranslatorActivity } from '@/components/activities/TranslatorActivity';
+import { AiReviewActivity } from '@/components/activities/AiReviewActivity';
 
 
 export default function ActivityPage() {
@@ -34,6 +36,10 @@ export default function ActivityPage() {
         return <ReadingActivity />;
       case 'translation':
         return <TranslationActivity />;
+      case 'translator':
+        return <TranslatorActivity />;
+      case 'ai-review':
+        return <AiReviewActivity />;
       default:
         return <NotImplementedActivity activityName={activity} />;
     }

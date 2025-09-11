@@ -8,7 +8,8 @@ export type Activity =
   | 'reading'
   | 'translation'
   | 'alphabet'
-  | 'numbers';
+  | 'numbers'
+  | 'ai-review';
 
 export interface VocabularyItem {
   id: number;
