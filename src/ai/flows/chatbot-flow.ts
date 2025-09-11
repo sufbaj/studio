@@ -10,7 +10,7 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import { ChatbotInputSchema } from './chatbot-schema';
-import type { ChatbotInput } from './chatbot-schema';
+import type { ChatbotInput, ChatMessage } from './chatbot-schema';
 
 
 const ChatbotOutputSchema = z.object({
@@ -43,7 +43,7 @@ const chatbotFlow = ai.defineFlow(
     const {output} = await ai.generate({
       model: 'googleai/gemini-2.5-flash',
       system: systemPrompt.replace('{{language}}', language).replace('{{grade}}', grade),
-      history: history,
+      history: history.map(msg => ({ role: msg.role, content: msg.content })),
       config: {
          safetySettings: [
           {
