@@ -74,9 +74,9 @@ export function GrammarActivity() {
     if (correct) {
       updateScore(15);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: s.correctToastTitle, description: s.correctToastDescription });
+      
     } else {
-      toast({ title: s.incorrectToastTitle, description: s.incorrectToastDescription(exercises[currentExerciseIndex].blank), variant: "destructive" });
+      
     }
   };
 

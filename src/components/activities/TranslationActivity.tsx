@@ -118,9 +118,9 @@ export function TranslationActivity() {
       const points = currentExercise.type === 'sentence' ? 20 : 10;
       updateScore(points);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: s.correct, description: `${s.greatJob} +${points} poena.` });
+      
     } else {
-      toast({ title: s.incorrect, description: `${s.correctAnswerIs} "${currentExercise.target}".`, variant: "destructive" });
+      
     }
   };
 

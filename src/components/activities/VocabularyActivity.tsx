@@ -102,16 +102,9 @@ export function VocabularyActivity() {
     if (option.isCorrect) {
       setCorrectAnswers((prev) => prev + 1);
       updateScore(10);
-      toast({
-        title: s.correctToastTitle,
-        description: s.correctToastDescription,
-      });
+      
     } else {
-      toast({
-        title: s.incorrectToastTitle,
-        description: s.incorrectToastDescription,
-        variant: 'destructive',
-      });
+      
     }
   };
 

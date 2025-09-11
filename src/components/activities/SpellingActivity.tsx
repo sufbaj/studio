@@ -72,9 +72,9 @@ export function SpellingActivity() {
     if (correct) {
       updateScore(10);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: s.correctToastTitle, description: s.correctToastDescription });
+      
     } else {
-      toast({ title: s.incorrectToastTitle, description: s.incorrectToastDescription(exercises[currentExerciseIndex].blank), variant: "destructive" });
+      
     }
   };
 

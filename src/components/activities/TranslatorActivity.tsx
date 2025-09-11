@@ -97,11 +97,7 @@ export function TranslatorActivity() {
 
       if (result.error) {
         setError(result.error);
-        toast({
-          title: s.toastErrorTitle,
-          description: result.error,
-          variant: 'destructive',
-        });
+        
       } else if (result.translation) {
         setTranslatedText(result.translation);
       }
@@ -109,15 +105,11 @@ export function TranslatorActivity() {
       const errorMessage = s.toastUnexpectedError;
       setError(errorMessage);
       console.error(err);
-      toast({
-        title: s.toastUnexpectedErrorTitle,
-        description: errorMessage,
-        variant: 'destructive',
-      });
+      
     } finally {
       setIsLoading(false);
     }
-  }, [sourceText, sourceLang, targetLang, gender, toast, s]);
+  }, [sourceText, sourceLang, targetLang, gender, s]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {

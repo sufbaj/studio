@@ -63,11 +63,7 @@ export function AiReviewActivity() {
     if (!sourceText.trim() || sourceText.length > MAX_CHARS) {
       setReview(null);
        if (sourceText.length > MAX_CHARS) {
-        toast({
-            title: s.toastTitleTooMuchText,
-            description: s.toastDescTooMuchText(MAX_CHARS),
-            variant: 'destructive',
-        });
+        
        }
       return;
     }
@@ -81,22 +77,14 @@ export function AiReviewActivity() {
       });
 
       if (result.error) {
-        toast({
-          title: s.toastErrorTitle,
-          description: result.error,
-          variant: 'destructive',
-        });
+        
         setReview(null);
       } else if (result.review) {
         setReview(result.review);
       }
     } catch (error) {
       console.error(error);
-      toast({
-        title: s.toastUnexpectedErrorTitle,
-        description: s.toastUnexpectedErrorDesc,
-        variant: 'destructive',
-      });
+      
       setReview(null);
     } finally {
       setIsLoading(false);

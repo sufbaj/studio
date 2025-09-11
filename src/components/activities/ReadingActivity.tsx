@@ -108,9 +108,9 @@ export function ReadingActivity() {
     if (correct) {
       updateScore(15);
       setTotalCorrectAnswers(prev => prev + 1);
-      toast({ title: s.correctToastTitle, description: s.correctToastDescription });
+      
     } else {
-      toast({ title: s.incorrectToastTitle, description: s.incorrectToastDescription(currentQuestion.answer), variant: "destructive" });
+      
     }
   };
 

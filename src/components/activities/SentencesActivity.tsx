@@ -101,9 +101,9 @@ export function SentencesActivity() {
     if (correct) {
       updateScore(20);
       setCorrectAnswers(prev => prev + 1);
-      toast({ title: s.correctToastTitle, description: s.correctToastDescription });
+      
     } else {
-      toast({ title: s.incorrectToastTitle, description: s.incorrectToastDescription(currentExercise.sentence), variant: "destructive" });
+      
     }
   };
 
