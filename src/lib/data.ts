@@ -1262,7 +1262,17 @@ export const data: LanguageData = {
   },
   serbian: {
     '1-3': {
-      alphabet: alphabet,
+      alphabet: alphabet.map(item => {
+        let word = item.exampleWord;
+        if (word === 'Hljeb') word = 'Hleb';
+        if (word === 'Rijeka') word = 'Reka';
+        if (word === 'Cvijet') word = 'Cvet';
+        if (word === 'Mlijeko') word = 'Mleko';
+        if (word === 'Snijeg') word = 'Sneg';
+        if (word === 'Dječak') word = 'Dečak';
+        if (word === 'Lijepo') word = 'Lepo';
+        return { ...item, exampleWord: word };
+      }),
       numbers: [
         { number: 0, word: "nula" },
         { number: 1, word: "jedan" },

@@ -31,22 +31,23 @@ interface ReadingActivityStrings {
 }
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null): ReadingActivityStrings => {
+    const isSerbian = language === 'serbian';
     return {
-      title: 'Čitanje s razumijevanjem',
+      title: isSerbian ? 'Čitanje s razumevanjem' : 'Čitanje s razumijevanjem',
       question: 'Pitanje',
       of: 'od',
       newExercises: 'Nove vježbe',
-      checkAnswer: 'Provjeri odgovor',
+      checkAnswer: isSerbian ? 'Proveri odgovor' : 'Provjeri odgovor',
       nextQuestion: 'Sljedeće pitanje',
       seeResults: 'Prikaži rezultate',
       exerciseFinished: 'Vježba je gotova!',
-      correctAnswersOutOf: (c, t) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+      correctAnswersOutOf: (c, t) => isSerbian ? `Imali ste ${c} od ${t} tačnih odgovora.` : `Imali ste ${c} od ${t} tačnih odgovora.`,
       practiceAgain: 'Vježbaj ponovo',
       noExercises: 'Nema dostupnih vježbi.',
       correctToastTitle: 'Tačno!',
       correctToastDescription: 'Sjajno! +15 poena.',
       incorrectToastTitle: 'Netačno!',
-      incorrectToastDescription: (a) => `Tačan odgovor je bio "${a}".`,
+      incorrectToastDescription: (a) => isSerbian ? `Tačan odgovor je bio "${a}".` : `Tačan odgovor je bio "${a}".`,
     };
 }
 

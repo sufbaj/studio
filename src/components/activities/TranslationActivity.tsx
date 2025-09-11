@@ -34,24 +34,25 @@ interface TranslationActivityStrings {
 
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null): TranslationActivityStrings => {
+    const isSerbian = language === 'serbian';
     return {
-      title: 'Švedski na maternji jezik',
-      noExercises: 'Nema dostupnih vježbi za prevođenje.',
-      newExercises: 'Nove vježbe',
+      title: isSerbian ? 'Švedski na maternji jezik' : 'Švedski na maternji jezik',
+      noExercises: isSerbian ? 'Nema dostupnih vežbi za prevođenje.' : 'Nema dostupnih vježbi za prevođenje.',
+      newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
       translateWord: (lang) => `Prevedi sljedeću riječ na ${lang}:`,
       translateSentence: (lang) => `Prevedi sljedeću rečenicu na ${lang}:`,
-      enterTranslation: 'Unesite prijevod...',
-      check: 'Provjeri',
+      enterTranslation: isSerbian ? 'Unesite prevod...' : 'Unesite prijevod...',
+      check: isSerbian ? 'Proveri' : 'Provjeri',
       correct: 'Tačno!',
       greatJob: 'Sjajno!',
       incorrect: 'Netačno!',
-      correctAnswerIs: 'Tačan odgovor je:',
-      nextWord: 'Sljedeća riječ',
-      nextSentence: 'Sljedeća rečenica',
+      correctAnswerIs: isSerbian ? 'Tačan odgovor je:' : 'Tačan odgovor je:',
+      nextWord: isSerbian ? 'Sledeća reč' : 'Sljedeća riječ',
+      nextSentence: isSerbian ? 'Sledeća rečenica' : 'Sljedeća rečenica',
       seeResults: 'Prikaži rezultate',
-      exerciseFinished: 'Vježba je gotova!',
-      correctTranslationsOutOf: (c, t) => `Imali ste ${c} od ${t} tačnih prijevoda.`,
-      practiceAgain: 'Vježbaj ponovo',
+      exerciseFinished: isSerbian ? 'Vežba je gotova!' : 'Vježba je gotova!',
+      correctTranslationsOutOf: (c, t) => isSerbian ? `Imali ste ${c} od ${t} tačnih prevoda.` : `Imali ste ${c} od ${t} tačnih prijevoda.`,
+      practiceAgain: isSerbian ? 'Vežbaj ponovo' : 'Vježbaj ponovo',
     };
   }
 
