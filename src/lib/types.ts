@@ -6,7 +6,7 @@ export type Activity =
   | 'grammar'
   | 'spelling'
   | 'reading'
-  | 'translation'
+  | 'svenska-till-modersmal'
   | 'alphabet'
   | 'numbers'
   | 'translator'
