@@ -12,7 +12,6 @@ import {
   SidebarInset,
   SidebarMenu,
   SidebarMenuItem,
-  SidebarMenuButton,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarSeparator,
@@ -89,7 +88,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
   }
 
   const isLinkActive = (href: string) => {
-    return pathname.includes(href);
+    return pathname.includes(`/learn/${href}`);
   };
 
   return (
@@ -107,7 +106,14 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
               <SidebarGroupLabel className="text-sidebar-foreground/70">Övningar</SidebarGroupLabel>
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
-                  <Button asChild variant="ghost" className={cn("w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground", isLinkActive(item.href) && "bg-sidebar-accent text-sidebar-accent-foreground")}>
+                  <Button 
+                    asChild 
+                    variant="ghost" 
+                    className={cn(
+                        "w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground", 
+                        isLinkActive(item.href) && "bg-sidebar-accent text-sidebar-accent-foreground"
+                    )}
+                  >
                     <Link href={`/learn/${item.href}?${searchParams.toString()}`}>
                       <item.icon className="w-4 h-4 mr-2" />
                       {item.label}
@@ -121,7 +127,14 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
                 <SidebarGroupLabel className="text-sidebar-foreground/70">Verktyg</SidebarGroupLabel>
                 {toolItems.map((item) => (
                     <SidebarMenuItem key={item.href}>
-                    <Button asChild variant="ghost" className={cn("w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground", isLinkActive(item.href) && "bg-sidebar-accent text-sidebar-accent-foreground")}>
+                    <Button 
+                        asChild 
+                        variant="ghost" 
+                        className={cn(
+                            "w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground", 
+                            isLinkActive(item.href) && "bg-sidebar-accent text-sidebar-accent-foreground"
+                        )}
+                    >
                         <Link href={`/learn/${item.href}?${searchParams.toString()}`}>
                         <item.icon className="w-4 h-4 mr-2" />
                         {item.label}
