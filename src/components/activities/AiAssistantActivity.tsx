@@ -27,25 +27,44 @@ export function AiAssistantActivity() {
   const { toast } = useToast();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Start with loading
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-
-  const getInitialMessage = useCallback((lang: Language) => {
-    switch (lang) {
-      case 'serbian':
-        return { role: 'model', content: 'Zdravo! Ja sam Lingo, tvoj AI asistent. Kako mogu da ti pomognem danas sa učenjem jezika?' } as ChatMessage;
-      default:
-        return { role: 'model', content: 'Zdravo! Ja sam Lingo, tvoj AI asistent. Kako ti mogu pomoći danas s učenjem jezika?' } as ChatMessage;
-    }
-  }, []);
-
+  
   useEffect(() => {
     resetScore();
-    if(language && messages.length === 0) {
-        setMessages([getInitialMessage(language)]);
-    }
+    const initChat = async () => {
+        if (language && grade && messages.length === 0) {
+            try {
+                const result = await chatbotAction({
+                    history: [],
+                    language: toTitleCase(language),
+                    grade: grade as Grade,
+                });
+                if (result.response) {
+                    setMessages([{ role: 'model', content: result.response }]);
+                } else if (result.error) {
+                    toast({
+                        title: 'Došlo je do greške',
+                        description: result.error,
+                        variant: 'destructive',
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+                toast({
+                    title: 'Neočekivana greška',
+                    description: 'Povezivanje s AI nije uspjelo. Pokušajte ponovo kasnije.',
+                    variant: 'destructive',
+                });
+            } finally {
+                setIsLoading(false);
+            }
+        }
+    };
+
+    initChat();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resetScore, language, getInitialMessage]);
+  }, [language, grade, resetScore]);
   
   useEffect(() => {
     if (scrollAreaRef.current) {

@@ -40,12 +40,25 @@ const chatbotFlow = ai.defineFlow(
   },
   async ({ history, language, grade }) => {
     
+    if (history.length === 0) {
+      let initialMessage = '';
+      switch (language) {
+          case 'Serbian':
+              initialMessage = 'Zdravo! Ja sam Lingo, tvoj AI asistent. Kako mogu da ti pomognem danas sa učenjem jezika?';
+              break;
+          default:
+              initialMessage = 'Zdravo! Ja sam Lingo, tvoj AI asistent. Kako ti mogu pomoći danas s učenjem jezika?';
+              break;
+      }
+      return { response: initialMessage };
+    }
+
     const initialMessage: ChatMessage = {
         role: 'model',
         content: `Kontekst za ovaj razgovor: Učenikov primarni jezik je ${language}, a razred je ${grade}.`,
     };
 
-    const conversationHistory = history.length > 1 ? [initialMessage, ...history] : history;
+    const conversationHistory = [initialMessage, ...history];
 
     const {output} = await ai.generate({
       model: 'googleai/gemini-2.5-flash',
