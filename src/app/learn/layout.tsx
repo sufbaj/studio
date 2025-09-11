@@ -111,7 +111,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
                     variant="ghost" 
                     className={cn(
                         "w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground", 
-                        isLinkActive(item.href) && "bg-sidebar-accent text-sidebar-accent-foreground"
+                        isLinkActive(item.href) && "bg-blue-100 text-blue-900 font-semibold hover:bg-blue-100/90 hover:text-blue-900"
                     )}
                   >
                     <Link href={`/learn/${item.href}?${searchParams.toString()}`}>
@@ -132,7 +132,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
                         variant="ghost" 
                         className={cn(
                             "w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground", 
-                            isLinkActive(item.href) && "bg-sidebar-accent text-sidebar-accent-foreground"
+                            isLinkActive(item.href) && "bg-blue-100 text-blue-900 font-semibold hover:bg-blue-100/90 hover:text-blue-900"
                         )}
                     >
                         <Link href={`/learn/${item.href}?${searchParams.toString()}`}>
