@@ -21,7 +21,7 @@ function toTitleCase(str: string | null): 'Swedish' | 'Bosnian' | 'Croatian' | '
   return 'Bosnian';
 }
 
-const MAX_CHARS = 10000;
+const MAX_CHARS = 2000;
 
 export function AiReviewActivity() {
   const { language } = useAppContext();
