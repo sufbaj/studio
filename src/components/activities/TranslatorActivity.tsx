@@ -42,6 +42,31 @@ export function TranslatorActivity() {
     }
   }, [language]);
 
+  const s = useMemo(() => {
+    const isSerbian = language === 'serbian';
+    return {
+      title: isSerbian ? 'Prevodilac' : 'Prevoditelj',
+      description: isSerbian
+        ? 'Koristite ovaj alat za brzo prevođenje reči i rečenica. Pošaljite tekst pomoću'
+        : 'Koristite ovaj alat za brzo prevođenje riječi i rečenica. Pošaljite tekst pomoću',
+      aiTranslator: isSerbian ? 'AI Prevodilac' : 'AI Prevoditelj',
+      translateBetween: isSerbian ? 'Prevodi između jezika:' : 'Prevodite između jezika:',
+      translationPlaceholder: isSerbian ? 'Prevod...' : 'Prijevod...',
+      translatingPlaceholder: 'Prevođenje...',
+      switchLanguages: isSerbian ? 'Zameni jezike' : 'Zamijeni jezike',
+      translationError: 'Greška pri prevođenju',
+      grammaticalGender: isSerbian ? 'Gramatički rod (opciono)' : 'Gramatički rod (opcionalno)',
+      resetSelection: 'Poništi odabir',
+      translate: 'Prevedi',
+      toastErrorTitle: 'Došlo je do greške',
+      toastUnexpectedError: isSerbian
+        ? 'Povezivanje sa AI nije uspelo. Pokušajte ponovo kasnije.'
+        : 'Povezivanje s AI nije uspjelo. Pokušajte ponovo kasnije.',
+      toastUnexpectedErrorTitle: 'Neočekivana greška',
+    };
+  }, [language]);
+
+
   const getLanguageDisplayName = (lang: LanguageOption) => {
     switch (lang) {
       case 'Swedish': return 'Švedski';
@@ -73,7 +98,7 @@ export function TranslatorActivity() {
       if (result.error) {
         setError(result.error);
         toast({
-          title: 'Došlo je do greške',
+          title: s.toastErrorTitle,
           description: result.error,
           variant: 'destructive',
         });
@@ -81,18 +106,18 @@ export function TranslatorActivity() {
         setTranslatedText(result.translation);
       }
     } catch (err) {
-      const errorMessage = 'Povezivanje s AI nije uspjelo. Pokušajte ponovo kasnije.';
+      const errorMessage = s.toastUnexpectedError;
       setError(errorMessage);
       console.error(err);
       toast({
-        title: 'Neočekivana greška',
+        title: s.toastUnexpectedErrorTitle,
         description: errorMessage,
         variant: 'destructive',
       });
     } finally {
       setIsLoading(false);
     }
-  }, [sourceText, sourceLang, targetLang, gender, toast]);
+  }, [sourceText, sourceLang, targetLang, gender, toast, s]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
@@ -121,9 +146,9 @@ export function TranslatorActivity() {
 
   return (
     <div>
-      <h2 className="text-3xl font-headline font-bold mb-4">Prevoditelj</h2>
+      <h2 className="text-3xl font-headline font-bold mb-4">{s.title}</h2>
       <p className="text-muted-foreground mb-6">
-        Koristite ovaj alat za brzo prevođenje riječi i rečenica. Pošaljite tekst pomoću <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Cmd/Ctrl</kbd> + <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd>.
+        {s.description} <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Cmd/Ctrl</kbd> + <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd>.
       </p>
 
       <Card>
@@ -131,8 +156,8 @@ export function TranslatorActivity() {
           <div className="flex items-center gap-4">
             <Languages className="w-8 h-8 text-primary" />
             <div>
-                <CardTitle>AI Prevoditelj</CardTitle>
-                <CardDescription>Prevodite između jezika: {getLanguageDisplayName(sourceLang)} i {getLanguageDisplayName(targetLang)}</CardDescription>
+                <CardTitle>{s.aiTranslator}</CardTitle>
+                <CardDescription>{s.translateBetween} {getLanguageDisplayName(sourceLang)} i {getLanguageDisplayName(targetLang)}</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -153,7 +178,7 @@ export function TranslatorActivity() {
                 <label className="text-sm font-medium text-muted-foreground">{getLanguageDisplayName(targetLang)}</label>
                 <div className="relative">
                 <Textarea
-                    placeholder={isLoading ? "Prevođenje..." : "Prijevod..."}
+                    placeholder={isLoading ? s.translatingPlaceholder : s.translationPlaceholder}
                     value={translatedText}
                     readOnly
                     rows={6}
@@ -165,14 +190,14 @@ export function TranslatorActivity() {
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 my-4 md:my-0">
                 <Button variant="outline" size="icon" onClick={handleSwitchLanguages} disabled={isLoading}>
                     <ArrowRightLeft className="w-5 h-5" />
-                    <span className="sr-only">Zamijeni jezike</span>
+                    <span className="sr-only">{s.switchLanguages}</span>
                 </Button>
             </div>
           </div>
 
            {error && (
              <Alert variant="destructive" className="mt-4">
-                <AlertTitle>Greška pri prevođenju</AlertTitle>
+                <AlertTitle>{s.translationError}</AlertTitle>
                 <AlertDescription>{error}</AlertDescription>
              </Alert>
            )}
@@ -181,7 +206,7 @@ export function TranslatorActivity() {
         <CardFooter className="flex-col items-start gap-4 border-t pt-6">
             {showGenderSelector && (
               <div className='w-full'>
-                  <Label>Gramatički rod (opcionalno)</Label>
+                  <Label>{s.grammaticalGender}</Label>
                   <RadioGroup 
                       onValueChange={(value) => setGender(value as GenderOption)} 
                       value={gender}
@@ -196,12 +221,12 @@ export function TranslatorActivity() {
                           <Label htmlFor="female">Ženski</Label>
                       </div>
                   </RadioGroup>
-                  <Button variant="link" size="sm" className="px-0 h-auto mt-1" onClick={() => setGender(undefined)} disabled={isLoading}>Poništi odabir</Button>
+                  <Button variant="link" size="sm" className="px-0 h-auto mt-1" onClick={() => setGender(undefined)} disabled={isLoading}>{s.resetSelection}</Button>
               </div>
             )}
              <Button onClick={handleTranslate} disabled={isLoading || !sourceText.trim()}>
               {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-              Prevedi
+              {s.translate}
             </Button>
         </CardFooter>
       </Card>
