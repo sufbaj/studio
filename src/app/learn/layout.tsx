@@ -24,7 +24,6 @@ import {
   MessageSquare,
   SpellCheck,
   FileText,
-  Languages,
   Home,
   Award,
   BookOpen,
@@ -42,7 +41,6 @@ const navItems = [
   { href: 'grammar', icon: SpellCheck, label: 'Gramatika' },
   { href: 'spelling', icon: FileText, label: 'Pravopis' },
   { href: 'reading', icon: BookOpen, label: 'Čitanje' },
-  { href: 'translation', icon: Languages, label: 'Prevođenje' },
 ];
 
 function getLanguageDisplayName(language: Language) {
