@@ -30,8 +30,8 @@ import {
   BookOpen,
   CaseUpper,
   Hash,
-  Languages,
   Bot,
+  Languages,
 } from 'lucide-react';
 import type { Language, Grade } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
