@@ -12,7 +12,7 @@ export type AiReviewInput = z.infer<typeof AiReviewInputSchema>;
 const AiReviewOutputSchema = z.object({
   translation: z.string().describe('Prijevod originalnog teksta. Ako je originalni tekst na švedskom, prevedi ga na ciljni jezik (bosanski, hrvatski ili srpski). Ako je originalni tekst na jednom od BHS jezika, prevedi ga na švedski.'),
   correctedText: z.string().describe('Ispravljena verzija originalnog teksta, s ispravljenim gramatičkim i pravopisnim greškama.'),
-  feedback: z.string().describe('Kratke i jasne povratne informacije o greškama u originalnom tekstu.'),
+  feedback: z.string().describe('Kratke, jasne i precizne povratne informacije o greškama u originalnom tekstu, bez suvišnih detalja.'),
 });
 export type AiReviewOutput = z.infer<typeof AiReviewOutputSchema>;
 
@@ -31,8 +31,8 @@ const reviewPrompt = ai.definePrompt({
         - Pažljivo pregledaj originalni tekst i ispravi sve gramatičke i pravopisne greške.
         - Ako nema grešaka, vrati originalni tekst.
     3.  Povratne informacije:
-        - Pruži KRATKE i JASNE povratne informacije. Fokusiraj se samo na najvažnije ispravke.
-        - Napiši komentar u jednom redu ili kao kratku listu. Izbjegavaj dugačka gramatička objašnjenja.
+        - Pruži KRATKE, JASNE i PRECIZNE povratne informacije. Fokusiraj se samo na najvažnije ispravke, bez suvišnih detalja.
+        - Izbjegavaj dugačka gramatička objašnjenja. Komentar može biti u jednom redu ili kao kratka lista.
         - Ako nema grešaka, napiši "Tekst je ispravan."
 
     Originalni tekst:
