@@ -754,7 +754,7 @@ export const data: LanguageData = {
         { id: 13, word: 'stolica', translation: 'stol' },
         { id: 14, word: 'sat', translation: 'klocka' },
         { id: 15, word: 'most', translation: 'bro' },
-        { id: 16, word: 'stablo', translation: 'träd' },
+        { id: 16, word: 'drvo', translation: 'träd' },
         { id: 17, word: 'cvijet', translation: 'blomma' },
         { id: 18, word: 'prozor', translation: 'fönster' },
         { id: 19, word: 'vrata', translation: 'dörr' },
@@ -1346,7 +1346,7 @@ export const data: LanguageData = {
         { id: 30, word: 'krevet', translation: 'säng' }
       ],
       spelling: [
-        { id: 1, sentence: 'Učiteljica nosi ___.', blank: 'naočare', options: ['naočale', 'naočare', 'naoćare'] },
+        { id: 1, sentence: 'Učiteljica nosi ___.', blank: 'naočare', options: ['naočale', 'naočare', 'naoćale'] },
         { id: 2, sentence: 'Na tanjiru je ___.', blank: 'voće', options: ['voće', 'voče', 'voce'] },
         { id: 3, sentence: 'Deda nosi smeđi ___.', blank: 'šešir', options: ['šešir', 'šećir', 'šesir'] },
         { id: 4, sentence: 'Idem u ___ da spavam.', blank: 'krevet', options: ['krevet', 'krevit', 'krevat'] },
@@ -1639,4 +1639,5 @@ export const data: LanguageData = {
   },
 };
 
+    
     
