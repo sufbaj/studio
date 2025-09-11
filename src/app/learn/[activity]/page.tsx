@@ -34,7 +34,7 @@ export default function ActivityPage() {
         return <GrammarActivity />;
       case 'reading':
         return <ReadingActivity />;
-      case 'translation':
+      case 'svenska-till-modersmal':
         return <TranslationActivity />;
       case 'translator':
         return <TranslatorActivity />;

@@ -31,7 +31,6 @@ import {
   CaseUpper,
   Hash,
   Bot,
-  Languages,
 } from 'lucide-react';
 import type { Language, Grade } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -44,12 +43,12 @@ const navItems = [
   { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },
   { href: 'spelling', icon: FileText, label: 'Rättstavning' },
   { href: 'reading', icon: BookOpen, label: 'Läsförståelse' },
-  { href: 'translation', icon: Languages, label: 'Svenska till modersmål' },
+  { href: 'svenska-till-modersmal', icon: BookOpen, label: 'Svenska till modersmål' },
 ];
 
 const toolItems = [
-    { href: 'translator', icon: Languages, label: 'Översättare' },
-    { href: 'ai-review', icon: Bot, label: 'AI-granskare' },
+    { href: 'translator', icon: BookOpen, label: 'Översättare' },
+    { href: 'ai-review', icon: Bot, label: 'AI-återkoppling' },
 ]
 
 function getLanguageDisplayName(language: Language) {
