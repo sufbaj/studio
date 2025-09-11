@@ -152,15 +152,6 @@ export function AiReviewActivity() {
           <CardContent className="space-y-6">
             <div>
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
-                <Languages className="w-5 h-5 text-primary" /> {s.translation}
-              </h3>
-              <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.translation}</p>
-            </div>
-
-            <Separator />
-
-            <div>
-              <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
                 <Pilcrow className="w-5 h-5 text-primary" /> {s.correctedText}
               </h3>
               <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.correctedText}</p>
@@ -173,6 +164,15 @@ export function AiReviewActivity() {
                 <Check className="w-5 h-5 text-primary" /> {s.feedback}
               </h3>
               <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.feedback}</p>
+            </div>
+
+            <Separator />
+            
+            <div>
+              <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
+                <Languages className="w-5 h-5 text-primary" /> {s.translation}
+              </h3>
+              <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.translation}</p>
             </div>
           </CardContent>
         </Card>

@@ -12,7 +12,7 @@ export type AiReviewInput = z.infer<typeof AiReviewInputSchema>;
 const AiReviewOutputSchema = z.object({
   translation: z.string().describe('Prijevod originalnog teksta. Ako je originalni tekst na švedskom, prevedi ga na ciljni jezik (bosanski, hrvatski ili srpski). Ako je originalni tekst na jednom od BHS jezika, prevedi ga na švedski.'),
   correctedText: z.string().describe('Ispravljena verzija originalnog teksta, s ispravljenim gramatičkim i pravopisnim greškama.'),
-  feedback: z.string().describe('Kratke, jasne i precizne povratne informacije o greškama u originalnom tekstu, bez suvišnih detalja.'),
+  feedback: z.string().describe('Detaljne, ali jasne povratne informacije o greškama u originalnom tekstu. Objasni zašto su ispravke napravljene.'),
 });
 export type AiReviewOutput = z.infer<typeof AiReviewOutputSchema>;
 
@@ -24,17 +24,16 @@ const reviewPrompt = ai.definePrompt({
     Tvoj zadatak je da analiziraš tekst koji ti korisnik pošalje.
 
     Analiza treba sadržavati tri dijela:
-    1.  Prijevod:
-        - Ako je originalni tekst na švedskom, prevedi ga na ciljni jezik: {{language}}.
-        - Ako je originalni tekst na jednom od BHS jezika (bosanski, hrvatski, srpski), prevedi ga na švedski.
-    2.  Ispravljeni tekst:
+    1.  Ispravljeni tekst:
         - Pažljivo pregledaj originalni tekst i ispravi sve gramatičke i pravopisne greške.
         - Ako nema grešaka, vrati originalni tekst.
-    3.  Povratne informacije:
-        - Pruži KRATKE, JASNE i PRECIZNE povratne informacije. Fokusiraj se samo na najvažnije ispravke, bez suvišnih detalja.
-        - Izbjegavaj dugačka gramatička objašnjenja. Komentar može biti u jednom redu ili kao kratka lista.
+    2.  Povratne informacije:
+        - Pruži detaljne, ali jasne povratne informacije. Objasni najvažnije ispravke (gramatiku, pravopis, stil) kako bi korisnik mogao naučiti iz njih.
         - Ako nema grešaka, napiši "Tekst je ispravan."
-
+    3.  Prijevod:
+        - Ako je originalni tekst na švedskom, prevedi ga na ciljni jezik: {{language}}.
+        - Ako je originalni tekst na jednom od BHS jezika (bosanski, hrvatski, srpski), prevedi ga na švedski.
+    
     Originalni tekst:
     '''
     {{{text}}}
