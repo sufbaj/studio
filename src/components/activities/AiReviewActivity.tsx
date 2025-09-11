@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -31,13 +31,41 @@ export function AiReviewActivity() {
   const [review, setReview] = useState<AiReviewOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const s = useMemo(() => {
+    const isSerbian = language === 'serbian';
+    return {
+        title: isSerbian ? 'AI Lektor' : 'AI Lektor',
+        description: isSerbian
+            ? 'Napišite tekst na švedskom ili BKS jezicima i dobijte trenutnu povratnu informaciju i prevod od AI.'
+            : 'Napišite tekst na švedskom ili BKS jezicima i dobijte trenutnu povratnu informaciju i prijevod od AI.',
+        shortcut: isSerbian
+            ? 'Tekst možete poslati prečicom'
+            : 'Tekst možete poslati prečacem',
+        cardTitle: isSerbian ? 'Napišite svoj tekst ovde' : 'Napišite svoj tekst ovdje',
+        placeholder: isSerbian ? 'Napišite nekoliko rečenica...' : 'Napišite nekoliko rečenica...',
+        toastTitleTooMuchText: isSerbian ? 'Previše teksta' : 'Previše teksta',
+        toastDescTooMuchText: (max: number) => isSerbian ? `Tekst ne sme imati više od ${max} znakova.` : `Tekst ne smije imati više od ${max} znakova.`,
+        buttonText: isSerbian ? 'Lektoriši tekst' : 'Lektoriraj tekst',
+        loadingText: isSerbian ? 'AI analizira vaš tekst...' : 'AI analizira vaš tekst...',
+        resultsTitle: isSerbian ? 'Rezultati analize' : 'Rezultati analize',
+        resultsDescription: isSerbian ? 'Ovde su prevod i povratne informacije za vaš tekst.' : 'Ovdje su prijevod i povratne informacije za vaš tekst.',
+        translation: isSerbian ? 'Prevod' : 'Prijevod',
+        correctedText: isSerbian ? 'Ispravljen tekst' : 'Ispravljeni tekst',
+        feedback: isSerbian ? 'Povratne informacije' : 'Povratne informacije',
+        toastErrorTitle: isSerbian ? 'Došlo je do greške' : 'Došlo je do greške',
+        toastUnexpectedErrorTitle: isSerbian ? 'Neočekivana greška' : 'Neočekivana greška',
+        toastUnexpectedErrorDesc: isSerbian ? 'Povezivanje sa AI nije uspelo. Pokušajte ponovo kasnije.' : 'Povezivanje s AI nije uspjelo. Pokušajte ponovo kasnije.'
+    };
+  }, [language]);
+
+
   const handleReview = async () => {
     if (!sourceText.trim() || sourceText.length > MAX_CHARS) {
       setReview(null);
        if (sourceText.length > MAX_CHARS) {
         toast({
-            title: 'Previše teksta',
-            description: `Tekst ne smije imati više od ${MAX_CHARS} znakova.`,
+            title: s.toastTitleTooMuchText,
+            description: s.toastDescTooMuchText(MAX_CHARS),
             variant: 'destructive',
         });
        }
@@ -54,7 +82,7 @@ export function AiReviewActivity() {
 
       if (result.error) {
         toast({
-          title: 'Došlo je do greške',
+          title: s.toastErrorTitle,
           description: result.error,
           variant: 'destructive',
         });
@@ -65,8 +93,8 @@ export function AiReviewActivity() {
     } catch (error) {
       console.error(error);
       toast({
-        title: 'Neočekivana greška',
-        description: 'Povezivanje s AI nije uspjelo. Pokušajte ponovo kasnije.',
+        title: s.toastUnexpectedErrorTitle,
+        description: s.toastUnexpectedErrorDesc,
         variant: 'destructive',
       });
       setReview(null);
@@ -87,19 +115,19 @@ export function AiReviewActivity() {
 
   return (
     <div>
-      <h2 className="text-3xl font-headline font-bold mb-4">AI Lektor</h2>
+      <h2 className="text-3xl font-headline font-bold mb-4">{s.title}</h2>
       <p className="text-muted-foreground mb-6">
-        Napišite tekst na švedskom ili BKS jezicima i dobijte trenutnu povratnu informaciju i prijevod od AI.
-        Tekst možete poslati prečacem <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Cmd/Ctrl</kbd> + <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd>.
+        {s.description} {s.shortcut}{' '}
+        <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Cmd/Ctrl</kbd> + <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Enter</kbd>.
       </p>
 
       <Card>
         <CardHeader>
-          <CardTitle>Napišite svoj tekst ovdje</CardTitle>
+          <CardTitle>{s.cardTitle}</CardTitle>
         </CardHeader>
         <CardContent>
           <Textarea
-            placeholder="Napišite nekoliko rečenica..."
+            placeholder={s.placeholder}
             value={sourceText}
             onChange={(e) => setSourceText(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -113,7 +141,7 @@ export function AiReviewActivity() {
         <CardFooter className="flex-col items-start gap-4">
           <Button onClick={handleReview} disabled={isLoading || !sourceText.trim() || isOverLimit}>
             {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Bot className="mr-2 h-4 w-4" />}
-            Lektoriraj tekst
+            {s.buttonText}
           </Button>
         </CardFooter>
       </Card>
@@ -122,7 +150,7 @@ export function AiReviewActivity() {
         <Card className="mt-6">
           <CardContent className="p-6 flex flex-col items-center justify-center gap-4 text-muted-foreground">
             <Loader2 className="h-8 w-8 animate-spin" />
-            <p>AI analizira vaš tekst...</p>
+            <p>{s.loadingText}</p>
           </CardContent>
         </Card>
       )}
@@ -130,13 +158,13 @@ export function AiReviewActivity() {
       {review && (
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>Rezultati analize</CardTitle>
-            <CardDescription>Ovdje su prijevod i povratne informacije za vaš tekst.</CardDescription>
+            <CardTitle>{s.resultsTitle}</CardTitle>
+            <CardDescription>{s.resultsDescription}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
-                <Languages className="w-5 h-5 text-primary" /> Prijevod
+                <Languages className="w-5 h-5 text-primary" /> {s.translation}
               </h3>
               <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.translation}</p>
             </div>
@@ -145,7 +173,7 @@ export function AiReviewActivity() {
 
             <div>
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
-                <Pilcrow className="w-5 h-5 text-primary" /> Ispravljeni tekst
+                <Pilcrow className="w-5 h-5 text-primary" /> {s.correctedText}
               </h3>
               <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.correctedText}</p>
             </div>
@@ -154,7 +182,7 @@ export function AiReviewActivity() {
 
             <div>
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
-                <Check className="w-5 h-5 text-primary" /> Povratne informacije
+                <Check className="w-5 h-5 text-primary" /> {s.feedback}
               </h3>
               <p className="p-4 bg-muted/50 rounded-md whitespace-pre-wrap">{review.feedback}</p>
             </div>
