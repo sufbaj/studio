@@ -35,10 +35,6 @@ export default function ActivityPage() {
         return <ReadingActivity />;
       case 'translation':
         return <TranslationActivity />;
-      case 'translator':
-        return <TranslatorActivity />;
-      case 'ai-review':
-        return <AiReviewActivity />;
       default:
         return <NotImplementedActivity activityName={activity} />;
     }
