@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { reviewTextAction } from '@/app/learn/actions';
 import { Loader2, Bot, Languages, Check, Pilcrow } from 'lucide-react';
 import type { AiReviewOutput } from '@/ai/flows/ai-content-review';
-import { Separator } from '../ui/separator';
+import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 
 function toTitleCase(str: string | null): 'Swedish' | 'Bosnian' | 'Croatian' | 'Serbian' {
