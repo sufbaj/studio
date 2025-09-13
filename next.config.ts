@@ -25,6 +25,10 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
+    allowedDevOrigins: [
+      'https://*.firebase.studio',
+      'https://*.cloudworkstations.dev',
+    ],
   },
 };
 
