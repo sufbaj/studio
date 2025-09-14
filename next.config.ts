@@ -26,10 +26,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     instrumentationHook: true,
-    allowedDevOrigins: [
-        'https://*.firebase.studio',
-        'https://*.cloudworkstations.dev',
-    ],
   },
 };
 
