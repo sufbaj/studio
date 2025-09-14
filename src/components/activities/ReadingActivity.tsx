@@ -32,8 +32,13 @@ interface ReadingActivityStrings {
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null): ReadingActivityStrings => {
     const isSerbian = language === 'serbian';
+    const isCroatian = language === 'croatian';
+    
+    let title = 'Razumijevanje pročitanog';
+    if (isSerbian) title = 'Razumevanje pročitanog';
+
     return {
-      title: isSerbian ? 'Čitanje s razumevanjem' : 'Čitanje s razumijevanjem',
+      title: title,
       question: isSerbian ? 'Pitanje' : 'Pitanje',
       of: isSerbian ? 'od' : 'od',
       newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
@@ -41,13 +46,13 @@ const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null): Readin
       nextQuestion: isSerbian ? 'Sledeće pitanje' : 'Sljedeće pitanje',
       seeResults: isSerbian ? 'Prikaži rezultate' : 'Prikaži rezultate',
       exerciseFinished: isSerbian ? 'Vežba je gotova!' : 'Vježba je gotova!',
-      correctAnswersOutOf: (c, t) => isSerbian ? `Imali ste ${c} od ${t} tačnih odgovora.` : `Imali ste ${c} od ${t} tačnih odgovora.`,
+      correctAnswersOutOf: (c, t) => isSerbian ? `Imali ste ${c} od ${t} tačnih odgovora.` : `Imali ste ${c} od ${t} točnih odgovora.`,
       practiceAgain: isSerbian ? 'Vežbaj ponovo' : 'Vježbaj ponovo',
       noExercises: isSerbian ? 'Nema dostupnih vežbi.' : 'Nema dostupnih vježbi.',
-      correctToastTitle: 'Tačno!',
+      correctToastTitle: 'Točno!',
       correctToastDescription: 'Sjajno! +15 poena.',
-      incorrectToastTitle: 'Netačno!',
-      incorrectToastDescription: (a) => isSerbian ? `Tačan odgovor je bio "${a}".` : `Tačan odgovor je bio "${a}".`,
+      incorrectToastTitle: 'Netočno!',
+      incorrectToastDescription: (a) => isSerbian ? `Tačan odgovor je bio "${a}".` : `Točan odgovor je bio "${a}".`,
     };
 }
 

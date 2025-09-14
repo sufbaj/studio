@@ -82,7 +82,7 @@ const alphabetWordsBosnian = [
   { letter: "Č", words: ["čaša", "čekić", "čokolada", "čarapa", "četka", "čamac", "čovjek", "čelo", "čitati", "četvrtak"] },
   { letter: "Ć", words: ["ćevap", "ćilim", "ćup", "ćelija", "ćumez", "ćud", "ćošak", "ćerka", "ćirilica", "ćuskija"] },
   { letter: "D", words: ["dan", "drvo", "dijete", "djed", "doručak", "delfin", "dugme", "daska", "deset", "dimnjak"] },
-  { letter: "Dž", words: ["džep", "džezva", "džungla", "džemper", "džudo", "džip", "džamija", "džak", "džumbir", "džin"] },
+  { letter: "Dž", words: ["džezva", "džungla", "džemper", "džudo", "džip", "džamija", "džak", "džumbir", "džin", "džep"] },
   { letter: "Đ", words: ["đak", "đon", "đubrivo", "đevrek", "đumbir", "đerdan", "đubre", "đurina", "đuveč", "đurđica"] },
   { letter: "E", words: ["ekran", "efekat", "energija", "Evropa", "e-mail", "ekonomija", "element", "ekser", "etiketa", "epizoda"] },
   { letter: "F", words: ["film", "fudbal", "fabrika", "flomaster", "fenjer", "fotelja", "fotografija", "farmerke", "februar", "frižider"] },
@@ -100,7 +100,7 @@ const alphabetWordsBosnian = [
   { letter: "P", words: ["pas", "ptica", "prozor", "prst", "pismo", "poklon", "pita", "prijatelj", "ponedjeljak", "petak"] },
   { letter: "R", words: ["ruka", "riba", "rijeka", "robot", "ruža", "raketa", "ručak", "radost", "rep", "rat"] },
   { letter: "S", words: ["sunce", "stolica", "soba", "selo", "sestra", "sat", "sir", "sok", "san", "snijeg"] },
-  { letter: "Š", words: ["škola", "šuma", "šešir", "šator", "šljiva", "šal", "šporet", "šaka", "šah", "šapat"] },
+  { letter: "Š", words: ["škola", "šešir", "šator", "šljiva", "šal", "šporet", "šaka", "šah", "šapat", "šuma"] },
   { letter: "T", words: ["trava", "tanjir", "telefon", "tigar", "toplo", "tuš", "torba", "tata", "tramvaj", "torta"] },
   { letter: "U", words: ["uho", "ulica", "učitelj", "učenik", "ulje", "unuk", "ujak", "utorak", "usta", "umjetnik"] },
   { letter: "V", words: ["voda", "voz", "vjetar", "voće", "vuk", "večera", "vatra", "vrata", "visibaba", "vaza"] },
@@ -236,16 +236,6 @@ export const data: LanguageData = {
         { id: 43, sentence: 'Posjetili smo glavni grad ___.', blank: 'Bosne i Hercegovine', options: ['bosne', 'Bosne i Hercegovine', 'bosne i hercegovine'] },
         { id: 44, sentence: 'Voz za Tuzlu kreće sa glavne ___.', blank: 'stanice', options: ['stanice', 'stanice', 'stanice'] },
         { id: 45, sentence: 'U ___ ima puno zanimljivih knjiga.', blank: 'biblioteci', options: ['knjižnici', 'biblioteci', 'biblioteki'] },
-        { id: 46, sentence: 'Ljeti volim jesti svježe ___.', blank: 'povrće', options: ['povrće', 'povrče', 'povrce'] },
-        { id: 47, sentence: 'Njegov ___ je ljekar.', blank: 'amidža', options: ['amidža', 'stric', 'daidža'] },
-        { id: 48, sentence: 'U tom ___ se dogodilo čudo.', blank: 'slučaju', options: ['slučaju', 'slućaju', 'slucaju'] },
-        { id: 49, sentence: 'Imam puno ___ za vikend.', blank: 'obaveza', options: ['obaveza', 'obaveza', 'obveza'] },
-        { id: 50, sentence: 'U školi učimo o ___.', blank: 'historiji', options: ['historiji', 'povijesti', 'istoriji'] },
-        { id: 51, sentence: 'U sobi nema ___.', blank: 'nikoga', options: ['nikoga', 'nikog', 'nikog'] },
-        { id: 52, sentence: 'Da li ___ mi pomoći?', blank: 'ćeš', options: ['ćeš', 'češ', 'ćeš'] },
-        { id: 53, sentence: 'On je viši ___ mene.', blank: 'od', options: ['od', 'od', 'od'] },
-        { id: 54, sentence: 'Ne bih to ___ uradio.', blank: 'nikada', options: ['nikada', 'nikad', 'nikada'] },
-        { id: 55, sentence: 'To je ___ greška.', blank: 'njegova', options: ['njegova', 'negova', 'njegova'] },
       ],
       sentences: [
         { id: 1, sentence: 'Dječak čita knjigu.' },
@@ -298,11 +288,6 @@ export const data: LanguageData = {
         { id: 48, sentence: 'Na stolu je svježe voće.' },
         { id: 49, sentence: 'Zajedno pravimo Snješka Bijelića.' },
         { id: 50, sentence: 'Olovka je na stolu.' },
-        { id: 51, sentence: 'Slušamo muziku na radiju.' },
-        { id: 52, sentence: 'Moja porodica živi u gradu.' },
-        { id: 53, sentence: 'Volim jesti svježu salatu.' },
-        { id: 54, sentence: 'Učim da vozim bicikl.' },
-        { id: 55, sentence: 'More je plavo i veliko.' },
       ],
       grammar: [
         { id: 1, sentence: 'Dječak ___ loptu.', blank: 'ima', options: ['ima', 'imaju', 'imamo'], explanation: 'Subjekt u jednini (dječak) zahtijeva glagol u trećem licu jednine (ima).' },
@@ -386,7 +371,18 @@ export const data: LanguageData = {
               { id: 3, question: "Od čega su napravili nos Snješku?", options: ["Od kamena", "Od mrkve", "Od dugmeta"], answer: "Od mrkve" },
               { id: 4, question: "Šta su radili poslije pravljenja Snješka?", options: ["Pili čaj", "Grudvali se", "Gledali TV"], answer: "Grudvali se" }
             ]
-        }
+        },
+        {
+          id: 5,
+          title: "U biblioteci",
+          text: "Emina voli čitati. Svake subote ide u gradsku biblioteku. Biblioteka je velika zgrada puna polica s knjigama. Emina najviše voli čitati bajke i priče o životinjama. Prošle subote je posudila knjigu o malom medvjedu koji je tražio prijatelje. Knjiga je bila vrlo zanimljiva i poučna. Naučila je da je prijateljstvo važno. Emina jedva čeka sljedeću subotu da posudi novu knjigu.",
+          questions: [
+            { id: 1, question: "Kada Emina ide u biblioteku?", options: ["Svaki dan", "Svake subote", "Svakog mjeseca"], answer: "Svake subote" },
+            { id: 2, question: "Kakve knjige Emina najviše voli čitati?", options: ["Naučne knjige", "Pjesme", "Bajke i priče o životinjama"], answer: "Bajke i priče o životinjama" },
+            { id: 3, question: "O čemu je bila knjiga koju je posudila?", options: ["O malom medvjedu", "O svemirskom brodu", "O dinosaurima"], answer: "O malom medvjedu" },
+            { id: 4, question: "Šta je Emina naučila iz knjige?", options: ["Da je važno biti brz", "Da je prijateljstvo važno", "Kako se pravi kolač"], answer: "Da je prijateljstvo važno" }
+          ]
+        },
       ],
       translations: [
         { id: 1, type: 'word', source: 'kaffe', target: 'kafa' },
@@ -508,11 +504,6 @@ export const data: LanguageData = {
         { id: 133, sentence: 'On je ___ bosanskohercegovački pisac.', blank: 'najznačajniji', options: ['najznačajniji', 'naj značajniji', 'najznačajni'] },
         { id: 134, sentence: 'Imam moralnu ___ da pomognem.', blank: 'obavezu', options: ['obavezu', 'obvezu', 'obavez'] },
         { id: 135, sentence: 'Njegov ___ pristup je inovativan.', blank: 'naučni', options: ['naučni', 'naćni', 'naućni'] },
-        { id: 136, sentence: 'To je pitanje ___.', blank: 'principa', options: ['principa', 'principa', 'principa'] },
-        { id: 137, sentence: 'Uvijek je bio ___ prema starijima.', blank: 'ljubazan', options: ['ljubazan', 'lubezan', 'ljubasan'] },
-        { id: 138, sentence: 'Njegova izjava je izazvala ___.', blank: 'kontroverzu', options: ['kontroverzu', 'kontraverzu', 'kontrowerzu'] },
-        { id: 139, sentence: 'Ne mogu da vjerujem u njegovu ___.', blank: 'naivnost', options: ['naivnost', 'naivnos', 'naivost'] },
-        { id: 140, sentence: 'Ovo je ___ dokaz.', blank: 'nepobitan', options: ['nepobitan', 'nepobitan', 'nepobitan'] },
       ],
       sentences: [
         { id: 101, sentence: 'Danas je u Sarajevu padala jaka kiša.' },
@@ -550,11 +541,6 @@ export const data: LanguageData = {
         { id: 133, sentence: 'Tehnologija napreduje nevjerovatnom brzinom svakoga dana.' },
         { id: 134, sentence: 'Učenje stranih jezika je veoma korisno za budućnost.' },
         { id: 135, sentence: 'Komunikacija je ključ za rješavanje mnogih problema.' },
-        { id: 136, sentence: 'On je napisao veoma zanimljiv sastav o prijateljstvu.' },
-        { id: 137, sentence: 'Cijela porodica se okupila za vrijeme praznika.' },
-        { id: 138, sentence: 'Danas je Svjetski dan zaštite okoliša.' },
-        { id: 139, sentence: 'Moramo donijeti važnu odluku o našem projektu.' },
-        { id: 140, sentence: 'U muzeju smo vidjeli mnogo interesantnih eksponata.' },
       ],
       grammar: [
         { id: 101, sentence: 'Putujem ___ za Sarajevo.', blank: 'avionom', options: ['avion', 'aviona', 'avionom'], explanation: 'Instrumental sredstva (čime putujem?) zahtijeva nastavak -om za imenice muškog roda.' },
@@ -587,11 +573,6 @@ export const data: LanguageData = {
         { id: 128, sentence: 'Pročitao sam sve knjige ___ si mi posudio.', blank: 'koje', options: ['koji', 'koje', 'koja'], explanation: 'Odnosna zamjenica "koje" odnosi se na "knjige" (ženski rod, množina, akuzativ).' },
         { id: 129, sentence: 'Radujem ___ tvom dolasku.', blank: 'se', options: ['se', 'si', 'mi'], explanation: 'Povratni glagol "radovati se" zahtijeva povratnu zamjenicu "se".' },
         { id: 130, sentence: 'S kim ___ razgovarao?', blank: 'si', options: ['sam', 'si', 'je'], explanation: 'Perfekt za 2. lice jednine muškog roda (ti si razgovarao) koristi enklitiku "si".' },
-        { id: 131, sentence: 'Ne sviđa mi ___ ovaj film.', blank: 'se', options: ['se', 'ga', 'mi'], explanation: 'Glagol "sviđati se" je povratni glagol i zahtijeva zamjenicu "se".' },
-        { id: 132, sentence: 'To je ___ najdraža pjesma.', blank: 'moja', options: ['moj', 'moja', 'moje'], explanation: 'Imenica "pjesma" je ženskog roda, pa i prisvojna zamjenica mora biti u ženskom rodu.' },
-        { id: 133, sentence: 'Učenici su ___ na pitanja.', blank: 'odgovarali', options: ['odgovarao', 'odgovarala', 'odgovarali'], explanation: 'Subjekt u množini muškog roda (učenici) zahtijeva glagolski pridjev radni u istom rodu i broju.' },
-        { id: 134, sentence: 'Ovo je problem o ___ moramo razmisliti.', blank: 'kojem', options: ['koji', 'kojem', 'kojeg'], explanation: 'Lokativ (o kome/čemu moramo razmisliti?) zahtijeva odnosnu zamjenicu "kojem".' },
-        { id: 135, sentence: 'On je otišao ___ da kupi hljeb.', blank: 'kako bi', options: ['zato', 'kako bi', 'iako'], explanation: 'Namjerna rečenica se može uvesti veznikom "kako bi".' },
       ],
       reading: [
         {
@@ -639,7 +620,18 @@ export const data: LanguageData = {
             { id: 3, question: "Šta pokreće vodenicu?", options: ["Vjetar", "Voda", "Para"], answer: "Voda" },
             { id: 4, question: "Šta vodenice predstavljaju danas?", options: ["Važan dio industrije", "Važan dio tradicije", "Glavni izvor brašna"], answer: "Važan dio tradicije" }
           ]
-        }
+        },
+        {
+          id: 105,
+          title: "Zimske olimpijske igre u Sarajevu",
+          text: "Godine 1984. Sarajevo je bilo domaćin 14. Zimskih olimpijskih igara. To je bio jedan od najvažnijih događaja u historiji grada i cijele Bosne i Hercegovine. Na planinama Bjelašnici, Jahorini i Igmanu održavala su se takmičenja u skijanju, sankanju i drugim zimskim sportovima. Cijeli grad je živio u duhu olimpizma. Maskota igara bio je simpatični vuk Vučko, kojeg su svi zavoljeli. Ove igre su ostale upamćene po odličnoj organizaciji i srdačnosti domaćina. I danas se mnogi sa nostalgijom sjećaju 'bijele olimpijade' u Sarajevu.",
+          questions: [
+            { id: 1, question: "Koje godine su održane Zimske olimpijske igre u Sarajevu?", options: ["1980.", "1984.", "1992."], answer: "1984." },
+            { id: 2, question: "Koja životinja je bila maskota igara?", options: ["Medvjed", "Lisica", "Vuk"], answer: "Vuk" },
+            { id: 3, question: "Kako se zvala maskota?", options: ["Medo", "Lija", "Vučko"], answer: "Vučko" },
+            { id: 4, question: "Na kojim planinama su se održavala takmičenja?", options: ["Na Vlašiću i Romaniji", "Na Bjelašnici, Jahorini i Igmanu", "Na Treskavici i Visočici"], answer: "Na Bjelašnici, Jahorini i Igmanu" }
+          ]
+        },
       ],
       translations: [
         { id: 101, type: 'word', source: 'dator', target: 'računar' },
@@ -794,16 +786,6 @@ export const data: LanguageData = {
           { id: 423, sentence: 'Ne mogu da vjerujem u njegovu ___.', blank: 'naivnost', options: ['naivnost', 'naivnos', 'naivost'] },
           { id: 424, sentence: 'Ovo je ___ dokaz.', blank: 'nepobitan', options: ['nepobitan', 'nepobitan', 'nepobitan'] },
           { id: 425, sentence: 'Njegovo ponašanje je ___.', blank: 'neprihvatljivo', options: ['neprihvatljivo', 'neprihvatljivo', 'ne prihvatljivo'] },
-          { id: 426, sentence: 'Ne želim da se ___ u tvoj posao.', blank: 'miješam', options: ['mješam', 'miješam', 'mješam'] },
-          { id: 427, sentence: 'On je ___ na sve.', blank: 'utjecao', options: ['utjecao', 'uticao', 'utjekao'] },
-          { id: 428, sentence: '___ se da ćeš uspjeti.', blank: 'Nadam', options: ['Nadam', 'Nadamo', 'Nada'] },
-          { id: 429, sentence: 'On je dao ___ izjavu.', blank: 'zvaničnu', options: ['zvaničnu', 'zvanićnu', 'zvaničnu'] },
-          { id: 430, sentence: 'Moramo izvršiti ___ podataka.', blank: 'analizu', options: ['analizu', 'analizu', 'analizu'] },
-          { id: 431, sentence: 'Problem je ___ prirode.', blank: 'tehničke', options: ['tehničke', 'tehnićke', 'tehničke'] },
-          { id: 432, sentence: 'Ovo je ___ procedura.', blank: 'standardna', options: ['standardna', 'standardna', 'štandardna'] },
-          { id: 433, sentence: 'Njegov ___ je bio veoma jasan.', blank: 'zaključak', options: ['zaključak', 'zakljućak', 'zaključak'] },
-          { id: 434, sentence: 'To je bila ___ diskusija.', blank: 'konstruktivna', options: ['konstruktivna', 'konstruktivna', 'konstruktivna'] },
-          { id: 435, sentence: 'Moramo se pridržavati ___.', blank: 'pravila', options: ['pravila', 'pravila', 'pravila'] },
         ],
         reading: [
           {
@@ -852,7 +834,18 @@ export const data: LanguageData = {
               { id: 3, question: "Na šta se odnosi ekološki stub?", options: ["Samo na reciklažu", "Na zaštitu okoliša i očuvanje resursa", "Na izgradnju fabrika"], answer: "Na zaštitu okoliša i očuvanje resursa" },
               { id: 4, question: "Šta je neophodno za dugoročni prosperitet?", options: ["Fokus samo na ekonomiju", "Zanemarivanje okoliša", "Balans između ekonomskog, socijalnog i ekološkog stuba"], answer: "Balans između ekonomskog, socijalnog i ekološkog stuba" }
             ]
-          }
+          },
+          {
+            id: 405,
+            title: "Gazi Husrev-beg",
+            text: "Gazi Husrev-beg bio je osmanski upravitelj Bosne u prvoj polovini 16. stoljeća i smatra se najvećim vakifom (dobrotvorom) Sarajeva. Za vrijeme njegove uprave, Sarajevo je doživjelo svoj najveći procvat i postalo jedan od najvažnijih gradova na Balkanu. Gazi Husrev-beg je izgradio mnoge objekte koji i danas krase Sarajevo. Među najvažnijim su Gazi Husrev-begova džamija, medresa (vjerska škola) koja i danas radi pod imenom Gazi Husrev-begova biblioteka, sahat-kula, i bezistan (natkrivena tržnica). Njegovi vakufi (zadužbine) su omogućili ekonomski i kulturni razvoj grada. Njegov doprinos je toliko značajan da se stari dio Sarajeva često naziva 'Gazi Husrev-begovim gradom'.",
+            questions: [
+              { id: 1, question: "Ko je bio Gazi Husrev-beg?", options: ["Osmanski sultan", "Najveći vakif (dobrotvor) Sarajeva", "Vojskovođa"], answer: "Najveći vakif (dobrotvor) Sarajeva" },
+              { id: 2, question: "Kada je Sarajevo doživjelo svoj najveći procvat?", options: ["U 15. stoljeću", "Za vrijeme Gazi Husrev-begove uprave", "U 19. stoljeću"], answer: "Za vrijeme Gazi Husrev-begove uprave" },
+              { id: 3, question: "Koji od navedenih objekata NIJE izgradio Gazi Husrev-beg?", options: ["Gazi Husrev-begova džamija", "Sebilj na Baščaršiji", "Bezistan"], answer: "Sebilj na Baščaršiji" },
+              { id: 4, question: "Šta su vakufi?", options: ["Porezi", "Zadužbine", "Vojne jedinice"], answer: "Zadužbine" }
+            ]
+          },
         ],
         translations: [
             { id: 401, type: 'word', source: 'samhälle', target: 'društvo' },
@@ -994,10 +987,6 @@ export const data: LanguageData = {
         { id: 43, sentence: 'Njegov otac je ___.', blank: 'liječnik', options: ['liječnik', 'liječnik', 'lekar'] },
         { id: 44, sentence: 'U ___ se igraju djeca.', blank: 'pijesku', options: ['pijesku', 'pjesku', 'pijesku'] },
         { id: 45, sentence: '___ je glavni grad Hrvatske.', blank: 'Zagreb', options: ['Zagreb', 'Zagreb', 'Zagreb'] },
-        { id: 46, sentence: 'Volim jesti ___ juhu.', blank: 'pileću', options: ['pileću', 'pileću', 'pileću'] },
-        { id: 47, sentence: 'On je moj ___ susjed.', blank: 'najdraži', options: ['najdraži', 'najdraži', 'najdraži'] },
-        { id: 48, sentence: 'Imam ___ iz matematike.', blank: 'peticu', options: ['peticu', 'peticu', 'peticu'] },
-        { id: 49, sentence: 'Vidio sam ga ___ u gradu.', blank: 'jučer', options: ['jučer', 'jučer', 'juče'] },
       ],
       sentences: [
         { id: 1, sentence: 'Dječak čita knjigu.' },
@@ -1117,7 +1106,18 @@ export const data: LanguageData = {
             { id: 4, question: "Koji dar mu se najviše svidio?", options: ["Igračka", "Nogometni dres i lopta", "Knjiga"], answer: "Nogometni dres i lopta" },
             { id: 5, question: "Kako se Marin osjećao?", options: ["Tužno", "Ljutito", "Sretno"], answer: "Sretno" }
           ]
-        }
+        },
+        {
+          id: 6,
+          title: "Na tržnici",
+          text: "Svake subote, baka i djed idu na tržnicu Dolac u Zagrebu. To je velika, šarena tržnica puna ljudi. Baka kupuje svježe voće i povrće: crvene rajčice, zelenu salatu i slatke jagode. Djed kupuje domaći sir i vrhnje. Na tržnici se osjećaju mirisi cvijeća, svježeg kruha i pečenih kestena. Nakon kupovine, uvijek popiju kavu na obližnjem trgu. Vole ići na tržnicu jer je tamo uvijek živo i veselo.",
+          questions: [
+            { id: 1, question: "Gdje baka i djed idu svake subote?", options: ["U dućan", "Na tržnicu Dolac", "U park"], answer: "Na tržnicu Dolac" },
+            { id: 2, question: "Što baka kupuje?", options: ["Meso i ribu", "Svježe voće i povrće", "Kolače"], answer: "Svježe voće i povrće" },
+            { id: 3, question: "Što djed kupuje?", options: ["Novine", "Domaći sir i vrhnje", "Odjeću"], answer: "Domaći sir i vrhnje" },
+            { id: 4, question: "Što rade nakon kupovine?", options: ["Idu kući", "Popiju kavu", "Idu u kino"], answer: "Popiju kavu" }
+          ]
+        },
       ],
       translations: [
         { id: 1, type: 'word', source: 'kaffe', target: 'kava' },
@@ -1337,7 +1337,18 @@ export const data: LanguageData = {
             { id: 3, question: "O čemu ovisi boja jezera?", options: ["O temperaturi vode", "O količini minerala i kutu sunčeve svjetlosti", "O dubini jezera"], answer: "O količini minerala i kutu sunčeve svjetlosti" },
             { id: 4, question: "Na koji popis su uvrštena Plitvička jezera?", options: ["Popis svjetskih čuda", "UNESCO-ov popis svjetske baštine", "Popis ugroženih parkova"], answer: "UNESCO-ov popis svjetske baštine" }
           ]
-        }
+        },
+        {
+          id: 204,
+          title: "Sinjska alka",
+          text: "Sinjska alka je viteška igra koja se svake godine održava u Sinju, u spomen na pobjedu nad osmanskim osvajačima 1715. godine. Alku trče alkari, vitezovi na konjima, koji u punom trku kopljem gađaju alku, mali metalni prsten. Alka se sastoji od dva koncentrična kruga povezana s tri prečke. Ovisno o tome koji dio alke alkar pogodi, dobiva različit broj punata. Najviše punata, tri, dobiva se za pogodak 'u sridu'. Cijeli događaj prate svečane odore, glazba i pucanje iz mačkula (starih topova). Sinjska alka je zbog svoje jedinstvenosti uvrštena na UNESCO-ov popis nematerijalne svjetske baštine.",
+          questions: [
+            { id: 1, question: "Gdje se održava Sinjska alka?", options: ["U Splitu", "U Sinju", "U Zadru"], answer: "U Sinju" },
+            { id: 2, question: "Što alkari gađaju kopljem?", options: ["Metu", "Alku", "Jabuku"], answer: "Alku" },
+            { id: 3, question: "Koliko punata donosi pogodak 'u sridu'?", options: ["Jedan", "Dva", "Tri"], answer: "Tri" },
+            { id: 4, question: "U spomen na koju pobjedu se održava Alka?", options: ["Pobjedu nad Mlečanima", "Pobjedu nad osmanskim osvajačima", "Pobjedu nad Francuzima"], answer: "Pobjedu nad osmanskim osvajačima" }
+          ]
+        },
       ],
       translations: [
         { id: 201, type: 'word', source: 'dator', target: 'računalo' },
@@ -1531,7 +1542,18 @@ export const data: LanguageData = {
             { id: 3, question: "Koji je ključan dio medijske pismenosti?", options: ["Brzo tipkanje", "Kritičko razmišljanje", "Lijepo pisanje"], answer: "Kritičko razmišljanje" },
             { id: 4, question: "Što bismo trebali učiniti prije prihvaćanja informacije kao istinite?", options: ["Odmah je podijeliti s prijateljima", "Provjeriti je u više neovisnih izvora", "Vjerovati joj ako ima puno lajkova"], answer: "Provjeriti je u više neovisnih izvora" },
           ]
-        }
+        },
+        {
+          id: 504,
+          title: "Dubrovačka Republika",
+          text: "Dubrovačka Republika bila je pomorska republika sa središtem u gradu Dubrovniku. Postojala je od 1358. do 1808. godine. Vrhunac moći doživjela je u 15. i 16. stoljeću. Njezino bogatstvo temeljilo se na pomorskoj trgovini i vještoj diplomaciji. Dubrovčani su bili poznati trgovci koji su putovali cijelim Mediteranom. Republika je imala vlastitu vladu, zakone i valutu. Geslo Republike bilo je 'Sloboda se ne prodaje ni za sve zlato svijeta' (lat. 'Non bene pro toto libertas venditur auro'). Napoleonova osvajanja označila su kraj postojanja ove slavne republike, ali njezin duh i bogata baština i danas žive u zidinama Dubrovnika.",
+          questions: [
+            { id: 1, question: "Gdje je bilo središte Dubrovačke Republike?", options: ["U Splitu", "U Veneciji", "U Dubrovniku"], answer: "U Dubrovniku" },
+            { id: 2, question: "Na čemu se temeljilo bogatstvo Republike?", options: ["Na poljoprivredi", "Na pomorskoj trgovini i diplomaciji", "Na ratovanju"], answer: "Na pomorskoj trgovini i diplomaciji" },
+            { id: 3, question: "Koje je bilo geslo Republike?", options: ["Znanje je moć", "Sloboda se ne prodaje ni za sve zlato svijeta", "U jedinstvu je snaga"], answer: "Sloboda se ne prodaje ni za sve zlato svijeta" },
+            { id: 4, question: "Tko je označio kraj postojanja Republike?", options: ["Osmansko Carstvo", "Mletačka Republika", "Napoleon"], answer: "Napoleon" }
+          ]
+        },
       ],
       translations: [
         { id: 501, type: 'word', source: 'samhälle', target: 'društvo' },
@@ -1764,7 +1786,18 @@ export const data: LanguageData = {
             { id: 3, question: "Šta Nikola baca Žući?", options: ["Kamen", "Granu", "Lopticu"], answer: "Lopticu" },
             { id: 4, question: "Gde Žuća spava?", options: ["U Nikolinom krevetu", "U svojoj kućici", "Na drvetu"], answer: "U svojoj kućici" }
           ]
-        }
+        },
+        {
+          id: 7,
+          title: "Na selu kod bake i deke",
+          text: "Marko obožava da provodi raspust na selu kod bake i deke. Tamo uvek ima nešto zanimljivo da se radi. Ujutru pomaže deki da nahrani životinje: kokoške, svinje i kravu Šarulju. Posle doručka, ide sa bakom u baštu gde beru sveže povrće za ručak. Najviše voli babinu supu od paradajza. Popodne se igra sa svojim drugarima pored reke. Uveče svi zajedno sede na tremu i slušaju dekine priče. Život na selu je miran i lep.",
+          questions: [
+            { id: 1, question: "Gde Marko provodi raspust?", options: ["Na moru", "U gradu", "Na selu kod bake i deke"], answer: "Na selu kod bake i deke" },
+            { id: 2, question: "Koje životinje Marko hrani sa dekom?", options: ["Ovce i koze", "Kokoške, svinje i kravu", "Konje i patke"], answer: "Kokoške, svinje i kravu" },
+            { id: 3, question: "Šta Marko najviše voli da jede?", options: ["Bakinu pitu", "Bakinu supu od paradajza", "Dekin roštilj"], answer: "Bakinu supu od paradajza" },
+            { id: 4, question: "Šta Marko radi popodne?", options: ["Spava", "Gleda televiziju", "Igra se sa drugarima pored reke"], answer: "Igra se sa drugarima pored reke" }
+          ]
+        },
       ],
       translations: [
         { id: 1, type: 'word', source: 'kaffe', target: 'kafa' },
@@ -1928,7 +1961,18 @@ export const data: LanguageData = {
             { id: 3, question: "Koju muziku Miloš najviše voli?", options: ["Rok muziku", "Elektronsku muziku", "Narodnu muziku"], answer: "Elektronsku muziku" },
             { id: 4, question: "Ko dolazi na festival?", options: ["Samo ljudi iz Srbije", "Samo stariji ljudi", "Mladi iz celog sveta"], answer: "Mladi iz celog sveta" }
           ]
-        }
+        },
+        {
+          id: 303,
+          title: "Vuk Karadžić, reformator jezika",
+          text: "Vuk Stefanović Karadžić bio je najznačajnija ličnost u reformi srpskog jezika i pravopisa u 19. veku. Rođen je u selu Tršić. Vuk je sakupio i objavio brojne narodne pesme, priče i poslovice, čuvajući tako narodno blago od zaborava. Njegov najveći doprinos je reforma ćirilice po principu 'piši kao što govoriš, a čitaj kako je napisano'. Uveo je nova slova kao što su Ђ, Ћ, Џ, Љ, Њ. Sastavio je i prvi 'Srpski rječnik', koji je sadržao preko 26.000 reči. Njegov rad je postavio temelje za savremeni srpski književni jezik.",
+          questions: [
+            { id: 1, question: "Po čemu je Vuk Karadžić najpoznatiji?", options: ["Po pisanju romana", "Po reformi srpskog jezika i pravopisa", "Po slikarstvu"], answer: "Po reformi srpskog jezika i pravopisa" },
+            { id: 2, question: "Koji je bio Vukov osnovni princip reforme?", options: ["'Govori kako pišeš'", "'Piši kao što govoriš'", "'Misli brzo, piši sporo'"], answer: "'Piši kao što govoriš'" },
+            { id: 3, question: "Šta je Vuk sakupljao i objavljivao?", options: ["Stare mape", "Narodne pesme, priče i poslovice", "Stare novčiće"], answer: "Narodne pesme, priče i poslovice" },
+            { id: 4, question: "Koja je važna knjiga koju je Vuk sastavio?", options: ["Prva srpska gramatika", "Srpski rječnik", "Istorija Srba"], answer: "Srpski rječnik" }
+          ]
+        },
       ], 
       translations: [
         { id: 301, type: 'word', source: 'dator', target: 'računar' },
@@ -2061,7 +2105,18 @@ export const data: LanguageData = {
               { id: 4, question: "Od čega je umrla?", options: ["Od starosti", "U borbi", "Od tifusa"], answer: "Od tifusa" },
               { id: 5, question: "Na kojoj srpskoj novčanici se nalazi njen lik?", options: ["Na novčanici od 100 dinara", "Na novčanici od 200 dinara", "Na novčanici od 500 dinara"], answer: "Na novčanici od 200 dinara" }
             ]
-        }
+        },
+        {
+          id: 603,
+          title: "Nauka i tehnologija",
+          text: "Nauka i tehnologija su pokretači savremenog društva. Nauka nam pomaže da razumemo svet oko nas, od najmanjih atoma do ogromnih galaksija. Tehnologija, sa druge strane, primenjuje naučna znanja kako bi stvorila alate i uređaje koji nam olakšavaju život. Pametni telefoni, internet, električni automobili - sve su to proizvodi tehnološkog napretka. Ipak, važno je koristiti tehnologiju na odgovoran način. Preterana upotreba može dovesti do zavisnosti i otuđenja. Zato je važno pronaći balans između korišćenja prednosti tehnologije i očuvanja zdravih ljudskih odnosa.",
+          questions: [
+            { id: 1, question: "Šta nam nauka pomaže da uradimo?", options: ["Da zaradimo novac", "Da razumemo svet oko nas", "Da putujemo brže"], answer: "Da razumemo svet oko nas" },
+            { id: 2, question: "Šta je od navedenog proizvod tehnološkog napretka?", options: ["Drvena stolica", "Pametni telefoni", "Kišobran"], answer: "Pametni telefoni" },
+            { id: 3, question: "Šta može biti negativna posledica preterane upotrebe tehnologije?", options: ["Bolje pamćenje", "Zavisnost i otuđenje", "Više slobodnog vremena"], answer: "Zavisnost i otuđenje" },
+            { id: 4, question: "Šta je važno pronaći u vezi sa tehnologijom?", options: ["Najnoviji model telefona", "Balans u njenom korišćenju", "Najbrži internet"], answer: "Balans u njenom korišćenju" }
+          ]
+        },
       ],
       translations: [
         { id: 601, type: 'word', source: 'samhälle', target: 'društvo' },
@@ -2073,7 +2128,7 @@ export const data: LanguageData = {
         { id: 607, type: 'sentence', source: 'Teknologins utveckling har förändrat våra liv.', target: 'Razvoj tehnologije je promenio naše živote.' },
         { id: 608, type: 'sentence', source: 'Det är viktigt att ta ansvar för sina handlingar.', target: 'Važno je preuzeti odgovornost za svoje postupke.' },
         { id: 609, type: 'sentence', source: 'Utbildning är nyckeln till en bättre framtid.', target: 'Obrazovanje je ključ za bolju budućnost.' },
-        { id: 610, sentence: 'Alla medborgare bör ha samma rättigheter och skyldigheter.', target: 'Svi građani bi trebalo da imaju ista prava i obaveze.' }
+        { id: 610, type: 'sentence', source: 'Alla medborgare bör ha samma rättigheter och skyldigheter.', target: 'Svi građani bi trebalo da imaju ista prava i obaveze.' }
       ],
       alphabet: [],
       numbers: [],
