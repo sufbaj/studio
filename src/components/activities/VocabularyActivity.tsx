@@ -24,16 +24,22 @@ type QuizItem = {
 
 const getStrings = (language: Language | null) => {
     const isSerbian = language === 'serbian';
+    const isCroatian = language === 'croatian';
 
     let title = 'Vježbe riječi';
     if (isSerbian) title = 'Vežbe reči';
+
+    let howToSay = 'Kako se kaže na bosanskom:';
+    if (isCroatian) howToSay = 'Kako se kaže na hrvatskom:';
+    if (isSerbian) howToSay = 'Kako se kaže na srpskom:';
+
 
     return {
         title: title,
         subtitle: 'Proširi svoj vokabular kroz tematske kategorije.',
         noExercises: isSerbian ? 'Nema dostupnih reči za odabrana podešavanja.' : 'Nema dostupnih riječi za odabrane postavke.',
         newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
-        howToSay: (lang: string) => isSerbian ? `Kako se kaže na ${lang}:` : `Kako se kaže na ${lang}:`,
+        howToSay: howToSay,
         correctToastTitle: 'Tačno!',
         correctToastDescription: '+10 poena',
         incorrectToastTitle: 'Netačno!',
@@ -165,16 +171,6 @@ function VocabularyQuiz({ categoryId }: { categoryId: string }) {
   };
 
   const currentQuizItem = useMemo(() => quizItems[currentItemIndex], [quizItems, currentItemIndex]);
-
-  const getLanguageDisplayName = () => {
-    if (!language) return '';
-    switch (language) {
-      case 'bosnian': return 'bosanski';
-      case 'croatian': return 'hrvatski';
-      case 'serbian': return 'srpski';
-      default: return '';
-    }
-  }
   
   if (!language || !grade || quizItems.length === 0) {
     return (
@@ -217,7 +213,7 @@ function VocabularyQuiz({ categoryId }: { categoryId: string }) {
           <Card className="overflow-hidden">
              <CardContent className="p-6 flex flex-col justify-center items-center bg-muted/50 min-h-[120px]">
               <div className="text-center">
-                <p className="text-muted-foreground">{s.howToSay(getLanguageDisplayName())}</p>
+                <p className="text-muted-foreground">{s.howToSay}</p>
                  <div className="flex items-center gap-4">
                     <p className="text-3xl font-bold font-headline text-foreground">{currentQuizItem.item.translation}</p>
                  </div>
