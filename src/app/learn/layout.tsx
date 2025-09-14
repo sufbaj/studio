@@ -29,6 +29,7 @@ import {
   BookOpen,
   CaseUpper,
   Hash,
+  Languages,
 } from 'lucide-react';
 import type { Language, Grade } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -36,23 +37,23 @@ import { cn } from '@/lib/utils';
 
 const navItems = [
   { href: 'alphabet', icon: CaseUpper, label: 'Alfabet' },
-  { href: 'numbers', icon: Hash, label: 'Siffror' },
-  { href: 'vocabulary', icon: BookText, label: 'Ordförråd' },
-  { href: 'sentences', icon: MessageSquare, label: 'Meningar' },
-  { href: 'grammar', icon: SpellCheck, label: 'Grammatik' },
-  { href: 'spelling', icon: FileText, label: 'Rättstavning' },
-  { href: 'reading', icon: BookOpen, label: 'Läsförståelse' },
-  { href: 'svenska-till-modersmal', icon: BookOpen, label: 'Svenska till modersmål' },
+  { href: 'numbers', icon: Hash, label: 'Brojevi' },
+  { href: 'vocabulary', icon: BookText, label: 'Rječnik' },
+  { href: 'sentences', icon: MessageSquare, label: 'Rečenice' },
+  { href: 'grammar', icon: SpellCheck, label: 'Gramatika' },
+  { href: 'spelling', icon: FileText, label: 'Pravopis' },
+  { href: 'reading', icon: BookOpen, label: 'Čitanje' },
+  { href: 'svenska-till-modersmal', icon: Languages, label: 'Prevođenje' },
 ];
 
 function getLanguageDisplayName(language: Language) {
     switch (language) {
       case 'bosnian':
-        return 'Bosniska';
+        return 'Bosanski';
       case 'croatian':
-        return 'Kroatiska';
+        return 'Hrvatski';
       case 'serbian':
-        return 'Serbiska';
+        return 'Srpski';
       default:
         return '';
     }
@@ -97,7 +98,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
         <SidebarContent>
           <SidebarMenu>
             <SidebarGroup>
-              <SidebarGroupLabel className="text-sidebar-foreground/70">Övningar</SidebarGroupLabel>
+              <SidebarGroupLabel className="text-sidebar-foreground/70">Vježbe</SidebarGroupLabel>
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
                   <Button 
