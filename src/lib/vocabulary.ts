@@ -227,10 +227,10 @@ export const vocabularyData: VocabularyData = {
           { id: 1421, word: 'glumac/glumica', translation: 'skådespelare' },
         ],
       },
-      daysAndMonths: {
-        title: 'Dani i mjeseci',
-        description: 'Nauči dane u sedmici i mjesece u godini.',
-        swedish: 'Dagar och månader',
+      daysOfWeek: {
+        title: 'Dani u sedmici',
+        description: 'Nauči dane u sedmici.',
+        swedish: 'Veckodagar',
         items: [
           { id: 1801, word: 'ponedjeljak', translation: 'måndag' },
           { id: 1802, word: 'utorak', translation: 'tisdag' },
@@ -239,6 +239,13 @@ export const vocabularyData: VocabularyData = {
           { id: 1805, word: 'petak', translation: 'fredag' },
           { id: 1806, word: 'subota', translation: 'lördag' },
           { id: 1807, word: 'nedjelja', translation: 'söndag' },
+        ],
+      },
+      monthsOfYear: {
+        title: 'Mjeseci u godini',
+        description: 'Nauči mjesece u godini.',
+        swedish: 'Månader',
+        items: [
           { id: 1808, word: 'januar', translation: 'januari' },
           { id: 1809, word: 'februar', translation: 'februari' },
           { id: 1810, word: 'mart', translation: 'mars' },
@@ -433,10 +440,10 @@ export const vocabularyData: VocabularyData = {
           { id: 2421, word: 'apotekar', translation: 'apotekare' },
         ],
       },
-      daysAndMonths: {
-        title: 'Dani i mjeseci',
-        description: 'Nauči dane u sedmici i mjesece u godini.',
-        swedish: 'Dagar och månader',
+      daysOfWeek: {
+        title: 'Dani u sedmici',
+        description: 'Nauči dane u sedmici.',
+        swedish: 'Veckodagar',
         items: [
           { id: 2801, word: 'ponedjeljak', translation: 'måndag' },
           { id: 2802, word: 'utorak', translation: 'tisdag' },
@@ -445,6 +452,13 @@ export const vocabularyData: VocabularyData = {
           { id: 2805, word: 'petak', translation: 'fredag' },
           { id: 2806, word: 'subota', translation: 'lördag' },
           { id: 2807, word: 'nedjelja', translation: 'söndag' },
+        ],
+      },
+      monthsOfYear: {
+        title: 'Mjeseci u godini',
+        description: 'Nauči mjesece u godini.',
+        swedish: 'Månader',
+        items: [
           { id: 2808, word: 'januar', translation: 'januari' },
           { id: 2809, word: 'februar', translation: 'februari' },
           { id: 2810, word: 'mart', translation: 'mars' },
@@ -659,10 +673,10 @@ export const vocabularyData: VocabularyData = {
           { id: 3421, word: 'savjetnik', translation: 'rådgivare' },
         ],
       },
-      daysAndMonths: {
-        title: 'Dani i mjeseci',
-        description: 'Nauči dane u sedmici i mjesece u godini.',
-        swedish: 'Dagar och månader',
+      daysOfWeek: {
+        title: 'Dani u sedmici',
+        description: 'Nauči dane u sedmici.',
+        swedish: 'Veckodagar',
         items: [
           { id: 3801, word: 'ponedjeljak', translation: 'måndag' },
           { id: 3802, word: 'utorak', translation: 'tisdag' },
@@ -671,6 +685,13 @@ export const vocabularyData: VocabularyData = {
           { id: 3805, word: 'petak', translation: 'fredag' },
           { id: 3806, word: 'subota', translation: 'lördag' },
           { id: 3807, word: 'nedjelja', translation: 'söndag' },
+        ],
+      },
+      monthsOfYear: {
+        title: 'Mjeseci u godini',
+        description: 'Nauči mjesece u godini.',
+        swedish: 'Månader',
+        items: [
           { id: 3808, word: 'april', translation: 'april' },
           { id: 3809, word: 'maj', translation: 'maj' },
           { id: 3810, word: 'jun', translation: 'juni' },
@@ -961,10 +982,10 @@ export const vocabularyData: VocabularyData = {
           { id: 1521, word: 'glumac/glumica', translation: 'skådespelare' },
         ],
       },
-      daysAndMonths: {
-        title: 'Dani i mjeseci',
-        description: 'Nauči dane u tjednu i mjesece u godini.',
-        swedish: 'Dagar och månader',
+      daysOfWeek: {
+        title: 'Dani u tjednu',
+        description: 'Nauči dane u tjednu.',
+        swedish: 'Veckodagar',
         items: [
           { id: 1906, word: 'ponedjeljak', translation: 'måndag' },
           { id: 1907, word: 'utorak', translation: 'tisdag' },
@@ -973,6 +994,13 @@ export const vocabularyData: VocabularyData = {
           { id: 1910, word: 'petak', translation: 'fredag' },
           { id: 1911, word: 'subota', translation: 'lördag' },
           { id: 1912, word: 'nedjelja', translation: 'söndag' },
+        ],
+      },
+      monthsOfYear: {
+        title: 'Mjeseci u godini',
+        description: 'Nauči mjesece u godini.',
+        swedish: 'Månader',
+        items: [
           { id: 1913, word: 'siječanj', translation: 'januari' },
           { id: 1914, word: 'veljača', translation: 'februari' },
           { id: 1915, word: 'ožujak', translation: 'mars' },
@@ -1167,10 +1195,10 @@ export const vocabularyData: VocabularyData = {
           { id: 2521, word: 'ljekarnik', translation: 'apotekare' },
         ],
       },
-      daysAndMonths: {
-        title: 'Dani i mjeseci',
-        description: 'Nauči dane u tjednu i mjesece u godini.',
-        swedish: 'Dagar och månader',
+      daysOfWeek: {
+        title: 'Dani u tjednu',
+        description: 'Nauči dane u tjednu.',
+        swedish: 'Veckodagar',
         items: [
           { id: 2901, word: 'ponedjeljak', translation: 'måndag' },
           { id: 2902, word: 'utorak', translation: 'tisdag' },
@@ -1179,6 +1207,13 @@ export const vocabularyData: VocabularyData = {
           { id: 2905, word: 'petak', translation: 'fredag' },
           { id: 2906, word: 'subota', translation: 'lördag' },
           { id: 2907, word: 'nedjelja', translation: 'söndag' },
+        ],
+      },
+      monthsOfYear: {
+        title: 'Mjeseci u godini',
+        description: 'Nauči mjesece u godini.',
+        swedish: 'Månader',
+        items: [
           { id: 2908, word: 'travanj', translation: 'april' },
           { id: 2909, word: 'svibanj', translation: 'maj' },
           { id: 2910, word: 'lipanj', translation: 'juni' },
@@ -1393,19 +1428,28 @@ export const vocabularyData: VocabularyData = {
           { id: 3521, word: 'savjetnik', translation: 'rådgivare' },
         ],
       },
-      daysAndMonths: {
-        title: 'Dani i mjeseci',
-        description: 'Nauči dane u tjednu i mjesece u godini.',
-        swedish: 'Dagar och månader',
+      daysOfWeek: {
+        title: 'Dani u tjednu',
+        description: 'Nauči dane u tjednu.',
+        swedish: 'Veckodagar',
         items: [
           { id: 3901, word: 'ponedjeljak', translation: 'måndag' },
           { id: 3902, word: 'utorak', translation: 'tisdag' },
           { id: 3903, word: 'srijeda', translation: 'onsdag' },
           { id: 3904, word: 'četvrtak', translation: 'torsdag' },
           { id: 3905, word: 'petak', translation: 'fredag' },
-          { id: 3906, word: 'listopad', translation: 'oktober' },
-          { id: 3907, word: 'studeni', translation: 'november' },
-          { id: 3908, word: 'prosinac', translation: 'december' },
+          { id: 3906, word: 'subota', translation: 'lördag' },
+          { id: 3907, word: 'nedjelja', translation: 'söndag' },
+        ],
+      },
+      monthsOfYear: {
+        title: 'Mjeseci u godini',
+        description: 'Nauči mjesece u godini.',
+        swedish: 'Månader',
+        items: [
+          { id: 3908, word: 'listopad', translation: 'oktober' },
+          { id: 3909, word: 'studeni', translation: 'november' },
+          { id: 3910, word: 'prosinac', translation: 'december' },
           { id: 2908, word: 'travanj', translation: 'april' },
           { id: 2909, word: 'svibanj', translation: 'maj' },
           { id: 2910, word: 'lipanj', translation: 'juni' },
@@ -1693,10 +1737,10 @@ export const vocabularyData: VocabularyData = {
           { id: 1621, word: 'glumac/glumica', translation: 'skådespelare' },
         ],
       },
-      daysAndMonths: {
-        title: 'Dani i meseci',
-        description: 'Nauči dane u nedelji i mesece u godini.',
-        swedish: 'Dagar och månader',
+      daysOfWeek: {
+        title: 'Dani u nedelji',
+        description: 'Nauči dane u nedelji.',
+        swedish: 'Veckodagar',
         items: [
           { id: 1956, word: 'ponedeljak', translation: 'måndag' },
           { id: 1957, word: 'utorak', translation: 'tisdag' },
@@ -1705,6 +1749,13 @@ export const vocabularyData: VocabularyData = {
           { id: 1960, word: 'petak', translation: 'fredag' },
           { id: 1961, word: 'subota', translation: 'lördag' },
           { id: 1962, word: 'nedelja', translation: 'söndag' },
+        ],
+      },
+      monthsOfYear: {
+        title: 'Meseci u godini',
+        description: 'Nauči mesece u godini.',
+        swedish: 'Månader',
+        items: [
           { id: 1963, word: 'januar', translation: 'januari' },
           { id: 1964, word: 'februar', translation: 'februari' },
           { id: 1965, word: 'mart', translation: 'mars' },
@@ -1899,10 +1950,10 @@ export const vocabularyData: VocabularyData = {
           { id: 2621, word: 'apotekar', translation: 'apotekare' },
         ],
       },
-      daysAndMonths: {
-        title: 'Dani i meseci',
-        description: 'Nauči dane u nedelji i mesece u godini.',
-        swedish: 'Dagar och månader',
+      daysOfWeek: {
+        title: 'Dani u nedelji',
+        description: 'Nauči dane u nedelji.',
+        swedish: 'Veckodagar',
         items: [
           { id: 2951, word: 'ponedeljak', translation: 'måndag' },
           { id: 2952, word: 'utorak', translation: 'tisdag' },
@@ -1911,6 +1962,13 @@ export const vocabularyData: VocabularyData = {
           { id: 2955, word: 'petak', translation: 'fredag' },
           { id: 2956, word: 'subota', translation: 'lördag' },
           { id: 2957, word: 'nedelja', translation: 'söndag' },
+        ],
+      },
+      monthsOfYear: {
+        title: 'Meseci u godini',
+        description: 'Nauči mesece u godini.',
+        swedish: 'Månader',
+        items: [
           { id: 2958, word: 'april', translation: 'april' },
           { id: 2959, word: 'maj', translation: 'maj' },
           { id: 2960, word: 'jun', translation: 'juni' },
@@ -2125,10 +2183,10 @@ export const vocabularyData: VocabularyData = {
           { id: 3621, word: 'savetnik', translation: 'rådgivare' },
         ],
       },
-      daysAndMonths: {
-        title: 'Dani i meseci',
-        description: 'Nauči dane u nedelji i mesece u godini.',
-        swedish: 'Dagar och månader',
+      daysOfWeek: {
+        title: 'Dani u nedelji',
+        description: 'Nauči dane u nedelji.',
+        swedish: 'Veckodagar',
         items: [
           { id: 3951, word: 'ponedeljak', translation: 'måndag' },
           { id: 3952, word: 'utorak', translation: 'tisdag' },
@@ -2137,6 +2195,13 @@ export const vocabularyData: VocabularyData = {
           { id: 3955, word: 'petak', translation: 'fredag' },
           { id: 3956, word: 'subota', translation: 'lördag' },
           { id: 3957, word: 'nedelja', translation: 'söndag' },
+        ],
+      },
+      monthsOfYear: {
+        title: 'Meseci u godini',
+        description: 'Nauči mesece u godini.',
+        swedish: 'Månader',
+        items: [
           { id: 3958, word: 'oktobar', translation: 'oktober' },
           { id: 3959, word: 'novembar', translation: 'november' },
           { id: 3960, word: 'decembar', translation: 'december' },
