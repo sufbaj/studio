@@ -221,6 +221,17 @@ export const vocabularyData: VocabularyData = {
           { id: 1204, word: 'nebo', translation: 'himmel' },
         ]
       },
+      seasons: {
+        title: 'Godišnja doba',
+        description: 'Nauči nazive za godišnja doba.',
+        swedish: 'Årstider',
+        items: [
+          { id: 5001, word: 'proljeće', translation: 'vår' },
+          { id: 5002, word: 'ljeto', translation: 'sommar' },
+          { id: 5003, word: 'jesen', translation: 'höst' },
+          { id: 5004, word: 'zima', translation: 'vinter' },
+        ]
+      },
       body: {
         title: 'Ljudsko tijelo',
         description: 'Nauči dijelove ljudskog tijela.',
@@ -453,6 +464,17 @@ export const vocabularyData: VocabularyData = {
       },
     },
     '4-6': {
+      seasons: {
+        title: 'Godišnja doba',
+        description: 'Nauči nazive za godišnja doba.',
+        swedish: 'Årstider',
+        items: [
+          { id: 5005, word: 'proljeće', translation: 'vår' },
+          { id: 5006, word: 'ljeto', translation: 'sommar' },
+          { id: 5007, word: 'jesen', translation: 'höst' },
+          { id: 5008, word: 'zima', translation: 'vinter' },
+        ]
+      },
       everydayObjects: {
         title: 'Svakodnevni predmeti',
         description: 'Nazivi za stvari koje koristimo svaki dan.',
@@ -787,6 +809,17 @@ export const vocabularyData: VocabularyData = {
       },
     },
     '7-9': {
+      seasons: {
+        title: 'Godišnja doba',
+        description: 'Nauči nazive za godišnja doba.',
+        swedish: 'Årstider',
+        items: [
+          { id: 5009, word: 'proljeće', translation: 'vår' },
+          { id: 5010, word: 'ljeto', translation: 'sommar' },
+          { id: 5011, word: 'jesen', translation: 'höst' },
+          { id: 5012, word: 'zima', translation: 'vinter' },
+        ]
+      },
       everydayObjects: {
         title: 'Svakodnevni predmeti',
         description: 'Nazivi za stvari koje koristimo svaki dan.',
@@ -1319,6 +1352,17 @@ export const vocabularyData: VocabularyData = {
           { id: 1278, word: 'nebo', translation: 'himmel' },
         ]
       },
+      seasons: {
+        title: 'Godišnja doba',
+        description: 'Nauči nazive za godišnja doba.',
+        swedish: 'Årstider',
+        items: [
+          { id: 5013, word: 'proljeće', translation: 'vår' },
+          { id: 5014, word: 'ljeto', translation: 'sommar' },
+          { id: 5015, word: 'jesen', translation: 'höst' },
+          { id: 5016, word: 'zima', translation: 'vinter' },
+        ]
+      },
       body: {
         title: 'Ljudsko tijelo',
         description: 'Nauči dijelove ljudskog tijela.',
@@ -1551,6 +1595,17 @@ export const vocabularyData: VocabularyData = {
       },
     },
     '4-6': {
+      seasons: {
+        title: 'Godišnja doba',
+        description: 'Nauči nazive za godišnja doba.',
+        swedish: 'Årstider',
+        items: [
+          { id: 5017, word: 'proljeće', translation: 'vår' },
+          { id: 5018, word: 'ljeto', translation: 'sommar' },
+          { id: 5019, word: 'jesen', translation: 'höst' },
+          { id: 5020, word: 'zima', translation: 'vinter' },
+        ]
+      },
       everydayObjects: {
         title: 'Svakodnevni predmeti',
         description: 'Nazivi za stvari koje koristimo svaki dan.',
@@ -1885,6 +1940,17 @@ export const vocabularyData: VocabularyData = {
       },
     },
     '7-9': {
+      seasons: {
+        title: 'Godišnja doba',
+        description: 'Nauči nazive za godišnja doba.',
+        swedish: 'Årstider',
+        items: [
+          { id: 5021, word: 'proljeće', translation: 'vår' },
+          { id: 5022, word: 'ljeto', translation: 'sommar' },
+          { id: 5023, word: 'jesen', translation: 'höst' },
+          { id: 5024, word: 'zima', translation: 'vinter' },
+        ]
+      },
       everydayObjects: {
         title: 'Svakodnevni predmeti',
         description: 'Nazivi za stvari koje koristimo svaki dan.',
@@ -2417,6 +2483,17 @@ export const vocabularyData: VocabularyData = {
           { id: 1378, word: 'nebo', translation: 'himmel' },
         ]
       },
+      seasons: {
+        title: 'Godišnja doba',
+        description: 'Nauči nazive za godišnja doba.',
+        swedish: 'Årstider',
+        items: [
+          { id: 5025, word: 'proleće', translation: 'vår' },
+          { id: 5026, word: 'leto', translation: 'sommar' },
+          { id: 5027, word: 'jesen', translation: 'höst' },
+          { id: 5028, word: 'zima', translation: 'vinter' },
+        ]
+      },
       body: {
         title: 'Ljudsko telo',
         description: 'Nauči delove ljudskog tela.',
@@ -2649,6 +2726,17 @@ export const vocabularyData: VocabularyData = {
       },
     },
     '4-6': {
+      seasons: {
+        title: 'Godišnja doba',
+        description: 'Nauči nazive za godišnja doba.',
+        swedish: 'Årstider',
+        items: [
+          { id: 5029, word: 'proleće', translation: 'vår' },
+          { id: 5030, word: 'leto', translation: 'sommar' },
+          { id: 5031, word: 'jesen', translation: 'höst' },
+          { id: 5032, word: 'zima', translation: 'vinter' },
+        ]
+      },
       everydayObjects: {
         title: 'Svakodnevni predmeti',
         description: 'Nazivi za stvari koje koristimo svaki dan.',
@@ -2983,6 +3071,17 @@ export const vocabularyData: VocabularyData = {
       },
     },
     '7-9': {
+      seasons: {
+        title: 'Godišnja doba',
+        description: 'Nauči nazive za godišnja doba.',
+        swedish: 'Årstider',
+        items: [
+          { id: 5033, word: 'proleće', translation: 'vår' },
+          { id: 5034, word: 'leto', translation: 'sommar' },
+          { id: 5035, word: 'jesen', translation: 'höst' },
+          { id: 5036, word: 'zima', translation: 'vinter' },
+        ]
+      },
       everydayObjects: {
         title: 'Svakodnevni predmeti',
         description: 'Nazivi za stvari koje koristimo svaki dan.',
