@@ -42,7 +42,7 @@ export const vocabularyData: VocabularyData = {
         description: 'Istraži riječi vezane za hranu i piće.',
         swedish: 'Mat och Dryck',
         items: [
-          { id: 21, word: 'hljeb', translation: 'bröd' },
+          { id: 21, word: 'kruh/hljeb', translation: 'bröd' },
           { id: 22, word: 'mlijeko', translation: 'mjölk' },
           { id: 1021, word: 'sok', translation: 'juice' },
           { id: 1022, word: 'sir', translation: 'ost' },
@@ -2420,3 +2420,5 @@ export const vocabularyData: VocabularyData = {
     },
   },
 };
+
+    

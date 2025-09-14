@@ -82,7 +82,7 @@ export const data: LanguageData = {
       numbers: numbers,
       vocabulary: [
         { id: 1, word: 'kafa', translation: 'kaffe' },
-        { id: 21, word: 'Hljeb/kruh', translation: 'bröd' },
+        { id: 21, word: 'kruh/hljeb', translation: 'bröd' },
         { id: 2, word: 'škola', translation: 'skola' },
         { id: 3, word: 'kuća', translation: 'hus' },
         { id: 4, word: 'knjiga', translation: 'bok' },
@@ -187,7 +187,7 @@ export const data: LanguageData = {
         { id: 27, sentence: 'Boli me desno ___.', blank: 'rame', options: ['rame', 'ramje', 'ranje'] },
         { id: 28, sentence: 'Mačka prede u ___.', blank: 'krilu', options: ['krilu', 'krinju', 'krillu'] },
         { id: 29, sentence: 'Žaba je ___ boje.', blank: 'zelene', options: ['zelene', 'zeljene', 'zelene'] },
-        { id: 30, sentence: 'Jedem ___ sa medom.', blank: 'hljeb', options: ['hljeb', 'ljeb', 'hleb'] },
+        { id: 30, sentence: 'Jedem ___ sa medom.', blank: 'kruh', options: ['kruh', 'hljeb', 'kruh/hljeb'] },
         { id: 31, sentence: 'Voz ide po ___.', blank: 'šinama', options: ['šinama', 'šjinama', 'sinama'] },
         { id: 32, sentence: 'Moja ___ se zove Ana.', blank: 'sestra', options: ['sestra', 'seka', 'sestrična'] },
         { id: 33, sentence: 'Imam pet ___ na ruci.', blank: 'prstiju', options: ['prstiju', 'prsta', 'prstova'] },
@@ -336,7 +336,7 @@ export const data: LanguageData = {
         { id: 23, type: 'sentence', source: 'Min syster är glad.', target: 'Moja sestra je sretna.' },
         { id: 24, type: 'sentence', source: 'Idag är en vacker dag.', target: 'Danas je lijep dan.' },
         { id: 25, type: 'sentence', source: 'Jag älskar att äta glass.', target: 'Volim jesti sladoled.' },
-        { id: 26, type: 'word', source: 'bröd', target: 'hljeb' },
+        { id: 26, type: 'word', source: 'bröd', target: 'kruh/hljeb' },
         { id: 27, type: 'word', source: 'mjölk', target: 'mlijeko' },
         { id: 28, type: 'sentence', source: 'Jag dricker mjölk varje morgon.', target: 'Pijem mlijeko svako jutro.' },
         { id: 29, type: 'word', source: 'glädje', target: 'radost' },
@@ -1640,4 +1640,6 @@ export const data: LanguageData = {
 };
 
     
+    
+
     
