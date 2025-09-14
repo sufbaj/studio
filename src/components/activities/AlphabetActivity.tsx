@@ -3,15 +3,14 @@
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
-import Image from 'next/image';
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
     const isSerbian = language === 'serbian';
     return {
         title: isSerbian ? 'Alfabet (latinica)' : 'Alfabet (latinsko pismo)',
         description: isSerbian
-            ? 'Ovde je pregled slova azbuke, zajedno sa primerima reči i slika.'
-            : 'Ovdje je pregled slova abecede, zajedno s primjerima riječi i slika.',
+            ? 'Ovde je pregled slova azbuke, zajedno sa primerima reči.'
+            : 'Ovdje je pregled slova abecede, zajedno s primjerima riječi.',
     };
 }
 
@@ -34,32 +33,22 @@ export function AlphabetActivity() {
       </p>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {alphabet.map(({ letter, exampleWord, exampleImage }, index) => {
+        {alphabet.map(({ letter, exampleWord }, index) => {
           return (
             <Card
               key={index}
               className="transition-shadow hover:shadow-lg"
             >
-              <CardContent className="flex flex-col items-center justify-start p-4 aspect-square">
+              <CardContent className="flex flex-col items-center justify-center p-4 aspect-square">
                 <div className="flex items-baseline">
-                   <span className="text-4xl md:text-5xl font-bold font-headline">
+                   <span className="text-5xl md:text-6xl font-bold font-headline">
                     {Array.isArray(letter) ? letter[0] : letter}
                    </span>
-                   <span className="text-3xl md:text-4xl font-headline text-muted-foreground">
+                   <span className="text-4xl md:text-5xl font-headline text-muted-foreground">
                     {Array.isArray(letter) ? letter[1] : ''}
                    </span>
                 </div>
-                 <div className="relative w-full h-24 mt-2 rounded-md overflow-hidden">
-                    <Image 
-                        src={exampleImage} 
-                        alt={exampleWord} 
-                        width={200}
-                        height={200}
-                        className="object-cover"
-                        data-ai-hint={exampleWord.toLowerCase()}
-                    />
-                 </div>
-                <p className="mt-3 font-semibold">{exampleWord}</p>
+                <p className="mt-3 font-semibold text-lg">{exampleWord}</p>
               </CardContent>
             </Card>
           );

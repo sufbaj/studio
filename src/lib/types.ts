@@ -70,7 +70,6 @@ export interface TranslationItem {
 export interface AlphabetItem {
   letter: [string, string] | string; // Uppercase, Lowercase or just one
   exampleWord: string;
-  exampleImage: string;
 }
 
 export interface NumberItem {
