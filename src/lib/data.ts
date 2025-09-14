@@ -82,7 +82,7 @@ const alphabetWordsBosnian = [
   { letter: "Č", words: ["čaša", "čekić", "čokolada", "čarapa", "četka", "čamac", "čovjek", "čelo", "čitati", "četvrtak"] },
   { letter: "Ć", words: ["ćevap", "ćilim", "ćup", "ćelija", "ćumez", "ćud", "ćošak", "ćerka", "ćirilica", "ćuskija"] },
   { letter: "D", words: ["dan", "drvo", "dijete", "djed", "doručak", "delfin", "dugme", "daska", "deset", "dimnjak"] },
-  { letter: "Dž", words: ["džep", "džezva", "džin", "džungla", "džemper", "džudo", "džip", "džamija", "džak", "džin"] },
+  { letter: "Dž", words: ["džep", "džezva", "džin", "džungla", "džemper", "džudo", "džip", "džamija", "džak", "džumbir"] },
   { letter: "Đ", words: ["đak", "đurđevak", "đon", "đubrivo", "đevrek", "đumbir", "đerdan", "đubre", "đurina", "đuveč"] },
   { letter: "E", words: ["ekran", "efekat", "energija", "Evropa", "e-mail", "ekonomija", "element", "ekser", "etiketa", "epizoda"] },
   { letter: "F", words: ["film", "fudbal", "fabrika", "flomaster", "fenjer", "fotelja", "fotografija", "farmerke", "februar", "frižider"] },
@@ -92,10 +92,10 @@ const alphabetWordsBosnian = [
   { letter: "J", words: ["jabuka", "jaje", "jakna", "jastuk", "jezik", "jezero", "jug", "juni", "juli", "jastreb"] },
   { letter: "K", words: ["knjiga", "kuća", "kapa", "kolač", "krava", "krevet", "kino", "kuhinja", "krompir", "krov"] },
   { letter: "L", words: ["lopta", "lampa", "lice", "limun", "lijek", "livada", "list", "leptir", "lonac", "lasta"] },
-  { letter: "Lj", words: ["ljubav", "ljudi", "ljiljan", "ljuljačka", "ljubičica", "ljut", "ljestve", "ljuska", "ljepota", "ljekovit"] },
+  { letter: "Lj", words: ["ljudi", "ljiljan", "ljuljačka", "ljubičica", "ljut", "ljestve", "ljuska", "ljepota", "ljekovit", "ljubomora"] },
   { letter: "M", words: ["majka", "mačka", "miš", "more", "most", "mjesec", "muzika", "med", "mlijeko", "mrkva"] },
   { letter: "N", words: ["noga", "nos", "nebo", "noć", "novac", "naočale", "narandža", "nana", "notes", "novine"] },
-  { letter: "Nj", words: ["njiva", "njegov", "njuška", "njegovati", "mišljenje", "putovanje", "pitanje", "sanjati", "gunđati", "pristojan"] },
+  { letter: "Nj", words: ["njiva", "njegov", "njuška", "njegovati", "mišljenje", "putovanje", "pitanje", "sanjati", "gunđati", "njorka"] },
   { letter: "O", words: ["oko", "oblak", "olovka", "otac", "odmor", "orao", "ogledalo", "oktobar", "osam", "orah"] },
   { letter: "P", words: ["pas", "ptica", "prozor", "prst", "pismo", "poklon", "pita", "prijatelj", "ponedjeljak", "petak"] },
   { letter: "R", words: ["ruka", "riba", "rijeka", "robot", "ruža", "raketa", "ručak", "radost", "rep", "rat"] },
@@ -1684,4 +1684,5 @@ export const data: LanguageData = {
     
 
     
+
 

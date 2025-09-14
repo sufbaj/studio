@@ -88,8 +88,8 @@ export function AlphabetActivity() {
                     </AccordionTrigger>
                     <AccordionContent>
                         <ul className="list-disc pl-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-2">
-                           {words.map((word) => (
-                             <li key={word} className="text-base">{word}</li>
+                           {words.map((word, index) => (
+                             <li key={`${word}-${index}`} className="text-base">{word}</li>
                            ))}
                         </ul>
                     </AccordionContent>
