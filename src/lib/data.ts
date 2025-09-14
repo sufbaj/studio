@@ -78,34 +78,34 @@ const numbers = [
 const alphabetWordsBosnian = [
   { letter: "A", words: ["auto", "avion", "apoteka", "ananas", "april", "adresa", "alat", "arhitekta", "Afrika", "Amerika"] },
   { letter: "B", words: ["brod", "banana", "beba", "bicikl", "bijela", "balon", "bombon", "brat", "baka", "bazen"] },
-  { letter: "C", words: ["cipela", "cesta", "crvena", "cvijet", "cirkus", "car", "crtani", "cijena", "centar", "čaj"] },
+  { letter: "C", words: ["cipela", "cesta", "crvena", "cvijet", "cirkus", "car", "crtani", "cijena", "centar", "cimet"] },
   { letter: "Č", words: ["čaša", "čekić", "čokolada", "čarapa", "četka", "čamac", "čovjek", "čelo", "čitati", "četvrtak"] },
   { letter: "Ć", words: ["ćevap", "ćilim", "ćup", "ćelija", "ćumez", "ćud", "ćošak", "ćerka", "ćirilica", "ćuskija"] },
-  { letter: "D", words: ["dan", "drvo", "dijete", "djed", "doručak", "delfin", "džep", "dugme", "daska", "deset"] },
+  { letter: "D", words: ["dan", "drvo", "dijete", "djed", "doručak", "delfin", "dugme", "daska", "deset", "dimnjak"] },
   { letter: "Dž", words: ["džep", "džezva", "džin", "džungla", "džemper", "džudo", "džip", "džamija", "džak", "džin"] },
-  { letter: "Đ", words: ["đak", "đurđevak", "đon", "đubrivo", "đevrek", "đumbir", "đerdan", "đavo", "Đurđevdan", "đuveč"] },
+  { letter: "Đ", words: ["đak", "đurđevak", "đon", "đubrivo", "đevrek", "đumbir", "đerdan", "đubre", "đurina", "đuveč"] },
   { letter: "E", words: ["ekran", "efekat", "energija", "Evropa", "e-mail", "ekonomija", "element", "ekser", "etiketa", "epizoda"] },
   { letter: "F", words: ["film", "fudbal", "fabrika", "flomaster", "fenjer", "fotelja", "fotografija", "farmerke", "februar", "frižider"] },
   { letter: "G", words: ["grad", "gitara", "glava", "golub", "godina", "gumica", "grožđe", "grah", "gost", "gljiva"] },
   { letter: "H", words: ["hljeb", "hlače", "haljina", "historija", "heroj", "hobi", "hotel", "hrana", "hodnik", "hemija"] },
-  { letter: "I", words: ["igra", "igla", "ideja", "istorija", "ime", "internet", "inžinjer", "insect", "istina", "izvor"] },
+  { letter: "I", words: ["igra", "igla", "ideja", "istorija", "ime", "internet", "inžinjer", "istina", "izvor", "ikona"] },
   { letter: "J", words: ["jabuka", "jaje", "jakna", "jastuk", "jezik", "jezero", "jug", "juni", "juli", "jastreb"] },
   { letter: "K", words: ["knjiga", "kuća", "kapa", "kolač", "krava", "krevet", "kino", "kuhinja", "krompir", "krov"] },
-  { letter: "L", words: ["lopta", "lampa", "lice", "limun", "ljeto", "lijek", "livada", "list", "ljubav", "leptir"] },
-  { letter: "Lj", words: ["ljubav", "ljudi", "ljiljan", "ljuljačka", "ljekarna", "ljeto", "ljubičica", "ljut", "ljestve", "ljuska"] },
+  { letter: "L", words: ["lopta", "lampa", "lice", "limun", "lijek", "livada", "list", "leptir", "lonac", "lasta"] },
+  { letter: "Lj", words: ["ljubav", "ljudi", "ljiljan", "ljuljačka", "ljubičica", "ljut", "ljestve", "ljuska", "ljepota", "ljekovit"] },
   { letter: "M", words: ["majka", "mačka", "miš", "more", "most", "mjesec", "muzika", "med", "mlijeko", "mrkva"] },
   { letter: "N", words: ["noga", "nos", "nebo", "noć", "novac", "naočale", "narandža", "nana", "notes", "novine"] },
-  { letter: "Nj", words: ["njiva", "njegov", "njuška", "njegovati", "gnijezdo", "knjiga", "mišljenje", "putovanje", "pitanje", "sanjati"] },
+  { letter: "Nj", words: ["njiva", "njegov", "njuška", "njegovati", "mišljenje", "putovanje", "pitanje", "sanjati", "gunđati", "pristojan"] },
   { letter: "O", words: ["oko", "oblak", "olovka", "otac", "odmor", "orao", "ogledalo", "oktobar", "osam", "orah"] },
   { letter: "P", words: ["pas", "ptica", "prozor", "prst", "pismo", "poklon", "pita", "prijatelj", "ponedjeljak", "petak"] },
   { letter: "R", words: ["ruka", "riba", "rijeka", "robot", "ruža", "raketa", "ručak", "radost", "rep", "rat"] },
   { letter: "S", words: ["sunce", "stolica", "soba", "selo", "sestra", "sat", "sir", "sok", "san", "snijeg"] },
-  { letter: "Š", words: ["škola", "šuma", "šešir", "šator", "šljiva", "šal", "šporet", "šaka", "šah", "šuma"] },
+  { letter: "Š", words: ["škola", "šuma", "šešir", "šator", "šljiva", "šal", "šporet", "šaka", "šah", "šapat"] },
   { letter: "T", words: ["trava", "tanjir", "telefon", "tigar", "toplo", "tuš", "torba", "tata", "tramvaj", "torta"] },
   { letter: "U", words: ["uho", "ulica", "učitelj", "učenik", "ulje", "unuk", "ujak", "utorak", "usta", "umjetnik"] },
   { letter: "V", words: ["voda", "voz", "vjetar", "voće", "vuk", "večera", "vatra", "vrata", "visibaba", "vaza"] },
-  { letter: "Z", words: ["zeko", "zub", "zvijezda", "zgrada", "zima", "zlato", "zelena", "zemlja", "zastava", "zadatak"] },
-  { letter: "Ž", words: ["žaba", "žirafa", "žito", "žuta", "žena", "život", "želja", "žlica", "životinja", "žalost"] }
+  { letter: "Z", words: ["zec", "zub", "zvijezda", "zgrada", "zima", "zlato", "zelena", "zemlja", "zastava", "zadatak"] },
+  { letter: "Ž", words: ["žaba", "žirafa", "žito", "žuta", "žena", "život", "želja", "životinja", "žalost", "žurba"] }
 ];
 
 export const data: LanguageData = {
@@ -1684,3 +1684,4 @@ export const data: LanguageData = {
     
 
     
+
