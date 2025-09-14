@@ -45,10 +45,6 @@ const navItems = [
   { href: 'svenska-till-modersmal', icon: BookOpen, label: 'Svenska till modersmål' },
 ];
 
-const toolItems = [
-    { href: 'translator', icon: BookOpen, label: 'Översättare' },
-]
-
 function getLanguageDisplayName(language: Language) {
     switch (language) {
       case 'bosnian':
@@ -119,27 +115,6 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
                   </Button>
                 </SidebarMenuItem>
               ))}
-            </SidebarGroup>
-            <SidebarSeparator />
-            <SidebarGroup>
-                <SidebarGroupLabel className="text-sidebar-foreground/70">Verktyg</SidebarGroupLabel>
-                {toolItems.map((item) => (
-                    <SidebarMenuItem key={item.href}>
-                    <Button 
-                        asChild 
-                        variant="ghost" 
-                        className={cn(
-                            "w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground", 
-                            isLinkActive(item.href) && "bg-blue-100 text-blue-900 font-semibold hover:bg-blue-100/90 hover:text-blue-900"
-                        )}
-                    >
-                        <Link href={`/learn/${item.href}?${searchParams.toString()}`}>
-                        <item.icon className="w-4 h-4 mr-2" />
-                        {item.label}
-                        </Link>
-                    </Button>
-                    </SidebarMenuItem>
-                ))}
             </SidebarGroup>
           </SidebarMenu>
         </SidebarContent>

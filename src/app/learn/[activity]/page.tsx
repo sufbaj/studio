@@ -10,7 +10,6 @@ import { ReadingActivity } from '@/components/activities/ReadingActivity';
 import { AlphabetActivity } from '@/components/activities/AlphabetActivity';
 import { NumbersActivity } from '@/components/activities/NumbersActivity';
 import { TranslationActivity } from '@/components/activities/TranslationActivity';
-import { TranslatorActivity } from '@/components/activities/TranslatorActivity';
 
 
 export default function ActivityPage() {
@@ -35,8 +34,6 @@ export default function ActivityPage() {
         return <ReadingActivity />;
       case 'svenska-till-modersmal':
         return <TranslationActivity />;
-      case 'translator':
-        return <TranslatorActivity />;
       default:
         return <NotImplementedActivity activityName={activity} />;
     }

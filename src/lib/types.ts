@@ -8,9 +8,7 @@ export type Activity =
   | 'reading'
   | 'svenska-till-modersmal'
   | 'alphabet'
-  | 'numbers'
-  | 'translator'
-  | 'ai-review';
+  | 'numbers';
 
 export interface VocabularyItem {
   id: number;
