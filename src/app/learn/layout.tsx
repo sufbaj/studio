@@ -29,7 +29,6 @@ import {
   BookOpen,
   CaseUpper,
   Hash,
-  Bot,
 } from 'lucide-react';
 import type { Language, Grade } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -48,7 +47,6 @@ const navItems = [
 
 const toolItems = [
     { href: 'translator', icon: BookOpen, label: 'Översättare' },
-    { href: 'ai-review', icon: Bot, label: 'AI-återkoppling' },
 ]
 
 function getLanguageDisplayName(language: Language) {
