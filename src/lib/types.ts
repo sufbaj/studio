@@ -18,6 +18,16 @@ export interface VocabularyItem {
   translation: string;
 }
 
+export interface VocabularyCategory {
+    title: string;
+    description: string;
+    swedish: string;
+    items: VocabularyItem[];
+}
+
+export type VocabularyData = Record<Language, Record<Grade, Record<string, VocabularyCategory>>>;
+
+
 export interface SpellingItem {
   id: number;
   sentence: string;

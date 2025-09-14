@@ -3,13 +3,14 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '@/contexts/AppContext';
-import { data } from '@/lib/data';
+import { vocabularyData } from '@/lib/vocabulary';
 import type { VocabularyItem } from '@/lib/types';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { RefreshCw, CheckCircle, XCircle, ArrowRight } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import { cn } from '@/lib/utils';
+import type { Language } from '@/lib/types';
 
 type QuizOption = {
   word: string;
@@ -21,16 +22,15 @@ type QuizItem = {
   options: QuizOption[];
 };
 
-const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
-    const isBosnian = language === 'bosnian';
+const getStrings = (language: Language | null) => {
     const isSerbian = language === 'serbian';
 
-    let title = 'Rječnik';
-    if (isBosnian) title = 'Rječnik';
-    if (isSerbian) title = 'Rečnik';
+    let title = 'Vježbe riječi';
+    if (isSerbian) title = 'Vežbe reči';
 
     return {
         title: title,
+        subtitle: 'Proširi svoj vokabular kroz tematske kategorije.',
         noExercises: isSerbian ? 'Nema dostupnih reči za odabrana podešavanja.' : 'Nema dostupnih riječi za odabrane postavke.',
         newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
         howToSay: (lang: string) => isSerbian ? `Kako se kaže na ${lang}:` : `Kako se kaže na ${lang}:`,
@@ -46,9 +46,56 @@ const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
     };
 }
 
-export function VocabularyActivity() {
+function VocabularyCategorySelection({ onSelectCategory, grade }: { onSelectCategory: (category: string) => void, grade: string }) {
+    const { language } = useAppContext();
+    const s = getStrings(language);
+    
+    const categories = useMemo(() => {
+        if (!language || !grade || !vocabularyData[language] || !vocabularyData[language][grade]) {
+            return [];
+        }
+        return Object.keys(vocabularyData[language][grade]).map(key => {
+            const categoryInfo = vocabularyData[language][grade][key];
+            return {
+                id: key,
+                title: categoryInfo.title,
+                description: categoryInfo.description,
+                swedish: categoryInfo.swedish,
+            };
+        });
+    }, [language, grade]);
+
+    return (
+        <div>
+            <h2 className="text-3xl font-headline font-bold mb-2">{s.title} - Razred {grade}</h2>
+            <p className="text-muted-foreground mb-8">{s.subtitle}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {categories.map((category) => (
+                    <Card 
+                        key={category.id}
+                        className="cursor-pointer transition-all hover:shadow-lg hover:scale-[1.02]"
+                        onClick={() => onSelectCategory(category.id)}
+                    >
+                        <CardHeader>
+                            <div className="flex justify-between items-center">
+                                <CardTitle className="text-xl font-bold">{category.title}</CardTitle>
+                                <ArrowRight className="text-muted-foreground" />
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-muted-foreground text-sm mb-2">{category.description}</p>
+                            <p className="text-sm font-medium">Švedski: {category.swedish}</p>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+
+function VocabularyQuiz({ categoryId }: { categoryId: string }) {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
-  const { toast } = useToast();
   const s = getStrings(language);
   const [quizItems, setQuizItems] = useState<QuizItem[]>([]);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
@@ -57,23 +104,25 @@ export function VocabularyActivity() {
   const [correctAnswers, setCorrectAnswers] = useState(0);
 
   const generateQuiz = useCallback(() => {
-    if (!language || !grade) return;
+    if (!language || !grade || !vocabularyData[language]?.[grade]?.[categoryId]) return;
 
-    const vocabularyList = data[language][grade].vocabulary;
-    if (vocabularyList.length < 4) {
+    const allVocabulary = Object.values(vocabularyData[language][grade]).flatMap(c => c.items);
+    const categoryItems = vocabularyData[language][grade][categoryId].items;
+
+    if (categoryItems.length < 4) {
       setQuizItems([]);
       return;
     }
 
     resetScore();
 
-    const shuffled = [...vocabularyList].sort(() => 0.5 - Math.random());
+    const shuffled = [...categoryItems].sort(() => 0.5 - Math.random());
     const selectedItems = shuffled.slice(0, Math.min(10, shuffled.length));
 
     setMaxScore(selectedItems.length * 10);
 
     const newQuizItems = selectedItems.map((item) => {
-      const distractors = vocabularyList
+      const distractors = allVocabulary
         .filter((v) => v.id !== item.id)
         .sort(() => 0.5 - Math.random())
         .slice(0, 3)
@@ -88,7 +137,7 @@ export function VocabularyActivity() {
     setCorrectAnswers(0);
     setIsAnswered(false);
     setSelectedAnswer(null);
-  }, [language, grade, setMaxScore, resetScore]);
+  }, [language, grade, categoryId, setMaxScore, resetScore]);
 
   useEffect(() => {
     generateQuiz();
@@ -102,9 +151,6 @@ export function VocabularyActivity() {
     if (option.isCorrect) {
       setCorrectAnswers((prev) => prev + 1);
       updateScore(10);
-      
-    } else {
-      
     }
   };
 
@@ -114,7 +160,7 @@ export function VocabularyActivity() {
       setIsAnswered(false);
       setSelectedAnswer(null);
     } else {
-      setCurrentItemIndex(quizItems.length); // End of quiz
+      setCurrentItemIndex(quizItems.length);
     }
   };
 
@@ -123,14 +169,10 @@ export function VocabularyActivity() {
   const getLanguageDisplayName = () => {
     if (!language) return '';
     switch (language) {
-      case 'bosnian':
-        return 'bosanski';
-      case 'croatian':
-        return 'hrvatski';
-      case 'serbian':
-        return 'srpski';
-      default:
-        return '';
+      case 'bosnian': return 'bosanski';
+      case 'croatian': return 'hrvatski';
+      case 'serbian': return 'srpski';
+      default: return '';
     }
   }
   
@@ -149,7 +191,7 @@ export function VocabularyActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">{s.title}</h2>
+        <h2 className="text-3xl font-headline font-bold">{vocabularyData[language]?.[grade]?.[categoryId]?.title}</h2>
          {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentItemIndex + 1} / {quizItems.length}
@@ -228,4 +270,19 @@ export function VocabularyActivity() {
 
     </div>
   );
+}
+
+export function VocabularyActivity() {
+    const { grade } = useAppContext();
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+    if (!grade) {
+        return null; // or a loading state
+    }
+    
+    if (!selectedCategory) {
+        return <VocabularyCategorySelection onSelectCategory={setSelectedCategory} grade={grade} />;
+    }
+
+    return <VocabularyQuiz categoryId={selectedCategory} />;
 }
