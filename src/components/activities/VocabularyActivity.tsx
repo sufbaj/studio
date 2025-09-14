@@ -7,7 +7,7 @@ import { vocabularyData } from '@/lib/vocabulary';
 import type { VocabularyItem } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { RefreshCw, CheckCircle, XCircle, ArrowRight } from 'lucide-react';
+import { RefreshCw, CheckCircle, XCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import type { Language } from '@/lib/types';
@@ -100,7 +100,7 @@ function VocabularyCategorySelection({ onSelectCategory, grade }: { onSelectCate
 }
 
 
-function VocabularyQuiz({ categoryId }: { categoryId: string }) {
+function VocabularyQuiz({ categoryId, onBack }: { categoryId: string, onBack: () => void }) {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const s = getStrings(language);
   const [quizItems, setQuizItems] = useState<QuizItem[]>([]);
@@ -187,7 +187,12 @@ function VocabularyQuiz({ categoryId }: { categoryId: string }) {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">{vocabularyData[language]?.[grade]?.[categoryId]?.title}</h2>
+        <div className="flex items-center gap-2">
+            <Button onClick={onBack} variant="outline" size="icon">
+                <ArrowLeft className="w-4 h-4" />
+            </Button>
+            <h2 className="text-3xl font-headline font-bold">{vocabularyData[language]?.[grade]?.[categoryId]?.title}</h2>
+        </div>
          {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentItemIndex + 1} / {quizItems.length}
@@ -257,10 +262,16 @@ function VocabularyQuiz({ categoryId }: { categoryId: string }) {
         <Card className="text-center p-8">
             <h3 className="text-2xl font-headline mb-4">{s.finished}</h3>
             <p className="text-lg mb-6">{s.correctOutOf(correctAnswers, quizItems.length)}</p>
-            <Button onClick={generateQuiz}>
-                <RefreshCw className="w-4 h-4 mr-2" />
-                {s.playAgain}
-            </Button>
+            <div className="flex gap-4 justify-center">
+                <Button onClick={onBack} variant="outline">
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Nazad na kategorije
+                </Button>
+                <Button onClick={generateQuiz}>
+                    <RefreshCw className="w-4 h-4 mr-2" />
+                    {s.playAgain}
+                </Button>
+            </div>
         </Card>
       )}
 
@@ -272,6 +283,10 @@ export function VocabularyActivity() {
     const { grade } = useAppContext();
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+    const handleBackToCategories = () => {
+        setSelectedCategory(null);
+    }
+
     if (!grade) {
         return null; // or a loading state
     }
@@ -280,5 +295,5 @@ export function VocabularyActivity() {
         return <VocabularyCategorySelection onSelectCategory={setSelectedCategory} grade={grade} />;
     }
 
-    return <VocabularyQuiz categoryId={selectedCategory} />;
+    return <VocabularyQuiz categoryId={selectedCategory} onBack={handleBackToCategories} />;
 }
