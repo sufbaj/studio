@@ -66,7 +66,7 @@ export function HomePage() {
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-4 mb-4">
           <Logo className="h-12 w-12 text-primary" />
-          <h1 className="text-5xl font-headline font-bold tracking-tight text-gray-800 dark:text-gray-100">LinguAI-BKS</h1>
+          <h1 className="text-5xl font-headline font-bold tracking-tight text-gray-800 dark:text-gray-100">LinguaBKS</h1>
         </div>
         <p className="text-xl text-muted-foreground">Platforma za učenje bosanskog, hrvatskog i srpskog jezika.</p>
       </div>
