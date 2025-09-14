@@ -75,11 +75,45 @@ const numbers = [
     { number: 100, word: "sto" },
 ];
 
+const alphabetWordsBosnian = [
+  { letter: "A", words: ["auto", "avion", "apoteka", "ananas", "april", "adresa", "alat", "arhitekta", "Afrika", "Amerika"] },
+  { letter: "B", words: ["brod", "banana", "beba", "bicikl", "bijela", "balon", "bombon", "brat", "baka", "bazen"] },
+  { letter: "C", words: ["cipela", "cesta", "crvena", "cvijet", "cirkus", "car", "crtani", "cijena", "centar", "čaj"] },
+  { letter: "Č", words: ["čaša", "čekić", "čokolada", "čarapa", "četka", "čamac", "čovjek", "čelo", "čitati", "četvrtak"] },
+  { letter: "Ć", words: ["ćevap", "ćilim", "ćup", "ćelija", "ćumez", "ćud", "ćošak", "ćerka", "ćirilica", "ćuskija"] },
+  { letter: "D", words: ["dan", "drvo", "dijete", "djed", "doručak", "delfin", "džep", "dugme", "daska", "deset"] },
+  { letter: "Dž", words: ["džep", "džezva", "džin", "džungla", "džemper", "džudo", "džip", "džamija", "džak", "džin"] },
+  { letter: "Đ", words: ["đak", "đurđevak", "đon", "đubrivo", "đevrek", "đumbir", "đerdan", "đavo", "Đurđevdan", "đuveč"] },
+  { letter: "E", words: ["ekran", "efekat", "energija", "Evropa", "e-mail", "ekonomija", "element", "ekser", "etiketa", "epizoda"] },
+  { letter: "F", words: ["film", "fudbal", "fabrika", "flomaster", "fenjer", "fotelja", "fotografija", "farmerke", "februar", "frižider"] },
+  { letter: "G", words: ["grad", "gitara", "glava", "golub", "godina", "gumica", "grožđe", "grah", "gost", "gljiva"] },
+  { letter: "H", words: ["hljeb", "hlače", "haljina", "historija", "heroj", "hobi", "hotel", "hrana", "hodnik", "hemija"] },
+  { letter: "I", words: ["igra", "igla", "ideja", "istorija", "ime", "internet", "inžinjer", "insect", "istina", "izvor"] },
+  { letter: "J", words: ["jabuka", "jaje", "jakna", "jastuk", "jezik", "jezero", "jug", "juni", "juli", "jastreb"] },
+  { letter: "K", words: ["knjiga", "kuća", "kapa", "kolač", "krava", "krevet", "kino", "kuhinja", "krompir", "krov"] },
+  { letter: "L", words: ["lopta", "lampa", "lice", "limun", "ljeto", "lijek", "livada", "list", "ljubav", "leptir"] },
+  { letter: "Lj", words: ["ljubav", "ljudi", "ljiljan", "ljuljačka", "ljekarna", "ljeto", "ljubičica", "ljut", "ljestve", "ljuska"] },
+  { letter: "M", words: ["majka", "mačka", "miš", "more", "most", "mjesec", "muzika", "med", "mlijeko", "mrkva"] },
+  { letter: "N", words: ["noga", "nos", "nebo", "noć", "novac", "naočale", "narandža", "nana", "notes", "novine"] },
+  { letter: "Nj", words: ["njiva", "njegov", "njuška", "njegovati", "gnijezdo", "knjiga", "mišljenje", "putovanje", "pitanje", "sanjati"] },
+  { letter: "O", words: ["oko", "oblak", "olovka", "otac", "odmor", "orao", "ogledalo", "oktobar", "osam", "orah"] },
+  { letter: "P", words: ["pas", "ptica", "prozor", "prst", "pismo", "poklon", "pita", "prijatelj", "ponedjeljak", "petak"] },
+  { letter: "R", words: ["ruka", "riba", "rijeka", "robot", "ruža", "raketa", "ručak", "radost", "rep", "rat"] },
+  { letter: "S", words: ["sunce", "stolica", "soba", "selo", "sestra", "sat", "sir", "sok", "san", "snijeg"] },
+  { letter: "Š", words: ["škola", "šuma", "šešir", "šator", "šljiva", "šal", "šporet", "šaka", "šah", "šuma"] },
+  { letter: "T", words: ["trava", "tanjir", "telefon", "tigar", "toplo", "tuš", "torba", "tata", "tramvaj", "torta"] },
+  { letter: "U", words: ["uho", "ulica", "učitelj", "učenik", "ulje", "unuk", "ujak", "utorak", "usta", "umjetnik"] },
+  { letter: "V", words: ["voda", "voz", "vjetar", "voće", "vuk", "večera", "vatra", "vrata", "visibaba", "vaza"] },
+  { letter: "Z", words: ["zeko", "zub", "zvijezda", "zgrada", "zima", "zlato", "zelena", "zemlja", "zastava", "zadatak"] },
+  { letter: "Ž", words: ["žaba", "žirafa", "žito", "žuta", "žena", "život", "želja", "žlica", "životinja", "žalost"] }
+];
+
 export const data: LanguageData = {
   bosnian: {
     '1-3': {
       alphabet: alphabet,
       numbers: numbers,
+      alphabetWords: alphabetWordsBosnian,
       vocabulary: [
         { id: 1, word: 'kafa', translation: 'kaffe' },
         { id: 21, word: 'kruh/hljeb', translation: 'bröd' },
@@ -94,14 +128,13 @@ export const data: LanguageData = {
         { id: 10, word: 'sunce', translation: 'sol' },
         { id: 11, word: 'voda', translation: 'vatten' },
         { id: 12, word: 'stolica', translation: 'stol' },
-        { id: 13, word: 'sat', translation: 'klocka' },
-        { id: 14, word: 'most', translation: 'bro' },
-        { id: 15, word: 'drvo', translation: 'träd' },
-        { id: 16, word: 'cvijet', translation: 'blomma' },
-        { id: 17, word: 'prozor', translation: 'fönster' },
-        { id: 18, word: 'vrata', translation: 'dörr' },
-        { id: 19, word: 'nebo', translation: 'himmel' },
-        { id: 20, word: 'trava', translation: 'gräs' },
+        { id: 14, word: 'sat', translation: 'klocka' },
+        { id: 15, word: 'most', translation: 'bro' },
+        { id: 16, word: 'drvo', translation: 'träd' },
+        { id: 17, word: 'cvijet', translation: 'blomma' },
+        { id: 18, word: 'prozor', translation: 'fönster' },
+        { id: 19, word: 'vrata', translation: 'dörr' },
+        { id: 20, word: 'nebo', translation: 'himmel' },
         { id: 22, word: 'mlijeko', translation: 'mjölk' },
         { id: 23, word: 'šećer', translation: 'socker' },
         { id: 24, word: 'so', translation: 'salt' },
@@ -187,7 +220,7 @@ export const data: LanguageData = {
         { id: 27, sentence: 'Boli me desno ___.', blank: 'rame', options: ['rame', 'ramje', 'ranje'] },
         { id: 28, sentence: 'Mačka prede u ___.', blank: 'krilu', options: ['krilu', 'krinju', 'krillu'] },
         { id: 29, sentence: 'Žaba je ___ boje.', blank: 'zelene', options: ['zelene', 'zeljene', 'zelene'] },
-        { id: 30, sentence: 'Jedem ___ sa medom.', blank: 'kruh', options: ['kruh', 'hljeb', 'kruh/hljeb'] },
+        { id: 30, sentence: 'Jedem ___ sa medom.', blank: 'kruh/hljeb', options: ['kruh', 'hljeb', 'kruh/hljeb'] },
         { id: 31, sentence: 'Voz ide po ___.', blank: 'šinama', options: ['šinama', 'šjinama', 'sinama'] },
         { id: 32, sentence: 'Moja ___ se zove Ana.', blank: 'sestra', options: ['sestra', 'seka', 'sestrična'] },
         { id: 33, sentence: 'Imam pet ___ na ruci.', blank: 'prstiju', options: ['prstiju', 'prsta', 'prstova'] },
@@ -337,7 +370,7 @@ export const data: LanguageData = {
         { id: 24, type: 'sentence', source: 'Idag är en vacker dag.', target: 'Danas je lijep dan.' },
         { id: 25, type: 'sentence', source: 'Jag älskar att äta glass.', target: 'Volim jesti sladoled.' },
         { id: 26, type: 'word', source: 'bröd', target: 'kruh/hljeb' },
-        { id: 27, type: 'word', source: 'mjölk', target: 'mlijeko' },
+        { id: 27, word: 'mjölk', translation: 'mlijeko' },
         { id: 28, type: 'sentence', source: 'Jag dricker mjölk varje morgon.', target: 'Pijem mlijeko svako jutro.' },
         { id: 29, type: 'word', source: 'glädje', target: 'radost' },
         { id: 30, type: 'sentence', source: 'Barnen leker med glädje.', target: 'Djeca se igraju s radošću.' },
@@ -346,6 +379,7 @@ export const data: LanguageData = {
     '4-6': {
       alphabet: [],
       numbers: [],
+      alphabetWords: [],
       vocabulary: [
         { id: 101, word: 'rijeka', translation: 'flod' },
         { id: 102, word: 'planina', translation: 'berg' },
@@ -732,12 +766,14 @@ export const data: LanguageData = {
         ],
         alphabet: [],
         numbers: [],
+        alphabetWords: [],
       },
   },
   croatian: {
     '1-3': {
       alphabet: alphabet,
       numbers: numbers,
+      alphabetWords: [],
       vocabulary: [
         { id: 1, word: 'kava', translation: 'kaffe' },
         { id: 2, word: 'kruh', translation: 'bröd' },
@@ -952,6 +988,7 @@ export const data: LanguageData = {
     '4-6': {
       alphabet: [],
       numbers: [],
+      alphabetWords: [],
       vocabulary: [
         { id: 201, word: 'zrakoplov', translation: 'flygplan' },
         { id: 202, word: 'tisuća', translation: 'tusen' },
@@ -1258,6 +1295,7 @@ export const data: LanguageData = {
       ],
       alphabet: [],
       numbers: [],
+      alphabetWords: [],
     },
   },
   serbian: {
@@ -1313,6 +1351,7 @@ export const data: LanguageData = {
         { number: 90, word: "devedeset" },
         { number: 100, word: "sto" },
       ],
+      alphabetWords: [],
       vocabulary: [
         { id: 1, word: 'kafa', translation: 'kaffe' },
         { id: 2, word: 'hleb', translation: 'bröd' },
@@ -1441,6 +1480,7 @@ export const data: LanguageData = {
     '4-6': { 
       alphabet: [],
       numbers: [],
+      alphabetWords: [],
       vocabulary: [
         { id: 301, word: 'avion', translation: 'flygplan' },
         { id: 302, word: 'hiljada', translation: 'tusen' },
@@ -1635,6 +1675,7 @@ export const data: LanguageData = {
       ],
       alphabet: [],
       numbers: [],
+      alphabetWords: [],
     },
   },
 };

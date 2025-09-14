@@ -72,6 +72,11 @@ export interface AlphabetItem {
   exampleWord: string;
 }
 
+export interface AlphabetWordsItem {
+  letter: string;
+  words: string[];
+}
+
 export interface NumberItem {
   number: number;
   word: string;
@@ -85,6 +90,7 @@ export interface Content {
   reading: ReadingItem[];
   translations: TranslationItem[];
   alphabet: AlphabetItem[];
+  alphabetWords: AlphabetWordsItem[];
   numbers: NumberItem[];
 }
 
