@@ -36,7 +36,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: 'alphabet', icon: CaseUpper, label: 'Alfabet' },
+  { href: 'alphabet', icon: CaseUpper, label: 'Abeceda' },
   { href: 'numbers', icon: Hash, label: 'Brojevi' },
   { href: 'vocabulary', icon: BookText, label: 'Rječnik' },
   { href: 'sentences', icon: MessageSquare, label: 'Rečenice' },
