@@ -80,6 +80,7 @@ export interface AlphabetWordsItem {
 export interface NumberItem {
   number: number;
   word: string;
+  ordinal: string;
 }
 
 export interface Content {
