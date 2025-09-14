@@ -142,7 +142,7 @@ export function HomePage() {
       </AnimatePresence>
 
       <div className="absolute bottom-4 text-xs text-muted-foreground">
-        by sufjan.bajric
+        by sufjan bajrić
       </div>
     </main>
   );
