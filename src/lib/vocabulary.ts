@@ -140,6 +140,23 @@ const bosnianVocabularyData = {
                 { id: 1080, word: 'suknja', translation: 'kjol' },
             ]
         },
+        body_1_3: {
+            title: 'Dijelovi tijela',
+            description: 'Nauči osnovne dijelove tijela.',
+            swedish: 'Kroppsdelar',
+            items: [
+                { id: 1301, word: 'glava', translation: 'huvud' },
+                { id: 1302, word: 'ruka', translation: 'hand/arm' },
+                { id: 1303, word: 'noga', translation: 'fot/ben' },
+                { id: 1304, word: 'stomak', translation: 'mage' },
+                { id: 1305, word: 'oko', translation: 'öga' },
+                { id: 1306, word: 'uho', translation: 'öra' },
+                { id: 1307, word: 'nos', translation: 'näsa' },
+                { id: 1308, word: 'usta', translation: 'mun' },
+                { id: 1309, word: 'prst', translation: 'finger' },
+                { id: 1310, word: 'kosa', translation: 'hår' },
+            ]
+        },
     },
     '4-6': {
         school: {
@@ -278,21 +295,88 @@ const bosnianVocabularyData = {
                 { id: 1180, word: 'vatromet', translation: 'fyrverkeri' },
             ]
         },
-        calendar: {
-            title: 'Mjeseci i dani',
-            description: 'Nazivi za dane u sedmici i mjesece.',
-            swedish: 'Månader och dagar',
+        days: {
+            title: 'Dani u sedmici',
+            description: 'Nauči nazive za dane u sedmici.',
+            swedish: 'Veckodagar',
             items: [
-                { id: 1181, word: 'ponedjeljak', translation: 'måndag' },
-                { id: 1182, word: 'utorak', translation: 'tisdag' },
-                { id: 1183, word: 'srijeda', translation: 'onsdag' },
-                { id: 1184, word: 'januar', translation: 'januari' },
-                { id: 1185, word: 'februar', translation: 'februari' },
-                { id: 1186, word: 'mart', translation: 'mars' },
-                { id: 1187, word: 'sedmica', translation: 'vecka' },
-                { id: 1188, word: 'mjesec', translation: 'månad' },
-                { id: 1189, word: 'godina', translation: 'år' },
-                { id: 1190, word: 'vikend', translation: 'helg' },
+                { id: 1311, word: 'ponedjeljak', translation: 'måndag' },
+                { id: 1312, word: 'utorak', translation: 'tisdag' },
+                { id: 1313, word: 'srijeda', translation: 'onsdag' },
+                { id: 1314, word: 'četvrtak', translation: 'torsdag' },
+                { id: 1315, word: 'petak', translation: 'fredag' },
+                { id: 1316, word: 'subota', translation: 'lördag' },
+                { id: 1317, word: 'nedjelja', translation: 'söndag' },
+            ]
+        },
+        months: {
+            title: 'Mjeseci u godini',
+            description: 'Nauči nazive za mjesece.',
+            swedish: 'Månader',
+            items: [
+                { id: 1318, word: 'januar', translation: 'januari' },
+                { id: 1319, word: 'februar', translation: 'februari' },
+                { id: 1320, word: 'mart', translation: 'mars' },
+                { id: 1321, word: 'april', translation: 'april' },
+                { id: 1322, word: 'maj', translation: 'maj' },
+                { id: 1323, word: 'juni', translation: 'juni' },
+                { id: 1324, word: 'juli', translation: 'juli' },
+                { id: 1325, word: 'august', translation: 'augusti' },
+                { id: 1326, word: 'septembar', translation: 'september' },
+                { id: 1327, word: 'oktobar', translation: 'oktober' },
+                { id: 1328, word: 'novembar', translation: 'november' },
+                { id: 1329, word: 'decembar', translation: 'december' },
+            ]
+        },
+        school_subjects_4_6: {
+            title: 'Školski predmeti',
+            description: 'Nazivi za školske predmete.',
+            swedish: 'Skolämnen',
+            items: [
+                { id: 1330, word: 'maternji jezik', translation: 'modersmål' },
+                { id: 1331, word: 'matematika', translation: 'matematik' },
+                { id: 1332, word: 'historija', translation: 'historia' },
+                { id: 1333, word: 'geografija', translation: 'geografi' },
+                { id: 1334, word: 'biologija', translation: 'biologi' },
+                { id: 1335, word: 'likovna kultura', translation: 'bild' },
+                { id: 1336, word: 'muzička kultura', translation: 'musik' },
+                { id: 1337, word: 'tjelesni odgoj', translation: 'idrott och hälsa' },
+                { id: 1338, word: 'engleski jezik', translation: 'engelska' },
+                { id: 1339, word: 'tehnička kultura', translation: 'teknik' },
+            ]
+        },
+        transport_4_6: {
+            title: 'Transport',
+            description: 'Nazivi za prevozna sredstva.',
+            swedish: 'Transport',
+            items: [
+                { id: 1340, word: 'auto', translation: 'bil' },
+                { id: 1341, word: 'autobus', translation: 'buss' },
+                { id: 1342, word: 'voz', translation: 'tåg' },
+                { id: 1343, word: 'avion', translation: 'flygplan' },
+                { id: 1344, word: 'brod', translation: 'båt/skepp' },
+                { id: 1345, word: 'bicikl', translation: 'cykel' },
+                { id: 1346, word: 'motor', translation: 'motorcykel' },
+                { id: 1347, word: 'tramvaj', translation: 'spårvagn' },
+                { id: 1348, word: 'kamion', translation: 'lastbil' },
+                { id: 1349, word: 'helikopter', translation: 'helikopter' },
+            ]
+        },
+        nature_4_6: {
+            title: 'Priroda (napredno)',
+            description: 'Proširi znanje o prirodi.',
+            swedish: 'Natur (avancerat)',
+            items: [
+                { id: 1350, word: 'šuma', translation: 'skog' },
+                { id: 1351, word: 'pustinja', translation: 'öken' },
+                { id: 1352, word: 'okean', translation: 'ocean' },
+                { id: 1353, word: 'jezero', translation: 'sjö' },
+                { id: 1354, word: 'vulkan', translation: 'vulkan' },
+                { id: 1355, word: 'otok', translation: 'ö' },
+                { id: 1356, word: 'livada', translation: 'äng' },
+                { id: 1357, word: 'brdo', translation: 'kulle' },
+                { id: 1358, word: 'potok', translation: 'bäck' },
+                { id: 1359, word: 'pećina', translation: 'grotta' },
             ]
         },
     },
@@ -467,6 +551,57 @@ const bosnianVocabularyData = {
                 { id: 1300, word: 'mikroskop', translation: 'mikroskop' },
             ]
         },
+        school_subjects_7_9: {
+            title: 'Školski predmeti',
+            description: 'Napredni školski predmeti.',
+            swedish: 'Skolämnen',
+            items: [
+                { id: 1360, word: 'bosanski jezik', translation: 'bosniska' },
+                { id: 1361, word: 'hemija', translation: 'kemi' },
+                { id: 1362, word: 'fizika', translation: 'fysik' },
+                { id: 1363, word: 'informatika', translation: 'informationsteknik' },
+                { id: 1364, word: 'društvo', translation: 'samhällskunskap' },
+                { id: 1365, word: 'tehnički odgoj', translation: 'slöjd' },
+                { id: 1366, word: 'strani jezik', translation: 'främmande språk' },
+                { id: 1367, word: 'filozofija', translation: 'filosofi' },
+                { id: 1368, word: 'logika', translation: 'logik' },
+                { id: 1369, word: 'vjeronauka', translation: 'religionskunskap' },
+            ]
+        },
+        economy: {
+            title: 'Ekonomija i novac',
+            description: 'Osnovni ekonomski pojmovi.',
+            swedish: 'Ekonomi och pengar',
+            items: [
+                { id: 1370, word: 'novac', translation: 'pengar' },
+                { id: 1371, word: 'banka', translation: 'bank' },
+                { id: 1372, word: 'cijena', translation: 'pris' },
+                { id: 1373, word: 'porez', translation: 'skatt' },
+                { id: 1374, word: 'račun', translation: 'kvitto/faktura' },
+                { id: 1375, word: 'budžet', translation: 'budget' },
+                { id: 1376, word: 'investicija', translation: 'investering' },
+                { id: 1377, word: 'dug', translation: 'skuld' },
+                { id: 1378, word: 'plata', translation: 'lön' },
+                { id: 1379, word: 'tržište', translation: 'marknad' },
+            ]
+        },
+        politics: {
+            title: 'Politika i društvo',
+            description: 'Osnovni pojmovi iz politike i društva.',
+            swedish: 'Politik och samhälle',
+            items: [
+                { id: 1380, word: 'država', translation: 'stat' },
+                { id: 1381, word: 'vlada', translation: 'regering' },
+                { id: 1382, word: 'zakon', translation: 'lag' },
+                { id: 1383, word: 'demokratija', translation: 'demokrati' },
+                { id: 1384, word: 'izbori', translation: 'val' },
+                { id: 1385, word: 'predsjednik', translation: 'president' },
+                { id: 1386, word: 'parlament', translation: 'parlament' },
+                { id: 1387, word: 'građanin', translation: 'medborgare' },
+                { id: 1388, word: 'ustav', translation: 'grundlag' },
+                { id: 1389, word: 'pravda', translation: 'rättvisa' },
+            ]
+        },
     },
 };
 
@@ -609,6 +744,23 @@ const croatianVocabularyData = {
                 { id: 2080, word: 'suknja', translation: 'kjol' },
             ]
         },
+        body_1_3: {
+            title: 'Dijelovi tijela',
+            description: 'Nauči osnovne dijelove tijela.',
+            swedish: 'Kroppsdelar',
+            items: [
+                { id: 2301, word: 'glava', translation: 'huvud' },
+                { id: 2302, word: 'ruka', translation: 'hand/arm' },
+                { id: 2303, word: 'noga', translation: 'fot/ben' },
+                { id: 2304, word: 'trbuh', translation: 'mage' },
+                { id: 2305, word: 'oko', translation: 'öga' },
+                { id: 2306, word: 'uho', translation: 'öra' },
+                { id: 2307, word: 'nos', translation: 'näsa' },
+                { id: 2308, word: 'usta', translation: 'mun' },
+                { id: 2309, word: 'prst', translation: 'finger' },
+                { id: 2310, word: 'kosa', translation: 'hår' },
+            ]
+        },
     },
     '4-6': {
         school: {
@@ -747,21 +899,88 @@ const croatianVocabularyData = {
                 { id: 2180, word: 'vatromet', translation: 'fyrverkeri' },
             ]
         },
-        calendar: {
-            title: 'Mjeseci i dani',
-            description: 'Nazivi za dane u tjednu i mjesece.',
-            swedish: 'Månader och dagar',
+        days: {
+            title: 'Dani u tjednu',
+            description: 'Nauči nazive za dane u tjednu.',
+            swedish: 'Veckodagar',
             items: [
-                { id: 2181, word: 'ponedjeljak', translation: 'måndag' },
-                { id: 2182, word: 'utorak', translation: 'tisdag' },
-                { id: 2183, word: 'srijeda', translation: 'onsdag' },
-                { id: 2184, word: 'siječanj', translation: 'januari' },
-                { id: 2185, word: 'veljača', translation: 'februari' },
-                { id: 2186, word: 'ožujak', translation: 'mars' },
-                { id: 2187, word: 'tjedan', translation: 'vecka' },
-                { id: 2188, word: 'mjesec', translation: 'månad' },
-                { id: 2189, word: 'godina', translation: 'år' },
-                { id: 2190, word: 'vikend', translation: 'helg' },
+                { id: 2311, word: 'ponedjeljak', translation: 'måndag' },
+                { id: 2312, word: 'utorak', translation: 'tisdag' },
+                { id: 2313, word: 'srijeda', translation: 'onsdag' },
+                { id: 2314, word: 'četvrtak', translation: 'torsdag' },
+                { id: 2315, word: 'petak', translation: 'fredag' },
+                { id: 2316, word: 'subota', translation: 'lördag' },
+                { id: 2317, word: 'nedjelja', translation: 'söndag' },
+            ]
+        },
+        months: {
+            title: 'Mjeseci u godini',
+            description: 'Nauči nazive za mjesece.',
+            swedish: 'Månader',
+            items: [
+                { id: 2318, word: 'siječanj', translation: 'januari' },
+                { id: 2319, word: 'veljača', translation: 'februari' },
+                { id: 2320, word: 'ožujak', translation: 'mars' },
+                { id: 2321, word: 'travanj', translation: 'april' },
+                { id: 2322, word: 'svibanj', translation: 'maj' },
+                { id: 2323, word: 'lipanj', translation: 'juni' },
+                { id: 2324, word: 'srpanj', translation: 'juli' },
+                { id: 2325, word: 'kolovoz', translation: 'augusti' },
+                { id: 2326, word: 'rujan', translation: 'september' },
+                { id: 2327, word: 'listopad', translation: 'oktober' },
+                { id: 2328, word: 'studeni', translation: 'november' },
+                { id: 2329, word: 'prosinac', translation: 'december' },
+            ]
+        },
+        school_subjects_4_6: {
+            title: 'Školski predmeti',
+            description: 'Nazivi za školske predmete.',
+            swedish: 'Skolämnen',
+            items: [
+                { id: 2330, word: 'hrvatski jezik', translation: 'kroatiska' },
+                { id: 2331, word: 'matematika', translation: 'matematik' },
+                { id: 2332, word: 'povijest', translation: 'historia' },
+                { id: 2333, word: 'zemljopis', translation: 'geografi' },
+                { id: 2334, word: 'priroda i društvo', translation: 'NO/SO' },
+                { id: 2335, word: 'likovna kultura', translation: 'bild' },
+                { id: 2336, word: 'glazbena kultura', translation: 'musik' },
+                { id: 2337, word: 'tjelesna i zdravstvena kultura', translation: 'idrott och hälsa' },
+                { id: 2338, word: 'engleski jezik', translation: 'engelska' },
+                { id: 2339, word: 'tehnička kultura', translation: 'teknik' },
+            ]
+        },
+        transport_4_6: {
+            title: 'Promet',
+            description: 'Nazivi za prijevozna sredstva.',
+            swedish: 'Transport',
+            items: [
+                { id: 2340, word: 'automobil', translation: 'bil' },
+                { id: 2341, word: 'autobus', translation: 'buss' },
+                { id: 2342, word: 'vlak', translation: 'tåg' },
+                { id: 2343, word: 'zrakoplov', translation: 'flygplan' },
+                { id: 2344, word: 'brod', translation: 'båt/skepp' },
+                { id: 2345, word: 'bicikl', translation: 'cykel' },
+                { id: 2346, word: 'motocikl', translation: 'motorcykel' },
+                { id: 2347, word: 'tramvaj', translation: 'spårvagn' },
+                { id: 2348, word: 'kamion', translation: 'lastbil' },
+                { id: 2349, word: 'helikopter', translation: 'helikopter' },
+            ]
+        },
+        nature_4_6: {
+            title: 'Priroda (napredno)',
+            description: 'Proširi znanje o prirodi.',
+            swedish: 'Natur (avancerat)',
+            items: [
+                { id: 2350, word: 'šuma', translation: 'skog' },
+                { id: 2351, word: 'pustinja', translation: 'öken' },
+                { id: 2352, word: 'ocean', translation: 'ocean' },
+                { id: 2353, word: 'jezero', translation: 'sjö' },
+                { id: 2354, word: 'vulkan', translation: 'vulkan' },
+                { id: 2355, word: 'otok', translation: 'ö' },
+                { id: 2356, word: 'livada', translation: 'äng' },
+                { id: 2357, word: 'brdo', translation: 'kulle' },
+                { id: 2358, word: 'potok', translation: 'bäck' },
+                { id: 2359, word: 'špilja', translation: 'grotta' },
             ]
         },
     },
@@ -936,6 +1155,57 @@ const croatianVocabularyData = {
                 { id: 2300, word: 'mikroskop', translation: 'mikroskop' },
             ]
         },
+        school_subjects_7_9: {
+            title: 'Školski predmeti',
+            description: 'Napredni školski predmeti.',
+            swedish: 'Skolämnen',
+            items: [
+                { id: 2360, word: 'hrvatski jezik', translation: 'kroatiska' },
+                { id: 2361, word: 'kemija', translation: 'kemi' },
+                { id: 2362, word: 'fizika', translation: 'fysik' },
+                { id: 2363, word: 'informatika', translation: 'informationsteknik' },
+                { id: 2364, word: 'politika i gospodarstvo', translation: 'samhällskunskap' },
+                { id: 2365, word: 'tehnička kultura', translation: 'slöjd' },
+                { id: 2366, word: 'strani jezik', translation: 'främmande språk' },
+                { id: 2367, word: 'filozofija', translation: 'filosofi' },
+                { id: 2368, word: 'logika', translation: 'logik' },
+                { id: 2369, word: 'vjeronauk', translation: 'religionskunskap' },
+            ]
+        },
+        economy: {
+            title: 'Gospodarstvo i novac',
+            description: 'Osnovni gospodarski pojmovi.',
+            swedish: 'Ekonomi och pengar',
+            items: [
+                { id: 2370, word: 'novac', translation: 'pengar' },
+                { id: 2371, word: 'banka', translation: 'bank' },
+                { id: 2372, word: 'cijena', translation: 'pris' },
+                { id: 2373, word: 'porez', translation: 'skatt' },
+                { id: 2374, word: 'račun', translation: 'kvitto/faktura' },
+                { id: 2375, word: 'proračun', translation: 'budget' },
+                { id: 2376, word: 'ulaganje', translation: 'investering' },
+                { id: 2377, word: 'dug', translation: 'skuld' },
+                { id: 2378, word: 'plaća', translation: 'lön' },
+                { id: 2379, word: 'tržište', translation: 'marknad' },
+            ]
+        },
+        politics: {
+            title: 'Politika i društvo',
+            description: 'Osnovni pojmovi iz politike i društva.',
+            swedish: 'Politik och samhälle',
+            items: [
+                { id: 2380, word: 'država', translation: 'stat' },
+                { id: 2381, word: 'vlada', translation: 'regering' },
+                { id: 2382, word: 'zakon', translation: 'lag' },
+                { id: 2383, word: 'demokracija', translation: 'demokrati' },
+                { id: 2384, word: 'izbori', translation: 'val' },
+                { id: 2385, word: 'predsjednik', translation: 'president' },
+                { id: 2386, word: 'sabor', translation: 'parlament' },
+                { id: 2387, word: 'građanin', translation: 'medborgare' },
+                { id: 2388, word: 'ustav', translation: 'grundlag' },
+                { id: 2389, word: 'pravda', translation: 'rättvisa' },
+            ]
+        },
     },
 };
 
@@ -1078,6 +1348,23 @@ const serbianVocabularyData = {
                 { id: 3080, word: 'suknja', translation: 'kjol' },
             ]
         },
+        body_1_3: {
+            title: 'Delovi tela',
+            description: 'Nauči osnovne delove tela.',
+            swedish: 'Kroppsdelar',
+            items: [
+                { id: 3301, word: 'glava', translation: 'huvud' },
+                { id: 3302, word: 'ruka', translation: 'hand/arm' },
+                { id: 3303, word: 'noga', translation: 'fot/ben' },
+                { id: 3304, word: 'stomak', translation: 'mage' },
+                { id: 3305, word: 'oko', translation: 'öga' },
+                { id: 3306, word: 'uvo', translation: 'öra' },
+                { id: 3307, word: 'nos', translation: 'näsa' },
+                { id: 3308, word: 'usta', translation: 'mun' },
+                { id: 3309, word: 'prst', translation: 'finger' },
+                { id: 3310, word: 'kosa', translation: 'hår' },
+            ]
+        },
     },
     '4-6': {
         school: {
@@ -1216,21 +1503,88 @@ const serbianVocabularyData = {
                 { id: 3180, word: 'vatromet', translation: 'fyrverkeri' },
             ]
         },
-        calendar: {
-            title: 'Meseci i dani',
-            description: 'Nazivi za dane u nedelji i mesece.',
-            swedish: 'Månader och dagar',
+        days: {
+            title: 'Dani u nedelji',
+            description: 'Nauči nazive za dane u nedelji.',
+            swedish: 'Veckodagar',
             items: [
-                { id: 3181, word: 'ponedeljak', translation: 'måndag' },
-                { id: 3182, word: 'utorak', translation: 'tisdag' },
-                { id: 3183, word: 'sreda', translation: 'onsdag' },
-                { id: 3184, word: 'januar', translation: 'januari' },
-                { id: 3185, word: 'februar', translation: 'februari' },
-                { id: 3186, word: 'mart', translation: 'mars' },
-                { id: 3187, word: 'nedelja', translation: 'vecka' },
-                { id: 3188, word: 'mesec', translation: 'månad' },
-                { id: 3189, word: 'godina', translation: 'år' },
-                { id: 3190, word: 'vikend', translation: 'helg' },
+                { id: 3311, word: 'ponedeljak', translation: 'måndag' },
+                { id: 3312, word: 'utorak', translation: 'tisdag' },
+                { id: 3313, word: 'sreda', translation: 'onsdag' },
+                { id: 3314, word: 'četvrtak', translation: 'torsdag' },
+                { id: 3315, word: 'petak', translation: 'fredag' },
+                { id: 3316, word: 'subota', translation: 'lördag' },
+                { id: 3317, word: 'nedelja', translation: 'söndag' },
+            ]
+        },
+        months: {
+            title: 'Meseci u godini',
+            description: 'Nauči nazive za mesece.',
+            swedish: 'Månader',
+            items: [
+                { id: 3318, word: 'januar', translation: 'januari' },
+                { id: 3319, word: 'februar', translation: 'februari' },
+                { id: 3320, word: 'mart', translation: 'mars' },
+                { id: 3321, word: 'april', translation: 'april' },
+                { id: 3322, word: 'maj', translation: 'maj' },
+                { id: 3323, word: 'jun', translation: 'juni' },
+                { id: 3324, word: 'jul', translation: 'juli' },
+                { id: 3325, word: 'avgust', translation: 'augusti' },
+                { id: 3326, word: 'septembar', translation: 'september' },
+                { id: 3327, word: 'oktobar', translation: 'oktober' },
+                { id: 3328, word: 'novembar', translation: 'november' },
+                { id: 3329, word: 'decembar', translation: 'december' },
+            ]
+        },
+        school_subjects_4_6: {
+            title: 'Školski predmeti',
+            description: 'Nazivi za školske predmete.',
+            swedish: 'Skolämnen',
+            items: [
+                { id: 3330, word: 'srpski jezik', translation: 'serbiska' },
+                { id: 3331, word: 'matematika', translation: 'matematik' },
+                { id: 3332, word: 'istorija', translation: 'historia' },
+                { id: 3333, word: 'geografija', translation: 'geografi' },
+                { id: 3334, word: 'priroda i društvo', translation: 'NO/SO' },
+                { id: 3335, word: 'likovna kultura', translation: 'bild' },
+                { id: 3336, word: 'muzička kultura', translation: 'musik' },
+                { id: 3337, word: 'fizičko vaspitanje', translation: 'idrott och hälsa' },
+                { id: 3338, word: 'engleski jezik', translation: 'engelska' },
+                { id: 3339, word: 'tehnika i tehnologija', translation: 'teknik' },
+            ]
+        },
+        transport_4_6: {
+            title: 'Saobraćaj',
+            description: 'Nazivi za prevozna sredstva.',
+            swedish: 'Transport',
+            items: [
+                { id: 3340, word: 'auto', translation: 'bil' },
+                { id: 3341, word: 'autobus', translation: 'buss' },
+                { id: 3342, word: 'voz', translation: 'tåg' },
+                { id: 3343, word: 'avion', translation: 'flygplan' },
+                { id: 3344, word: 'brod', translation: 'båt/skepp' },
+                { id: 3345, word: 'bicikl', translation: 'cykel' },
+                { id: 3346, word: 'motor', translation: 'motorcykel' },
+                { id: 3347, word: 'tramvaj', translation: 'spårvagn' },
+                { id: 3348, word: 'kamion', translation: 'lastbil' },
+                { id: 3349, word: 'helikopter', translation: 'helikopter' },
+            ]
+        },
+        nature_4_6: {
+            title: 'Priroda (napredno)',
+            description: 'Proširi znanje o prirodi.',
+            swedish: 'Natur (avancerat)',
+            items: [
+                { id: 3350, word: 'šuma', translation: 'skog' },
+                { id: 3351, word: 'pustinja', translation: 'öken' },
+                { id: 3352, word: 'okean', translation: 'ocean' },
+                { id: 3353, word: 'jezero', translation: 'sjö' },
+                { id: 3354, word: 'vulkan', translation: 'vulkan' },
+                { id: 3355, word: 'ostrvo', translation: 'ö' },
+                { id: 3356, word: 'livada', translation: 'äng' },
+                { id: 3357, word: 'brdo', translation: 'kulle' },
+                { id: 3358, word: 'potok', translation: 'bäck' },
+                { id: 3359, word: 'pećina', translation: 'grotta' },
             ]
         },
     },
@@ -1405,6 +1759,57 @@ const serbianVocabularyData = {
                 { id: 3300, word: 'mikroskop', translation: 'mikroskop' },
             ]
         },
+        school_subjects_7_9: {
+            title: 'Školski predmeti',
+            description: 'Napredni školski predmeti.',
+            swedish: 'Skolämnen',
+            items: [
+                { id: 3360, word: 'srpski jezik', translation: 'serbiska' },
+                { id: 3361, word: 'hemija', translation: 'kemi' },
+                { id: 3362, word: 'fizika', translation: 'fysik' },
+                { id: 3363, word: 'informatika i računarstvo', translation: 'informationsteknik' },
+                { id: 3364, word: 'građansko vaspitanje', translation: 'samhällskunskap' },
+                { id: 3365, word: 'tehnika i tehnologija', translation: 'slöjd' },
+                { id: 3366, word: 'strani jezik', translation: 'främmande språk' },
+                { id: 3367, word: 'filozofija', translation: 'filosofi' },
+                { id: 3368, word: 'logika', translation: 'logik' },
+                { id: 3369, word: 'verska nastava', translation: 'religionskunskap' },
+            ]
+        },
+        economy: {
+            title: 'Ekonomija i novac',
+            description: 'Osnovni ekonomski pojmovi.',
+            swedish: 'Ekonomi och pengar',
+            items: [
+                { id: 3370, word: 'novac', translation: 'pengar' },
+                { id: 3371, word: 'banka', translation: 'bank' },
+                { id: 3372, word: 'cena', translation: 'pris' },
+                { id: 3373, word: 'porez', translation: 'skatt' },
+                { id: 3374, word: 'račun', translation: 'kvitto/faktura' },
+                { id: 3375, word: 'budžet', translation: 'budget' },
+                { id: 3376, word: 'investicija', translation: 'investering' },
+                { id: 3377, word: 'dug', translation: 'skuld' },
+                { id: 3378, word: 'plata', translation: 'lön' },
+                { id: 3379, word: 'tržište', translation: 'marknad' },
+            ]
+        },
+        politics: {
+            title: 'Politika i društvo',
+            description: 'Osnovni pojmovi iz politike i društva.',
+            swedish: 'Politik och samhälle',
+            items: [
+                { id: 3380, word: 'država', translation: 'stat' },
+                { id: 3381, word: 'vlada', translation: 'regering' },
+                { id: 3382, word: 'zakon', translation: 'lag' },
+                { id: 3383, word: 'demokratija', translation: 'demokrati' },
+                { id: 3384, word: 'izbori', translation: 'val' },
+                { id: 3385, word: 'predsednik', translation: 'president' },
+                { id: 3386, word: 'skupština', translation: 'parlament' },
+                { id: 3387, word: 'građanin', translation: 'medborgare' },
+                { id: 3388, word: 'ustav', translation: 'grundlag' },
+                { id: 3389, word: 'pravda', translation: 'rättvisa' },
+            ]
+        },
     },
 };
 
@@ -1414,5 +1819,7 @@ export const vocabularyData: VocabularyData = {
   croatian: croatianVocabularyData,
   serbian: serbianVocabularyData
 };
+
+    
 
     
