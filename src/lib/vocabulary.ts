@@ -55,23 +55,6 @@ const bosnianVocabularyData = {
                 { id: 1030, word: 'zec', translation: 'kanin' },
             ]
         },
-        toys: {
-            title: 'Igračke',
-            description: 'Nazivi za popularne dječije igračke.',
-            swedish: 'Leksaker',
-            items: [
-                { id: 1031, word: 'lopta', translation: 'boll' },
-                { id: 1032, word: 'lutka', translation: 'docka' },
-                { id: 1033, word: 'auto', translation: 'bil' },
-                { id: 1034, word: 'kocke', translation: 'klossar' },
-                { id: 1035, word: 'medo', translation: 'nalle' },
-                { id: 1036, word: 'robot', translation: 'robot' },
-                { id: 1037, word: 'avion', translation: 'flygplan' },
-                { id: 1038, word: 'vozić', translation: 'tåg' },
-                { id: 1039, word: 'slagalica', translation: 'pussel' },
-                { id: 1040, word: 'zmaj', translation: 'drake' },
-            ]
-        },
         nature: {
             title: 'Priroda',
             description: 'Osnovni pojmovi iz prirode.',
@@ -659,23 +642,6 @@ const croatianVocabularyData = {
                 { id: 2030, word: 'zec', translation: 'kanin' },
             ]
         },
-        toys: {
-            title: 'Igračke',
-            description: 'Nazivi za popularne dječje igračke.',
-            swedish: 'Leksaker',
-            items: [
-                { id: 2031, word: 'lopta', translation: 'boll' },
-                { id: 2032, word: 'lutka', translation: 'docka' },
-                { id: 2033, word: 'autić', translation: 'bil' },
-                { id: 2034, word: 'kocke', translation: 'klossar' },
-                { id: 2035, word: 'medvjedić', translation: 'nalle' },
-                { id: 2036, word: 'robot', translation: 'robot' },
-                { id: 2037, word: 'zrakoplov', translation: 'flygplan' },
-                { id: 2038, word: 'vlakić', translation: 'tåg' },
-                { id: 2039, word: 'slagalica', translation: 'pussel' },
-                { id: 2040, word: 'zmaj', translation: 'drake' },
-            ]
-        },
         nature: {
             title: 'Priroda',
             description: 'Osnovni pojmovi iz prirode.',
@@ -1261,23 +1227,6 @@ const serbianVocabularyData = {
                 { id: 3028, word: 'tigar', translation: 'tiger' },
                 { id: 3029, word: 'medved', translation: 'björn' },
                 { id: 3030, word: 'zec', translation: 'kanin' },
-            ]
-        },
-        toys: {
-            title: 'Igračke',
-            description: 'Nazivi za popularne dečije igračke.',
-            swedish: 'Leksaker',
-            items: [
-                { id: 3031, word: 'lopta', translation: 'boll' },
-                { id: 3032, word: 'lutka', translation: 'docka' },
-                { id: 3033, word: 'auto', translation: 'bil' },
-                { id: 3034, word: 'kocke', translation: 'klossar' },
-                { id: 3035, word: 'meda', translation: 'nalle' },
-                { id: 3036, word: 'robot', translation: 'robot' },
-                { id: 3037, word: 'avion', translation: 'flygplan' },
-                { id: 3038, word: 'vozić', translation: 'tåg' },
-                { id: 3039, word: 'slagalica', translation: 'pussel' },
-                { id: 3040, word: 'zmaj', translation: 'drake' },
             ]
         },
         nature: {
