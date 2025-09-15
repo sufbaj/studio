@@ -1,84 +1,16 @@
 
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import placeholderImages from '@/lib/placeholder-images.json';
-import { PlusCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { getImages, setImage } from '@/lib/db';
 import type { Language, Grade } from '@/lib/types';
 
-function getStorageKey(language: Language | null, grade: Grade | null, letterKey: string) {
-  if (!language || !grade) return null;
-  return `alphabet-${language}-${grade}-${letterKey}`;
-}
-
 export function AlphabetActivity() {
-  const { language, grade, viewMode } = useAppContext();
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [selectedLetterKey, setSelectedLetterKey] = useState<string | null>(null);
-  const [customImages, setCustomImages] = useState<Record<string, string>>({});
-  const isTeacherMode = viewMode === 'teacher';
-
-  const getStorageKeyCallback = useCallback((letterKey: string) => {
-    return getStorageKey(language, grade, letterKey);
-  }, [language, grade]);
-
-  useEffect(() => {
-    if (!language || !grade) return;
-    
-    const alphabet = data[language]?.[grade]?.alphabet || [];
-    const keys = alphabet.map(item => {
-        const letterKey = (Array.isArray(item.letter) ? item.letter[0] : item) as string;
-        return getStorageKeyCallback(letterKey.toLowerCase()) || '';
-    }).filter(Boolean);
-
-    if (keys.length > 0) {
-        getImages(keys).then(images => {
-            setCustomImages(images);
-        });
-    }
-
-  }, [language, grade, getStorageKeyCallback]);
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.files || event.target.files.length === 0 || !selectedLetterKey) {
-      return;
-    }
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      const base64String = reader.result as string;
-      const storageKey = getStorageKeyCallback(selectedLetterKey);
-      if (storageKey) {
-        setImage(storageKey, base64String).then(() => {
-          setCustomImages(prev => ({ ...prev, [storageKey]: base64String }));
-        });
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-  
-  const handleImageContainerClick = (e: React.MouseEvent, letterKey: string) => {
-    if (isTeacherMode) {
-      setSelectedLetterKey(letterKey.toLowerCase());
-      fileInputRef.current?.click();
-    } else {
-      const imageUrl = getImageForLetter(letterKey);
-      window.open(imageUrl, '_blank');
-    }
-  };
-  
-  const openImageInNewTab = (e: React.MouseEvent, letterKey: string) => {
-    e.stopPropagation(); // Prevent triggering the edit mode
-    const imageUrl = getImageForLetter(letterKey);
-    window.open(imageUrl, '_blank');
-  };
+  const { language, grade } = useAppContext();
 
   const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
     const isSerbian = language === 'serbian';
@@ -103,27 +35,18 @@ export function AlphabetActivity() {
 
   const getImageForLetter = (letter: string) => {
     const lowerCaseLetter = letter.toLowerCase();
-    const storageKey = getStorageKeyCallback(lowerCaseLetter);
-    
-    if (storageKey && customImages[storageKey]) {
-        return customImages[storageKey];
-    }
-    
     const images = placeholderImages.alphabet as Record<string, string>;
     return images[lowerCaseLetter] || `https://picsum.photos/seed/${lowerCaseLetter}/200/200`;
   }
+  
+  const openImageInNewTab = (e: React.MouseEvent, letterKey: string) => {
+    e.stopPropagation();
+    const imageUrl = getImageForLetter(letterKey);
+    window.open(imageUrl, '_blank');
+  };
 
   return (
     <div>
-      {isTeacherMode && (
-        <input
-          type="file"
-          accept="image/*"
-          ref={fileInputRef}
-          onChange={handleImageChange}
-          style={{ display: 'none' }}
-        />
-      )}
       <div className="mb-12">
         <h2 className="text-3xl font-headline font-bold mb-4">{s.title}</h2>
         <p className="text-muted-foreground mb-6">{s.description}</p>
@@ -149,7 +72,7 @@ export function AlphabetActivity() {
                   </div>
 
                   <div 
-                    onClick={(e) => isTeacherMode ? handleImageContainerClick(e, letterKey) : openImageInNewTab(e, letterKey)}
+                    onClick={(e) => openImageInNewTab(e, letterKey)}
                     className={cn(
                         "w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden relative group",
                         "cursor-pointer"
@@ -162,11 +85,6 @@ export function AlphabetActivity() {
                       height={96}
                       className="object-cover w-full h-full"
                     />
-                    {isTeacherMode && (
-                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                         <PlusCircle className="w-8 h-8 text-white" />
-                       </div>
-                    )}
                   </div>
 
                   <p className="font-semibold text-lg text-center">{exampleWord}</p>
