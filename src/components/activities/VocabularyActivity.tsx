@@ -40,7 +40,7 @@ const s = {
 };
 
 function VocabularyCategorySelection({ onSelectCategory, grade }: { onSelectCategory: (category: string) => void, grade: string }) {
-    const { language } = useAppContext();
+    const language = 'bosnian';
     
     const categories = useMemo(() => {
         if (!language || !grade || !vocabularyData[language] || !vocabularyData[language][grade]) {
@@ -87,7 +87,8 @@ function VocabularyCategorySelection({ onSelectCategory, grade }: { onSelectCate
 
 
 function VocabularyQuiz({ categoryId, onBack }: { categoryId: string, onBack: () => void }) {
-  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const { grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const language = 'bosnian';
   const [quizItems, setQuizItems] = useState<QuizItem[]>([]);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<QuizOption | null>(null);

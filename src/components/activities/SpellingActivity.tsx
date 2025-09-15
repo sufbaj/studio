@@ -29,7 +29,8 @@ const s = {
 };
 
 export function SpellingActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const { grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const language = 'bosnian';
   const { toast } = useToast();
   
   const [exercises, setExercises] = useState<SpellingItem[]>([]);

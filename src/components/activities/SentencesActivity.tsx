@@ -37,7 +37,8 @@ const s = {
 };
 
 export function SentencesActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const { grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const language = 'bosnian';
   const { toast } = useToast();
 
   const [exercises, setExercises] = useState<SentenceItem[]>([]);

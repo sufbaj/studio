@@ -31,7 +31,8 @@ const s = {
 };
 
 export function ReadingActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const { grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const language = 'bosnian';
   const { toast } = useToast();
 
   const [exercises, setExercises] = useState<ReadingItem[]>([]);

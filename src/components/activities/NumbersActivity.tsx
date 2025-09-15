@@ -6,9 +6,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 export function NumbersActivity() {
-  const { language, grade } = useAppContext();
+  const { grade } = useAppContext();
+  const language = 'bosnian';
 
-  const numbers = (language && grade && data[language][grade].numbers) || [];
+  const numbers = (language && grade && data[language]?.[grade]?.numbers) || [];
 
   if (!language || !grade) {
     return null;

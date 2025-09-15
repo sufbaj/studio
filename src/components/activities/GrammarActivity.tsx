@@ -32,7 +32,8 @@ const s = {
 
 
 export function GrammarActivity() {
-  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const { grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  const language = 'bosnian';
   const { toast } = useToast();
 
   const [exercises, setExercises] = useState<GrammarItem[]>([]);
