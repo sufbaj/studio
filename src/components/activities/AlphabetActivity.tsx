@@ -1,13 +1,10 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
-import Image from 'next/image';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import placeholderImages from '@/lib/placeholder-images.json';
 
 export function AlphabetActivity() {
   const { language, grade } = useAppContext();
@@ -34,9 +31,6 @@ export function AlphabetActivity() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {alphabet.map(({ letter, exampleWord }, index) => {
               const letterKey = Array.isArray(letter) ? letter[0] : letter;
-              const placeholderKey = letterKey as keyof typeof placeholderImages.alphabet;
-              const imageSrc = placeholderImages.alphabet[placeholderKey]?.url;
-              const hint = placeholderImages.alphabet[placeholderKey]?.hint;
 
               return (
               <Card key={`${letterKey}-${index}`} className="flex flex-col items-center justify-center text-center">
@@ -49,18 +43,6 @@ export function AlphabetActivity() {
                       </p>
                   </CardHeader>
                   <CardContent className="p-4 pt-0 w-full flex flex-col items-center gap-2">
-                      <div className="w-full aspect-square rounded-md border-2 border-dashed flex items-center justify-center bg-muted/50 relative overflow-hidden">
-                          {imageSrc && (
-                              <Image
-                                  src={imageSrc}
-                                  alt={`Slika za slovo ${letterKey}`}
-                                  width={600}
-                                  height={400}
-                                  className="object-cover w-full h-full"
-                                  data-ai-hint={hint}
-                              />
-                          )}
-                      </div>
                       <p className="font-semibold text-lg text-foreground mt-2">{exampleWord}</p>
                   </CardContent>
               </Card>
