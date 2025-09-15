@@ -1,26 +1,81 @@
 'use client';
 
+import { useState, useEffect, useCallback, useRef } from 'react';
+import Image from 'next/image';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
+import { PlusCircle, Trash2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { setImage, getAllImages } from '@/lib/db';
+import placeholderImages from '@/lib/placeholder-images.json';
+
+type AlphabetImages = Record<string, string>;
+
+const getStorageKey = (language: string | null, grade: string | null, letterKey: string): string | null => {
+  if (!language || !grade) return null;
+  return `alphabet-${language}-${grade}-${letterKey}`;
+};
 
 export function AlphabetActivity() {
-  const { language, grade } = useAppContext();
+  const { language, grade, viewMode } = useAppContext();
+  const [images, setImages] = useState<AlphabetImages>({});
+  const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
 
-  const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
-    const isSerbian = language === 'serbian';
-    return {
-      title: isSerbian ? 'Azbuka i reči' : 'Abeceda i riječi',
-      alphabetTitle: isSerbian ? 'Azbuka' : 'Abeceda',
-      alphabetDescription: isSerbian ? 'Pregled slova azbuke.' : 'Pregled slova abecede.',
-      wordsTitle: isSerbian ? 'Primeri reči' : 'Primjeri riječi',
-      wordsDescription: isSerbian ? 'Pregled reči za svako slovo.' : 'Pregled riječi za svako slovo.',
+  const loadImagesFromDB = useCallback(async () => {
+    if (!language || !grade) return;
+    try {
+      const allImages = await getAllImages();
+      const loadedImages: AlphabetImages = {};
+      allImages.forEach(img => {
+        loadedImages[img.id] = img.dataUrl;
+      });
+      setImages(loadedImages);
+    } catch (error) {
+      console.error("Failed to load images from DB", error);
+    }
+  }, [language, grade]);
+
+  useEffect(() => {
+    loadImagesFromDB();
+  }, [loadImagesFromDB]);
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>, letterKey: string) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = async () => {
+      const dataUrl = reader.result as string;
+      const storageKey = getStorageKey(language, grade, letterKey);
+      if (storageKey) {
+        try {
+          await setImage(storageKey, dataUrl);
+          setImages(prev => ({ ...prev, [storageKey]: dataUrl }));
+        } catch (error) {
+          console.error("Failed to save image to DB", error);
+        }
+      }
     };
+    reader.readAsDataURL(file);
   };
 
-  const s = getStrings(language);
+  const handleImageClick = (letterKey: string) => {
+    if (viewMode === 'teacher') {
+      fileInputRefs.current[letterKey]?.click();
+    }
+  };
+
+  const s = {
+    alphabetTitle: language === 'serbian' ? 'Azbuka' : 'Abeceda',
+    alphabetDescription: language === 'serbian' ? 'Pregled slova azbuke i primera.' : 'Pregled slova abecede i primjera.',
+    wordsTitle: language === 'serbian' ? 'Primeri reči' : 'Primjeri riječi',
+    wordsDescription: language === 'serbian' ? 'Pregled reči za svako slovo.' : 'Pregled riječi za svako slovo.',
+  };
+  
   const alphabet = (language && grade && data[language]?.[grade]?.alphabet) || [];
   const alphabetWords = (language && grade && data[language]?.[grade]?.alphabetWords) || [];
 
@@ -33,17 +88,54 @@ export function AlphabetActivity() {
       <div>
         <h2 className="text-3xl font-headline font-bold mb-2">{s.alphabetTitle}</h2>
         <p className="text-muted-foreground mb-6">{s.alphabetDescription}</p>
-        <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2 sm:gap-3">
-            {alphabet.map(({ letter }, index) => (
-              <Card key={`${letter}-${index}`} className="flex flex-col items-center justify-center aspect-square">
-                  <CardTitle className="text-3xl sm:text-4xl font-headline font-bold text-primary text-center">
-                    {Array.isArray(letter) ? letter[0] : letter}
-                  </CardTitle>
-                  <p className="text-xl sm:text-2xl text-muted-foreground">
-                    {Array.isArray(letter) ? letter[1] : ''}
-                  </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {alphabet.map(({ letter }, index) => {
+              const letterKey = Array.isArray(letter) ? letter[0] : letter;
+              const storageKey = getStorageKey(language, grade, letterKey);
+              const placeholderKey = `${language}-${grade}-${letterKey}`;
+              const imageSrc = (storageKey && images[storageKey]) || (placeholderImages.alphabet as Record<string, string>)[placeholderKey];
+
+              return (
+              <Card key={`${letterKey}-${index}`} className="flex flex-col items-center justify-center text-center">
+                  <CardHeader className="p-0 pt-4">
+                      <CardTitle className="text-5xl font-headline font-bold text-primary">
+                        {Array.isArray(letter) ? letter[0] : letter}
+                      </CardTitle>
+                      <p className="text-3xl text-muted-foreground">
+                        {Array.isArray(letter) ? letter[1] : ''}
+                      </p>
+                  </CardHeader>
+                  <CardContent className="p-4 w-full aspect-square">
+                      <div
+                          className={cn(
+                              "w-full h-full rounded-md border-2 border-dashed flex items-center justify-center bg-muted/50 relative",
+                              viewMode === 'teacher' && "cursor-pointer hover:border-primary hover:bg-muted"
+                          )}
+                          onClick={() => handleImageClick(letterKey)}
+                      >
+                          {imageSrc ? (
+                              <Image
+                                  src={imageSrc}
+                                  alt={`Slika za slovo ${letterKey}`}
+                                  fill
+                                  className="object-cover rounded-md"
+                              />
+                          ) : (
+                              viewMode === 'teacher' && <PlusCircle className="w-10 h-10 text-muted-foreground" />
+                          )}
+                          {viewMode === 'teacher' && (
+                              <input
+                                  type="file"
+                                  ref={el => fileInputRefs.current[letterKey] = el}
+                                  className="hidden"
+                                  accept="image/*"
+                                  onChange={(e) => handleImageChange(e, letterKey)}
+                              />
+                          )}
+                      </div>
+                  </CardContent>
               </Card>
-            ))}
+            )})}
         </div>
       </div>
       
