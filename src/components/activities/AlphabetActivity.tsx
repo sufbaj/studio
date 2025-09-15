@@ -1,6 +1,7 @@
+
 'use client';
 
-import { useState, useRef, type ChangeEvent } from 'react';
+import { useState, useRef, type ChangeEvent, useEffect } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import {
@@ -36,9 +37,22 @@ const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
 export function AlphabetActivity() {
   const { language, grade } = useAppContext();
   const s = getStrings(language);
-  const [images, setImages] = useState<Record<string, string>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [activeLetterIndex, setActiveLetterIndex] = useState<number | null>(null);
+  const [images, setImages] = useState<Record<string, string>>({});
+
+  const storageKey = `alphabetImages-${language}-${grade}`;
+
+  useEffect(() => {
+    try {
+      const storedImages = localStorage.getItem(storageKey);
+      if (storedImages) {
+        setImages(JSON.parse(storedImages));
+      }
+    } catch (error) {
+      console.error("Failed to load images from localStorage", error);
+    }
+  }, [storageKey]);
 
   const alphabet = (language && grade && data[language][grade].alphabet) || [];
   
@@ -54,10 +68,16 @@ export function AlphabetActivity() {
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImages(prevImages => ({
-          ...prevImages,
+        const newImages = {
+          ...images,
           [letterKey]: reader.result as string
-        }));
+        };
+        setImages(newImages);
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(newImages));
+        } catch (error) {
+            console.error("Failed to save images to localStorage", error);
+        }
       };
       reader.readAsDataURL(file);
     }
