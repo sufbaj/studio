@@ -57,7 +57,7 @@ export function AlphabetActivity() {
                 key={index}
                 className="transition-shadow hover:shadow-lg"
               >
-                <CardContent className="flex flex-col items-center justify-center p-4 aspect-square">
+                <CardContent className="flex flex-col items-center justify-between p-4 aspect-square">
                   <div className="flex items-baseline">
                     <span className="text-5xl md:text-6xl font-bold font-headline">
                       {Array.isArray(letter) ? letter[0] : letter}
@@ -66,7 +66,10 @@ export function AlphabetActivity() {
                       {Array.isArray(letter) ? letter[1] : ''}
                     </span>
                   </div>
-                  <p className="mt-3 font-semibold text-lg">{exampleWord}</p>
+                  <div className="w-16 h-16 bg-muted rounded-lg my-2 flex items-center justify-center">
+                    {/* Placeholder for image */}
+                  </div>
+                  <p className="font-semibold text-lg text-center">{exampleWord}</p>
                 </CardContent>
               </Card>
             );
