@@ -1,9 +1,7 @@
+
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  experimental: {
-    // This allows requests from the Firebase Studio preview URL.
-  },
   // This allows requests from the Firebase Studio preview URL.
   allowedDevOrigins: ['https://*.cloudworkstations.dev'],
   typescript: {
