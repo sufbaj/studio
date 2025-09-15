@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
@@ -7,33 +8,54 @@ import type { ReadingItem, ReadingQuestion } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 const s = {
-  title: 'Razumijevanje pročitanog',
-  question: 'Pitanje',
-  of: 'od',
-  newExercises: 'Nove vježbe',
-  checkAnswer: 'Provjeri odgovor',
-  nextQuestion: 'Sljedeće pitanje',
-  seeResults: 'Prikaži rezultate',
-  exerciseFinished: 'Vježba je gotova!',
-  correctAnswersOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} točnih odgovora.`,
-  practiceAgain: 'Vježbaj ponovo',
-  noExercises: 'Nema dostupnih vježbi.',
-  correctToastTitle: 'Točno!',
-  correctToastDescription: 'Sjajno! +15 poena.',
-  incorrectToastTitle: 'Netočno!',
-  incorrectToastDescription: (a: string) => `Točan odgovor je bio "${a}".`,
+  bosnian: {
+    title: 'Razumijevanje pročitanog',
+    question: 'Pitanje',
+    of: 'od',
+    newExercises: 'Nove vježbe',
+    checkAnswer: 'Provjeri odgovor',
+    nextQuestion: 'Sljedeće pitanje',
+    seeResults: 'Prikaži rezultate',
+    exerciseFinished: 'Vježba je gotova!',
+    correctAnswersOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+    practiceAgain: 'Vježbaj ponovo',
+    noExercises: 'Nema dostupnih vježbi.',
+  },
+  croatian: {
+    title: 'Razumijevanje pročitanog',
+    question: 'Pitanje',
+    of: 'od',
+    newExercises: 'Nove vježbe',
+    checkAnswer: 'Provjeri odgovor',
+    nextQuestion: 'Sljedeće pitanje',
+    seeResults: 'Prikaži rezultate',
+    exerciseFinished: 'Vježba je gotova!',
+    correctAnswersOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} točnih odgovora.`,
+    practiceAgain: 'Vježbaj ponovno',
+    noExercises: 'Nema dostupnih vježbi.',
+  },
+  serbian: {
+    title: 'Razumevanje pročitanog',
+    question: 'Pitanje',
+    of: 'od',
+    newExercises: 'Nove vežbe',
+    checkAnswer: 'Proveri odgovor',
+    nextQuestion: 'Sledeće pitanje',
+    seeResults: 'Prikaži rezultate',
+    exerciseFinished: 'Vežba je gotova!',
+    correctAnswersOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+    practiceAgain: 'Vežbaj ponovo',
+    noExercises: 'Nema dostupnih vežbi.',
+  },
 };
 
 export function ReadingActivity() {
-  const { grade, updateScore, setMaxScore, resetScore } = useAppContext();
-  const language = 'bosnian';
-  const { toast } = useToast();
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
 
   const [exercises, setExercises] = useState<ReadingItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -110,14 +132,16 @@ export function ReadingActivity() {
   };
 
   if (!language || !grade || exercises.length === 0) {
+    const strings = language ? s[language] : s.bosnian;
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">{s.title}</h2>
-        <p>{s.noExercises}</p>
+        <h2 className="text-2xl font-headline mb-4">{strings.title}</h2>
+        <p>{strings.noExercises}</p>
       </div>
     );
   }
 
+  const strings = s[language];
   const totalQuestions = exercises.reduce((acc, curr) => acc + curr.questions.length, 0);
   const answeredQuestions = exercises.slice(0, currentExerciseIndex).reduce((acc, curr) => acc + curr.questions.length, 0) + (currentExercise ? currentQuestionIndex : 0);
   const progress = totalQuestions > 0 ? (answeredQuestions / totalQuestions) * 100 : 0;
@@ -128,15 +152,15 @@ export function ReadingActivity() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">{s.title}</h2>
+        <h2 className="text-3xl font-headline font-bold">{strings.title}</h2>
         {!isQuizFinished && (
           <div className="text-lg font-semibold text-muted-foreground">
-            {s.question} {answeredQuestions + 1} / {totalQuestions}
+            {strings.question} {answeredQuestions + 1} / {totalQuestions}
           </div>
         )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          {s.newExercises}
+          {strings.newExercises}
         </Button>
       </div>
       
@@ -165,7 +189,7 @@ export function ReadingActivity() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>{s.question} {currentQuestionIndex + 1}</CardTitle>
+              <CardTitle>{strings.question} {currentQuestionIndex + 1}</CardTitle>
               <CardDescription className="text-foreground font-semibold">{currentQuestion.question}</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-3">
@@ -195,10 +219,10 @@ export function ReadingActivity() {
             </CardContent>
             <CardFooter className="justify-end mt-4 flex-col items-end gap-4">
               {!isAnswered ? (
-                <Button onClick={checkAnswer} disabled={!selectedOption}>{s.checkAnswer}</Button>
+                <Button onClick={checkAnswer} disabled={!selectedOption}>{strings.checkAnswer}</Button>
               ) : (
                 <Button onClick={next}>
-                  {currentQuestionIndex < currentExercise.questions.length - 1 || currentExerciseIndex < exercises.length - 1 ? s.nextQuestion : s.seeResults}
+                  {currentQuestionIndex < currentExercise.questions.length - 1 || currentExerciseIndex < exercises.length - 1 ? strings.nextQuestion : strings.seeResults}
                 </Button>
               )}
             </CardFooter>
@@ -206,11 +230,11 @@ export function ReadingActivity() {
         </div>
       ) : (
         <Card className="text-center p-8">
-          <h3 className="text-2xl font-headline mb-4">{s.exerciseFinished}</h3>
-          <p className="text-lg mb-6">{s.correctAnswersOutOf(totalCorrectAnswers, totalQuestions)}</p>
+          <h3 className="text-2xl font-headline mb-4">{strings.exerciseFinished}</h3>
+          <p className="text-lg mb-6">{strings.correctAnswersOutOf(totalCorrectAnswers, totalQuestions)}</p>
           <Button onClick={generateExercises}>
             <RefreshCw className="w-4 h-4 mr-2" />
-            {s.practiceAgain}
+            {strings.practiceAgain}
           </Button>
         </Card>
       )}

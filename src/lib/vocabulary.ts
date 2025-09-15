@@ -578,7 +578,7 @@ const serbianVocabularyData = {
                 { id: 3003, word: 'sestra', translation: 'syster' },
                 { id: 3004, word: 'brat', translation: 'bror' },
                 { id: 3005, word: 'baka', translation: 'farmor/mormor' },
-                { id: 3006, word: 'deda', translation: 'farfar/morfar' },
+                { id: 3006, word: 'deka', translation: 'farfar/morfar' },
                 { id: 3007, word: 'tetka', translation: 'moster/faster' },
                 { id: 3008, word: 'stric', translation: 'farbror' },
                 { id: 3009, word: 'ujak', translation: 'morbror' },
@@ -853,5 +853,3 @@ export const vocabularyData: VocabularyData = {
   croatian: croatianVocabularyData,
   serbian: serbianVocabularyData
 };
-
-    

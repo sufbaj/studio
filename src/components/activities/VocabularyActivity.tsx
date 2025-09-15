@@ -1,16 +1,15 @@
+
 'use client';
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '@/contexts/AppContext';
 import { vocabularyData } from '@/lib/vocabulary';
-import type { VocabularyItem } from '@/lib/types';
+import type { VocabularyItem, Language } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { RefreshCw, CheckCircle, XCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
-import { cn } from '@/lib/utils';
-import type { Language } from '@/lib/types';
 
 type QuizOption = {
   word: string;
@@ -23,24 +22,62 @@ type QuizItem = {
 };
 
 const s = {
-    title: 'Vježbe riječi',
-    subtitle: 'Proširi svoj vokabular kroz tematske kategorije.',
-    noExercises: 'Nema dostupnih riječi za odabrane postavke.',
-    newExercises: 'Nove vježbe',
-    howToSay: 'Kako se kaže na bosanskom:',
-    correctToastTitle: 'Tačno!',
-    correctToastDescription: '+10 poena',
-    incorrectToastTitle: 'Netačno!',
-    incorrectToastDescription: 'Više sreće drugi put!',
-    next: 'Dalje',
-    showResults: 'Prikaži rezultate',
-    finished: 'Bravo!',
-    correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
-    playAgain: 'Igraj ponovo',
-};
+    bosnian: {
+        title: 'Vježbe riječi',
+        subtitle: 'Proširi svoj vokabular kroz tematske kategorije.',
+        noExercises: 'Nema dostupnih riječi za odabrane postavke.',
+        newExercises: 'Nove vježbe',
+        howToSay: 'Kako se kaže na bosanskom:',
+        correctToastTitle: 'Tačno!',
+        correctToastDescription: '+10 poena',
+        incorrectToastTitle: 'Netačno!',
+        incorrectToastDescription: 'Više sreće drugi put!',
+        next: 'Dalje',
+        showResults: 'Prikaži rezultate',
+        finished: 'Bravo!',
+        correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+        playAgain: 'Igraj ponovo',
+        backToCategories: 'Nazad na kategorije',
+    },
+    croatian: {
+        title: 'Vježbe riječi',
+        subtitle: 'Proširi svoj vokabular kroz tematske kategorije.',
+        noExercises: 'Nema dostupnih riječi za odabrane postavke.',
+        newExercises: 'Nove vježbe',
+        howToSay: 'Kako se kaže na hrvatskom:',
+        correctToastTitle: 'Točno!',
+        correctToastDescription: '+10 bodova',
+        incorrectToastTitle: 'Netočno!',
+        incorrectToastDescription: 'Više sreće drugi put!',
+        next: 'Dalje',
+        showResults: 'Prikaži rezultate',
+        finished: 'Bravo!',
+        correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} točnih odgovora.`,
+        playAgain: 'Igraj ponovo',
+        backToCategories: 'Natrag na kategorije',
+    },
+    serbian: {
+        title: 'Vežbe reči',
+        subtitle: 'Proširi svoj vokabular kroz tematske kategorije.',
+        noExercises: 'Nema dostupnih reči za odabrane postavke.',
+        newExercises: 'Nove vežbe',
+        howToSay: 'Kako se kaže na srpskom:',
+        correctToastTitle: 'Tačno!',
+        correctToastDescription: '+10 poena',
+        incorrectToastTitle: 'Netačno!',
+        incorrectToastDescription: 'Više sreće drugi put!',
+        next: 'Dalje',
+        showResults: 'Prikaži rezultate',
+        finished: 'Bravo!',
+        correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+        playAgain: 'Igraj ponovo',
+        backToCategories: 'Nazad na kategorije',
+    }
+}
 
-function VocabularyCategorySelection({ onSelectCategory, grade }: { onSelectCategory: (category: string) => void, grade: string }) {
-    const language = 'bosnian';
+
+function VocabularyCategorySelection({ onSelectCategory }: { onSelectCategory: (category: string) => void }) {
+    const { language, grade } = useAppContext();
     
     const categories = useMemo(() => {
         if (!language || !grade || !vocabularyData[language] || !vocabularyData[language][grade]) {
@@ -57,10 +94,14 @@ function VocabularyCategorySelection({ onSelectCategory, grade }: { onSelectCate
         });
     }, [language, grade]);
 
+    if (!language || !grade) return null;
+
+    const strings = s[language];
+
     return (
         <div>
-            <h2 className="text-3xl font-headline font-bold mb-2">{s.title} - Razred {grade}</h2>
-            <p className="text-muted-foreground mb-8">{s.subtitle}</p>
+            <h2 className="text-3xl font-headline font-bold mb-2">{strings.title} - Razred {grade}</h2>
+            <p className="text-muted-foreground mb-8">{strings.subtitle}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {categories.map((category) => (
                     <Card 
@@ -87,8 +128,7 @@ function VocabularyCategorySelection({ onSelectCategory, grade }: { onSelectCate
 
 
 function VocabularyQuiz({ categoryId, onBack }: { categoryId: string, onBack: () => void }) {
-  const { grade, updateScore, setMaxScore, resetScore } = useAppContext();
-  const language = 'bosnian';
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const [quizItems, setQuizItems] = useState<QuizItem[]>([]);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<QuizOption | null>(null);
@@ -159,14 +199,20 @@ function VocabularyQuiz({ categoryId, onBack }: { categoryId: string, onBack: ()
   const currentQuizItem = useMemo(() => quizItems[currentItemIndex], [quizItems, currentItemIndex]);
   
   if (!language || !grade || quizItems.length === 0) {
+    const strings = language ? s[language] : s.bosnian;
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">{s.title}</h2>
-        <p>{s.noExercises}</p>
+        <h2 className="text-2xl font-headline mb-4">{strings.title}</h2>
+        <p>{strings.noExercises}</p>
+        <Button onClick={onBack} className="mt-4">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            {strings.backToCategories}
+        </Button>
       </div>
     );
   }
 
+  const strings = s[language];
   const progress = (currentItemIndex / quizItems.length) * 100;
   const isQuizFinished = currentItemIndex >= quizItems.length;
 
@@ -186,7 +232,7 @@ function VocabularyQuiz({ categoryId, onBack }: { categoryId: string, onBack: ()
          )}
         <Button onClick={generateQuiz} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          {s.newExercises}
+          {strings.newExercises}
         </Button>
       </div>
       
@@ -204,7 +250,7 @@ function VocabularyQuiz({ categoryId, onBack }: { categoryId: string, onBack: ()
           <Card className="overflow-hidden">
              <CardContent className="p-6 flex flex-col justify-center items-center bg-muted/50 min-h-[120px]">
               <div className="text-center">
-                <p className="text-muted-foreground">{s.howToSay}</p>
+                <p className="text-muted-foreground">{strings.howToSay}</p>
                  <div className="flex items-center gap-4">
                     <p className="text-3xl font-bold font-headline text-foreground">{currentQuizItem.item.translation}</p>
                  </div>
@@ -236,7 +282,7 @@ function VocabularyQuiz({ categoryId, onBack }: { categoryId: string, onBack: ()
                   <div className="flex items-center justify-end mt-6">
                     {isAnswered && (
                       <Button onClick={nextQuestion} size="lg">
-                         {currentItemIndex < quizItems.length - 1 ? s.next : s.showResults}
+                         {currentItemIndex < quizItems.length - 1 ? strings.next : strings.showResults}
                       </Button>
                     )}
                   </div>
@@ -246,16 +292,16 @@ function VocabularyQuiz({ categoryId, onBack }: { categoryId: string, onBack: ()
         </AnimatePresence>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">{s.finished}</h3>
-            <p className="text-lg mb-6">{s.correctOutOf(correctAnswers, quizItems.length)}</p>
+            <h3 className="text-2xl font-headline mb-4">{strings.finished}</h3>
+            <p className="text-lg mb-6">{strings.correctOutOf(correctAnswers, quizItems.length)}</p>
             <div className="flex gap-4 justify-center">
                 <Button onClick={onBack} variant="outline">
                     <ArrowLeft className="w-4 h-4 mr-2" />
-                    Nazad na kategorije
+                    {strings.backToCategories}
                 </Button>
                 <Button onClick={generateQuiz}>
                     <RefreshCw className="w-4 h-4 mr-2" />
-                    {s.playAgain}
+                    {strings.playAgain}
                 </Button>
             </div>
         </Card>
@@ -278,7 +324,7 @@ export function VocabularyActivity() {
     }
     
     if (!selectedCategory) {
-        return <VocabularyCategorySelection onSelectCategory={setSelectedCategory} grade={grade} />;
+        return <VocabularyCategorySelection onSelectCategory={setSelectedCategory} />;
     }
 
     return <VocabularyQuiz categoryId={selectedCategory} onBack={handleBackToCategories} />;

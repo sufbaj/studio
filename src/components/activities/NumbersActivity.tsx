@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useAppContext } from '@/contexts/AppContext';
@@ -6,8 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 export function NumbersActivity() {
-  const { grade } = useAppContext();
-  const language = 'bosnian';
+  const { language, grade } = useAppContext();
 
   const numbers = (language && grade && data[language]?.[grade]?.numbers) || [];
 
@@ -15,13 +15,36 @@ export function NumbersActivity() {
     return null;
   }
 
+  const s = {
+      bosnian: {
+          mainNumbersTitle: 'Osnovni brojevi',
+          mainNumbersDesc: 'Pregled osnovnih brojeva.',
+          ordinalNumbersTitle: 'Redni brojevi',
+          ordinalNumbersDesc: 'Pregled rednih brojeva.',
+      },
+      croatian: {
+          mainNumbersTitle: 'Glavni brojevi',
+          mainNumbersDesc: 'Pregled glavnih brojeva.',
+          ordinalNumbersTitle: 'Redni brojevi',
+          ordinalNumbersDesc: 'Pregled rednih brojeva.',
+      },
+      serbian: {
+          mainNumbersTitle: 'Osnovni brojevi',
+          mainNumbersDesc: 'Pregled osnovnih brojeva.',
+          ordinalNumbersTitle: 'Redni brojevi',
+          ordinalNumbersDesc: 'Pregled rednih brojeva.',
+      }
+  }
+
+  const strings = s[language];
+
   return (
     <div className="flex flex-col gap-12">
         {/* Osnovni brojevi */}
         <div>
-            <h2 className="text-3xl font-headline font-bold mb-2">Osnovni brojevi</h2>
+            <h2 className="text-3xl font-headline font-bold mb-2">{strings.mainNumbersTitle}</h2>
             <p className="text-muted-foreground mb-6">
-                Pregled osnovnih brojeva.
+                {strings.mainNumbersDesc}
             </p>
             <ScrollArea className="h-[60vh]">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pr-4">
@@ -46,9 +69,9 @@ export function NumbersActivity() {
 
         {/* Redni brojevi */}
         <div>
-            <h2 className="text-3xl font-headline font-bold mb-2">Redni brojevi</h2>
+            <h2 className="text-3xl font-headline font-bold mb-2">{strings.ordinalNumbersTitle}</h2>
             <p className="text-muted-foreground mb-6">
-                Pregled rednih brojeva.
+                {strings.ordinalNumbersDesc}
             </p>
             <ScrollArea className="h-[60vh]">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pr-4">

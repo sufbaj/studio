@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useAppContext } from '@/contexts/AppContext';
@@ -9,13 +10,29 @@ import { Separator } from '@/components/ui/separator';
 export function AlphabetActivity() {
   const { language, grade } = useAppContext();
 
-  const s = {
-    alphabetTitle: 'Abeceda',
-    alphabetDescription: 'Pregled slova abecede i primjera.',
-    wordsTitle: 'Primjeri riječi',
-    wordsDescription: 'Pregled riječi za svako slovo.',
+  const s_map = {
+    bosnian: {
+        alphabetTitle: 'Abeceda',
+        alphabetDescription: 'Pregled slova abecede i primjera.',
+        wordsTitle: 'Primjeri riječi',
+        wordsDescription: 'Pregled riječi za svako slovo.',
+    },
+    croatian: {
+        alphabetTitle: 'Abeceda',
+        alphabetDescription: 'Pregled slova abecede i primjera.',
+        wordsTitle: 'Primjeri riječi',
+        wordsDescription: 'Pregled riječi za svako slovo.',
+    },
+    serbian: {
+        alphabetTitle: 'Azbuka',
+        alphabetDescription: 'Pregled slova azbuke i primera.',
+        wordsTitle: 'Primeri reči',
+        wordsDescription: 'Pregled reči za svako slovo.',
+    },
   };
   
+  const s = (language && s_map[language]) || s_map.bosnian;
+
   const alphabet = (language && grade && data[language]?.[grade]?.alphabet) || [];
   const alphabetWords = (language && grade && data[language]?.[grade]?.alphabetWords) || [];
 

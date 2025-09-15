@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
@@ -14,6 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 
 const s = {
+  bosnian: {
     title: 'Švedski na maternji jezik',
     noExercises: 'Nema dostupnih vježbi za prevođenje.',
     newExercises: 'Nove vježbe',
@@ -22,7 +24,6 @@ const s = {
     enterTranslation: 'Unesite prijevod...',
     check: 'Provjeri',
     correct: 'Tačno!',
-    greatJob: 'Sjajno!',
     incorrect: 'Netačno!',
     correctAnswerIs: 'Tačan odgovor je:',
     nextWord: 'Sljedeća riječ',
@@ -31,13 +32,48 @@ const s = {
     exerciseFinished: 'Vježba je gotova!',
     correctTranslationsOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih prijevoda.`,
     practiceAgain: 'Vježbaj ponovo',
+  },
+  croatian: {
+    title: 'Švedski na materinski jezik',
+    noExercises: 'Nema dostupnih vježbi za prevođenje.',
+    newExercises: 'Nove vježbe',
+    translateWord: (lang: string) => `Prevedi sljedeću riječ na ${lang}:`,
+    translateSentence: (lang: string) => `Prevedi sljedeću rečenicu na ${lang}:`,
+    enterTranslation: 'Unesite prijevod...',
+    check: 'Provjeri',
+    correct: 'Točno!',
+    incorrect: 'Netočno!',
+    correctAnswerIs: 'Točan odgovor je:',
+    nextWord: 'Sljedeća riječ',
+    nextSentence: 'Sljedeća rečenica',
+    seeResults: 'Prikaži rezultate',
+    exerciseFinished: 'Vježba je gotova!',
+    correctTranslationsOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} točnih prijevoda.`,
+    practiceAgain: 'Vježbaj ponovno',
+  },
+  serbian: {
+    title: 'Švedski na maternji jezik',
+    noExercises: 'Nema dostupnih vežbi za prevođenje.',
+    newExercises: 'Nove vežbe',
+    translateWord: (lang: string) => `Prevedi sledeću reč na ${lang}:`,
+    translateSentence: (lang: string) => `Prevedi sledeću rečenicu na ${lang}:`,
+    enterTranslation: 'Unesite prevod...',
+    check: 'Proveri',
+    correct: 'Tačno!',
+    incorrect: 'Netačno!',
+    correctAnswerIs: 'Tačan odgovor je:',
+    nextWord: 'Sledeća reč',
+    nextSentence: 'Sledeća rečenica',
+    seeResults: 'Prikaži rezultate',
+    exerciseFinished: 'Vežba je gotova!',
+    correctTranslationsOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih prevoda.`,
+    practiceAgain: 'Vežbaj ponovo',
+  },
 };
 
 export function TranslationActivity() {
-  const { grade, updateScore, setMaxScore, resetScore } = useAppContext();
-  const language = 'bosnian';
-  const { toast } = useToast();
-
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
+  
   const [exercises, setExercises] = useState<TranslationItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [inputValue, setInputValue] = useState('');
@@ -70,7 +106,10 @@ export function TranslationActivity() {
   const currentExercise = useMemo(() => exercises[currentExerciseIndex], [exercises, currentExerciseIndex]);
 
   const getLanguageDisplayName = () => {
-    return 'bosanski';
+    if (language === 'bosnian') return 'bosanski';
+    if (language === 'croatian') return 'hrvatski';
+    if (language === 'serbian') return 'srpski';
+    return '';
   }
 
   const checkAnswer = () => {
@@ -115,26 +154,28 @@ export function TranslationActivity() {
   };
 
   if (!language || !grade || exercises.length === 0) {
+    const strings = language ? s[language] : s.bosnian;
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">{s.title}</h2>
-        <p>{s.noExercises}</p>
+        <h2 className="text-2xl font-headline mb-4">{strings.title}</h2>
+        <p>{strings.noExercises}</p>
       </div>
     );
   }
 
+  const strings = s[language];
   const progress = (currentExerciseIndex / exercises.length) * 100;
   const isQuizFinished = currentExerciseIndex >= exercises.length;
 
   const getNextButtonText = () => {
     if (!currentExercise) return '';
-    return currentExercise.type === 'word' ? s.nextWord : s.nextSentence;
+    return currentExercise.type === 'word' ? strings.nextWord : strings.nextSentence;
   };
 
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">{s.title}</h2>
+        <h2 className="text-3xl font-headline font-bold">{strings.title}</h2>
         {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentExerciseIndex + 1} / {exercises.length}
@@ -142,7 +183,7 @@ export function TranslationActivity() {
          )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          {s.newExercises}
+          {strings.newExercises}
         </Button>
       </div>
 
@@ -153,8 +194,8 @@ export function TranslationActivity() {
           <CardHeader className="text-center">
             <CardDescription>
                 {currentExercise.type === 'word' 
-                    ? s.translateWord(getLanguageDisplayName()) 
-                    : s.translateSentence(getLanguageDisplayName())
+                    ? strings.translateWord(getLanguageDisplayName()) 
+                    : strings.translateSentence(getLanguageDisplayName())
                 }
             </CardDescription>
             <div className="flex items-center justify-center gap-4 py-4">
@@ -168,7 +209,7 @@ export function TranslationActivity() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder={s.enterTranslation}
+                placeholder={strings.enterTranslation}
                 className="text-center text-lg h-12"
                 disabled={isAnswered}
                 autoFocus
@@ -178,7 +219,7 @@ export function TranslationActivity() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder={s.enterTranslation}
+                placeholder={strings.enterTranslation}
                 className="text-center text-lg min-h-[60px]"
                 disabled={isAnswered}
                 autoFocus
@@ -187,23 +228,23 @@ export function TranslationActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-4 flex-col gap-4">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={!inputValue} size="lg">{s.check}</Button>
+              <Button onClick={checkAnswer} disabled={!inputValue} size="lg">{strings.check}</Button>
             ) : (
               <div className="text-center w-full">
                  {isCorrect ? (
                     <div className="flex items-center justify-center gap-4">
-                        <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> {s.correct}</p>
+                        <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> {strings.correct}</p>
                     </div>
                  ) : (
                     <p className="flex flex-col items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4">
-                        <span className="flex items-center gap-2"><XCircle /> {s.incorrect}</span>
+                        <span className="flex items-center gap-2"><XCircle /> {strings.incorrect}</span>
                         <span className="text-base text-muted-foreground mt-2 flex items-center gap-2">
-                            {s.correctAnswerIs} <span className="font-mono bg-red-100 px-2 py-1 rounded-md text-red-800">{currentExercise.target}</span>
+                            {strings.correctAnswerIs} <span className="font-mono bg-red-100 px-2 py-1 rounded-md text-red-800">{currentExercise.target}</span>
                         </span>
                     </p>
                  )}
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? getNextButtonText() : s.seeResults}
+                    {currentExerciseIndex < exercises.length - 1 ? getNextButtonText() : strings.seeResults}
                 </Button>
               </div>
             )}
@@ -211,11 +252,11 @@ export function TranslationActivity() {
         </Card>
       ) : (
         <Card className="text-center p-8 max-w-xl mx-auto">
-          <h3 className="text-2xl font-headline mb-4">{s.exerciseFinished}</h3>
-          <p className="text-lg mb-6">{s.correctTranslationsOutOf(correctAnswers, exercises.length)}</p>
+          <h3 className="text-2xl font-headline mb-4">{strings.exerciseFinished}</h3>
+          <p className="text-lg mb-6">{strings.correctTranslationsOutOf(correctAnswers, exercises.length)}</p>
           <Button onClick={generateExercises}>
             <RefreshCw className="w-4 h-4 mr-2" />
-            {s.practiceAgain}
+            {strings.practiceAgain}
           </Button>
         </Card>
       )}

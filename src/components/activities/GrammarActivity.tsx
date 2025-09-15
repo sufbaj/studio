@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -7,34 +8,60 @@ import type { GrammarItem } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { RefreshCw, CheckCircle, XCircle, Lightbulb } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const s = {
-    title: 'Gramatika: Popuni prazninu',
-    noExercises: 'Nema dostupnih gramatičkih vježbi.',
-    newExercises: 'Nove vježbe',
-    check: 'Provjeri',
-    correctToastTitle: 'Tačno!',
-    correctToastDescription: 'Sjajno! +15 poena.',
-    incorrectToastTitle: 'Netačno!',
-    incorrectToastDescription: (answer: string) => `Tačan odgovor je bio "${answer}".`,
-    correct: 'Tačno!',
-    incorrect: 'Netačno!',
-    explanation: 'Objašnjenje',
-    nextQuestion: 'Sljedeće pitanje',
-    showResults: 'Prikaži rezultate',
-    finished: 'Vježba je gotova!',
-    correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
-    practiceAgain: 'Vježbaj ponovo',
+    bosnian: {
+        title: 'Gramatika: Popuni prazninu',
+        noExercises: 'Nema dostupnih gramatičkih vježbi.',
+        newExercises: 'Nove vježbe',
+        check: 'Provjeri',
+        correct: 'Tačno!',
+        incorrect: 'Netačno!',
+        incorrectToastDescription: (answer: string) => `Tačan odgovor je bio "${answer}".`,
+        explanation: 'Objašnjenje',
+        nextQuestion: 'Sljedeće pitanje',
+        showResults: 'Prikaži rezultate',
+        finished: 'Vježba je gotova!',
+        correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+        practiceAgain: 'Vježbaj ponovo',
+    },
+    croatian: {
+        title: 'Gramatika: Popuni prazninu',
+        noExercises: 'Nema dostupnih gramatičkih vježbi.',
+        newExercises: 'Nove vježbe',
+        check: 'Provjeri',
+        correct: 'Točno!',
+        incorrect: 'Netočno!',
+        incorrectToastDescription: (answer: string) => `Točan odgovor je bio "${answer}".`,
+        explanation: 'Objašnjenje',
+        nextQuestion: 'Sljedeće pitanje',
+        showResults: 'Prikaži rezultate',
+        finished: 'Vježba je gotova!',
+        correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} točnih odgovora.`,
+        practiceAgain: 'Vježbaj ponovno',
+    },
+    serbian: {
+        title: 'Gramatika: Popuni prazninu',
+        noExercises: 'Nema dostupnih gramatičkih vežbi.',
+        newExercises: 'Nove vežbe',
+        check: 'Proveri',
+        correct: 'Tačno!',
+        incorrect: 'Netačno!',
+        incorrectToastDescription: (answer: string) => `Tačan odgovor je bio "${answer}".`,
+        explanation: 'Objašnjenje',
+        nextQuestion: 'Sledeće pitanje',
+        showResults: 'Prikaži rezultate',
+        finished: 'Vežba je gotova!',
+        correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+        practiceAgain: 'Vežbaj ponovo',
+    }
 };
 
 
 export function GrammarActivity() {
-  const { grade, updateScore, setMaxScore, resetScore } = useAppContext();
-  const language = 'bosnian';
-  const { toast } = useToast();
+  const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
 
   const [exercises, setExercises] = useState<GrammarItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -93,20 +120,22 @@ export function GrammarActivity() {
 
 
   if (!language || !grade || exercises.length === 0) {
+    const strings = language ? s[language] : s.bosnian;
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-headline mb-4">{s.title}</h2>
-        <p>{s.noExercises}</p>
+        <h2 className="text-2xl font-headline mb-4">{strings.title}</h2>
+        <p>{strings.noExercises}</p>
       </div>
     );
   }
 
+  const strings = s[language];
   const progress = (currentExerciseIndex / exercises.length) * 100;
 
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-headline font-bold">{s.title}</h2>
+        <h2 className="text-3xl font-headline font-bold">{strings.title}</h2>
         {!isQuizFinished && (
            <div className="text-lg font-semibold text-muted-foreground">
              {currentExerciseIndex + 1} / {exercises.length}
@@ -114,7 +143,7 @@ export function GrammarActivity() {
          )}
         <Button onClick={generateExercises} variant="outline" size="sm">
           <RefreshCw className="w-4 h-4 mr-2" />
-          {s.newExercises}
+          {strings.newExercises}
         </Button>
       </div>
       
@@ -156,23 +185,23 @@ export function GrammarActivity() {
           </CardContent>
           <CardFooter className="justify-center mt-6 flex-col gap-4">
             {!isAnswered ? (
-              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{s.check}</Button>
+              <Button onClick={checkAnswer} disabled={!selectedOption} size="lg">{strings.check}</Button>
             ) : (
               <div className="text-center w-full">
                  {selectedOption === currentExercise.blank ? (
-                    <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> {s.correct}</p>
+                    <p className="flex items-center justify-center gap-2 text-green-600 text-xl font-bold mb-4"><CheckCircle /> {strings.correct}</p>
                  ) : (
-                    <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> {s.incorrect} {s.incorrectToastDescription(currentExercise.blank)}</p>
+                    <p className="flex items-center justify-center gap-2 text-red-600 text-xl font-bold mb-4"><XCircle /> {strings.incorrect} {strings.incorrectToastDescription(currentExercise.blank)}</p>
                  )}
                 <Alert className="mb-4 text-left">
                   <Lightbulb className="h-4 w-4" />
-                  <AlertTitle>{s.explanation}</AlertTitle>
+                  <AlertTitle>{strings.explanation}</AlertTitle>
                   <AlertDescription>
                     {currentExercise.explanation}
                   </AlertDescription>
                 </Alert>
                 <Button onClick={nextQuestion} size="lg">
-                    {currentExerciseIndex < exercises.length - 1 ? s.nextQuestion : s.showResults}
+                    {currentExerciseIndex < exercises.length - 1 ? strings.nextQuestion : strings.showResults}
                 </Button>
               </div>
             )}
@@ -180,11 +209,11 @@ export function GrammarActivity() {
         </Card>
       ) : (
         <Card className="text-center p-8">
-            <h3 className="text-2xl font-headline mb-4">{s.finished}</h3>
-            <p className="text-lg mb-6">{s.correctOutOf(correctAnswers, exercises.length)}</p>
+            <h3 className="text-2xl font-headline mb-4">{strings.finished}</h3>
+            <p className="text-lg mb-6">{strings.correctOutOf(correctAnswers, exercises.length)}</p>
             <Button onClick={generateExercises}>
                 <RefreshCw className="w-4 h-4 mr-2" />
-                {s.practiceAgain}
+                {strings.practiceAgain}
             </Button>
         </Card>
       )}

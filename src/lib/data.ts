@@ -1,3 +1,4 @@
+
 import type { LanguageData } from './types';
 
 const bosnianAlphabet = [
@@ -402,7 +403,7 @@ const serbianData = {
       { id: 3, sentence: 'Ovo je moja ___.', blank: 'kuća', options: ['nebo', 'sreća', 'kuća'] },
       { id: 4, sentence: 'Čitam ___.', blank: 'knjigu', options: ['knjigu', 'staklo', 'zidom'] },
       { id: 5, sentence: 'Jedem ___.', blank: 'jabuku', options: ['kamen', 'jabuku', 'cipelom'] },
-      { id: 6, sentence: 'Učiteljica nosi ___.', blank: 'naočare', options: ['naočale', 'naočare', 'naoćare'] },
+      { id: 6, sentence: 'Učiteljica nosi ___.', blank: 'naočare', options: ['naočale', 'naočare', 'naoćale'] },
       { id: 7, sentence: 'Na tanjiru je ___.', blank: 'voće', options: ['voće', 'voče', 'voce'] },
       { id: 8, sentence: 'Deda nosi smeđi ___.', blank: 'šešir', options: ['šešir', 'šećir', 'šesir'] },
       { id: 9, sentence: 'Idem u ___ da spavam.', blank: 'krevet', options: ['krevet', 'krevit', 'krevat'] },
