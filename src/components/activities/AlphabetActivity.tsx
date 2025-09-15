@@ -9,7 +9,7 @@ import Image from 'next/image';
 import placeholderImages from '@/lib/placeholder-images.json';
 import { PlusCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { getImage, setImage, getImages } from '@/lib/db';
+import { getImages, setImage } from '@/lib/db';
 
 export function AlphabetActivity() {
   const { language, grade, viewMode } = useAppContext();
@@ -24,7 +24,7 @@ export function AlphabetActivity() {
   }, [language, grade]);
 
   useEffect(() => {
-    if (!isTeacherMode || !language || !grade) return;
+    if (!language || !grade) return;
     
     const alphabet = data[language]?.[grade]?.alphabet || [];
     const keys = alphabet.map(item => {
@@ -36,7 +36,7 @@ export function AlphabetActivity() {
         setCustomImages(images);
     });
 
-  }, [isTeacherMode, language, grade, getStorageKey]);
+  }, [language, grade, getStorageKey]);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files || event.target.files.length === 0 || !selectedLetterKey) {
@@ -88,7 +88,7 @@ export function AlphabetActivity() {
     const lowerCaseLetter = letter.toLowerCase();
     const storageKey = getStorageKey(lowerCaseLetter);
     
-    if (isTeacherMode && storageKey && customImages[storageKey]) {
+    if (storageKey && customImages[storageKey]) {
         return customImages[storageKey];
     }
     
