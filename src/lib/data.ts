@@ -13,7 +13,7 @@ const alphabet = [
     { letter: ['E', 'e'], exampleWord: 'Ekran' },
     { letter: ['F', 'f'], exampleWord: 'Fudbal' },
     { letter: ['G', 'g'], exampleWord: 'Gitara' },
-    { letter: ['H', 'h'], exampleWord: 'Hljeb' },
+    { letter: ['H', 'h'], exampleWord: 'Haljina' },
     { letter: ['I', 'i'], exampleWord: 'Igla' },
     { letter: ['J', 'j'], exampleWord: 'Jabuka' },
     { letter: ['K', 'k'], exampleWord: 'Knjiga' },
@@ -1576,7 +1576,7 @@ export const data: LanguageData = {
     '1-3': {
       alphabet: alphabet.map(item => {
         let word = item.exampleWord;
-        if (word === 'Hljeb') word = 'Hleb';
+        if (word === 'Haljina') word = 'Hleb';
         if (word === 'Rijeka') word = 'Reka';
         if (word === 'Cvijet') word = 'Cvet';
         if (word === 'Mlijeko') word = 'Mleko';
@@ -2136,3 +2136,4 @@ export const data: LanguageData = {
     },
   },
 };
+
