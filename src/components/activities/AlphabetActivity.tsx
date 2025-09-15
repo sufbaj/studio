@@ -1,7 +1,6 @@
 
 'use client';
 
-import { useState, useRef, type ChangeEvent, useEffect } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
 import {
@@ -12,7 +11,7 @@ import {
 } from '@/components/ui/accordion';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
-import { placeholderImages } from '@/lib/placeholder-images.json';
+import placeholderImages from '@/lib/placeholder-images.json';
 
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
@@ -34,7 +33,7 @@ const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
 
 
 export function AlphabetActivity() {
-  const { language, grade } = useAppContext();
+  const { language, grade, viewMode } = useAppContext();
   const s = getStrings(language);
 
   const alphabet = (language && grade && data[language][grade].alphabet) || [];
@@ -43,7 +42,7 @@ export function AlphabetActivity() {
   if (!language || !grade) {
     return null;
   }
-
+  
   const getImageForLetter = (letter: string) => {
     const lowerCaseLetter = letter.toLowerCase();
     const images = placeholderImages.alphabet as Record<string, string>;
@@ -78,7 +77,7 @@ export function AlphabetActivity() {
                     </span>
                   </div>
                   
-                  <div className="w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden">
+                  <div className="w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden relative group">
                     <Image 
                       src={imageUrl} 
                       alt={exampleWord} 
