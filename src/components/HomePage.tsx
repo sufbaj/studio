@@ -63,9 +63,7 @@ export function HomePage() {
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 relative bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-blue-900">
-      <div className="absolute bottom-4 text-center w-full">
-        <p className="text-sm text-muted-foreground">by Sufjan Bajrić</p>
-      </div>
+      
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-4 mb-4">
           <Logo className="h-12 w-12 text-primary" />
