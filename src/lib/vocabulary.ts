@@ -1,3 +1,4 @@
+
 import type { VocabularyData } from './types';
 
 // ========= BOSNIAN DATA =========
@@ -37,6 +38,57 @@ const bosnianVocabularyData = {
                 { id: 1020, word: 'siva', translation: 'grå' },
             ],
         },
+        animals: {
+            title: 'Životinje',
+            description: 'Nauči nazive domaćih i divljih životinja.',
+            swedish: 'Djur',
+            items: [
+                { id: 1021, word: 'pas', translation: 'hund' },
+                { id: 1022, word: 'mačka', translation: 'katt' },
+                { id: 1023, word: 'ptica', translation: 'fågel' },
+                { id: 1024, word: 'riba', translation: 'fisk' },
+                { id: 1025, word: 'konj', translation: 'häst' },
+                { id: 1026, word: 'krava', translation: 'ko' },
+                { id: 1027, word: 'lav', translation: 'lejon' },
+                { id: 1028, word: 'tigar', translation: 'tiger' },
+                { id: 1029, word: 'medvjed', translation: 'björn' },
+                { id: 1030, word: 'zec', translation: 'kanin' },
+            ]
+        },
+        toys: {
+            title: 'Igračke',
+            description: 'Nazivi za popularne dječije igračke.',
+            swedish: 'Leksaker',
+            items: [
+                { id: 1031, word: 'lopta', translation: 'boll' },
+                { id: 1032, word: 'lutka', translation: 'docka' },
+                { id: 1033, word: 'auto', translation: 'bil' },
+                { id: 1034, word: 'kocke', translation: 'klossar' },
+                { id: 1035, word: 'medo', translation: 'nalle' },
+                { id: 1036, word: 'robot', translation: 'robot' },
+                { id: 1037, word: 'avion', translation: 'flygplan' },
+                { id: 1038, word: 'vozić', translation: 'tåg' },
+                { id: 1039, word: 'slagalica', translation: 'pussel' },
+                { id: 1040, word: 'zmaj', translation: 'drake' },
+            ]
+        },
+        nature: {
+            title: 'Priroda',
+            description: 'Osnovni pojmovi iz prirode.',
+            swedish: 'Natur',
+            items: [
+                { id: 1041, word: 'sunce', translation: 'sol' },
+                { id: 1042, word: 'mjesec', translation: 'måne' },
+                { id: 1043, word: 'zvijezda', translation: 'stjärna' },
+                { id: 1044, word: 'drvo', translation: 'träd' },
+                { id: 1045, word: 'cvijet', translation: 'blomma' },
+                { id: 1046, word: 'rijeka', translation: 'flod' },
+                { id: 1047, word: 'planina', translation: 'berg' },
+                { id: 1048, word: 'nebo', translation: 'himmel' },
+                { id: 1049, word: 'kiša', translation: 'regn' },
+                { id: 1050, word: 'snijeg', translation: 'snö' },
+            ]
+        },
     },
     '4-6': {
         school: {
@@ -72,7 +124,58 @@ const bosnianVocabularyData = {
                 { id: 1119, word: 'povrće', translation: 'grönsaker' },
                 { id: 1120, word: 'voće', translation: 'frukt' },
             ]
-        }
+        },
+        hobbies: {
+            title: 'Hobiji',
+            description: 'Riječi za različite hobije i slobodne aktivnosti.',
+            swedish: 'Fritidsintressen',
+            items: [
+                { id: 1121, word: 'čitanje', translation: 'läsning' },
+                { id: 1122, word: 'pjevanje', translation: 'sång' },
+                { id: 1123, word: 'plesanje', translation: 'dans' },
+                { id: 1124, word: 'crtanje', translation: 'teckning' },
+                { id: 1125, word: 'fudbal', translation: 'fotboll' },
+                { id: 1126, word: 'košarka', translation: 'basket' },
+                { id: 1127, word: 'sviranje gitare', translation: 'gitarrspel' },
+                { id: 1128, word: 'gledanje filmova', translation: 'filmtittande' },
+                { id: 1129, word: 'planinarenje', translation: 'vandring' },
+                { id: 1130, word: 'igranje igrica', translation: 'dataspel' },
+            ]
+        },
+        city: {
+            title: 'Grad',
+            description: 'Nazivi za mjesta i objekte u gradu.',
+            swedish: 'Stad',
+            items: [
+                { id: 1131, word: 'ulica', translation: 'gata' },
+                { id: 1132, word: 'trg', translation: 'torg' },
+                { id: 1133, word: 'prodavnica', translation: 'affär' },
+                { id: 1134, word: 'bolnica', translation: 'sjukhus' },
+                { id: 1135, word: 'park', translation: 'park' },
+                { id: 1136, word: 'most', translation: 'bro' },
+                { id: 1137, word: 'semafor', translation: 'trafikljus' },
+                { id: 1138, word: 'zgrada', translation: 'byggnad' },
+                { id: 1139, word: 'kino', translation: 'bio' },
+                { id: 1140, word: 'pošta', translation: 'postkontor' },
+            ]
+        },
+        clothes: {
+            title: 'Odjeća',
+            description: 'Nazivi za različite odjevne predmete.',
+            swedish: 'Kläder',
+            items: [
+                { id: 1141, word: 'majica', translation: 't-shirt' },
+                { id: 1142, word: 'hlače', translation: 'byxor' },
+                { id: 1143, word: 'haljina', translation: 'klänning' },
+                { id: 1144, word: 'jakna', translation: 'jacka' },
+                { id: 1145, word: 'cipele', translation: 'skor' },
+                { id: 1146, word: 'čarape', translation: 'strumpor' },
+                { id: 1147, word: 'šešir', translation: 'hatt' },
+                { id: 1148, word: 'šal', translation: 'halsduk' },
+                { id: 1149, word: 'rukavice', translation: 'handskar' },
+                { id: 1150, word: 'džemper', translation: 'tröja' },
+            ]
+        },
     },
     '7-9': {
         body: {
@@ -108,7 +211,75 @@ const bosnianVocabularyData = {
                 { id: 1219, word: 'poruka', translation: 'meddelande' },
                 { id: 1220, word: 'punjač', translation: 'laddare' },
             ]
-        }
+        },
+        professions: {
+            title: 'Zanimanja',
+            description: 'Nazivi za različita zanimanja.',
+            swedish: 'Yrken',
+            items: [
+                { id: 1221, word: 'liječnik', translation: 'läkare' },
+                { id: 1222, word: 'učitelj', translation: 'lärare' },
+                { id: 1223, word: 'inžinjer', translation: 'ingenjör' },
+                { id: 1224, word: 'programer', translation: 'programmerare' },
+                { id: 1225, word: 'umjetnik', translation: 'konstnär' },
+                { id: 1226, word: 'policajac', translation: 'polis' },
+                { id: 1227, word: 'vatrogasac', translation: 'brandman' },
+                { id: 1228, word: 'kuhar', translation: 'kock' },
+                { id: 1229, word: 'novinar', translation: 'journalist' },
+                { id: 1230, word: 'advokat', translation: 'advokat' },
+            ]
+        },
+        emotions: {
+            title: 'Osjećaji',
+            description: 'Riječi koje opisuju kako se osjećamo.',
+            swedish: 'Känslor',
+            items: [
+                { id: 1231, word: 'sretan', translation: 'glad' },
+                { id: 1232, word: 'tužan', translation: 'ledsen' },
+                { id: 1233, word: 'ljut', translation: 'arg' },
+                { id: 1234, word: 'uplašen', translation: 'rädd' },
+                { id: 1235, word: 'iznenađen', translation: 'förvånad' },
+                { id: 1236, word: 'uzbuđen', translation: 'exalterad' },
+                { id: 1237, word: 'umoran', translation: 'trött' },
+                { id: 1238, word: 'ponosan', translation: 'stolt' },
+                { id: 1239, word: 'zabrinut', translation: 'orolig' },
+                { id: 1240, word: 'usamljen', translation: 'ensam' },
+            ]
+        },
+        travel: {
+            title: 'Putovanje',
+            description: 'Riječi vezane za putovanja i transport.',
+            swedish: 'Resor',
+            items: [
+                { id: 1241, word: 'aerodrom', translation: 'flygplats' },
+                { id: 1242, word: 'pasoš', translation: 'pass' },
+                { id: 1243, word: 'karta', translation: 'biljett' },
+                { id: 1244, word: 'hotel', translation: 'hotell' },
+                { id: 1245, word: 'kofer', translation: 'resväska' },
+                { id: 1246, word: 'plaža', translation: 'strand' },
+                { id: 1247, word: 'turist', translation: 'turist' },
+                { id: 1248, word: 'odmor', translation: 'semester' },
+                { id: 1249, word: 'voz', translation: 'tåg' },
+                { id: 1250, word: 'autobus', translation: 'buss' },
+            ]
+        },
+        music: {
+            title: 'Muzika',
+            description: 'Riječi iz svijeta muzike.',
+            swedish: 'Musik',
+            items: [
+                { id: 1251, word: 'gitara', translation: 'gitarr' },
+                { id: 1252, word: 'klavir', translation: 'piano' },
+                { id: 1253, word: 'bubnjevi', translation: 'trummor' },
+                { id: 1254, word: 'pjesma', translation: 'låt' },
+                { id: 1255, word: 'koncert', translation: 'konsert' },
+                { id: 1256, word: 'bend', translation: 'band' },
+                { id: 1257, word: 'melodija', translation: 'melodi' },
+                { id: 1258, word: 'ritam', translation: 'rytm' },
+                { id: 1259, word: 'pjevač', translation: 'sångare' },
+                { id: 1260, word: 'nota', translation: 'not' },
+            ]
+        },
     },
 };
 
@@ -149,6 +320,57 @@ const croatianVocabularyData = {
                 { id: 2020, word: 'siva', translation: 'grå' },
             ],
         },
+        animals: {
+            title: 'Životinje',
+            description: 'Nauči nazive domaćih i divljih životinja.',
+            swedish: 'Djur',
+            items: [
+                { id: 2021, word: 'pas', translation: 'hund' },
+                { id: 2022, word: 'mačka', translation: 'katt' },
+                { id: 2023, word: 'ptica', translation: 'fågel' },
+                { id: 2024, word: 'riba', translation: 'fisk' },
+                { id: 2025, word: 'konj', translation: 'häst' },
+                { id: 2026, word: 'krava', translation: 'ko' },
+                { id: 2027, word: 'lav', translation: 'lejon' },
+                { id: 2028, word: 'tigar', translation: 'tiger' },
+                { id: 2029, word: 'medvjed', translation: 'björn' },
+                { id: 2030, word: 'zec', translation: 'kanin' },
+            ]
+        },
+        toys: {
+            title: 'Igračke',
+            description: 'Nazivi za popularne dječje igračke.',
+            swedish: 'Leksaker',
+            items: [
+                { id: 2031, word: 'lopta', translation: 'boll' },
+                { id: 2032, word: 'lutka', translation: 'docka' },
+                { id: 2033, word: 'autić', translation: 'bil' },
+                { id: 2034, word: 'kocke', translation: 'klossar' },
+                { id: 2035, word: 'medvjedić', translation: 'nalle' },
+                { id: 2036, word: 'robot', translation: 'robot' },
+                { id: 2037, word: 'zrakoplov', translation: 'flygplan' },
+                { id: 2038, word: 'vlakić', translation: 'tåg' },
+                { id: 2039, word: 'slagalica', translation: 'pussel' },
+                { id: 2040, word: 'zmaj', translation: 'drake' },
+            ]
+        },
+        nature: {
+            title: 'Priroda',
+            description: 'Osnovni pojmovi iz prirode.',
+            swedish: 'Natur',
+            items: [
+                { id: 2041, word: 'sunce', translation: 'sol' },
+                { id: 2042, word: 'mjesec', translation: 'måne' },
+                { id: 2043, word: 'zvijezda', translation: 'stjärna' },
+                { id: 2044, word: 'stablo', translation: 'träd' },
+                { id: 2045, word: 'cvijet', translation: 'blomma' },
+                { id: 2046, word: 'rijeka', translation: 'flod' },
+                { id: 2047, word: 'planina', translation: 'berg' },
+                { id: 2048, word: 'nebo', translation: 'himmel' },
+                { id: 2049, word: 'kiša', translation: 'regn' },
+                { id: 2050, word: 'snijeg', translation: 'snö' },
+            ]
+        },
     },
     '4-6': {
         school: {
@@ -184,7 +406,58 @@ const croatianVocabularyData = {
                 { id: 2119, word: 'povrće', translation: 'grönsaker' },
                 { id: 2120, word: 'voće', translation: 'frukt' },
             ]
-        }
+        },
+        hobbies: {
+            title: 'Hobiji',
+            description: 'Riječi za različite hobije i slobodne aktivnosti.',
+            swedish: 'Fritidsintressen',
+            items: [
+                { id: 2121, word: 'čitanje', translation: 'läsning' },
+                { id: 2122, word: 'pjevanje', translation: 'sång' },
+                { id: 2123, word: 'ples', translation: 'dans' },
+                { id: 2124, word: 'crtanje', translation: 'teckning' },
+                { id: 2125, word: 'nogomet', translation: 'fotboll' },
+                { id: 2126, word: 'košarka', translation: 'basket' },
+                { id: 2127, word: 'sviranje gitare', translation: 'gitarrspel' },
+                { id: 2128, word: 'gledanje filmova', translation: 'filmtittande' },
+                { id: 2129, word: 'planinarenje', translation: 'vandring' },
+                { id: 2130, word: 'igranje igara', translation: 'dataspel' },
+            ]
+        },
+        city: {
+            title: 'Grad',
+            description: 'Nazivi za mjesta i objekte u gradu.',
+            swedish: 'Stad',
+            items: [
+                { id: 2131, word: 'ulica', translation: 'gata' },
+                { id: 2132, word: 'trg', translation: 'torg' },
+                { id: 2133, word: 'trgovina', translation: 'affär' },
+                { id: 2134, word: 'bolnica', translation: 'sjukhus' },
+                { id: 2135, word: 'park', translation: 'park' },
+                { id: 2136, word: 'most', translation: 'bro' },
+                { id: 2137, word: 'semafor', translation: 'trafikljus' },
+                { id: 2138, word: 'zgrada', translation: 'byggnad' },
+                { id: 2139, word: 'kino', translation: 'bio' },
+                { id: 2140, word: 'pošta', translation: 'postkontor' },
+            ]
+        },
+        clothes: {
+            title: 'Odjeća',
+            description: 'Nazivi za različite odjevne predmete.',
+            swedish: 'Kläder',
+            items: [
+                { id: 2141, word: 'majica', translation: 't-shirt' },
+                { id: 2142, word: 'hlače', translation: 'byxor' },
+                { id: 2143, word: 'haljina', translation: 'klänning' },
+                { id: 2144, word: 'jakna', translation: 'jacka' },
+                { id: 2145, word: 'cipele', translation: 'skor' },
+                { id: 2146, word: 'čarape', translation: 'strumpor' },
+                { id: 2147, word: 'šešir', translation: 'hatt' },
+                { id: 2148, word: 'šal', translation: 'halsduk' },
+                { id: 2149, word: 'rukavice', translation: 'handskar' },
+                { id: 2150, word: 'pulover', translation: 'tröja' },
+            ]
+        },
     },
     '7-9': {
         body: {
@@ -220,7 +493,75 @@ const croatianVocabularyData = {
                 { id: 2219, word: 'poruka', translation: 'meddelande' },
                 { id: 2220, word: 'punjač', translation: 'laddare' },
             ]
-        }
+        },
+        professions: {
+            title: 'Zanimanja',
+            description: 'Nazivi za različita zanimanja.',
+            swedish: 'Yrken',
+            items: [
+                { id: 2221, word: 'liječnik', translation: 'läkare' },
+                { id: 2222, word: 'učitelj', translation: 'lärare' },
+                { id: 2223, word: 'inženjer', translation: 'ingenjör' },
+                { id: 2224, word: 'programer', translation: 'programmerare' },
+                { id: 2225, word: 'umjetnik', translation: 'konstnär' },
+                { id: 2226, word: 'policajac', translation: 'polis' },
+                { id: 2227, word: 'vatrogasac', translation: 'brandman' },
+                { id: 2228, word: 'kuhar', translation: 'kock' },
+                { id: 2229, word: 'novinar', translation: 'journalist' },
+                { id: 2230, word: 'odvjetnik', translation: 'advokat' },
+            ]
+        },
+        emotions: {
+            title: 'Osjećaji',
+            description: 'Riječi koje opisuju kako se osjećamo.',
+            swedish: 'Känslor',
+            items: [
+                { id: 2231, word: 'sretan', translation: 'glad' },
+                { id: 2232, word: 'tužan', translation: 'ledsen' },
+                { id: 2233, word: 'ljutit', translation: 'arg' },
+                { id: 2234, word: 'uplašen', translation: 'rädd' },
+                { id: 2235, word: 'iznenađen', translation: 'förvånad' },
+                { id: 2236, word: 'uzbuđen', translation: 'exalterad' },
+                { id: 2237, word: 'umoran', translation: 'trött' },
+                { id: 2238, word: 'ponosan', translation: 'stolt' },
+                { id: 2239, word: 'zabrinut', translation: 'orolig' },
+                { id: 2240, word: 'usamljen', translation: 'ensam' },
+            ]
+        },
+        travel: {
+            title: 'Putovanje',
+            description: 'Riječi vezane za putovanja i promet.',
+            swedish: 'Resor',
+            items: [
+                { id: 2241, word: 'zračna luka', translation: 'flygplats' },
+                { id: 2242, word: 'putovnica', translation: 'pass' },
+                { id: 2243, word: 'karta', translation: 'biljett' },
+                { id: 2244, word: 'hotel', translation: 'hotell' },
+                { id: 2245, word: 'kovčeg', translation: 'resväska' },
+                { id: 2246, word: 'plaža', translation: 'strand' },
+                { id: 2247, word: 'turist', translation: 'turist' },
+                { id: 2248, word: 'godišnji odmor', translation: 'semester' },
+                { id: 2249, word: 'vlak', translation: 'tåg' },
+                { id: 2250, word: 'autobus', translation: 'buss' },
+            ]
+        },
+        music: {
+            title: 'Glazba',
+            description: 'Riječi iz svijeta glazbe.',
+            swedish: 'Musik',
+            items: [
+                { id: 2251, word: 'gitara', translation: 'gitarr' },
+                { id: 2252, word: 'glasovir', translation: 'piano' },
+                { id: 2253, word: 'bubnjevi', translation: 'trummor' },
+                { id: 2254, word: 'pjesma', translation: 'låt' },
+                { id: 2255, word: 'koncert', translation: 'konsert' },
+                { id: 2256, word: 'sastav', translation: 'band' },
+                { id: 2257, word: 'melodija', translation: 'melodi' },
+                { id: 2258, word: 'ritam', translation: 'rytm' },
+                { id: 2259, word: 'pjevač', translation: 'sångare' },
+                { id: 2260, word: 'nota', translation: 'not' },
+            ]
+        },
     },
 };
 
@@ -261,6 +602,57 @@ const serbianVocabularyData = {
                 { id: 3020, word: 'siva', translation: 'grå' },
             ],
         },
+        animals: {
+            title: 'Životinje',
+            description: 'Nauči nazive domaćih i divljih životinja.',
+            swedish: 'Djur',
+            items: [
+                { id: 3021, word: 'pas', translation: 'hund' },
+                { id: 3022, word: 'mačka', translation: 'katt' },
+                { id: 3023, word: 'ptica', translation: 'fågel' },
+                { id: 3024, word: 'riba', translation: 'fisk' },
+                { id: 3025, word: 'konj', translation: 'häst' },
+                { id: 3026, word: 'krava', translation: 'ko' },
+                { id: 3027, word: 'lav', translation: 'lejon' },
+                { id: 3028, word: 'tigar', translation: 'tiger' },
+                { id: 3029, word: 'medved', translation: 'björn' },
+                { id: 3030, word: 'zec', translation: 'kanin' },
+            ]
+        },
+        toys: {
+            title: 'Igračke',
+            description: 'Nazivi za popularne dečije igračke.',
+            swedish: 'Leksaker',
+            items: [
+                { id: 3031, word: 'lopta', translation: 'boll' },
+                { id: 3032, word: 'lutka', translation: 'docka' },
+                { id: 3033, word: 'auto', translation: 'bil' },
+                { id: 3034, word: 'kocke', translation: 'klossar' },
+                { id: 3035, word: 'meda', translation: 'nalle' },
+                { id: 3036, word: 'robot', translation: 'robot' },
+                { id: 3037, word: 'avion', translation: 'flygplan' },
+                { id: 3038, word: 'vozić', translation: 'tåg' },
+                { id: 3039, word: 'slagalica', translation: 'pussel' },
+                { id: 3040, word: 'zmaj', translation: 'drake' },
+            ]
+        },
+        nature: {
+            title: 'Priroda',
+            description: 'Osnovni pojmovi iz prirode.',
+            swedish: 'Natur',
+            items: [
+                { id: 3041, word: 'sunce', translation: 'sol' },
+                { id: 3042, word: 'mesec', translation: 'måne' },
+                { id: 3043, word: 'zvezda', translation: 'stjärna' },
+                { id: 3044, word: 'drvo', translation: 'träd' },
+                { id: 3045, word: 'cvet', translation: 'blomma' },
+                { id: 3046, word: 'reka', translation: 'flod' },
+                { id: 3047, word: 'planina', translation: 'berg' },
+                { id: 3048, word: 'nebo', translation: 'himmel' },
+                { id: 3049, word: 'kiša', translation: 'regn' },
+                { id: 3050, word: 'sneg', translation: 'snö' },
+            ]
+        },
     },
     '4-6': {
         school: {
@@ -296,7 +688,58 @@ const serbianVocabularyData = {
                 { id: 3119, word: 'povrće', translation: 'grönsaker' },
                 { id: 3120, word: 'voće', translation: 'frukt' },
             ]
-        }
+        },
+        hobbies: {
+            title: 'Hobiji',
+            description: 'Reči za različite hobije i slobodne aktivnosti.',
+            swedish: 'Fritidsintressen',
+            items: [
+                { id: 3121, word: 'čitanje', translation: 'läsning' },
+                { id: 3122, word: 'pevanje', translation: 'sång' },
+                { id: 3123, word: 'igranje', translation: 'dans' },
+                { id: 3124, word: 'crtanje', translation: 'teckning' },
+                { id: 3125, word: 'fudbal', translation: 'fotboll' },
+                { id: 3126, word: 'košarka', translation: 'basket' },
+                { id: 3127, word: 'sviranje gitare', translation: 'gitarrspel' },
+                { id: 3128, word: 'gledanje filmova', translation: 'filmtittande' },
+                { id: 3129, word: 'planinarenje', translation: 'vandring' },
+                { id: 3130, word: 'igranje igrica', translation: 'dataspel' },
+            ]
+        },
+        city: {
+            title: 'Grad',
+            description: 'Nazivi za mesta i objekte u gradu.',
+            swedish: 'Stad',
+            items: [
+                { id: 3131, word: 'ulica', translation: 'gata' },
+                { id: 3132, word: 'trg', translation: 'torg' },
+                { id: 3133, word: 'prodavnica', translation: 'affär' },
+                { id: 3134, word: 'bolnica', translation: 'sjukhus' },
+                { id: 3135, word: 'park', translation: 'park' },
+                { id: 3136, word: 'most', translation: 'bro' },
+                { id: 3137, word: 'semafor', translation: 'trafikljus' },
+                { id: 3138, word: 'zgrada', translation: 'byggnad' },
+                { id: 3139, word: 'bioskop', translation: 'bio' },
+                { id: 3140, word: 'pošta', translation: 'postkontor' },
+            ]
+        },
+        clothes: {
+            title: 'Odeća',
+            description: 'Nazivi za različite odevne predmete.',
+            swedish: 'Kläder',
+            items: [
+                { id: 3141, word: 'majica', translation: 't-shirt' },
+                { id: 3142, word: 'pantalone', translation: 'byxor' },
+                { id: 3143, word: 'haljina', translation: 'klänning' },
+                { id: 3144, word: 'jakna', translation: 'jacka' },
+                { id: 3145, word: 'cipele', translation: 'skor' },
+                { id: 3146, word: 'čarape', translation: 'strumpor' },
+                { id: 3147, word: 'šešir', translation: 'hatt' },
+                { id: 3148, word: 'šal', translation: 'halsduk' },
+                { id: 3149, word: 'rukavice', translation: 'handskar' },
+                { id: 3150, word: 'džemper', translation: 'tröja' },
+            ]
+        },
     },
     '7-9': {
         body: {
@@ -313,7 +756,7 @@ const serbianVocabularyData = {
                 { id: 3207, word: 'mišić', translation: 'muskel' },
                 { id: 3208, word: 'koža', translation: 'hud' },
                 { id: 3209, word: 'krv', translation: 'blod' },
-                { id_1: 3210, word: 'koleno', translation: 'knä' },
+                { id: 3210, word: 'koleno', translation: 'knä' },
             ]
         },
         technology: {
@@ -332,7 +775,75 @@ const serbianVocabularyData = {
                 { id: 3219, word: 'poruka', translation: 'meddelande' },
                 { id: 3220, word: 'punjač', translation: 'laddare' },
             ]
-        }
+        },
+        professions: {
+            title: 'Zanimanja',
+            description: 'Nazivi za različita zanimanja.',
+            swedish: 'Yrken',
+            items: [
+                { id: 3221, word: 'lekar', translation: 'läkare' },
+                { id: 3222, word: 'učitelj', translation: 'lärare' },
+                { id: 3223, word: 'inženjer', translation: 'ingenjör' },
+                { id: 3224, word: 'programer', translation: 'programmerare' },
+                { id: 3225, word: 'umetnik', translation: 'konstnär' },
+                { id: 3226, word: 'policajac', translation: 'polis' },
+                { id: 3227, word: 'vatrogasac', translation: 'brandman' },
+                { id: 3228, word: 'kuvar', translation: 'kock' },
+                { id: 3229, word: 'novinar', translation: 'journalist' },
+                { id: 3230, word: 'advokat', translation: 'advokat' },
+            ]
+        },
+        emotions: {
+            title: 'Osećanja',
+            description: 'Reči koje opisuju kako se osećamo.',
+            swedish: 'Känslor',
+            items: [
+                { id: 3231, word: 'srećan', translation: 'glad' },
+                { id: 3232, word: 'tužan', translation: 'ledsen' },
+                { id: 3233, word: 'ljut', translation: 'arg' },
+                { id: 3234, word: 'uplašen', translation: 'rädd' },
+                { id: 3235, word: 'iznenađen', translation: 'förvånad' },
+                { id: 3236, word: 'uzbuđen', translation: 'exalterad' },
+                { id: 3237, word: 'umoran', translation: 'trött' },
+                { id: 3238, word: 'ponosan', translation: 'stolt' },
+                { id: 3239, word: 'zabrinut', translation: 'orolig' },
+                { id: 3240, word: 'usamljen', translation: 'ensam' },
+            ]
+        },
+        travel: {
+            title: 'Putovanje',
+            description: 'Reči vezane za putovanja i transport.',
+            swedish: 'Resor',
+            items: [
+                { id: 3241, word: 'aerodrom', translation: 'flygplats' },
+                { id: 3242, word: 'pasoš', translation: 'pass' },
+                { id: 3243, word: 'karta', translation: 'biljett' },
+                { id: 3244, word: 'hotel', translation: 'hotell' },
+                { id: 3245, word: 'kofer', translation: 'resväska' },
+                { id: 3246, word: 'plaža', translation: 'strand' },
+                { id: 3247, word: 'turista', translation: 'turist' },
+                { id: 3248, word: 'odmor', translation: 'semester' },
+                { id: 3249, word: 'voz', translation: 'tåg' },
+                { id: 3250, word: 'autobus', translation: 'buss' },
+            ]
+        },
+        music: {
+            title: 'Muzika',
+            description: 'Reči iz sveta muzike.',
+            swedish: 'Musik',
+            items: [
+                { id: 3251, word: 'gitara', translation: 'gitarr' },
+                { id: 3252, word: 'klavir', translation: 'piano' },
+                { id: 3253, word: 'bubnjevi', translation: 'trummor' },
+                { id: 3254, word: 'pesma', translation: 'låt' },
+                { id: 3255, word: 'koncert', translation: 'konsert' },
+                { id: 3256, word: 'bend', translation: 'band' },
+                { id: 3257, word: 'melodija', translation: 'melodi' },
+                { id: 3258, word: 'ritam', translation: 'rytm' },
+                { id: 3259, word: 'pevač', translation: 'sångare' },
+                { id: 3260, word: 'nota', translation: 'not' },
+            ]
+        },
     },
 };
 
@@ -342,3 +853,5 @@ export const vocabularyData: VocabularyData = {
   croatian: croatianVocabularyData,
   serbian: serbianVocabularyData
 };
+
+    
