@@ -1,7 +1,6 @@
 import type { VocabularyData } from './types';
 
-export const vocabularyData: VocabularyData = {
-  bosnian: {
+const bosnianVocabulary = {
     '1-3': {
       family: {
         title: 'Porodica',
@@ -1134,35 +1133,15 @@ export const vocabularyData: VocabularyData = {
         ],
       },
     },
-  },
-  croatian: {
-    '1-3': {
-      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['1-3'])),
-    },
-    '4-6': {
-      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['4-6'])),
-    },
-    '7-9': {
-      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['7-9'])),
-    },
-  },
-  serbian: {
-    '1-3': {
-      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['1-3'])),
-    },
-    '4-6': {
-      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['4-6'])),
-    },
-    '7-9': {
-      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['7-9'])),
-    },
-  }
 };
 
+const croatianVocabulary = JSON.parse(JSON.stringify(bosnianVocabulary));
+const serbianVocabulary = JSON.parse(JSON.stringify(bosnianVocabulary));
+
 // Croatian specific replacements
-Object.keys(vocabularyData.croatian).forEach(grade => {
-  Object.keys(vocabularyData.croatian[grade]).forEach(category => {
-    vocabularyData.croatian[grade][category].items.forEach(item => {
+Object.keys(croatianVocabulary).forEach(grade => {
+  Object.keys(croatianVocabulary[grade]).forEach(category => {
+    croatianVocabulary[grade][category].items.forEach((item: { word: string; translation: string; }) => {
       item.word = item.word.replace('hljeb', 'kruh').replace('kafa', 'kava').replace('mrkva', 'mrkva');
       item.translation = item.translation.replace('bröd', 'bröd').replace('kaffe', 'kaffe').replace('morot', 'morot');
     });
@@ -1170,11 +1149,18 @@ Object.keys(vocabularyData.croatian).forEach(grade => {
 });
 
 // Serbian specific replacements
-Object.keys(vocabularyData.serbian).forEach(grade => {
-  Object.keys(vocabularyData.serbian[grade]).forEach(category => {
-    vocabularyData.serbian[grade][category].items.forEach(item => {
+Object.keys(serbianVocabulary).forEach(grade => {
+  Object.keys(serbianVocabulary[grade]).forEach(category => {
+    serbianVocabulary[grade][category].items.forEach((item: { word: string; translation: string; }) => {
       item.word = item.word.replace('hljeb', 'hleb').replace('mrkva', 'šargarepa');
       item.translation = item.translation.replace('bröd', 'bröd').replace('morot', 'morot');
     });
   });
 });
+
+
+export const vocabularyData: VocabularyData = {
+  bosnian: bosnianVocabulary,
+  croatian: croatianVocabulary,
+  serbian: serbianVocabulary
+};
