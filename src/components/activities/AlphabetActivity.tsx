@@ -14,6 +14,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import { Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { db } from '@/lib/db';
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
     const isBosnian = language === 'bosnian';
@@ -41,24 +42,43 @@ export function AlphabetActivity() {
   const [images, setImages] = useState<Record<string, string>>({});
 
   const alphabet = (language && grade && data[language][grade].alphabet) || [];
-  
   const alphabetWords = (language && data[language]['1-3'].alphabetWords) || [];
+
+  const storageKey = language && grade ? `alphabetImages-${language}-${grade}` : null;
+
+  useEffect(() => {
+    const loadImages = async () => {
+      if (!storageKey) return;
+      const storedImages = await db.get(storageKey);
+      if (storedImages) {
+        setImages(storedImages);
+      }
+    };
+    loadImages();
+  }, [storageKey]);
 
   if (!language || !grade) {
     return null;
   }
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0] && activeLetterIndex !== null) {
+    if (e.target.files && e.target.files[0] && activeLetterIndex !== null && storageKey) {
       const letterKey = Array.isArray(alphabet[activeLetterIndex].letter) ? alphabet[activeLetterIndex].letter[0] : alphabet[activeLetterIndex].letter as string;
       const file = e.target.files[0];
       const reader = new FileReader();
-      reader.onloadend = () => {
+      
+      reader.onloadend = async () => {
+        const result = reader.result as string;
         const newImages = {
           ...images,
-          [letterKey]: reader.result as string
+          [letterKey]: result
         };
         setImages(newImages);
+        try {
+          await db.set(storageKey, newImages);
+        } catch (error) {
+            console.error("Failed to save images to IndexedDB", error);
+        }
       };
       reader.readAsDataURL(file);
     }
