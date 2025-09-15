@@ -1,35 +1,4 @@
 
 {
-  "alphabet": {
-    "a": "https://picsum.photos/seed/avion/200/200",
-    "b": "https://picsum.photos/seed/bicikl/200/200",
-    "c": "https://picsum.photos/seed/cipele/200/200",
-    "č": "https://picsum.photos/seed/casa/200/200",
-    "ć": "https://picsum.photos/seed/cevapi/200/200",
-    "d": "https://picsum.photos/seed/drvo/200/200",
-    "dž": "https://picsum.photos/seed/dzep/200/200",
-    "đ": "https://picsum.photos/seed/djak/200/200",
-    "e": "https://picsum.photos/seed/ekran/200/200",
-    "f": "https://picsum.photos/seed/fudbal/200/200",
-    "g": "https://picsum.photos/seed/gitara/200/200",
-    "h": "https://picsum.photos/seed/haljina/200/200",
-    "i": "https://picsum.photos/seed/igla/200/200",
-    "j": "https://picsum.photos/seed/jabuka/200/200",
-    "k": "https://picsum.photos/seed/knjiga/200/200",
-    "l": "https://picsum.photos/seed/lopta/200/200",
-    "lj": "https://picsum.photos/seed/ljubav/200/200",
-    "m": "https://picsum.photos/seed/macka/200/200",
-    "n": "https://picsum.photos/seed/noga/200/200",
-    "nj": "https://picsum.photos/seed/njiva/200/200",
-    "o": "https://picsum.photos/seed/oblak/200/200",
-    "p": "https://picsum.photos/seed/pas/200/200",
-    "r": "https://picsum.photos/seed/riba/200/200",
-    "s": "https://picsum.photos/seed/sunce/200/200",
-    "š": "https://picsum.photos/seed/suma/200/200",
-    "t": "https://picsum.photos/seed/trava/200/200",
-    "u": "https://picsum.photos/seed/uho/200/200",
-    "v": "https://picsum.photos/seed/voda/200/200",
-    "z": "https://picsum.photos/seed/zebra/200/200",
-    "ž": "https://picsum.photos/seed/zaba/200/200"
-  }
+  "alphabet": {}
 }
