@@ -89,23 +89,6 @@ const bosnianVocabularyData = {
                 { id: 1060, word: 'piletina', translation: 'kyckling' },
             ]
         },
-        school_1_3: {
-            title: 'Škola',
-            description: 'Osnovni školski pribor.',
-            swedish: 'Skola',
-            items: [
-                { id: 1061, word: 'knjiga', translation: 'bok' },
-                { id: 1062, word: 'olovka', translation: 'penna' },
-                { id: 1063, word: 'gumica', translation: 'suddgummi' },
-                { id: 1064, word: 'stolica', translation: 'stol' },
-                { id: 1065, word: 'sto', translation: 'bord' },
-                { id: 1066, word: 'učiteljica', translation: 'lärare' },
-                { id: 1067, word: 'učenik', translation: 'elev' },
-                { id: 1068, word: 'torba', translation: 'väska' },
-                { id: 1069, word: 'makaze', translation: 'sax' },
-                { id: 1070, word: 'papir', translation: 'papper' },
-            ]
-        },
         clothes_1_3: {
             title: 'Odjeća',
             description: 'Osnovni odjevni predmeti.',
@@ -140,42 +123,25 @@ const bosnianVocabularyData = {
                 { id: 1310, word: 'kosa', translation: 'hår' },
             ]
         },
+        house_1_3: {
+            title: 'Kuća',
+            description: 'Riječi za prostorije i namještaj u kući.',
+            swedish: 'Hus',
+            items: [
+                { id: 1401, word: 'kuća', translation: 'hus' },
+                { id: 1402, word: 'vrata', translation: 'dörr' },
+                { id: 1403, word: 'prozor', translation: 'fönster' },
+                { id: 1404, word: 'soba', translation: 'rum' },
+                { id: 1405, word: 'krevet', translation: 'säng' },
+                { id: 1406, word: 'stolica', translation: 'stol' },
+                { id: 1407, word: 'sto', translation: 'bord' },
+                { id: 1408, word: 'kuhinja', translation: 'kök' },
+                { id: 1409, word: 'kupatilo', translation: 'badrum' },
+                { id: 1410, word: 'lampa', translation: 'lampa' },
+            ]
+        },
     },
     '4-6': {
-        school: {
-            title: 'Škola',
-            description: 'Riječi vezane za školu i pribor.',
-            swedish: 'Skola',
-            items: [
-                { id: 1101, word: 'učionica', translation: 'klassrum' },
-                { id: 1102, word: 'tabla', translation: 'tavla' },
-                { id: 1103, word: 'sveska', translation: 'skrivbok' },
-                { id: 1104, word: 'pernica', translation: 'pennskrin' },
-                { id: 1105, word: 'odmor', translation: 'rast' },
-                { id: 1106, word: 'domaća zadaća', translation: 'läxa' },
-                { id: 1107, word: 'historija', translation: 'historia' },
-                { id: 1108, word: 'geografija', translation: 'geografi' },
-                { id: 1109, word: 'matematika', translation: 'matematik' },
-                { id: 1110, word: 'lenjir', translation: 'linjal' },
-            ]
-        },
-        food: {
-            title: 'Hrana i piće',
-            description: 'Nazivi za obroke, namirnice i pića.',
-            swedish: 'Mat och dryck',
-            items: [
-                { id: 1111, word: 'doručak', translation: 'frukost' },
-                { id: 1112, word: 'ručak', translation: 'lunch' },
-                { id: 1113, word: 'večera', translation: 'middag' },
-                { id: 1114, word: 'hljeb', translation: 'bröd' },
-                { id: 1115, word: 'mlijeko', translation: 'mjölk' },
-                { id: 1116, word: 'voda', translation: 'vatten' },
-                { id: 1117, word: 'sok', translation: 'juice' },
-                { id: 1118, word: 'meso', translation: 'kött' },
-                { id: 1119, word: 'povrće', translation: 'grönsaker' },
-                { id: 1120, word: 'voće', translation: 'frukt' },
-            ]
-        },
         hobbies: {
             title: 'Hobiji',
             description: 'Riječi za različite hobije i slobodne aktivnosti.',
@@ -225,23 +191,6 @@ const bosnianVocabularyData = {
                 { id: 1148, word: 'šal', translation: 'halsduk' },
                 { id: 1149, word: 'rukavice', translation: 'handskar' },
                 { id: 1150, word: 'džemper', translation: 'tröja' },
-            ]
-        },
-        body_4_6: {
-            title: 'Ljudsko tijelo',
-            description: 'Osnovni dijelovi tijela.',
-            swedish: 'Människokroppen',
-            items: [
-                { id: 1151, word: 'glava', translation: 'huvud' },
-                { id: 1152, word: 'ruka', translation: 'arm/hand' },
-                { id: 1153, word: 'noga', translation: 'ben/fot' },
-                { id: 1154, word: 'stomak', translation: 'mage' },
-                { id: 1155, word: 'leđa', translation: 'rygg' },
-                { id: 1156, word: 'oko', translation: 'öga' },
-                { id: 1157, word: 'uho', translation: 'öra' },
-                { id: 1158, word: 'nos', translation: 'näsa' },
-                { id: 1159, word: 'usta', translation: 'mun' },
-                { id: 1160, word: 'kosa', translation: 'hår' },
             ]
         },
         sports: {
@@ -364,23 +313,6 @@ const bosnianVocabularyData = {
         },
     },
     '7-9': {
-        body: {
-            title: 'Ljudsko tijelo',
-            description: 'Dijelovi ljudskog tijela.',
-            swedish: 'Människokroppen',
-            items: [
-                { id: 1201, word: 'glava', translation: 'huvud' },
-                { id: 1202, word: 'srce', translation: 'hjärta' },
-                { id: 1203, word: 'pluća', translation: 'lungor' },
-                { id: 1204, word: 'mozak', translation: 'hjärna' },
-                { id: 1205, word: 'stomak', translation: 'mage' },
-                { id: 1206, word: 'kosti', translation: 'ben (skelett)' },
-                { id: 1207, word: 'mišić', translation: 'muskel' },
-                { id: 1208, word: 'koža', translation: 'hud' },
-                { id: 1209, word: 'krv', translation: 'blod' },
-                { id: 1210, word: 'koljeno', translation: 'knä' },
-            ]
-        },
         technology: {
             title: 'Tehnologija',
             description: 'Riječi iz svijeta tehnologije.',
@@ -676,23 +608,6 @@ const croatianVocabularyData = {
                 { id: 2060, word: 'piletina', translation: 'kyckling' },
             ]
         },
-        school_1_3: {
-            title: 'Škola',
-            description: 'Osnovni školski pribor.',
-            swedish: 'Skola',
-            items: [
-                { id: 2061, word: 'knjiga', translation: 'bok' },
-                { id: 2062, word: 'olovka', translation: 'penna' },
-                { id: 2063, word: 'gumica', translation: 'suddgummi' },
-                { id: 2064, word: 'stolica', translation: 'stol' },
-                { id: 2065, word: 'stol', translation: 'bord' },
-                { id: 2066, word: 'učiteljica', translation: 'lärare' },
-                { id: 2067, word: 'učenik', translation: 'elev' },
-                { id: 2068, word: 'torba', translation: 'väska' },
-                { id: 2069, word: 'škarice', translation: 'sax' },
-                { id: 2070, word: 'papir', translation: 'papper' },
-            ]
-        },
         clothes_1_3: {
             title: 'Odjeća',
             description: 'Osnovni odjevni predmeti.',
@@ -727,42 +642,25 @@ const croatianVocabularyData = {
                 { id: 2310, word: 'kosa', translation: 'hår' },
             ]
         },
+        house_1_3: {
+            title: 'Kuća',
+            description: 'Riječi za prostorije i namještaj u kući.',
+            swedish: 'Hus',
+            items: [
+                { id: 2401, word: 'kuća', translation: 'hus' },
+                { id: 2402, word: 'vrata', translation: 'dörr' },
+                { id: 2403, word: 'prozor', translation: 'fönster' },
+                { id: 2404, word: 'soba', translation: 'rum' },
+                { id: 2405, word: 'krevet', translation: 'säng' },
+                { id: 2406, word: 'stolica', translation: 'stol' },
+                { id: 2407, word: 'stol', translation: 'bord' },
+                { id: 2408, word: 'kuhinja', translation: 'kök' },
+                { id: 2409, word: 'kupaonica', translation: 'badrum' },
+                { id: 2410, word: 'svjetiljka', translation: 'lampa' },
+            ]
+        },
     },
     '4-6': {
-        school: {
-            title: 'Škola',
-            description: 'Riječi vezane za školu i pribor.',
-            swedish: 'Skola',
-            items: [
-                { id: 2101, word: 'učionica', translation: 'klassrum' },
-                { id: 2102, word: 'ploča', translation: 'tavla' },
-                { id: 2103, word: 'bilježnica', translation: 'skrivbok' },
-                { id: 2104, word: 'pernica', translation: 'pennskrin' },
-                { id: 2105, word: 'odmor', translation: 'rast' },
-                { id: 2106, word: 'domaća zadaća', translation: 'läxa' },
-                { id: 2107, word: 'povijest', translation: 'historia' },
-                { id: 2108, word: 'zemljopis', translation: 'geografi' },
-                { id: 2109, word: 'matematika', translation: 'matematik' },
-                { id: 2110, word: 'ravnalo', translation: 'linjal' },
-            ]
-        },
-        food: {
-            title: 'Hrana i piće',
-            description: 'Nazivi za obroke, namirnice i pića.',
-            swedish: 'Mat och dryck',
-            items: [
-                { id: 2111, word: 'doručak', translation: 'frukost' },
-                { id: 2112, word: 'ručak', translation: 'lunch' },
-                { id: 2113, word: 'večera', translation: 'middag' },
-                { id: 2114, word: 'kruh', translation: 'bröd' },
-                { id: 2115, word: 'mlijeko', translation: 'mjölk' },
-                { id: 2116, word: 'voda', translation: 'vatten' },
-                { id: 2117, word: 'sok', translation: 'juice' },
-                { id: 2118, word: 'meso', translation: 'kött' },
-                { id: 2119, word: 'povrće', translation: 'grönsaker' },
-                { id: 2120, word: 'voće', translation: 'frukt' },
-            ]
-        },
         hobbies: {
             title: 'Hobiji',
             description: 'Riječi za različite hobije i slobodne aktivnosti.',
@@ -812,23 +710,6 @@ const croatianVocabularyData = {
                 { id: 2148, word: 'šal', translation: 'halsduk' },
                 { id: 2149, word: 'rukavice', translation: 'handskar' },
                 { id: 2150, word: 'pulover', translation: 'tröja' },
-            ]
-        },
-        body_4_6: {
-            title: 'Ljudsko tijelo',
-            description: 'Osnovni dijelovi tijela.',
-            swedish: 'Människokroppen',
-            items: [
-                { id: 2151, word: 'glava', translation: 'huvud' },
-                { id: 2152, word: 'ruka', translation: 'arm/hand' },
-                { id: 2153, word: 'noga', translation: 'ben/fot' },
-                { id: 2154, word: 'trbuh', translation: 'mage' },
-                { id: 2155, word: 'leđa', translation: 'rygg' },
-                { id: 2156, word: 'oko', translation: 'öga' },
-                { id: 2157, word: 'uho', translation: 'öra' },
-                { id: 2158, word: 'nos', translation: 'näsa' },
-                { id: 2159, word: 'usta', translation: 'mun' },
-                { id: 2160, word: 'kosa', translation: 'hår' },
             ]
         },
         sports: {
@@ -951,23 +832,6 @@ const croatianVocabularyData = {
         },
     },
     '7-9': {
-        body: {
-            title: 'Ljudsko tijelo',
-            description: 'Dijelovi ljudskog tijela.',
-            swedish: 'Människokroppen',
-            items: [
-                { id: 2201, word: 'glava', translation: 'huvud' },
-                { id: 2202, word: 'srce', translation: 'hjärta' },
-                { id: 2203, word: 'pluća', translation: 'lungor' },
-                { id: 2204, word: 'mozak', translation: 'hjärna' },
-                { id: 2205, word: 'želudac', translation: 'mage' },
-                { id: 2206, word: 'kost', translation: 'ben (skelett)' },
-                { id: 2207, word: 'mišić', translation: 'muskel' },
-                { id: 2208, word: 'koža', translation: 'hud' },
-                { id: 2209, word: 'krv', translation: 'blod' },
-                { id: 2210, word: 'koljeno', translation: 'knä' },
-            ]
-        },
         technology: {
             title: 'Tehnologija',
             description: 'Riječi iz svijeta tehnologije.',
@@ -1263,23 +1127,6 @@ const serbianVocabularyData = {
                 { id: 3060, word: 'piletina', translation: 'kyckling' },
             ]
         },
-        school_1_3: {
-            title: 'Škola',
-            description: 'Osnovni školski pribor.',
-            swedish: 'Skola',
-            items: [
-                { id: 3061, word: 'knjiga', translation: 'bok' },
-                { id: 3062, word: 'olovka', translation: 'penna' },
-                { id: 3063, word: 'gumica', translation: 'suddgummi' },
-                { id: 3064, word: 'stolica', translation: 'stol' },
-                { id: 3065, word: 'sto', translation: 'bord' },
-                { id: 3066, word: 'učiteljica', translation: 'lärare' },
-                { id: 3067, word: 'učenik', translation: 'elev' },
-                { id: 3068, word: 'torba', translation: 'väska' },
-                { id: 3069, word: 'makaze', translation: 'sax' },
-                { id: 3070, word: 'papir', translation: 'papper' },
-            ]
-        },
         clothes_1_3: {
             title: 'Odeća',
             description: 'Osnovni odevni predmeti.',
@@ -1314,42 +1161,25 @@ const serbianVocabularyData = {
                 { id: 3310, word: 'kosa', translation: 'hår' },
             ]
         },
+        house_1_3: {
+            title: 'Kuća',
+            description: 'Reči za prostorije i nameštaj u kući.',
+            swedish: 'Hus',
+            items: [
+                { id: 3401, word: 'kuća', translation: 'hus' },
+                { id: 3402, word: 'vrata', translation: 'dörr' },
+                { id: 3403, word: 'prozor', translation: 'fönster' },
+                { id: 3404, word: 'soba', translation: 'rum' },
+                { id: 3405, word: 'krevet', translation: 'säng' },
+                { id: 3406, word: 'stolica', translation: 'stol' },
+                { id: 3407, word: 'sto', translation: 'bord' },
+                { id: 3408, word: 'kuhinja', translation: 'kök' },
+                { id: 3409, word: 'kupatilo', translation: 'badrum' },
+                { id: 3410, word: 'lampa', translation: 'lampa' },
+            ]
+        },
     },
     '4-6': {
-        school: {
-            title: 'Škola',
-            description: 'Reči vezane za školu i pribor.',
-            swedish: 'Skola',
-            items: [
-                { id: 3101, word: 'učionica', translation: 'klassrum' },
-                { id: 3102, word: 'tabla', translation: 'tavla' },
-                { id: 3103, word: 'sveska', translation: 'skrivbok' },
-                { id: 3104, word: 'pernica', translation: 'pennskrin' },
-                { id: 3105, word: 'odmor', translation: 'rast' },
-                { id: 3106, word: 'domaći zadatak', translation: 'läxa' },
-                { id: 3107, word: 'istorija', translation: 'historia' },
-                { id: 3108, word: 'geografija', translation: 'geografi' },
-                { id: 3109, word: 'matematika', translation: 'matematik' },
-                { id: 3110, word: 'lenjir', translation: 'linjal' },
-            ]
-        },
-        food: {
-            title: 'Hrana i piće',
-            description: 'Nazivi za obroke, namirnice i pića.',
-            swedish: 'Mat och dryck',
-            items: [
-                { id: 3111, word: 'doručak', translation: 'frukost' },
-                { id: 3112, word: 'ručak', translation: 'lunch' },
-                { id: 3113, word: 'večera', translation: 'middag' },
-                { id: 3114, word: 'hleb', translation: 'bröd' },
-                { id: 3115, word: 'mleko', translation: 'mjölk' },
-                { id: 3116, word: 'voda', translation: 'vatten' },
-                { id: 3117, word: 'sok', translation: 'juice' },
-                { id: 3118, word: 'meso', translation: 'kött' },
-                { id: 3119, word: 'povrće', translation: 'grönsaker' },
-                { id: 3120, word: 'voće', translation: 'frukt' },
-            ]
-        },
         hobbies: {
             title: 'Hobiji',
             description: 'Reči za različite hobije i slobodne aktivnosti.',
@@ -1399,23 +1229,6 @@ const serbianVocabularyData = {
                 { id: 3148, word: 'šal', translation: 'halsduk' },
                 { id: 3149, word: 'rukavice', translation: 'handskar' },
                 { id: 3150, word: 'džemper', translation: 'tröja' },
-            ]
-        },
-        body_4_6: {
-            title: 'Ljudsko telo',
-            description: 'Osnovni delovi tela.',
-            swedish: 'Människokroppen',
-            items: [
-                { id: 3151, word: 'glava', translation: 'huvud' },
-                { id: 3152, word: 'ruka', translation: 'arm/hand' },
-                { id: 3153, word: 'noga', translation: 'ben/fot' },
-                { id: 3154, word: 'stomak', translation: 'mage' },
-                { id: 3155, word: 'leđa', translation: 'rygg' },
-                { id: 3156, word: 'oko', translation: 'öga' },
-                { id: 3157, word: 'uvo', translation: 'öra' },
-                { id: 3158, word: 'nos', translation: 'näsa' },
-                { id: 3159, word: 'usta', translation: 'mun' },
-                { id: 3160, word: 'kosa', translation: 'hår' },
             ]
         },
         sports: {
@@ -1538,23 +1351,6 @@ const serbianVocabularyData = {
         },
     },
     '7-9': {
-        body: {
-            title: 'Ljudsko telo',
-            description: 'Delovi ljudskog tela.',
-            swedish: 'Människokroppen',
-            items: [
-                { id: 3201, word: 'glava', translation: 'huvud' },
-                { id: 3202, word: 'srce', translation: 'hjärta' },
-                { id: 3203, word: 'pluća', translation: 'lungor' },
-                { id: 3204, word: 'mozak', translation: 'hjärna' },
-                { id: 3205, word: 'stomak', translation: 'mage' },
-                { id: 3206, word: 'kost', translation: 'ben (skelett)' },
-                { id: 3207, word: 'mišić', translation: 'muskel' },
-                { id: 3208, word: 'koža', translation: 'hud' },
-                { id: 3209, word: 'krv', translation: 'blod' },
-                { id: 3210, word: 'koleno', translation: 'knä' },
-            ]
-        },
         technology: {
             title: 'Tehnologija',
             description: 'Reči iz sveta tehnologije.',
@@ -1768,7 +1564,5 @@ export const vocabularyData: VocabularyData = {
   croatian: croatianVocabularyData,
   serbian: serbianVocabularyData
 };
-
-    
 
     
