@@ -1,4 +1,3 @@
-
 import type { VocabularyData } from './types';
 
 export const vocabularyData: VocabularyData = {
@@ -1136,4 +1135,46 @@ export const vocabularyData: VocabularyData = {
       },
     },
   },
+  croatian: {
+    '1-3': {
+      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['1-3'])),
+    },
+    '4-6': {
+      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['4-6'])),
+    },
+    '7-9': {
+      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['7-9'])),
+    },
+  },
+  serbian: {
+    '1-3': {
+      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['1-3'])),
+    },
+    '4-6': {
+      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['4-6'])),
+    },
+    '7-9': {
+      ...JSON.parse(JSON.stringify(vocabularyData.bosnian['7-9'])),
+    },
+  }
 };
+
+// Croatian specific replacements
+Object.keys(vocabularyData.croatian).forEach(grade => {
+  Object.keys(vocabularyData.croatian[grade]).forEach(category => {
+    vocabularyData.croatian[grade][category].items.forEach(item => {
+      item.word = item.word.replace('hljeb', 'kruh').replace('kafa', 'kava').replace('mrkva', 'mrkva');
+      item.translation = item.translation.replace('bröd', 'bröd').replace('kaffe', 'kaffe').replace('morot', 'morot');
+    });
+  });
+});
+
+// Serbian specific replacements
+Object.keys(vocabularyData.serbian).forEach(grade => {
+  Object.keys(vocabularyData.serbian[grade]).forEach(category => {
+    vocabularyData.serbian[grade][category].items.forEach(item => {
+      item.word = item.word.replace('hljeb', 'hleb').replace('mrkva', 'šargarepa');
+      item.translation = item.translation.replace('bröd', 'bröd').replace('morot', 'morot');
+    });
+  });
+});

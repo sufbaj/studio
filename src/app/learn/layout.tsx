@@ -53,7 +53,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
   const { setSettings, score, maxScore, language, grade, viewMode } = useAppContext();
 
   useEffect(() => {
-    const lang = 'bosnian' as Language;
+    const lang = searchParams.get('lang') as Language;
     const gr = searchParams.get('grade') as Grade;
     const view = searchParams.get('view') as 'student' | 'teacher' | null;
 
@@ -61,6 +61,15 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
       setSettings(lang, gr, view === 'student' ? 'student' : 'teacher');
     }
   }, [searchParams, setSettings]);
+
+  const getLanguageTitle = (lang: Language | null) => {
+    switch(lang) {
+      case 'bosnian': return 'Bosanski';
+      case 'croatian': return 'Hrvatski';
+      case 'serbian': return 'Srpski';
+      default: return 'Učitavanje...';
+    }
+  }
 
   if (!language || !grade) {
     return (
@@ -116,7 +125,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
             <SidebarTrigger className="md:hidden" />
             <div>
               <h1 className="text-xl font-headline font-semibold">
-                Bosanski - Årskurs {grade}
+                {getLanguageTitle(language)} - Årskurs {grade}
               </h1>
             </div>
           </div>

@@ -23,7 +23,7 @@ export interface VocabularyCategory {
     items: VocabularyItem[];
 }
 
-export type VocabularyData = Record<Partial<Language>, Record<Grade, Record<string, VocabularyCategory>>>;
+export type VocabularyData = Record<Language, Record<Grade, Record<string, VocabularyCategory>>>;
 
 
 export interface SpellingItem {
@@ -95,4 +95,4 @@ export interface Content {
   numbers: NumberItem[];
 }
 
-export type LanguageData = Record<Partial<Language>, Record<Grade, Content>>;
+export type LanguageData = Record<Language, Record<Grade, Content>>;

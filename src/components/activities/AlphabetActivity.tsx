@@ -7,8 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 
 export function AlphabetActivity() {
-  const { grade } = useAppContext();
-  const language = 'bosnian';
+  const { language, grade } = useAppContext();
 
   const s = {
     alphabetTitle: 'Abeceda',
