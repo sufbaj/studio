@@ -42,7 +42,7 @@ export function HomePage() {
           <Logo className="h-12 w-12 text-primary" />
           <h1 className="text-5xl font-headline font-bold tracking-tight text-gray-800 dark:text-gray-100">LinguaBKS</h1>
         </div>
-        <p className="text-xl text-muted-foreground">Platforma za učenje</p>
+        <p className="text-xl text-muted-foreground">Platforma za učenje bosanskog, hrvatskog, srpskog.</p>
       </div>
 
       <div className="w-full max-w-4xl">
