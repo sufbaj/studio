@@ -32,7 +32,7 @@ export function AlphabetActivity() {
         <h2 className="text-3xl font-headline font-bold mb-2">{s.alphabetTitle}</h2>
         <p className="text-muted-foreground mb-6">{s.alphabetDescription}</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {alphabet.map(({ letter }, index) => {
+            {alphabet.map(({ letter, exampleWord }, index) => {
               const letterKey = Array.isArray(letter) ? letter[0] : letter;
               const placeholderKey = letterKey as keyof typeof placeholderImages.alphabet;
               const imageSrc = placeholderImages.alphabet[placeholderKey]?.url;
@@ -40,7 +40,7 @@ export function AlphabetActivity() {
 
               return (
               <Card key={`${letterKey}-${index}`} className="flex flex-col items-center justify-center text-center">
-                  <CardHeader className="p-0 pt-4">
+                  <CardHeader className="p-4 pb-2">
                       <CardTitle className="text-5xl font-headline font-bold text-primary">
                         {Array.isArray(letter) ? letter[0] : letter}
                       </CardTitle>
@@ -48,8 +48,8 @@ export function AlphabetActivity() {
                         {Array.isArray(letter) ? letter[1] : ''}
                       </p>
                   </CardHeader>
-                  <CardContent className="p-4 w-full aspect-square">
-                      <div className="w-full h-full rounded-md border-2 border-dashed flex items-center justify-center bg-muted/50 relative overflow-hidden">
+                  <CardContent className="p-4 pt-0 w-full flex flex-col items-center gap-2">
+                      <div className="w-full aspect-square rounded-md border-2 border-dashed flex items-center justify-center bg-muted/50 relative overflow-hidden">
                           {imageSrc && (
                               <Image
                                   src={imageSrc}
@@ -61,6 +61,7 @@ export function AlphabetActivity() {
                               />
                           )}
                       </div>
+                      <p className="font-semibold text-lg text-foreground mt-2">{exampleWord}</p>
                   </CardContent>
               </Card>
             )})}
