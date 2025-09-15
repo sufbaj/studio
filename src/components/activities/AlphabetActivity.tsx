@@ -44,14 +44,15 @@ export function AlphabetActivity() {
   const storageKey = `alphabetImages-${language}-${grade}`;
 
   useEffect(() => {
-    if (viewMode === 'teacher' && language && grade) {
-      db.get(storageKey).then(savedImages => {
-        if (savedImages) {
-          setImages(savedImages);
-        }
-      });
+    if (language && grade) {
+        db.get(storageKey).then(savedImages => {
+            if (savedImages) {
+                setImages(savedImages);
+            }
+        });
     }
-  }, [language, grade, viewMode, storageKey]);
+  }, [language, grade, storageKey]);
+
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0] && activeLetter) {
@@ -61,11 +62,9 @@ export function AlphabetActivity() {
         const base64String = reader.result as string;
         const newImages = { ...images, [activeLetter]: base64String };
         setImages(newImages);
-        if (viewMode === 'teacher') {
-          db.set(storageKey, newImages).catch(error => {
+        db.set(storageKey, newImages).catch(error => {
             console.error("Failed to save image to IndexedDB", error);
-          });
-        }
+        });
       };
       reader.readAsDataURL(file);
     }
@@ -81,12 +80,10 @@ export function AlphabetActivity() {
   const getImageUrl = useCallback((letter: string) => {
     const lowerCaseLetter = letter.toLowerCase();
     
-    // For teacher, show saved image or default from JSON
-    if (viewMode === 'teacher') {
-      return images[lowerCaseLetter] || (placeholderImages.alphabet as Record<string, string>)[lowerCaseLetter] || `https://picsum.photos/seed/${lowerCaseLetter}/200/200`;
+    if (viewMode === 'teacher' && images[lowerCaseLetter]) {
+      return images[lowerCaseLetter];
     }
     
-    // For student, always show default from JSON
     return (placeholderImages.alphabet as Record<string, string>)[lowerCaseLetter] || `https://picsum.photos/seed/${lowerCaseLetter}/200/200`;
   }, [images, viewMode]);
 
