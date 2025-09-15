@@ -89,6 +89,57 @@ const bosnianVocabularyData = {
                 { id: 1050, word: 'snijeg', translation: 'snö' },
             ]
         },
+        food_1_3: {
+            title: 'Hrana',
+            description: 'Osnovne vrste hrane.',
+            swedish: 'Mat',
+            items: [
+                { id: 1051, word: 'hljeb', translation: 'bröd' },
+                { id: 1052, word: 'mlijeko', translation: 'mjölk' },
+                { id: 1053, word: 'jabuka', translation: 'äpple' },
+                { id: 1054, word: 'banana', translation: 'banan' },
+                { id: 1055, word: 'voda', translation: 'vatten' },
+                { id: 1056, word: 'sir', translation: 'ost' },
+                { id: 1057, word: 'jaje', translation: 'ägg' },
+                { id: 1058, word: 'supa', translation: 'soppa' },
+                { id: 1059, word: 'kolač', translation: 'kaka' },
+                { id: 1060, word: 'piletina', translation: 'kyckling' },
+            ]
+        },
+        school_1_3: {
+            title: 'Škola',
+            description: 'Osnovni školski pribor.',
+            swedish: 'Skola',
+            items: [
+                { id: 1061, word: 'knjiga', translation: 'bok' },
+                { id: 1062, word: 'olovka', translation: 'penna' },
+                { id: 1063, word: 'gumica', translation: 'suddgummi' },
+                { id: 1064, word: 'stolica', translation: 'stol' },
+                { id: 1065, word: 'sto', translation: 'bord' },
+                { id: 1066, word: 'učiteljica', translation: 'lärare' },
+                { id: 1067, word: 'učenik', translation: 'elev' },
+                { id: 1068, word: 'torba', translation: 'väska' },
+                { id: 1069, word: 'makaze', translation: 'sax' },
+                { id: 1070, word: 'papir', translation: 'papper' },
+            ]
+        },
+        clothes_1_3: {
+            title: 'Odjeća',
+            description: 'Osnovni odjevni predmeti.',
+            swedish: 'Kläder',
+            items: [
+                { id: 1071, word: 'majica', translation: 't-shirt' },
+                { id: 1072, word: 'hlače', translation: 'byxor' },
+                { id: 1073, word: 'haljina', translation: 'klänning' },
+                { id: 1074, word: 'jakna', translation: 'jacka' },
+                { id: 1075, word: 'cipele', translation: 'skor' },
+                { id: 1076, word: 'čarape', translation: 'strumpor' },
+                { id: 1077, word: 'kapa', translation: 'mössa' },
+                { id: 1078, word: 'šal', translation: 'halsduk' },
+                { id: 1079, word: 'rukavice', translation: 'handskar' },
+                { id: 1080, word: 'suknja', translation: 'kjol' },
+            ]
+        },
     },
     '4-6': {
         school: {
@@ -174,6 +225,74 @@ const bosnianVocabularyData = {
                 { id: 1148, word: 'šal', translation: 'halsduk' },
                 { id: 1149, word: 'rukavice', translation: 'handskar' },
                 { id: 1150, word: 'džemper', translation: 'tröja' },
+            ]
+        },
+        body_4_6: {
+            title: 'Ljudsko tijelo',
+            description: 'Osnovni dijelovi tijela.',
+            swedish: 'Människokroppen',
+            items: [
+                { id: 1151, word: 'glava', translation: 'huvud' },
+                { id: 1152, word: 'ruka', translation: 'arm/hand' },
+                { id: 1153, word: 'noga', translation: 'ben/fot' },
+                { id: 1154, word: 'stomak', translation: 'mage' },
+                { id: 1155, word: 'leđa', translation: 'rygg' },
+                { id: 1156, word: 'oko', translation: 'öga' },
+                { id: 1157, word: 'uho', translation: 'öra' },
+                { id: 1158, word: 'nos', translation: 'näsa' },
+                { id: 1159, word: 'usta', translation: 'mun' },
+                { id: 1160, word: 'kosa', translation: 'hår' },
+            ]
+        },
+        sports: {
+            title: 'Sport',
+            description: 'Nazivi za popularne sportove.',
+            swedish: 'Sport',
+            items: [
+                { id: 1161, word: 'fudbal', translation: 'fotboll' },
+                { id: 1162, word: 'košarka', translation: 'basket' },
+                { id: 1163, word: 'tenis', translation: 'tennis' },
+                { id: 1164, word: 'plivanje', translation: 'simning' },
+                { id: 1165, word: 'odbojka', translation: 'volleyboll' },
+                { id: 1166, word: 'atletika', translation: 'friidrott' },
+                { id: 1167, word: 'skijanje', translation: 'skidåkning' },
+                { id: 1168, word: 'rukomet', translation: 'handboll' },
+                { id: 1169, word: 'gimnastika', translation: 'gymnastik' },
+                { id: 1170, word: 'biciklizam', translation: 'cykling' },
+            ]
+        },
+        holidays: {
+            title: 'Praznici',
+            description: 'Nazivi za praznike i proslave.',
+            swedish: 'Högtider',
+            items: [
+                { id: 1171, word: 'rođendan', translation: 'födelsedag' },
+                { id: 1172, word: 'Nova godina', translation: 'nyår' },
+                { id: 1173, word: 'Bajram', translation: 'Eid' },
+                { id: 1174, word: 'Božić', translation: 'jul' },
+                { id: 1175, 'word': 'Uskrs', 'translation': 'påsk' },
+                { id: 1176, word: 'praznik', translation: 'helgdag/lov' },
+                { id: 1177, word: 'poklon', translation: 'present' },
+                { id: 1178, word: 'slavlje', translation: 'firande' },
+                { id: 1179, word: 'godišnjica', translation: 'årsdag' },
+                { id: 1180, word: 'vatromet', translation: 'fyrverkeri' },
+            ]
+        },
+        calendar: {
+            title: 'Mjeseci i dani',
+            description: 'Nazivi za dane u sedmici i mjesece.',
+            swedish: 'Månader och dagar',
+            items: [
+                { id: 1181, word: 'ponedjeljak', translation: 'måndag' },
+                { id: 1182, word: 'utorak', translation: 'tisdag' },
+                { id: 1183, word: 'srijeda', translation: 'onsdag' },
+                { id: 1184, word: 'januar', translation: 'januari' },
+                { id: 1185, word: 'februar', translation: 'februari' },
+                { id: 1186, word: 'mart', translation: 'mars' },
+                { id: 1187, word: 'sedmica', translation: 'vecka' },
+                { id: 1188, word: 'mjesec', translation: 'månad' },
+                { id: 1189, word: 'godina', translation: 'år' },
+                { id: 1190, word: 'vikend', translation: 'helg' },
             ]
         },
     },
@@ -280,6 +399,74 @@ const bosnianVocabularyData = {
                 { id: 1260, word: 'nota', translation: 'not' },
             ]
         },
+        social_media: {
+            title: 'Društvene mreže',
+            description: 'Pojmovi vezani za društvene mreže.',
+            swedish: 'Sociala medier',
+            items: [
+                { id: 1261, word: 'profil', translation: 'profil' },
+                { id: 1262, word: 'objava', translation: 'inlägg' },
+                { id: 1263, word: 'pratilac', translation: 'följare' },
+                { id: 1264, word: 'lajk', translation: 'gilla' },
+                { id: 1265, word: 'komentar', translation: 'kommentar' },
+                { id: 1266, word: 'hashtag', translation: 'hashtag' },
+                { id: 1267, word: 'influenser', translation: 'influencer' },
+                { id: 1268, word: 'šerovati', translation: 'dela' },
+                { id: 1269, word: 'story', translation: 'händelse' },
+                { id: 1270, word: 'notifikacija', translation: 'notis' },
+            ]
+        },
+        environment: {
+            title: 'Okoliš',
+            description: 'Pojmovi o zaštiti okoliša.',
+            swedish: 'Miljö',
+            items: [
+                { id: 1271, word: 'reciklaža', translation: 'återvinning' },
+                { id: 1272, word: 'zagađenje', translation: 'förorening' },
+                { id: 1273, word: 'planeta', translation: 'planet' },
+                { id: 1274, word: 'energija', translation: 'energi' },
+                { id: 1275, word: 'klimatske promjene', translation: 'klimatförändringar' },
+                { id: 1276, word: 'smeće', translation: 'sopor' },
+                { id: 1277, word: 'zaštita', translation: 'skydd' },
+                { id: 1278, word: 'održivi razvoj', translation: 'hållbar utveckling' },
+                { id: 1279, word: 'štedjeti', translation: 'spara' },
+                { id: 1280, word: 'obnovljivi izvori', translation: 'förnybara källor' },
+            ]
+        },
+        art_culture: {
+            title: 'Umjetnost i kultura',
+            description: 'Pojmovi iz umjetnosti i kulture.',
+            swedish: 'Konst och kultur',
+            items: [
+                { id: 1281, word: 'slika', translation: 'målning' },
+                { id: 1282, word: 'skulptura', translation: 'skulptur' },
+                { id: 1283, word: 'muzej', translation: 'museum' },
+                { id: 1284, word: 'pozorište', translation: 'teater' },
+                { id: 1285, word: 'film', translation: 'film' },
+                { id: 1286, word: 'književnost', translation: 'litteratur' },
+                { id: 1287, word: 'tradicija', translation: 'tradition' },
+                { id: 1288, word: 'izložba', translation: 'utställning' },
+                { id: 1289, word: 'naslijeđe', translation: 'arv' },
+                { id: 1290, word: 'ples', translation: 'dans' },
+            ]
+        },
+        science: {
+            title: 'Nauka',
+            description: 'Osnovni naučni pojmovi.',
+            swedish: 'Vetenskap',
+            items: [
+                { id: 1291, word: 'eksperiment', translation: 'experiment' },
+                { id: 1292, word: 'hemija', translation: 'kemi' },
+                { id: 1293, word: 'fizika', translation: 'fysik' },
+                { id: 1294, word: 'biologija', translation: 'biologi' },
+                { id: 1295, word: 'svemir', translation: 'universum' },
+                { id: 1296, word: 'DNK', translation: 'DNA' },
+                { id: 1297, word: 'gravitacija', translation: 'gravitation' },
+                { id: 1298, word: 'atom', translation: 'atom' },
+                { id: 1299, word: 'teleskop', translation: 'teleskop' },
+                { id: 1300, word: 'mikroskop', translation: 'mikroskop' },
+            ]
+        },
     },
 };
 
@@ -371,6 +558,57 @@ const croatianVocabularyData = {
                 { id: 2050, word: 'snijeg', translation: 'snö' },
             ]
         },
+         food_1_3: {
+            title: 'Hrana',
+            description: 'Osnovne vrste hrane.',
+            swedish: 'Mat',
+            items: [
+                { id: 2051, word: 'kruh', translation: 'bröd' },
+                { id: 2052, word: 'mlijeko', translation: 'mjölk' },
+                { id: 2053, word: 'jabuka', translation: 'äpple' },
+                { id: 2054, word: 'banana', translation: 'banan' },
+                { id: 2055, word: 'voda', translation: 'vatten' },
+                { id: 2056, word: 'sir', translation: 'ost' },
+                { id: 2057, word: 'jaje', translation: 'ägg' },
+                { id: 2058, word: 'juha', translation: 'soppa' },
+                { id: 2059, word: 'kolač', translation: 'kaka' },
+                { id: 2060, word: 'piletina', translation: 'kyckling' },
+            ]
+        },
+        school_1_3: {
+            title: 'Škola',
+            description: 'Osnovni školski pribor.',
+            swedish: 'Skola',
+            items: [
+                { id: 2061, word: 'knjiga', translation: 'bok' },
+                { id: 2062, word: 'olovka', translation: 'penna' },
+                { id: 2063, word: 'gumica', translation: 'suddgummi' },
+                { id: 2064, word: 'stolica', translation: 'stol' },
+                { id: 2065, word: 'stol', translation: 'bord' },
+                { id: 2066, word: 'učiteljica', translation: 'lärare' },
+                { id: 2067, word: 'učenik', translation: 'elev' },
+                { id: 2068, word: 'torba', translation: 'väska' },
+                { id: 2069, word: 'škarice', translation: 'sax' },
+                { id: 2070, word: 'papir', translation: 'papper' },
+            ]
+        },
+        clothes_1_3: {
+            title: 'Odjeća',
+            description: 'Osnovni odjevni predmeti.',
+            swedish: 'Kläder',
+            items: [
+                { id: 2071, word: 'majica', translation: 't-shirt' },
+                { id: 2072, word: 'hlače', translation: 'byxor' },
+                { id: 2073, word: 'haljina', translation: 'klänning' },
+                { id: 2074, word: 'jakna', translation: 'jacka' },
+                { id: 2075, word: 'cipele', translation: 'skor' },
+                { id: 2076, word: 'čarape', translation: 'strumpor' },
+                { id: 2077, word: 'kapa', translation: 'mössa' },
+                { id: 2078, word: 'šal', translation: 'halsduk' },
+                { id: 2079, word: 'rukavice', translation: 'handskar' },
+                { id: 2080, word: 'suknja', translation: 'kjol' },
+            ]
+        },
     },
     '4-6': {
         school: {
@@ -456,6 +694,74 @@ const croatianVocabularyData = {
                 { id: 2148, word: 'šal', translation: 'halsduk' },
                 { id: 2149, word: 'rukavice', translation: 'handskar' },
                 { id: 2150, word: 'pulover', translation: 'tröja' },
+            ]
+        },
+        body_4_6: {
+            title: 'Ljudsko tijelo',
+            description: 'Osnovni dijelovi tijela.',
+            swedish: 'Människokroppen',
+            items: [
+                { id: 2151, word: 'glava', translation: 'huvud' },
+                { id: 2152, word: 'ruka', translation: 'arm/hand' },
+                { id: 2153, word: 'noga', translation: 'ben/fot' },
+                { id: 2154, word: 'trbuh', translation: 'mage' },
+                { id: 2155, word: 'leđa', translation: 'rygg' },
+                { id: 2156, word: 'oko', translation: 'öga' },
+                { id: 2157, word: 'uho', translation: 'öra' },
+                { id: 2158, word: 'nos', translation: 'näsa' },
+                { id: 2159, word: 'usta', translation: 'mun' },
+                { id: 2160, word: 'kosa', translation: 'hår' },
+            ]
+        },
+        sports: {
+            title: 'Sport',
+            description: 'Nazivi za popularne sportove.',
+            swedish: 'Sport',
+            items: [
+                { id: 2161, word: 'nogomet', translation: 'fotboll' },
+                { id: 2162, word: 'košarka', translation: 'basket' },
+                { id: 2163, word: 'tenis', translation: 'tennis' },
+                { id: 2164, word: 'plivanje', translation: 'simning' },
+                { id: 2165, word: 'odbojka', translation: 'volleyboll' },
+                { id: 2166, word: 'atletika', translation: 'friidrott' },
+                { id: 2167, word: 'skijanje', translation: 'skidåkning' },
+                { id: 2168, word: 'rukomet', translation: 'handboll' },
+                { id: 2169, word: 'gimnastika', translation: 'gymnastik' },
+                { id: 2170, word: 'biciklizam', translation: 'cykling' },
+            ]
+        },
+        holidays: {
+            title: 'Blagdani',
+            description: 'Nazivi za blagdane i proslave.',
+            swedish: 'Högtider',
+            items: [
+                { id: 2171, word: 'rođendan', translation: 'födelsedag' },
+                { id: 2172, word: 'Nova godina', translation: 'nyår' },
+                { id: 2173, word: 'blagdan', translation: 'helgdag' },
+                { id: 2174, word: 'Božić', translation: 'jul' },
+                { id: 2175, word: 'Uskrs', translation: 'påsk' },
+                { id: 2176, word: 'praznici', translation: 'lov' },
+                { id: 2177, word: 'dar', translation: 'present' },
+                { id: 2178, word: 'proslava', translation: 'firande' },
+                { id: 2179, word: 'obljetnica', translation: 'årsdag' },
+                { id: 2180, word: 'vatromet', translation: 'fyrverkeri' },
+            ]
+        },
+        calendar: {
+            title: 'Mjeseci i dani',
+            description: 'Nazivi za dane u tjednu i mjesece.',
+            swedish: 'Månader och dagar',
+            items: [
+                { id: 2181, word: 'ponedjeljak', translation: 'måndag' },
+                { id: 2182, word: 'utorak', translation: 'tisdag' },
+                { id: 2183, word: 'srijeda', translation: 'onsdag' },
+                { id: 2184, word: 'siječanj', translation: 'januari' },
+                { id: 2185, word: 'veljača', translation: 'februari' },
+                { id: 2186, word: 'ožujak', translation: 'mars' },
+                { id: 2187, word: 'tjedan', translation: 'vecka' },
+                { id: 2188, word: 'mjesec', translation: 'månad' },
+                { id: 2189, word: 'godina', translation: 'år' },
+                { id: 2190, word: 'vikend', translation: 'helg' },
             ]
         },
     },
@@ -562,6 +868,74 @@ const croatianVocabularyData = {
                 { id: 2260, word: 'nota', translation: 'not' },
             ]
         },
+        social_media: {
+            title: 'Društvene mreže',
+            description: 'Pojmovi vezani za društvene mreže.',
+            swedish: 'Sociala medier',
+            items: [
+                { id: 2261, word: 'profil', translation: 'profil' },
+                { id: 2262, word: 'objava', translation: 'inlägg' },
+                { id: 2263, word: 'pratitelj', translation: 'följare' },
+                { id: 2264, word: 'sviđanje', translation: 'gilla' },
+                { id: 2265, word: 'komentar', translation: 'kommentar' },
+                { id: 2266, word: 'oznaka', translation: 'hashtag' },
+                { id: 2267, word: 'influencer', translation: 'influencer' },
+                { id: 2268, word: 'dijeliti', translation: 'dela' },
+                { id: 2269, word: 'priča', translation: 'händelse' },
+                { id: 2270, word: 'obavijest', translation: 'notis' },
+            ]
+        },
+        environment: {
+            title: 'Okoliš',
+            description: 'Pojmovi o zaštiti okoliša.',
+            swedish: 'Miljö',
+            items: [
+                { id: 2271, word: 'recikliranje', translation: 'återvinning' },
+                { id: 2272, word: 'onečišćenje', translation: 'förorening' },
+                { id: 2273, word: 'planet', translation: 'planet' },
+                { id: 2274, word: 'energija', translation: 'energi' },
+                { id: 2275, word: 'klimatske promjene', translation: 'klimatförändringar' },
+                { id: 2276, word: 'otpad', translation: 'sopor' },
+                { id: 2277, word: 'zaštita', translation: 'skydd' },
+                { id: 2278, word: 'održivi razvoj', translation: 'hållbar utveckling' },
+                { id: 2279, word: 'štedjeti', translation: 'spara' },
+                { id: 2280, word: 'obnovljivi izvori', translation: 'förnybara källor' },
+            ]
+        },
+        art_culture: {
+            title: 'Umjetnost i kultura',
+            description: 'Pojmovi iz umjetnosti i kulture.',
+            swedish: 'Konst och kultur',
+            items: [
+                { id: 2281, word: 'slika', translation: 'målning' },
+                { id: 2282, word: 'kip', translation: 'skulptur' },
+                { id: 2283, word: 'muzej', translation: 'museum' },
+                { id: 2284, word: 'kazalište', translation: 'teater' },
+                { id: 2285, word: 'film', translation: 'film' },
+                { id: 2286, word: 'književnost', translation: 'litteratur' },
+                { id: 2287, word: 'tradicija', translation: 'tradition' },
+                { id: 2288, word: 'izložba', translation: 'utställning' },
+                { id: 2289, word: 'baština', translation: 'arv' },
+                { id: 2290, word: 'ples', translation: 'dans' },
+            ]
+        },
+        science: {
+            title: 'Znanost',
+            description: 'Osnovni znanstveni pojmovi.',
+            swedish: 'Vetenskap',
+            items: [
+                { id: 2291, word: 'pokus', translation: 'experiment' },
+                { id: 2292, word: 'kemija', translation: 'kemi' },
+                { id: 2293, word: 'fizika', translation: 'fysik' },
+                { id: 2294, word: 'biologija', translation: 'biologi' },
+                { id: 2295, word: 'svemir', translation: 'universum' },
+                { id: 2296, word: 'DNK', translation: 'DNA' },
+                { id: 2297, word: 'gravitacija', translation: 'gravitation' },
+                { id: 2298, word: 'atom', translation: 'atom' },
+                { id: 2299, word: 'teleskop', translation: 'teleskop' },
+                { id: 2300, word: 'mikroskop', translation: 'mikroskop' },
+            ]
+        },
     },
 };
 
@@ -653,6 +1027,57 @@ const serbianVocabularyData = {
                 { id: 3050, word: 'sneg', translation: 'snö' },
             ]
         },
+        food_1_3: {
+            title: 'Hrana',
+            description: 'Osnovne vrste hrane.',
+            swedish: 'Mat',
+            items: [
+                { id: 3051, word: 'hleb', translation: 'bröd' },
+                { id: 3052, word: 'mleko', translation: 'mjölk' },
+                { id: 3053, word: 'jabuka', translation: 'äpple' },
+                { id: 3054, word: 'banana', translation: 'banan' },
+                { id: 3055, word: 'voda', translation: 'vatten' },
+                { id: 3056, word: 'sir', translation: 'ost' },
+                { id: 3057, word: 'jaje', translation: 'ägg' },
+                { id: 3058, word: 'supa', translation: 'soppa' },
+                { id: 3059, word: 'kolač', translation: 'kaka' },
+                { id: 3060, word: 'piletina', translation: 'kyckling' },
+            ]
+        },
+        school_1_3: {
+            title: 'Škola',
+            description: 'Osnovni školski pribor.',
+            swedish: 'Skola',
+            items: [
+                { id: 3061, word: 'knjiga', translation: 'bok' },
+                { id: 3062, word: 'olovka', translation: 'penna' },
+                { id: 3063, word: 'gumica', translation: 'suddgummi' },
+                { id: 3064, word: 'stolica', translation: 'stol' },
+                { id: 3065, word: 'sto', translation: 'bord' },
+                { id: 3066, word: 'učiteljica', translation: 'lärare' },
+                { id: 3067, word: 'učenik', translation: 'elev' },
+                { id: 3068, word: 'torba', translation: 'väska' },
+                { id: 3069, word: 'makaze', translation: 'sax' },
+                { id: 3070, word: 'papir', translation: 'papper' },
+            ]
+        },
+        clothes_1_3: {
+            title: 'Odeća',
+            description: 'Osnovni odevni predmeti.',
+            swedish: 'Kläder',
+            items: [
+                { id: 3071, word: 'majica', translation: 't-shirt' },
+                { id: 3072, word: 'pantalone', translation: 'byxor' },
+                { id: 3073, word: 'haljina', translation: 'klänning' },
+                { id: 3074, word: 'jakna', translation: 'jacka' },
+                { id: 3075, word: 'cipele', translation: 'skor' },
+                { id: 3076, word: 'čarape', translation: 'strumpor' },
+                { id: 3077, word: 'kapa', translation: 'mössa' },
+                { id: 3078, word: 'šal', translation: 'halsduk' },
+                { id: 3079, word: 'rukavice', translation: 'handskar' },
+                { id: 3080, word: 'suknja', translation: 'kjol' },
+            ]
+        },
     },
     '4-6': {
         school: {
@@ -738,6 +1163,74 @@ const serbianVocabularyData = {
                 { id: 3148, word: 'šal', translation: 'halsduk' },
                 { id: 3149, word: 'rukavice', translation: 'handskar' },
                 { id: 3150, word: 'džemper', translation: 'tröja' },
+            ]
+        },
+        body_4_6: {
+            title: 'Ljudsko telo',
+            description: 'Osnovni delovi tela.',
+            swedish: 'Människokroppen',
+            items: [
+                { id: 3151, word: 'glava', translation: 'huvud' },
+                { id: 3152, word: 'ruka', translation: 'arm/hand' },
+                { id: 3153, word: 'noga', translation: 'ben/fot' },
+                { id: 3154, word: 'stomak', translation: 'mage' },
+                { id: 3155, word: 'leđa', translation: 'rygg' },
+                { id: 3156, word: 'oko', translation: 'öga' },
+                { id: 3157, word: 'uvo', translation: 'öra' },
+                { id: 3158, word: 'nos', translation: 'näsa' },
+                { id: 3159, word: 'usta', translation: 'mun' },
+                { id: 3160, word: 'kosa', translation: 'hår' },
+            ]
+        },
+        sports: {
+            title: 'Sport',
+            description: 'Nazivi za popularne sportove.',
+            swedish: 'Sport',
+            items: [
+                { id: 3161, word: 'fudbal', translation: 'fotboll' },
+                { id: 3162, word: 'košarka', translation: 'basket' },
+                { id: 3163, word: 'tenis', translation: 'tennis' },
+                { id: 3164, word: 'plivanje', translation: 'simning' },
+                { id: 3165, word: 'odbojka', translation: 'volleyboll' },
+                { id: 3166, word: 'atletika', translation: 'friidrott' },
+                { id: 3167, word: 'skijanje', translation: 'skidåkning' },
+                { id: 3168, word: 'rukomet', translation: 'handboll' },
+                { id: 3169, word: 'gimnastika', translation: 'gymnastik' },
+                { id: 3170, word: 'biciklizam', translation: 'cykling' },
+            ]
+        },
+        holidays: {
+            title: 'Praznici',
+            description: 'Nazivi za praznike i proslave.',
+            swedish: 'Högtider',
+            items: [
+                { id: 3171, word: 'rođendan', translation: 'födelsedag' },
+                { id: 3172, word: 'Nova godina', translation: 'nyår' },
+                { id: 3173, word: 'Bajram', translation: 'Eid' },
+                { id: 3174, word: 'Božić', translation: 'jul' },
+                { id: 3175, word: 'Uskrs', translation: 'påsk' },
+                { id: 3176, word: 'raspust', translation: 'lov' },
+                { id: 3177, word: 'poklon', translation: 'present' },
+                { id: 3178, word: 'proslava', translation: 'firande' },
+                { id: 3179, word: 'godišnjica', translation: 'årsdag' },
+                { id: 3180, word: 'vatromet', translation: 'fyrverkeri' },
+            ]
+        },
+        calendar: {
+            title: 'Meseci i dani',
+            description: 'Nazivi za dane u nedelji i mesece.',
+            swedish: 'Månader och dagar',
+            items: [
+                { id: 3181, word: 'ponedeljak', translation: 'måndag' },
+                { id: 3182, word: 'utorak', translation: 'tisdag' },
+                { id: 3183, word: 'sreda', translation: 'onsdag' },
+                { id: 3184, word: 'januar', translation: 'januari' },
+                { id: 3185, word: 'februar', translation: 'februari' },
+                { id: 3186, word: 'mart', translation: 'mars' },
+                { id: 3187, word: 'nedelja', translation: 'vecka' },
+                { id: 3188, word: 'mesec', translation: 'månad' },
+                { id: 3189, word: 'godina', translation: 'år' },
+                { id: 3190, word: 'vikend', translation: 'helg' },
             ]
         },
     },
@@ -844,6 +1337,74 @@ const serbianVocabularyData = {
                 { id: 3260, word: 'nota', translation: 'not' },
             ]
         },
+        social_media: {
+            title: 'Društvene mreže',
+            description: 'Pojmovi vezani za društvene mreže.',
+            swedish: 'Sociala medier',
+            items: [
+                { id: 3261, word: 'profil', translation: 'profil' },
+                { id: 3262, word: 'objava', translation: 'inlägg' },
+                { id: 3263, word: 'pratilac', translation: 'följare' },
+                { id: 3264, word: 'sviđanje', translation: 'gilla' },
+                { id: 3265, word: 'komentar', translation: 'kommentar' },
+                { id: 3266, word: 'haštag', translation: 'hashtag' },
+                { id: 3267, word: 'influenser', translation: 'influencer' },
+                { id: 3268, word: 'deliti', translation: 'dela' },
+                { id: 3269, word: 'stori', translation: 'händelse' },
+                { id: 3270, word: 'obaveštenje', translation: 'notis' },
+            ]
+        },
+        environment: {
+            title: 'Životna sredina',
+            description: 'Pojmovi o zaštiti životne sredine.',
+            swedish: 'Miljö',
+            items: [
+                { id: 3271, word: 'reciklaža', translation: 'återvinning' },
+                { id: 3272, word: 'zagađenje', translation: 'förorening' },
+                { id: 3273, word: 'planeta', translation: 'planet' },
+                { id: 3274, word: 'energija', translation: 'energi' },
+                { id: 3275, word: 'klimatske promene', translation: 'klimatförändringar' },
+                { id: 3276, word: 'smeće', translation: 'sopor' },
+                { id: 3277, word: 'zaštita', translation: 'skydd' },
+                { id: 3278, word: 'održivi razvoj', translation: 'hållbar utveckling' },
+                { id: 3279, word: 'štedeti', translation: 'spara' },
+                { id: 3280, word: 'obnovljivi izvori', translation: 'förnybara källor' },
+            ]
+        },
+        art_culture: {
+            title: 'Umetnost i kultura',
+            description: 'Pojmovi iz umetnosti i kulture.',
+            swedish: 'Konst och kultur',
+            items: [
+                { id: 3281, word: 'slika', translation: 'målning' },
+                { id: 3282, word: 'skulptura', translation: 'skulptur' },
+                { id: 3283, word: 'muzej', translation: 'museum' },
+                { id: 3284, word: 'pozorište', translation: 'teater' },
+                { id: 3285, word: 'film', translation: 'film' },
+                { id: 3286, word: 'književnost', translation: 'litteratur' },
+                { id: 3287, word: 'tradicija', translation: 'tradition' },
+                { id: 3288, word: 'izložba', translation: 'utställning' },
+                { id: 3289, word: 'nasleđe', translation: 'arv' },
+                { id: 3290, word: 'ples', translation: 'dans' },
+            ]
+        },
+        science: {
+            title: 'Nauka',
+            description: 'Osnovni naučni pojmovi.',
+            swedish: 'Vetenskap',
+            items: [
+                { id: 3291, word: 'eksperiment', translation: 'experiment' },
+                { id: 3292, word: 'hemija', translation: 'kemi' },
+                { id: 3293, word: 'fizika', translation: 'fysik' },
+                { id: 3294, word: 'biologija', translation: 'biologi' },
+                { id: 3295, word: 'svemir', translation: 'universum' },
+                { id: 3296, word: 'DNK', translation: 'DNA' },
+                { id: 3297, word: 'gravitacija', translation: 'gravitation' },
+                { id: 3298, word: 'atom', translation: 'atom' },
+                { id: 3299, word: 'teleskop', translation: 'teleskop' },
+                { id: 3300, word: 'mikroskop', translation: 'mikroskop' },
+            ]
+        },
     },
 };
 
@@ -853,3 +1414,5 @@ export const vocabularyData: VocabularyData = {
   croatian: croatianVocabularyData,
   serbian: serbianVocabularyData
 };
+
+    
