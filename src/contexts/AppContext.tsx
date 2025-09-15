@@ -4,12 +4,15 @@ import type { ReactNode } from 'react';
 import { createContext, useContext, useState, useCallback } from 'react';
 import type { Language, Grade } from '@/lib/types';
 
+type ViewMode = 'teacher' | 'student';
+
 interface AppContextType {
   language: Language | null;
   grade: Grade | null;
   score: number;
   maxScore: number;
-  setSettings: (lang: Language, gr: Grade) => void;
+  viewMode: ViewMode;
+  setSettings: (lang: Language, gr: Grade, view?: ViewMode) => void;
   updateScore: (points: number) => void;
   setMaxScore: (max: number) => void;
   resetScore: () => void;
@@ -22,10 +25,12 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
   const [grade, setGrade] = useState<Grade | null>(null);
   const [score, setScore] = useState(0);
   const [maxScore, setMaxScore] = useState(0);
+  const [viewMode, setViewMode] = useState<ViewMode>('teacher');
 
-  const setSettings = useCallback((lang: Language, gr: Grade) => {
+  const setSettings = useCallback((lang: Language, gr: Grade, view: ViewMode = 'teacher') => {
     setLanguage(lang);
     setGrade(gr);
+    setViewMode(view);
     setScore(0);
     setMaxScore(0);
   }, []);
@@ -40,7 +45,7 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AppContext.Provider value={{ language, grade, score, maxScore, setSettings, updateScore, setMaxScore, resetScore }}>
+    <AppContext.Provider value={{ language, grade, score, maxScore, viewMode, setSettings, updateScore, setMaxScore, resetScore }}>
       {children}
     </AppContext.Provider>
   );

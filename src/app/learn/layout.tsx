@@ -36,14 +36,14 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: 'alphabet', icon: CaseUpper, label: 'Abeceda' },
-  { href: 'numbers', icon: Hash, label: 'Brojevi' },
-  { href: 'vocabulary', icon: BookText, label: 'Rječnik' },
-  { href: 'sentences', icon: MessageSquare, label: 'Rečenice' },
-  { href: 'grammar', icon: SpellCheck, label: 'Gramatika' },
-  { href: 'spelling', icon: FileText, label: 'Pravopis' },
-  { href: 'reading', icon: BookOpen, label: 'Čitanje' },
-  { href: 'svenska-till-modersmal', icon: Languages, label: 'Prevođenje' },
+  { href: 'alphabet', label: 'Abeceda', icon: CaseUpper },
+  { href: 'numbers', label: 'Brojevi', icon: Hash },
+  { href: 'vocabulary', label: 'Rječnik', icon: BookText },
+  { href: 'sentences', label: 'Rečenice', icon: MessageSquare },
+  { href: 'grammar', label: 'Gramatika', icon: SpellCheck },
+  { href: 'spelling', label: 'Pravopis', icon: FileText },
+  { href: 'reading', label: 'Razumijevanje pročitanog', icon: BookOpen },
+  { href: 'svenska-till-modersmal', label: 'Prevođenje', icon: Languages },
 ];
 
 function getLanguageDisplayName(language: Language) {
@@ -62,13 +62,15 @@ function getLanguageDisplayName(language: Language) {
 function LearnLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { setSettings, score, maxScore, language, grade } = useAppContext();
+  const { setSettings, score, maxScore, language, grade, viewMode } = useAppContext();
 
   useEffect(() => {
     const lang = searchParams.get('lang') as Language;
     const gr = searchParams.get('grade') as Grade;
+    const view = searchParams.get('view') as 'student' | 'teacher' | null;
+
     if (lang && gr) {
-      setSettings(lang, gr);
+      setSettings(lang, gr, view === 'student' ? 'student' : 'teacher');
     }
   }, [searchParams, setSettings]);
 

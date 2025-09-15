@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useRef, type ChangeEvent, useEffect } from 'react';
@@ -43,7 +42,7 @@ const blobToDataURL = (blob: Blob): Promise<string> => {
 };
 
 export function AlphabetActivity() {
-  const { language, grade } = useAppContext();
+  const { language, grade, viewMode } = useAppContext();
   const s = getStrings(language);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [activeLetterIndex, setActiveLetterIndex] = useState<number | null>(null);
@@ -53,6 +52,7 @@ export function AlphabetActivity() {
   const alphabetWords = (language && data[language]['1-3'].alphabetWords) || [];
 
   const storageKey = language && grade ? `alphabetImages-${language}-${grade}` : null;
+  const isStudentView = viewMode === 'student';
 
   useEffect(() => {
     const loadImages = async () => {
@@ -83,11 +83,11 @@ export function AlphabetActivity() {
       const letterKey = Array.isArray(alphabet[activeLetterIndex].letter) ? alphabet[activeLetterIndex].letter[0] : alphabet[activeLetterIndex].letter as string;
       const file = e.target.files[0];
       
-      const newImages = {
-        ...images,
-        [letterKey]: await blobToDataURL(file)
-      };
-      setImages(newImages);
+      const imageUrl = await blobToDataURL(file);
+      setImages(prevImages => ({
+        ...prevImages,
+        [letterKey]: imageUrl,
+      }));
 
       try {
         const storedImages = (await db.get(storageKey)) || {};
@@ -100,19 +100,20 @@ export function AlphabetActivity() {
   };
 
   const handlePlaceholderClick = (index: number) => {
+    if (isStudentView) return;
     setActiveLetterIndex(index);
     fileInputRef.current?.click();
   };
 
   return (
     <div>
-       <input
+       {!isStudentView && <input
         type="file"
         ref={fileInputRef}
         onChange={handleImageChange}
         className="hidden"
         accept="image/*"
-      />
+      />}
       <div className="mb-12">
         <h2 className="text-3xl font-headline font-bold mb-4">{s.title}</h2>
         <p className="text-muted-foreground mb-6">
@@ -122,6 +123,7 @@ export function AlphabetActivity() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {alphabet.map(({ letter, exampleWord }, index) => {
             const letterKey = Array.isArray(letter) ? letter[0] : letter as string;
+            const hasImage = !!images[letterKey];
             return (
               <Card
                 key={index}
@@ -139,13 +141,14 @@ export function AlphabetActivity() {
 
                   <Button
                     variant="ghost"
-                    className="w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden"
+                    className="w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden disabled:opacity-100"
                     onClick={() => handlePlaceholderClick(index)}
+                    disabled={isStudentView && !hasImage}
                   >
-                    {images[letterKey] ? (
+                    {hasImage ? (
                       <Image src={images[letterKey]} alt={exampleWord} width={96} height={96} className="object-cover w-full h-full" />
                     ) : (
-                      <Camera className="w-8 h-8 text-muted-foreground" />
+                      !isStudentView && <Camera className="w-8 h-8 text-muted-foreground" />
                     )}
                   </Button>
 
