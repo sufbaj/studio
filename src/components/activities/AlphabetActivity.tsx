@@ -76,7 +76,7 @@ export function AlphabetActivity() {
         try {
           localStorage.setItem(storageKey, JSON.stringify(newImages));
         } catch (error) {
-            console.error("Failed to save images to localStorage", error);
+            console.error("Failed to save images to localStorage, quota might be exceeded.", error);
         }
       };
       reader.readAsDataURL(file);
