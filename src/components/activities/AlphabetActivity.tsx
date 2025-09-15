@@ -1,8 +1,10 @@
 
 'use client';
 
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { data } from '@/lib/data';
+import { db } from '@/lib/db';
 import {
   Accordion,
   AccordionContent,
@@ -12,10 +14,10 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import placeholderImages from '@/lib/placeholder-images.json';
-
+import { Camera } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
-    const isBosnian = language === 'bosnian';
     const isSerbian = language === 'serbian';
 
     let title = 'Abeceda';
@@ -35,18 +37,65 @@ const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
 export function AlphabetActivity() {
   const { language, grade, viewMode } = useAppContext();
   const s = getStrings(language);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [activeLetter, setActiveLetter] = useState<string | null>(null);
+  const [images, setImages] = useState<Record<string, string>>({});
+
+  const storageKey = `alphabetImages-${language}-${grade}`;
+
+  useEffect(() => {
+    if (viewMode === 'teacher' && language && grade) {
+      db.get(storageKey).then(savedImages => {
+        if (savedImages) {
+          setImages(savedImages);
+        }
+      });
+    }
+  }, [language, grade, viewMode, storageKey]);
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0] && activeLetter) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        const newImages = { ...images, [activeLetter]: base64String };
+        setImages(newImages);
+        if (viewMode === 'teacher') {
+          db.set(storageKey, newImages).catch(error => {
+            console.error("Failed to save image to IndexedDB", error);
+          });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleImageContainerClick = (letter: string) => {
+    if (viewMode === 'teacher') {
+      setActiveLetter(letter.toLowerCase());
+      fileInputRef.current?.click();
+    }
+  };
+
+  const getImageUrl = useCallback((letter: string) => {
+    const lowerCaseLetter = letter.toLowerCase();
+    
+    // For teacher, show saved image or default from JSON
+    if (viewMode === 'teacher') {
+      return images[lowerCaseLetter] || (placeholderImages.alphabet as Record<string, string>)[lowerCaseLetter] || `https://picsum.photos/seed/${lowerCaseLetter}/200/200`;
+    }
+    
+    // For student, always show default from JSON
+    return (placeholderImages.alphabet as Record<string, string>)[lowerCaseLetter] || `https://picsum.photos/seed/${lowerCaseLetter}/200/200`;
+  }, [images, viewMode]);
+
 
   const alphabet = (language && grade && data[language][grade].alphabet) || [];
   const alphabetWords = (language && data[language]['1-3'].alphabetWords) || [];
 
   if (!language || !grade) {
     return null;
-  }
-  
-  const getImageForLetter = (letter: string) => {
-    const lowerCaseLetter = letter.toLowerCase();
-    const images = placeholderImages.alphabet as Record<string, string>;
-    return images[lowerCaseLetter] || `https://picsum.photos/seed/${lowerCaseLetter}/200/200`;
   }
 
   return (
@@ -57,10 +106,20 @@ export function AlphabetActivity() {
           {s.description}
         </p>
 
+        {viewMode === 'teacher' && (
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleImageChange}
+            style={{ display: 'none' }}
+            accept="image/*"
+          />
+        )}
+
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {alphabet.map(({ letter, exampleWord }, index) => {
             const letterKey = (Array.isArray(letter) ? letter[0] : letter) as string;
-            const imageUrl = getImageForLetter(letterKey);
+            const imageUrl = getImageUrl(letterKey);
             
             return (
               <Card
@@ -77,15 +136,25 @@ export function AlphabetActivity() {
                     </span>
                   </div>
                   
-                  <div className="w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden relative group">
+                  <div 
+                    className={cn(
+                      "w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden relative group",
+                      viewMode === 'teacher' && "cursor-pointer"
+                    )}
+                    onClick={() => handleImageContainerClick(letterKey)}
+                  >
                     <Image 
                       src={imageUrl} 
                       alt={exampleWord} 
                       width={96} 
                       height={96} 
-                      className="object-cover w-full h-full" 
-                      data-ai-hint={exampleWord.toLowerCase()}
+                      className="object-cover w-full h-full"
                     />
+                    {viewMode === 'teacher' && (
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Camera className="w-8 h-8 text-white" />
+                      </div>
+                    )}
                   </div>
 
                   <p className="font-semibold text-lg text-center">{exampleWord}</p>
