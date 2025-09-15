@@ -23,23 +23,23 @@ const grades: { id: Grade; label: string }[] = [
 
 export function HomePage() {
   const router = useRouter();
-  const [view, setView] = useState<'language' | 'grade'>('language');
-  const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null);
-
-  const handleLanguageSelect = (language: Language) => {
-    setSelectedLanguage(language);
-    setView('grade');
-  };
+  const [view, setView] = useState<'grade' | 'language'>('grade');
+  const [selectedGrade, setSelectedGrade] = useState<Grade | null>(null);
 
   const handleGradeSelect = (grade: Grade) => {
-    if (selectedLanguage) {
-      router.push(`/learn?grade=${grade}&lang=${selectedLanguage}`);
+    setSelectedGrade(grade);
+    setView('language');
+  };
+
+  const handleLanguageSelect = (language: Language) => {
+    if (selectedGrade) {
+      router.push(`/learn?grade=${selectedGrade}&lang=${language}`);
     }
   };
 
   const handleBack = () => {
-    setView('language');
-    setSelectedLanguage(null);
+    setView('grade');
+    setSelectedGrade(null);
   };
   
   const cardVariants = {
@@ -56,9 +56,9 @@ export function HomePage() {
     exit: { opacity: 0, y: -50, transition: { duration: 0.3 } },
   };
 
-  const getLanguageDisplayName = (lang: Language) => {
-    const language = languages.find(l => l.id === lang);
-    return language ? language.label : '';
+  const getGradeDisplayName = (grade: Grade) => {
+    const gradeItem = grades.find(g => g.id === grade);
+    return gradeItem ? gradeItem.label : '';
   }
 
   return (
@@ -76,34 +76,9 @@ export function HomePage() {
 
       <div className="w-full max-w-4xl">
         <AnimatePresence mode="wait">
-          {view === 'language' ? (
-            <motion.div key="language" initial="hidden" animate="visible" exit="exit" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-              <h2 className="text-3xl font-headline font-semibold text-center mb-8 text-gray-700 dark:text-gray-200">Odaberite jezik</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {languages.map((lang, i) => (
-                  <motion.div key={lang.id} custom={i} variants={cardVariants}>
-                    <Card
-                      onClick={() => handleLanguageSelect(lang.id)}
-                      className="cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary bg-white/50 backdrop-blur-sm"
-                    >
-                      <CardHeader>
-                        <CardTitle className="text-center text-2xl font-semibold">{lang.label}</CardTitle>
-                      </CardHeader>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ) : (
+          {view === 'grade' ? (
             <motion.div key="grade" initial="hidden" animate="visible" exit="exit" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-               <div className="flex items-center justify-center mb-8 relative">
-                 <Button onClick={handleBack} variant="ghost" size="icon" className="absolute left-0">
-                   <ArrowLeft className="w-5 h-5" />
-                 </Button>
-                <h2 className="text-3xl font-headline font-semibold text-center text-gray-700 dark:text-gray-200">
-                  {selectedLanguage && `${getLanguageDisplayName(selectedLanguage)} - `}Odaberite svoj razred
-                </h2>
-              </div>
+              <h2 className="text-3xl font-headline font-semibold text-center mb-8 text-gray-700 dark:text-gray-200">Odaberite svoj razred</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {grades.map((grade, i) => (
                   <motion.div key={grade.id} custom={i} variants={cardVariants}>
@@ -113,6 +88,31 @@ export function HomePage() {
                     >
                       <CardHeader>
                         <CardTitle className="text-center text-2xl font-semibold">{grade.label}</CardTitle>
+                      </CardHeader>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div key="language" initial="hidden" animate="visible" exit="exit" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
+               <div className="flex items-center justify-center mb-8 relative">
+                 <Button onClick={handleBack} variant="ghost" size="icon" className="absolute left-0">
+                   <ArrowLeft className="w-5 h-5" />
+                 </Button>
+                <h2 className="text-3xl font-headline font-semibold text-center text-gray-700 dark:text-gray-200">
+                  {selectedGrade && `${getGradeDisplayName(selectedGrade)} - `}Odaberite jezik
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {languages.map((lang, i) => (
+                  <motion.div key={lang.id} custom={i} variants={cardVariants}>
+                    <Card
+                      onClick={() => handleLanguageSelect(lang.id)}
+                      className="cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary bg-white/50 backdrop-blur-sm"
+                    >
+                      <CardHeader>
+                        <CardTitle className="text-center text-2xl font-semibold">{lang.label}</CardTitle>
                       </CardHeader>
                     </Card>
                   </motion.div>
