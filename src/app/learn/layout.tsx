@@ -53,7 +53,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
   const { setSettings, score, maxScore, language, grade, viewMode } = useAppContext();
 
   useEffect(() => {
-    const lang = searchParams.get('lang') as Language;
+    const lang = 'bosnian' as Language;
     const gr = searchParams.get('grade') as Grade;
     const view = searchParams.get('view') as 'student' | 'teacher' | null;
 
@@ -82,7 +82,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
         <SidebarHeader>
           <div className="flex items-center gap-2">
             <Logo className="w-7 h-7 text-white" />
-            <h2 className="text-lg font-headline font-semibold text-white">LinguaBKS</h2>
+            <h2 className="text-lg font-headline font-semibold text-white">LinguaBos</h2>
           </div>
         </SidebarHeader>
         <SidebarContent>
