@@ -10,9 +10,16 @@ interface MyDB extends DBSchema {
   };
 }
 
-const dbPromise = openDB<MyDB>('lingua-bks-db', 1, {
-  upgrade(db) {
-    db.createObjectStore('images', { keyPath: 'id' });
+const dbPromise = openDB<MyDB>('lingua-bks-db', 2, {
+  upgrade(db, oldVersion) {
+    if (oldVersion < 1) {
+        db.createObjectStore('images', { keyPath: 'id' });
+    }
+    if (oldVersion < 2) {
+        if (!db.objectStoreNames.contains('images')) {
+            db.createObjectStore('images', { keyPath: 'id' });
+        }
+    }
   },
 });
 
