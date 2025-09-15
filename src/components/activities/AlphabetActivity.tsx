@@ -33,6 +33,14 @@ const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
     };
 }
 
+const blobToDataURL = (blob: Blob): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+};
 
 export function AlphabetActivity() {
   const { language, grade } = useAppContext();
@@ -51,7 +59,16 @@ export function AlphabetActivity() {
       if (!storageKey) return;
       const storedImages = await db.get(storageKey);
       if (storedImages) {
-        setImages(storedImages);
+        const imageUrls: Record<string, string> = {};
+        for (const key in storedImages) {
+          if (Object.prototype.hasOwnProperty.call(storedImages, key)) {
+            const blob = storedImages[key];
+            if (blob instanceof Blob) {
+              imageUrls[key] = await blobToDataURL(blob);
+            }
+          }
+        }
+        setImages(imageUrls);
       }
     };
     loadImages();
@@ -61,26 +78,24 @@ export function AlphabetActivity() {
     return null;
   }
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0] && activeLetterIndex !== null && storageKey) {
       const letterKey = Array.isArray(alphabet[activeLetterIndex].letter) ? alphabet[activeLetterIndex].letter[0] : alphabet[activeLetterIndex].letter as string;
       const file = e.target.files[0];
-      const reader = new FileReader();
       
-      reader.onloadend = async () => {
-        const result = reader.result as string;
-        const newImages = {
-          ...images,
-          [letterKey]: result
-        };
-        setImages(newImages);
-        try {
-          await db.set(storageKey, newImages);
-        } catch (error) {
-            console.error("Failed to save images to IndexedDB", error);
-        }
+      const newImages = {
+        ...images,
+        [letterKey]: await blobToDataURL(file)
       };
-      reader.readAsDataURL(file);
+      setImages(newImages);
+
+      try {
+        const storedImages = (await db.get(storageKey)) || {};
+        storedImages[letterKey] = file;
+        await db.set(storageKey, storedImages);
+      } catch (error) {
+          console.error("Failed to save images to IndexedDB", error);
+      }
     }
   };
 
