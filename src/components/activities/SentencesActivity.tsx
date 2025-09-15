@@ -16,33 +16,29 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
-const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
-    const isSerbian = language === 'serbian';
-    return {
-        title: isSerbian ? 'Sastavi rečenicu' : 'Sastavi rečenicu',
-        description: isSerbian ? 'Postavi reči u pravilan redosled.' : 'Postavi riječi u pravilan redoslijed.',
-        noExercises: isSerbian ? 'Nema dostupnih vežbi.' : 'Nema dostupnih vježbi.',
-        newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
-        check: isSerbian ? 'Proveri' : 'Provjeri',
-        correctToastTitle: 'Tačno!',
-        correctToastDescription: 'Sjajno! +20 poena.',
-        incorrectToastTitle: 'Netačno!',
-        incorrectToastDescription: (answer: string) => isSerbian ? `Tačna rečenica je: "${answer}"` : `Tačna rečenica je: "${answer}"`,
-        correct: 'Tačno!',
-        incorrect: 'Netačno!',
-        nextSentence: isSerbian ? 'Sledeća rečenica' : 'Sljedeća rečenica',
-        showResults: isSerbian ? 'Prikaži rezultate' : 'Prikaži rezultate',
-        finished: 'Vežba je gotova!',
-        correctlyAssembled: (c: number, t: number) => isSerbian ? `Tačno ste sastavili ${c} od ${t} rečenica.` : `Tačno ste sastavili ${c} od ${t} rečenica.`,
-        practiceAgain: isSerbian ? 'Vežbaj ponovo' : 'Vježbaj ponovo',
-        dropHere: isSerbian ? 'Postavi reči ovde' : 'Postavi riječi ovdje',
-    };
-}
+const s = {
+    title: 'Sastavi rečenicu',
+    description: 'Postavi riječi u pravilan redoslijed.',
+    noExercises: 'Nema dostupnih vježbi.',
+    newExercises: 'Nove vježbe',
+    check: 'Provjeri',
+    correctToastTitle: 'Tačno!',
+    correctToastDescription: 'Sjajno! +20 poena.',
+    incorrectToastTitle: 'Netačno!',
+    incorrectToastDescription: (answer: string) => `Tačna rečenica je: "${answer}"`,
+    correct: 'Tačno!',
+    incorrect: 'Netačno!',
+    nextSentence: 'Sljedeća rečenica',
+    showResults: 'Prikaži rezultate',
+    finished: 'Vježba je gotova!',
+    correctlyAssembled: (c: number, t: number) => `Tačno ste sastavili ${c} od ${t} rečenica.`,
+    practiceAgain: 'Vježbaj ponovo',
+    dropHere: 'Postavi riječi ovdje',
+};
 
 export function SentencesActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
-  const s = getStrings(language);
 
   const [exercises, setExercises] = useState<SentenceItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);

@@ -10,32 +10,28 @@ import { RefreshCw, CheckCircle, XCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 
-const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
-    const isSerbian = language === 'serbian';
-    return {
-        title: 'Pravopis: Popuni prazninu',
-        noExercises: isSerbian ? 'Nema dostupnih vežbi za pravopis.' : 'Nema dostupnih vježbi za pravopis.',
-        newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
-        check: isSerbian ? 'Proveri odgovor' : 'Provjeri odgovor',
-        correctToastTitle: 'Tačno!',
-        correctToastDescription: 'Bravo! +10 poena.',
-        incorrectToastTitle: 'Netačno!',
-        incorrectToastDescription: (answer: string) => isSerbian ? `Tačan odgovor je bio "${answer}".` : `Tačan odgovor je bio "${answer}".`,
-        correct: 'Tačno!',
-        incorrect: 'Netačno!',
-        nextQuestion: isSerbian ? 'Sledeće pitanje' : 'Sljedeće pitanje',
-        showResults: isSerbian ? 'Prikaži rezultate' : 'Prikaži rezultate',
-        finished: 'Sjajno napisano!',
-        correctOutOf: (c: number, t: number) => isSerbian ? `Imali ste ${c} od ${t} tačnih odgovora.` : `Imali ste ${c} od ${t} tačnih odgovora.`,
-        practiceAgain: isSerbian ? 'Uradi vežbu ponovo' : 'Uradi vježbu ponovo',
-    };
-}
+const s = {
+    title: 'Pravopis: Popuni prazninu',
+    noExercises: 'Nema dostupnih vježbi za pravopis.',
+    newExercises: 'Nove vježbe',
+    check: 'Provjeri odgovor',
+    correctToastTitle: 'Tačno!',
+    correctToastDescription: 'Bravo! +10 poena.',
+    incorrectToastTitle: 'Netačno!',
+    incorrectToastDescription: (answer: string) => `Tačan odgovor je bio "${answer}".`,
+    correct: 'Tačno!',
+    incorrect: 'Netačno!',
+    nextQuestion: 'Sljedeće pitanje',
+    showResults: 'Prikaži rezultate',
+    finished: 'Sjajno napisano!',
+    correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+    practiceAgain: 'Uradi vježbu ponovo',
+};
 
 export function SpellingActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
-  const s = getStrings(language);
-
+  
   const [exercises, setExercises] = useState<SpellingItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);

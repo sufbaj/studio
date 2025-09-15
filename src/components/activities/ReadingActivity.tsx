@@ -12,54 +12,27 @@ import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-interface ReadingActivityStrings {
-  title: string;
-  question: string;
-  of: string;
-  newExercises: string;
-  checkAnswer: string;
-  nextQuestion: string;
-  seeResults: string;
-  exerciseFinished: string;
-  correctAnswersOutOf: (correct: number, total: number) => string;
-  practiceAgain: string;
-  noExercises: string;
-  correctToastTitle: string;
-  correctToastDescription: string;
-  incorrectToastTitle: string;
-  incorrectToastDescription: (answer: string) => string;
-}
-
-const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null): ReadingActivityStrings => {
-    const isSerbian = language === 'serbian';
-    const isCroatian = language === 'croatian';
-    
-    let title = 'Razumijevanje pročitanog';
-    if (isSerbian) title = 'Razumevanje pročitanog';
-
-    return {
-      title: title,
-      question: isSerbian ? 'Pitanje' : 'Pitanje',
-      of: isSerbian ? 'od' : 'od',
-      newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
-      checkAnswer: isSerbian ? 'Proveri odgovor' : 'Provjeri odgovor',
-      nextQuestion: isSerbian ? 'Sledeće pitanje' : 'Sljedeće pitanje',
-      seeResults: isSerbian ? 'Prikaži rezultate' : 'Prikaži rezultate',
-      exerciseFinished: isSerbian ? 'Vežba je gotova!' : 'Vježba je gotova!',
-      correctAnswersOutOf: (c, t) => isSerbian ? `Imali ste ${c} od ${t} tačnih odgovora.` : `Imali ste ${c} od ${t} točnih odgovora.`,
-      practiceAgain: isSerbian ? 'Vežbaj ponovo' : 'Vježbaj ponovo',
-      noExercises: isSerbian ? 'Nema dostupnih vežbi.' : 'Nema dostupnih vježbi.',
-      correctToastTitle: 'Točno!',
-      correctToastDescription: 'Sjajno! +15 poena.',
-      incorrectToastTitle: 'Netočno!',
-      incorrectToastDescription: (a) => isSerbian ? `Tačan odgovor je bio "${a}".` : `Točan odgovor je bio "${a}".`,
-    };
-}
+const s = {
+  title: 'Razumijevanje pročitanog',
+  question: 'Pitanje',
+  of: 'od',
+  newExercises: 'Nove vježbe',
+  checkAnswer: 'Provjeri odgovor',
+  nextQuestion: 'Sljedeće pitanje',
+  seeResults: 'Prikaži rezultate',
+  exerciseFinished: 'Vježba je gotova!',
+  correctAnswersOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} točnih odgovora.`,
+  practiceAgain: 'Vježbaj ponovo',
+  noExercises: 'Nema dostupnih vježbi.',
+  correctToastTitle: 'Točno!',
+  correctToastDescription: 'Sjajno! +15 poena.',
+  incorrectToastTitle: 'Netočno!',
+  incorrectToastDescription: (a: string) => `Točan odgovor je bio "${a}".`,
+};
 
 export function ReadingActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
-  const s = getStrings(language);
 
   const [exercises, setExercises] = useState<ReadingItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);

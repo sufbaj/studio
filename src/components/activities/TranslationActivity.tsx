@@ -12,54 +12,30 @@ import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { Textarea } from '@/components/ui/textarea';
 
-interface TranslationActivityStrings {
-    title: string;
-    noExercises: string;
-    newExercises: string;
-    translateWord: (lang: string) => string;
-    translateSentence: (lang: string) => string;
-    enterTranslation: string;
-    check: string;
-    correct: string;
-    greatJob: string;
-    incorrect: string;
-    correctAnswerIs: string;
-    nextWord: string;
-    nextSentence: string;
-    seeResults: string;
-    exerciseFinished: string;
-    correctTranslationsOutOf: (correct: number, total: number) => string;
-    practiceAgain: string;
-}
 
-
-const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null): TranslationActivityStrings => {
-    const isSerbian = language === 'serbian';
-    return {
-      title: isSerbian ? 'Švedski na maternji jezik' : 'Švedski na maternji jezik',
-      noExercises: isSerbian ? 'Nema dostupnih vežbi za prevođenje.' : 'Nema dostupnih vježbi za prevođenje.',
-      newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
-      translateWord: (lang) => isSerbian ? `Prevedi sledeću reč na ${lang}:` : `Prevedi sljedeću riječ na ${lang}:`,
-      translateSentence: (lang) => isSerbian ? `Prevedi sledeću rečenicu na ${lang}:` : `Prevedi sljedeću rečenicu na ${lang}:`,
-      enterTranslation: isSerbian ? 'Unesite prevod...' : 'Unesite prijevod...',
-      check: isSerbian ? 'Proveri' : 'Provjeri',
-      correct: 'Tačno!',
-      greatJob: 'Sjajno!',
-      incorrect: 'Netačno!',
-      correctAnswerIs: isSerbian ? 'Tačan odgovor je:' : 'Tačan odgovor je:',
-      nextWord: isSerbian ? 'Sledeća reč' : 'Sljedeća riječ',
-      nextSentence: isSerbian ? 'Sledeća rečenica' : 'Sljedeća rečenica',
-      seeResults: 'Prikaži rezultate',
-      exerciseFinished: isSerbian ? 'Vežba je gotova!' : 'Vježba je gotova!',
-      correctTranslationsOutOf: (c, t) => isSerbian ? `Imali ste ${c} od ${t} tačnih prevoda.` : `Imali ste ${c} od ${t} tačnih prijevoda.`,
-      practiceAgain: isSerbian ? 'Vežbaj ponovo' : 'Vježbaj ponovo',
-    };
-  }
+const s = {
+    title: 'Švedski na maternji jezik',
+    noExercises: 'Nema dostupnih vježbi za prevođenje.',
+    newExercises: 'Nove vježbe',
+    translateWord: (lang: string) => `Prevedi sljedeću riječ na ${lang}:`,
+    translateSentence: (lang: string) => `Prevedi sljedeću rečenicu na ${lang}:`,
+    enterTranslation: 'Unesite prijevod...',
+    check: 'Provjeri',
+    correct: 'Tačno!',
+    greatJob: 'Sjajno!',
+    incorrect: 'Netačno!',
+    correctAnswerIs: 'Tačan odgovor je:',
+    nextWord: 'Sljedeća riječ',
+    nextSentence: 'Sljedeća rečenica',
+    seeResults: 'Prikaži rezultate',
+    exerciseFinished: 'Vježba je gotova!',
+    correctTranslationsOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih prijevoda.`,
+    practiceAgain: 'Vježbaj ponovo',
+};
 
 export function TranslationActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
-  const s = getStrings(language);
 
   const [exercises, setExercises] = useState<TranslationItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -93,17 +69,7 @@ export function TranslationActivity() {
   const currentExercise = useMemo(() => exercises[currentExerciseIndex], [exercises, currentExerciseIndex]);
 
   const getLanguageDisplayName = () => {
-    if (!language) return '';
-    switch (language) {
-      case 'bosnian':
-        return 'bosanski';
-      case 'croatian':
-        return 'hrvatski';
-      case 'serbian':
-        return 'srpski';
-      default:
-        return '';
-    }
+    return 'bosanski';
   }
 
   const checkAnswer = () => {

@@ -11,32 +11,29 @@ import { useToast } from '@/hooks/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
-const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
-    const isSerbian = language === 'serbian';
-    return {
-        title: isSerbian ? 'Gramatika: Popuni prazninu' : 'Gramatika: Popuni prazninu',
-        noExercises: isSerbian ? 'Nema dostupnih gramatičkih vežbi.' : 'Nema dostupnih gramatičkih vježbi.',
-        newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
-        check: isSerbian ? 'Proveri' : 'Provjeri',
-        correctToastTitle: 'Tačno!',
-        correctToastDescription: 'Sjajno! +15 poena.',
-        incorrectToastTitle: 'Netačno!',
-        incorrectToastDescription: (answer: string) => isSerbian ? `Tačan odgovor je bio "${answer}".` : `Tačan odgovor je bio "${answer}".`,
-        correct: 'Tačno!',
-        incorrect: 'Netačno!',
-        explanation: isSerbian ? 'Objašnjenje' : 'Objašnjenje',
-        nextQuestion: isSerbian ? 'Sledeće pitanje' : 'Sljedeće pitanje',
-        showResults: isSerbian ? 'Prikaži rezultate' : 'Prikaži rezultate',
-        finished: 'Vežba je gotova!',
-        correctOutOf: (c: number, t: number) => isSerbian ? `Imali ste ${c} od ${t} tačnih odgovora.` : `Imali ste ${c} od ${t} tačnih odgovora.`,
-        practiceAgain: isSerbian ? 'Vežbaj ponovo' : 'Vježbaj ponovo',
-    };
-}
+const s = {
+    title: 'Gramatika: Popuni prazninu',
+    noExercises: 'Nema dostupnih gramatičkih vježbi.',
+    newExercises: 'Nove vježbe',
+    check: 'Provjeri',
+    correctToastTitle: 'Tačno!',
+    correctToastDescription: 'Sjajno! +15 poena.',
+    incorrectToastTitle: 'Netačno!',
+    incorrectToastDescription: (answer: string) => `Tačan odgovor je bio "${answer}".`,
+    correct: 'Tačno!',
+    incorrect: 'Netačno!',
+    explanation: 'Objašnjenje',
+    nextQuestion: 'Sljedeće pitanje',
+    showResults: 'Prikaži rezultate',
+    finished: 'Vježba je gotova!',
+    correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+    practiceAgain: 'Vježbaj ponovo',
+};
+
 
 export function GrammarActivity() {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
   const { toast } = useToast();
-  const s = getStrings(language);
 
   const [exercises, setExercises] = useState<GrammarItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);

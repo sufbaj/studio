@@ -10,10 +10,10 @@ export function AlphabetActivity() {
   const { language, grade } = useAppContext();
 
   const s = {
-    alphabetTitle: language === 'serbian' ? 'Azbuka' : 'Abeceda',
-    alphabetDescription: language === 'serbian' ? 'Pregled slova azbuke i primera.' : 'Pregled slova abecede i primjera.',
-    wordsTitle: language === 'serbian' ? 'Primeri reči' : 'Primjeri riječi',
-    wordsDescription: language === 'serbian' ? 'Pregled reči za svako slovo.' : 'Pregled riječi za svako slovo.',
+    alphabetTitle: 'Abeceda',
+    alphabetDescription: 'Pregled slova abecede i primjera.',
+    wordsTitle: 'Primjeri riječi',
+    wordsDescription: 'Pregled riječi za svako slovo.',
   };
   
   const alphabet = (language && grade && data[language]?.[grade]?.alphabet) || [];

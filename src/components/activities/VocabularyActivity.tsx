@@ -22,39 +22,25 @@ type QuizItem = {
   options: QuizOption[];
 };
 
-const getStrings = (language: Language | null) => {
-    const isSerbian = language === 'serbian';
-    const isCroatian = language === 'croatian';
-
-    let title = 'Vježbe riječi';
-    if (isSerbian) title = 'Vežbe reči';
-
-    let howToSay = 'Kako se kaže na bosanskom:';
-    if (isCroatian) howToSay = 'Kako se kaže na hrvatskom:';
-    if (isSerbian) howToSay = 'Kako se kaže na srpskom:';
-
-
-    return {
-        title: title,
-        subtitle: 'Proširi svoj vokabular kroz tematske kategorije.',
-        noExercises: isSerbian ? 'Nema dostupnih reči za odabrana podešavanja.' : 'Nema dostupnih riječi za odabrane postavke.',
-        newExercises: isSerbian ? 'Nove vežbe' : 'Nove vježbe',
-        howToSay: howToSay,
-        correctToastTitle: 'Tačno!',
-        correctToastDescription: '+10 poena',
-        incorrectToastTitle: 'Netačno!',
-        incorrectToastDescription: 'Više sreće drugi put!',
-        next: 'Dalje',
-        showResults: isSerbian ? 'Prikaži rezultate' : 'Prikaži rezultate',
-        finished: 'Bravo!',
-        correctOutOf: (c: number, t: number) => isSerbian ? `Imali ste ${c} od ${t} tačnih odgovora.` : `Imali ste ${c} od ${t} tačnih odgovora.`,
-        playAgain: isSerbian ? 'Igraj ponovo' : 'Igraj ponovo',
-    };
-}
+const s = {
+    title: 'Vježbe riječi',
+    subtitle: 'Proširi svoj vokabular kroz tematske kategorije.',
+    noExercises: 'Nema dostupnih riječi za odabrane postavke.',
+    newExercises: 'Nove vježbe',
+    howToSay: 'Kako se kaže na bosanskom:',
+    correctToastTitle: 'Tačno!',
+    correctToastDescription: '+10 poena',
+    incorrectToastTitle: 'Netačno!',
+    incorrectToastDescription: 'Više sreće drugi put!',
+    next: 'Dalje',
+    showResults: 'Prikaži rezultate',
+    finished: 'Bravo!',
+    correctOutOf: (c: number, t: number) => `Imali ste ${c} od ${t} tačnih odgovora.`,
+    playAgain: 'Igraj ponovo',
+};
 
 function VocabularyCategorySelection({ onSelectCategory, grade }: { onSelectCategory: (category: string) => void, grade: string }) {
     const { language } = useAppContext();
-    const s = getStrings(language);
     
     const categories = useMemo(() => {
         if (!language || !grade || !vocabularyData[language] || !vocabularyData[language][grade]) {
@@ -102,7 +88,6 @@ function VocabularyCategorySelection({ onSelectCategory, grade }: { onSelectCate
 
 function VocabularyQuiz({ categoryId, onBack }: { categoryId: string, onBack: () => void }) {
   const { language, grade, updateScore, setMaxScore, resetScore } = useAppContext();
-  const s = getStrings(language);
   const [quizItems, setQuizItems] = useState<QuizItem[]>([]);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<QuizOption | null>(null);

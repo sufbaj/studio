@@ -46,18 +46,6 @@ const navItems = [
   { href: 'svenska-till-modersmal', label: 'Prevođenje', icon: Languages },
 ];
 
-function getLanguageDisplayName(language: Language) {
-    switch (language) {
-      case 'bosnian':
-        return 'Bosanski';
-      case 'croatian':
-        return 'Hrvatski';
-      case 'serbian':
-        return 'Srpski';
-      default:
-        return '';
-    }
-}
 
 function LearnLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -128,7 +116,7 @@ function LearnLayoutContent({ children }: { children: React.ReactNode }) {
             <SidebarTrigger className="md:hidden" />
             <div>
               <h1 className="text-xl font-headline font-semibold">
-                {getLanguageDisplayName(language)} - Årskurs {grade}
+                Bosanski - Årskurs {grade}
               </h1>
             </div>
           </div>
