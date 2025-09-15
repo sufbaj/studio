@@ -19,8 +19,7 @@ const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
     const isBosnian = language === 'bosnian';
     const isSerbian = language === 'serbian';
 
-    let title = 'Alfabet';
-    if (isBosnian) title = 'Abeceda';
+    let title = 'Abeceda';
     if (isSerbian) title = 'Azbuka';
     
     return {
@@ -41,19 +40,6 @@ export function AlphabetActivity() {
   const [activeLetterIndex, setActiveLetterIndex] = useState<number | null>(null);
   const [images, setImages] = useState<Record<string, string>>({});
 
-  const storageKey = `alphabetImages-${language}-${grade}`;
-
-  useEffect(() => {
-    try {
-      const storedImages = localStorage.getItem(storageKey);
-      if (storedImages) {
-        setImages(JSON.parse(storedImages));
-      }
-    } catch (error) {
-      console.error("Failed to load images from localStorage", error);
-    }
-  }, [storageKey]);
-
   const alphabet = (language && grade && data[language][grade].alphabet) || [];
   
   const alphabetWords = (language && data[language]['1-3'].alphabetWords) || [];
@@ -73,11 +59,6 @@ export function AlphabetActivity() {
           [letterKey]: reader.result as string
         };
         setImages(newImages);
-        try {
-          localStorage.setItem(storageKey, JSON.stringify(newImages));
-        } catch (error) {
-            console.error("Failed to save images to localStorage, quota might be exceeded.", error);
-        }
       };
       reader.readAsDataURL(file);
     }
