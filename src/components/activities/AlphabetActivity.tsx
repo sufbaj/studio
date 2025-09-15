@@ -10,6 +10,12 @@ import placeholderImages from '@/lib/placeholder-images.json';
 import { PlusCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { getImages, setImage } from '@/lib/db';
+import type { Language, Grade } from '@/lib/types';
+
+function getStorageKey(language: Language | null, grade: Grade | null, letterKey: string) {
+  if (!language || !grade) return null;
+  return `alphabet-${language}-${grade}-${letterKey}`;
+}
 
 export function AlphabetActivity() {
   const { language, grade, viewMode } = useAppContext();
@@ -18,25 +24,20 @@ export function AlphabetActivity() {
   const [customImages, setCustomImages] = useState<Record<string, string>>({});
   const isTeacherMode = viewMode === 'teacher';
 
-  const getStorageKey = useCallback((letterKey: string) => {
-    if (!language || !grade) return null;
-    return `alphabet-${language}-${grade}-${letterKey}`;
-  }, [language, grade]);
-
   useEffect(() => {
     if (!language || !grade) return;
     
     const alphabet = data[language]?.[grade]?.alphabet || [];
     const keys = alphabet.map(item => {
         const letterKey = (Array.isArray(item.letter) ? item.letter[0] : item) as string;
-        return getStorageKey(letterKey.toLowerCase()) || '';
+        return getStorageKey(language, grade, letterKey.toLowerCase()) || '';
     }).filter(Boolean);
 
     getImages(keys).then(images => {
         setCustomImages(images);
     });
 
-  }, [language, grade, getStorageKey]);
+  }, [language, grade]);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files || event.target.files.length === 0 || !selectedLetterKey) {
@@ -47,7 +48,7 @@ export function AlphabetActivity() {
 
     reader.onloadend = () => {
       const base64String = reader.result as string;
-      const storageKey = getStorageKey(selectedLetterKey);
+      const storageKey = getStorageKey(language, grade, selectedLetterKey);
       if (storageKey) {
         setImage(storageKey, base64String).then(() => {
           setCustomImages(prev => ({ ...prev, [storageKey]: base64String }));
@@ -78,7 +79,7 @@ export function AlphabetActivity() {
   };
 
   const s = getStrings(language);
-  const alphabet = (language && grade && data[language][grade].alphabet) || [];
+  const alphabet = (language && grade && data[language]?.[grade]?.alphabet) || [];
 
   if (!language || !grade) {
     return null;
@@ -86,7 +87,7 @@ export function AlphabetActivity() {
 
   const getImageForLetter = (letter: string) => {
     const lowerCaseLetter = letter.toLowerCase();
-    const storageKey = getStorageKey(lowerCaseLetter);
+    const storageKey = getStorageKey(language, grade, lowerCaseLetter);
     
     if (storageKey && customImages[storageKey]) {
         return customImages[storageKey];
