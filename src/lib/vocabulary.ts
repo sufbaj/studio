@@ -140,6 +140,73 @@ const bosnianVocabularyData = {
                 { id: 1410, word: 'lampa', translation: 'lampa' },
             ]
         },
+        days: {
+            title: 'Dani u sedmici',
+            description: 'Nauči nazive za dane u sedmici.',
+            swedish: 'Veckodagar',
+            items: [
+                { id: 1311, word: 'ponedjeljak', translation: 'måndag' },
+                { id: 1312, word: 'utorak', translation: 'tisdag' },
+                { id: 1313, word: 'srijeda', translation: 'onsdag' },
+                { id: 1314, word: 'četvrtak', translation: 'torsdag' },
+                { id: 1315, word: 'petak', translation: 'fredag' },
+                { id: 1316, word: 'subota', translation: 'lördag' },
+                { id: 1317, word: 'nedjelja', translation: 'söndag' },
+            ]
+        },
+        months: {
+            title: 'Mjeseci u godini',
+            description: 'Nauči nazive za mjesece.',
+            swedish: 'Månader',
+            items: [
+                { id: 1318, word: 'januar', translation: 'januari' },
+                { id: 1319, word: 'februar', translation: 'februari' },
+                { id: 1320, word: 'mart', translation: 'mars' },
+                { id: 1321, word: 'april', translation: 'april' },
+                { id: 1322, word: 'maj', translation: 'maj' },
+                { id: 1323, word: 'juni', translation: 'juni' },
+                { id: 1324, word: 'juli', translation: 'juli' },
+                { id: 1325, word: 'august', translation: 'augusti' },
+                { id: 1326, word: 'septembar', translation: 'september' },
+                { id: 1327, word: 'oktobar', translation: 'oktober' },
+                { id: 1328, word: 'novembar', translation: 'november' },
+                { id: 1329, word: 'decembar', translation: 'december' },
+            ]
+        },
+        school_subjects_1_3: {
+            title: 'Škola',
+            description: 'Nazivi za stvari u školi.',
+            swedish: 'Skola',
+            items: [
+                { id: 1411, word: 'učiteljica', translation: 'lärare' },
+                { id: 1412, word: 'učenik', translation: 'elev' },
+                { id: 1413, word: 'knjiga', translation: 'bok' },
+                { id: 1414, word: 'sveska', translation: 'skrivbok' },
+                { id: 1415, word: 'olovka', translation: 'penna' },
+                { id: 1416, word: 'gumica', translation: 'suddgummi' },
+                { id: 1417, word: 'tabla', translation: 'tavla' },
+                { id: 1418, word: 'stolica', translation: 'stol' },
+                { id: 1419, word: 'klupa', translation: 'bänk' },
+                { id: 1420, word: 'odmor', translation: 'rast' },
+            ]
+        },
+        transport_1_3: {
+            title: 'Prevoz',
+            description: 'Nazivi za prevozna sredstva.',
+            swedish: 'Transport',
+            items: [
+                { id: 1421, word: 'auto', translation: 'bil' },
+                { id: 1422, word: 'autobus', translation: 'buss' },
+                { id: 1423, word: 'voz', translation: 'tåg' },
+                { id: 1424, word: 'avion', translation: 'flygplan' },
+                { id: 1425, word: 'brod', translation: 'båt' },
+                { id: 1426, word: 'bicikl', translation: 'cykel' },
+                { id: 1427, word: 'motor', translation: 'motorcykel' },
+                { id: 1428, word: 'kamion', translation: 'lastbil' },
+                { id: 1429, word: 'semafor', translation: 'trafikljus' },
+                { id: 1430, word: 'cesta', translation: 'väg' },
+            ]
+        },
     },
     '4-6': {
         hobbies: {
@@ -657,6 +724,73 @@ const croatianVocabularyData = {
                 { id: 2408, word: 'kuhinja', translation: 'kök' },
                 { id: 2409, word: 'kupaonica', translation: 'badrum' },
                 { id: 2410, word: 'svjetiljka', translation: 'lampa' },
+            ]
+        },
+        days: {
+            title: 'Dani u tjednu',
+            description: 'Nauči nazive za dane u tjednu.',
+            swedish: 'Veckodagar',
+            items: [
+                { id: 2311, word: 'ponedjeljak', translation: 'måndag' },
+                { id: 2312, word: 'utorak', translation: 'tisdag' },
+                { id: 2313, word: 'srijeda', translation: 'onsdag' },
+                { id: 2314, word: 'četvrtak', translation: 'torsdag' },
+                { id: 2315, word: 'petak', translation: 'fredag' },
+                { id: 2316, word: 'subota', translation: 'lördag' },
+                { id: 2317, word: 'nedjelja', translation: 'söndag' },
+            ]
+        },
+        months: {
+            title: 'Mjeseci u godini',
+            description: 'Nauči nazive za mjesece.',
+            swedish: 'Månader',
+            items: [
+                { id: 2318, word: 'siječanj', translation: 'januari' },
+                { id: 2319, word: 'veljača', translation: 'februari' },
+                { id: 2320, word: 'ožujak', translation: 'mars' },
+                { id: 2321, word: 'travanj', translation: 'april' },
+                { id: 2322, word: 'svibanj', translation: 'maj' },
+                { id: 2323, word: 'lipanj', translation: 'juni' },
+                { id: 2324, word: 'srpanj', translation: 'juli' },
+                { id: 2325, word: 'kolovoz', translation: 'augusti' },
+                { id: 2326, word: 'rujan', translation: 'september' },
+                { id: 2327, word: 'listopad', translation: 'oktober' },
+                { id: 2328, word: 'studeni', translation: 'november' },
+                { id: 2329, word: 'prosinac', translation: 'december' },
+            ]
+        },
+        school_subjects_1_3: {
+            title: 'Škola',
+            description: 'Nazivi za stvari u školi.',
+            swedish: 'Skola',
+            items: [
+                { id: 2411, word: 'učiteljica', translation: 'lärare' },
+                { id: 2412, word: 'učenik', translation: 'elev' },
+                { id: 2413, word: 'knjiga', translation: 'bok' },
+                { id: 2414, word: 'bilježnica', translation: 'skrivbok' },
+                { id: 2415, word: 'olovka', translation: 'penna' },
+                { id: 2416, word: 'gumica', translation: 'suddgummi' },
+                { id: 2417, word: 'ploča', translation: 'tavla' },
+                { id: 2418, word: 'stolica', translation: 'stol' },
+                { id: 2419, word: 'klupa', translation: 'bänk' },
+                { id: 2420, word: 'odmor', translation: 'rast' },
+            ]
+        },
+        transport_1_3: {
+            title: 'Promet',
+            description: 'Nazivi za prijevozna sredstva.',
+            swedish: 'Transport',
+            items: [
+                { id: 2421, word: 'auto', translation: 'bil' },
+                { id: 2422, word: 'autobus', translation: 'buss' },
+                { id: 2423, word: 'vlak', translation: 'tåg' },
+                { id: 2424, word: 'zrakoplov', translation: 'flygplan' },
+                { id: 2425, word: 'brod', translation: 'båt' },
+                { id: 2426, word: 'bicikl', translation: 'cykel' },
+                { id: 2427, word: 'motocikl', translation: 'motorcykel' },
+                { id: 2428, word: 'kamion', translation: 'lastbil' },
+                { id: 2429, word: 'semafor', translation: 'trafikljus' },
+                { id: 2430, word: 'cesta', translation: 'väg' },
             ]
         },
     },
@@ -1178,6 +1312,73 @@ const serbianVocabularyData = {
                 { id: 3410, word: 'lampa', translation: 'lampa' },
             ]
         },
+        days: {
+            title: 'Dani u nedelji',
+            description: 'Nauči nazive za dane u nedelji.',
+            swedish: 'Veckodagar',
+            items: [
+                { id: 3311, word: 'ponedeljak', translation: 'måndag' },
+                { id: 3312, word: 'utorak', translation: 'tisdag' },
+                { id: 3313, word: 'sreda', translation: 'onsdag' },
+                { id: 3314, word: 'četvrtak', translation: 'torsdag' },
+                { id: 3315, word: 'petak', translation: 'fredag' },
+                { id: 3316, word: 'subota', translation: 'lördag' },
+                { id: 3317, word: 'nedelja', translation: 'söndag' },
+            ]
+        },
+        months: {
+            title: 'Meseci u godini',
+            description: 'Nauči nazive za mesece.',
+            swedish: 'Månader',
+            items: [
+                { id: 3318, word: 'januar', translation: 'januari' },
+                { id: 3319, word: 'februar', translation: 'februari' },
+                { id: 3320, word: 'mart', translation: 'mars' },
+                { id: 3321, word: 'april', translation: 'april' },
+                { id: 3322, word: 'maj', translation: 'maj' },
+                { id: 3323, word: 'jun', translation: 'juni' },
+                { id: 3324, word: 'jul', translation: 'juli' },
+                { id: 3325, word: 'avgust', translation: 'augusti' },
+                { id: 3326, word: 'septembar', translation: 'september' },
+                { id: 3327, word: 'oktobar', translation: 'oktober' },
+                { id: 3328, word: 'novembar', translation: 'november' },
+                { id: 3329, word: 'decembar', translation: 'december' },
+            ]
+        },
+        school_subjects_1_3: {
+            title: 'Škola',
+            description: 'Nazivi za stvari u školi.',
+            swedish: 'Skola',
+            items: [
+                { id: 3411, word: 'učiteljica', translation: 'lärare' },
+                { id: 3412, word: 'učenik', translation: 'elev' },
+                { id: 3413, word: 'knjiga', translation: 'bok' },
+                { id: 3414, word: 'sveska', translation: 'skrivbok' },
+                { id: 3415, word: 'olovka', translation: 'penna' },
+                { id: 3416, word: 'gumica', translation: 'suddgummi' },
+                { id: 3417, word: 'tabla', translation: 'tavla' },
+                { id: 3418, word: 'stolica', translation: 'stol' },
+                { id: 3419, word: 'klupa', translation: 'bänk' },
+                { id: 3420, word: 'odmor', translation: 'rast' },
+            ]
+        },
+        transport_1_3: {
+            title: 'Saobraćaj',
+            description: 'Nazivi za prevozna sredstva.',
+            swedish: 'Transport',
+            items: [
+                { id: 3421, word: 'auto', translation: 'bil' },
+                { id: 3422, word: 'autobus', translation: 'buss' },
+                { id: 3423, word: 'voz', translation: 'tåg' },
+                { id: 3424, word: 'avion', translation: 'flygplan' },
+                { id: 3425, word: 'brod', translation: 'båt' },
+                { id: 3426, word: 'bicikl', translation: 'cykel' },
+                { id: 3427, word: 'motor', translation: 'motorcykel' },
+                { id: 3428, word: 'kamion', translation: 'lastbil' },
+                { id: 3429, word: 'semafor', translation: 'trafikljus' },
+                { id: 3430, word: 'put', translation: 'väg' },
+            ]
+        },
     },
     '4-6': {
         hobbies: {
@@ -1564,5 +1765,7 @@ export const vocabularyData: VocabularyData = {
   croatian: croatianVocabularyData,
   serbian: serbianVocabularyData
 };
+
+    
 
     
