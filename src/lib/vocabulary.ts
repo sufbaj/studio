@@ -173,7 +173,7 @@ const bosnianVocabularyData = {
                 { id: 1329, word: 'decembar', translation: 'december' },
             ]
         },
-        school_subjects_1_3: {
+        school_1_3: {
             title: 'Škola',
             description: 'Nazivi za stvari u školi.',
             swedish: 'Skola',
@@ -345,7 +345,7 @@ const bosnianVocabularyData = {
             ]
         },
         transport_4_6: {
-            title: 'Transport',
+            title: 'Prevoz',
             description: 'Nazivi za prevozna sredstva.',
             swedish: 'Transport',
             items: [
@@ -759,7 +759,7 @@ const croatianVocabularyData = {
                 { id: 2329, word: 'prosinac', translation: 'december' },
             ]
         },
-        school_subjects_1_3: {
+        school_1_3: {
             title: 'Škola',
             description: 'Nazivi za stvari u školi.',
             swedish: 'Skola',
@@ -1345,7 +1345,7 @@ const serbianVocabularyData = {
                 { id: 3329, word: 'decembar', translation: 'december' },
             ]
         },
-        school_subjects_1_3: {
+        school_1_3: {
             title: 'Škola',
             description: 'Nazivi za stvari u školi.',
             swedish: 'Skola',
@@ -1765,7 +1765,5 @@ export const vocabularyData: VocabularyData = {
   croatian: croatianVocabularyData,
   serbian: serbianVocabularyData
 };
-
-    
 
     
