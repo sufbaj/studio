@@ -10,9 +10,9 @@ interface MyDB extends DBSchema {
   };
 }
 
-const dbPromise = openDB<MyDB>('lingua-bks-db', 3, {
+const dbPromise = openDB<MyDB>('lingua-bks-db', 4, {
   upgrade(db, oldVersion) {
-    if (oldVersion < 3) {
+    if (oldVersion < 4) {
       if (db.objectStoreNames.contains('images')) {
         db.deleteObjectStore('images');
       }
