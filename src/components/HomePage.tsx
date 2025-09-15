@@ -70,7 +70,6 @@ export function HomePage() {
           <h1 className="text-5xl font-headline font-bold tracking-tight text-gray-800 dark:text-gray-100">LinguaBKS</h1>
         </div>
         <p className="text-xl text-muted-foreground">Platforma za učenje bosanskog, hrvatskog, srpskog jezika.</p>
-        <p className="text-md text-muted-foreground mt-2">by Sufjan Bajrić</p>
       </div>
 
       <div className="w-full max-w-4xl">
@@ -121,6 +120,7 @@ export function HomePage() {
           )}
         </AnimatePresence>
       </div>
+      <p className="absolute bottom-4 text-md text-muted-foreground">Sufjan Bajrić</p>
     </main>
   );
 }
