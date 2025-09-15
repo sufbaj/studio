@@ -1,7 +1,34 @@
 {
   "alphabet": {
-    "bosnian-1-3-Đ": "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600&h=400&fit=crop",
-    "croatian-1-3-Đ": "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600&h=400&fit=crop",
-    "serbian-1-3-Đ": "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600&h=400&fit=crop"
+    "A": { "url": "https://picsum.photos/seed/avion/600/400", "hint": "airplane" },
+    "B": { "url": "https://picsum.photos/seed/bicikl/600/400", "hint": "bicycle" },
+    "C": { "url": "https://picsum.photos/seed/cipele/600/400", "hint": "shoes" },
+    "Č": { "url": "https://picsum.photos/seed/casa/600/400", "hint": "glass water" },
+    "Ć": { "url": "https://picsum.photos/seed/cevapi/600/400", "hint": "kebab food" },
+    "D": { "url": "https://picsum.photos/seed/drvo/600/400", "hint": "tree" },
+    "Dž": { "url": "https://picsum.photos/seed/dzep/600/400", "hint": "pocket jeans" },
+    "Đ": { "url": "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600&h=400&fit=crop", "hint": "student classroom" },
+    "E": { "url": "https://picsum.photos/seed/ekran/600/400", "hint": "screen monitor" },
+    "F": { "url": "https://picsum.photos/seed/fudbal/600/400", "hint": "soccer ball" },
+    "G": { "url": "https://picsum.photos/seed/gitara/600/400", "hint": "guitar" },
+    "H": { "url": "https://picsum.photos/seed/haljina/600/400", "hint": "dress" },
+    "I": { "url": "https://picsum.photos/seed/igla/600/400", "hint": "needle thread" },
+    "J": { "url": "https://picsum.photos/seed/jabuka/600/400", "hint": "apple" },
+    "K": { "url": "https://picsum.photos/seed/knjiga/600/400", "hint": "book" },
+    "L": { "url": "https://picsum.photos/seed/lopta/600/400", "hint": "ball" },
+    "Lj": { "url": "https://picsum.photos/seed/ljubav/600/400", "hint": "heart love" },
+    "M": { "url": "https://picsum.photos/seed/macka/600/400", "hint": "cat" },
+    "N": { "url": "https://picsum.photos/seed/noga/600/400", "hint": "leg foot" },
+    "Nj": { "url": "https://picsum.photos/seed/njiva/600/400", "hint": "field wheat" },
+    "O": { "url": "https://picsum.photos/seed/oblak/600/400", "hint": "cloud sky" },
+    "P": { "url": "https://picsum.photos/seed/pas/600/400", "hint": "dog" },
+    "R": { "url": "https://picsum.photos/seed/riba/600/400", "hint": "fish" },
+    "S": { "url": "https://picsum.photos/seed/sunce/600/400", "hint": "sun" },
+    "Š": { "url": "https://picsum.photos/seed/suma/600/400", "hint": "forest" },
+    "T": { "url": "https://picsum.photos/seed/trava/600/400", "hint": "grass" },
+    "U": { "url": "https://picsum.photos/seed/uho/600/400", "hint": "ear" },
+    "V": { "url": "https://picsum.photos/seed/voda/600/400", "hint": "water" },
+    "Z": { "url": "https://picsum.photos/seed/zebra/600/400", "hint": "zebra" },
+    "Ž": { "url": "https://picsum.photos/seed/zaba/600/400", "hint": "frog" }
   }
 }

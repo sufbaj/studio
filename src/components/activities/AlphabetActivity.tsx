@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import { PlusCircle, Trash2 } from 'lucide-react';
+import { PlusCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { setImage, getAllImages } from '@/lib/db';
 import placeholderImages from '@/lib/placeholder-images.json';
@@ -89,11 +89,12 @@ export function AlphabetActivity() {
         <h2 className="text-3xl font-headline font-bold mb-2">{s.alphabetTitle}</h2>
         <p className="text-muted-foreground mb-6">{s.alphabetDescription}</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {alphabet.map(({ letter }, index) => {
+            {alphabet.map(({ letter, exampleWord }, index) => {
               const letterKey = Array.isArray(letter) ? letter[0] : letter;
               const storageKey = getStorageKey(language, grade, letterKey);
-              const placeholderKey = `${language}-${grade}-${letterKey}`;
-              const imageSrc = (storageKey && images[storageKey]) || (placeholderImages.alphabet as Record<string, string>)[placeholderKey];
+              const placeholderKey = letterKey as keyof typeof placeholderImages.alphabet;
+              const imageSrc = (storageKey && images[storageKey]) || placeholderImages.alphabet[placeholderKey]?.url;
+              const hint = placeholderImages.alphabet[placeholderKey]?.hint;
 
               return (
               <Card key={`${letterKey}-${index}`} className="flex flex-col items-center justify-center text-center">
@@ -108,7 +109,7 @@ export function AlphabetActivity() {
                   <CardContent className="p-4 w-full aspect-square">
                       <div
                           className={cn(
-                              "w-full h-full rounded-md border-2 border-dashed flex items-center justify-center bg-muted/50 relative",
+                              "w-full h-full rounded-md border-2 border-dashed flex items-center justify-center bg-muted/50 relative overflow-hidden",
                               viewMode === 'teacher' && "cursor-pointer hover:border-primary hover:bg-muted"
                           )}
                           onClick={() => handleImageClick(letterKey)}
@@ -116,9 +117,11 @@ export function AlphabetActivity() {
                           {imageSrc ? (
                               <Image
                                   src={imageSrc}
-                                  alt={`Slika za slovo ${letterKey}`}
+                                  alt={`Slika za slovo ${letterKey}: ${exampleWord}`}
                                   fill
-                                  className="object-cover rounded-md"
+                                  sizes="200px"
+                                  className="object-cover"
+                                  data-ai-hint={hint}
                               />
                           ) : (
                               viewMode === 'teacher' && <PlusCircle className="w-10 h-10 text-muted-foreground" />
