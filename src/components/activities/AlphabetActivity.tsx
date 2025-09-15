@@ -11,6 +11,16 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
+const gradientClasses = [
+    'from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50',
+    'from-green-100 to-green-200 dark:from-green-900/50 dark:to-green-800/50',
+    'from-yellow-100 to-yellow-200 dark:from-yellow-900/50 dark:to-yellow-800/50',
+    'from-red-100 to-red-200 dark:from-red-900/50 dark:to-red-800/50',
+    'from-purple-100 to-purple-200 dark:from-purple-900/50 dark:to-purple-800/50',
+    'from-pink-100 to-pink-200 dark:from-pink-900/50 dark:to-pink-800/50',
+    'from-indigo-100 to-indigo-200 dark:from-indigo-900/50 dark:to-indigo-800/50',
+];
+
 export function AlphabetActivity() {
   const { language, grade } = useAppContext();
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
@@ -63,16 +73,6 @@ export function AlphabetActivity() {
     hover: { scale: 1.05, boxShadow: "0 10px 15px rgba(0, 0, 0, 0.1)" },
     tap: { scale: 0.95 }
   };
-
-  const gradientClasses = [
-    'from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50',
-    'from-green-100 to-green-200 dark:from-green-900/50 dark:to-green-800/50',
-    'from-yellow-100 to-yellow-200 dark:from-yellow-900/50 dark:to-yellow-800/50',
-    'from-red-100 to-red-200 dark:from-red-900/50 dark:to-red-800/50',
-    'from-purple-100 to-purple-200 dark:from-purple-900/50 dark:to-purple-800/50',
-    'from-pink-100 to-pink-200 dark:from-pink-900/50 dark:to-pink-800/50',
-    'from-indigo-100 to-indigo-200 dark:from-indigo-900/50 dark:to-indigo-800/50',
-  ];
 
   return (
     <div className="flex flex-col gap-12">
@@ -127,16 +127,19 @@ export function AlphabetActivity() {
         <ScrollArea className="h-[60vh] pr-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {alphabetWords.map(({ letter, words }, index) => (
-              <Card key={`${letter}-${index}`} className="flex flex-col bg-card/50">
+              <Card key={`${letter}-${index}`} className={cn(
+                "flex flex-col overflow-hidden bg-gradient-to-br",
+                gradientClasses[index % gradientClasses.length]
+              )}>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-5xl font-headline font-bold text-primary">
+                  <CardTitle className="text-5xl font-headline font-bold text-gray-800 dark:text-gray-100">
                     {letter}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                  <ul className="space-y-1 text-gray-700 dark:text-gray-200">
                     {words.map((word, wordIndex) => (
-                      <li key={wordIndex} className="text-lg">{word}</li>
+                      <li key={wordIndex} className="text-lg font-medium">{word}</li>
                     ))}
                   </ul>
                 </CardContent>
