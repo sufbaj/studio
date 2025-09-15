@@ -1,4 +1,7 @@
-
 {
-  "alphabet": {}
+  "alphabet": {
+    "bosnian-1-3-Đ": "https://picsum.photos/seed/djak/600/400",
+    "croatian-1-3-Đ": "https://picsum.photos/seed/djak/600/400",
+    "serbian-1-3-Đ": "https://picsum.photos/seed/djak/600/400"
+  }
 }
