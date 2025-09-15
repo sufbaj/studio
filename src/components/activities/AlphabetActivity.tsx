@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, type ChangeEvent, useEffect } from 'react';
@@ -11,9 +12,8 @@ import {
 } from '@/components/ui/accordion';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
-import { Camera } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { db } from '@/lib/db';
+import { placeholderImages } from '@/lib/placeholder-images.json';
+
 
 const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
     const isBosnian = language === 'bosnian';
@@ -32,88 +32,26 @@ const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
     };
 }
 
-const blobToDataURL = (blob: Blob): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-};
 
 export function AlphabetActivity() {
-  const { language, grade, viewMode } = useAppContext();
+  const { language, grade } = useAppContext();
   const s = getStrings(language);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [activeLetterIndex, setActiveLetterIndex] = useState<number | null>(null);
-  const [images, setImages] = useState<Record<string, string>>({});
 
   const alphabet = (language && grade && data[language][grade].alphabet) || [];
   const alphabetWords = (language && data[language]['1-3'].alphabetWords) || [];
-
-  const storageKey = language && grade ? `alphabetImages-${language}-${grade}` : null;
-  const isStudentView = viewMode === 'student';
-
-  useEffect(() => {
-    const loadImages = async () => {
-      if (!storageKey || isStudentView) return;
-      const storedImages = await db.get(storageKey);
-      if (storedImages) {
-        const imageUrls: Record<string, string> = {};
-        for (const key in storedImages) {
-          if (Object.prototype.hasOwnProperty.call(storedImages, key)) {
-            const blob = storedImages[key];
-            if (blob instanceof Blob) {
-              imageUrls[key] = await blobToDataURL(blob);
-            }
-          }
-        }
-        setImages(imageUrls);
-      }
-    };
-    loadImages();
-  }, [storageKey, isStudentView]);
 
   if (!language || !grade) {
     return null;
   }
 
-  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0] && activeLetterIndex !== null && storageKey) {
-      const letterKey = Array.isArray(alphabet[activeLetterIndex].letter) ? alphabet[activeLetterIndex].letter[0] : alphabet[activeLetterIndex].letter as string;
-      const file = e.target.files[0];
-      
-      const imageUrl = await blobToDataURL(file);
-      setImages(prevImages => ({
-        ...prevImages,
-        [letterKey]: imageUrl,
-      }));
-
-      try {
-        const storedImages = (await db.get(storageKey)) || {};
-        storedImages[letterKey] = file;
-        await db.set(storageKey, storedImages);
-      } catch (error) {
-          console.error("Failed to save images to IndexedDB", error);
-      }
-    }
-  };
-
-  const handlePlaceholderClick = (index: number) => {
-    if (isStudentView) return;
-    setActiveLetterIndex(index);
-    fileInputRef.current?.click();
-  };
+  const getImageForLetter = (letter: string) => {
+    const lowerCaseLetter = letter.toLowerCase();
+    const images = placeholderImages.alphabet as Record<string, string>;
+    return images[lowerCaseLetter] || `https://picsum.photos/seed/${lowerCaseLetter}/200/200`;
+  }
 
   return (
     <div>
-       {!isStudentView && <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleImageChange}
-        className="hidden"
-        accept="image/*"
-      />}
       <div className="mb-12">
         <h2 className="text-3xl font-headline font-bold mb-4">{s.title}</h2>
         <p className="text-muted-foreground mb-6">
@@ -122,13 +60,9 @@ export function AlphabetActivity() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {alphabet.map(({ letter, exampleWord }, index) => {
-            const letterKey = Array.isArray(letter) ? letter[0] : letter as string;
-            const hasLocalImage = !!images[letterKey];
-            const placeholderImageUrl = `https://picsum.photos/seed/${letterKey}/96/96`;
+            const letterKey = (Array.isArray(letter) ? letter[0] : letter) as string;
+            const imageUrl = getImageForLetter(letterKey);
             
-            const imageUrl = isStudentView ? placeholderImageUrl : (hasLocalImage ? images[letterKey] : '');
-            const showImage = isStudentView || hasLocalImage;
-
             return (
               <Card
                 key={index}
@@ -143,19 +77,17 @@ export function AlphabetActivity() {
                       {Array.isArray(letter) ? letter[1] : ''}
                     </span>
                   </div>
-
-                  <Button
-                    variant="ghost"
-                    className="w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden disabled:opacity-100"
-                    onClick={() => handlePlaceholderClick(index)}
-                    disabled={isStudentView}
-                  >
-                    {showImage ? (
-                      <Image src={imageUrl} alt={exampleWord} width={96} height={96} className="object-cover w-full h-full" />
-                    ) : (
-                      !isStudentView && <Camera className="w-8 h-8 text-muted-foreground" />
-                    )}
-                  </Button>
+                  
+                  <div className="w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden">
+                    <Image 
+                      src={imageUrl} 
+                      alt={exampleWord} 
+                      width={96} 
+                      height={96} 
+                      className="object-cover w-full h-full" 
+                      data-ai-hint={exampleWord.toLowerCase()}
+                    />
+                  </div>
 
                   <p className="font-semibold text-lg text-center">{exampleWord}</p>
                 </CardContent>
