@@ -37,9 +37,11 @@ export function AlphabetActivity() {
         return getStorageKeyCallback(letterKey.toLowerCase()) || '';
     }).filter(Boolean);
 
-    getImages(keys).then(images => {
-        setCustomImages(images);
-    });
+    if (keys.length > 0) {
+        getImages(keys).then(images => {
+            setCustomImages(images);
+        });
+    }
 
   }, [language, grade, getStorageKeyCallback]);
 
@@ -63,19 +65,19 @@ export function AlphabetActivity() {
   };
   
   const handleImageContainerClick = (e: React.MouseEvent, letterKey: string) => {
-    if (!isTeacherMode) {
+    if (isTeacherMode) {
+      setSelectedLetterKey(letterKey.toLowerCase());
+      fileInputRef.current?.click();
+    } else {
       const imageUrl = getImageForLetter(letterKey);
       window.open(imageUrl, '_blank');
-      return;
     }
-    
-    // Prevent file dialog from opening if clicking on the new tab link
-    if ((e.target as HTMLElement).tagName === 'A') {
-        return;
-    }
-
-    setSelectedLetterKey(letterKey.toLowerCase());
-    fileInputRef.current?.click();
+  };
+  
+  const openImageInNewTab = (e: React.MouseEvent, letterKey: string) => {
+    e.stopPropagation(); // Prevent triggering the edit mode
+    const imageUrl = getImageForLetter(letterKey);
+    window.open(imageUrl, '_blank');
   };
 
   const getStrings = (language: 'bosnian' | 'croatian' | 'serbian' | null) => {
@@ -147,10 +149,10 @@ export function AlphabetActivity() {
                   </div>
 
                   <div 
-                    onClick={(e) => handleImageContainerClick(e, letterKey)}
+                    onClick={(e) => isTeacherMode ? handleImageContainerClick(e, letterKey) : openImageInNewTab(e, letterKey)}
                     className={cn(
                         "w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden relative group",
-                        isTeacherMode ? "cursor-pointer" : "cursor-default"
+                        "cursor-pointer"
                     )}
                   >
                     <Image
