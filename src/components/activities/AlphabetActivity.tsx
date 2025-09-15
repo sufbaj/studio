@@ -24,20 +24,24 @@ export function AlphabetActivity() {
   const [customImages, setCustomImages] = useState<Record<string, string>>({});
   const isTeacherMode = viewMode === 'teacher';
 
+  const getStorageKeyCallback = useCallback((letterKey: string) => {
+    return getStorageKey(language, grade, letterKey);
+  }, [language, grade]);
+
   useEffect(() => {
     if (!language || !grade) return;
     
     const alphabet = data[language]?.[grade]?.alphabet || [];
     const keys = alphabet.map(item => {
         const letterKey = (Array.isArray(item.letter) ? item.letter[0] : item) as string;
-        return getStorageKey(language, grade, letterKey.toLowerCase()) || '';
+        return getStorageKeyCallback(letterKey.toLowerCase()) || '';
     }).filter(Boolean);
 
     getImages(keys).then(images => {
         setCustomImages(images);
     });
 
-  }, [language, grade]);
+  }, [language, grade, getStorageKeyCallback]);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files || event.target.files.length === 0 || !selectedLetterKey) {
@@ -48,7 +52,7 @@ export function AlphabetActivity() {
 
     reader.onloadend = () => {
       const base64String = reader.result as string;
-      const storageKey = getStorageKey(language, grade, selectedLetterKey);
+      const storageKey = getStorageKeyCallback(selectedLetterKey);
       if (storageKey) {
         setImage(storageKey, base64String).then(() => {
           setCustomImages(prev => ({ ...prev, [storageKey]: base64String }));
@@ -58,8 +62,18 @@ export function AlphabetActivity() {
     reader.readAsDataURL(file);
   };
   
-  const handleCardClick = (letterKey: string) => {
-    if (!isTeacherMode) return;
+  const handleImageContainerClick = (e: React.MouseEvent, letterKey: string) => {
+    if (!isTeacherMode) {
+      const imageUrl = getImageForLetter(letterKey);
+      window.open(imageUrl, '_blank');
+      return;
+    }
+    
+    // Prevent file dialog from opening if clicking on the new tab link
+    if ((e.target as HTMLElement).tagName === 'A') {
+        return;
+    }
+
     setSelectedLetterKey(letterKey.toLowerCase());
     fileInputRef.current?.click();
   };
@@ -87,7 +101,7 @@ export function AlphabetActivity() {
 
   const getImageForLetter = (letter: string) => {
     const lowerCaseLetter = letter.toLowerCase();
-    const storageKey = getStorageKey(language, grade, lowerCaseLetter);
+    const storageKey = getStorageKeyCallback(lowerCaseLetter);
     
     if (storageKey && customImages[storageKey]) {
         return customImages[storageKey];
@@ -120,8 +134,7 @@ export function AlphabetActivity() {
             return (
               <Card 
                 key={index} 
-                className={cn("transition-shadow hover:shadow-lg", isTeacherMode && "cursor-pointer")}
-                onClick={() => isTeacherMode && handleCardClick(letterKey)}
+                className="transition-shadow hover:shadow-lg overflow-hidden"
               >
                 <CardContent className="flex flex-col items-center justify-between p-4 aspect-square">
                   <div className="flex items-baseline">
@@ -133,7 +146,13 @@ export function AlphabetActivity() {
                     </span>
                   </div>
 
-                  <div className="w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden relative group">
+                  <div 
+                    onClick={(e) => handleImageContainerClick(e, letterKey)}
+                    className={cn(
+                        "w-24 h-24 bg-muted rounded-lg my-2 flex items-center justify-center p-0 overflow-hidden relative group",
+                        isTeacherMode ? "cursor-pointer" : "cursor-default"
+                    )}
+                  >
                     <Image
                       src={imageUrl}
                       alt={exampleWord}
