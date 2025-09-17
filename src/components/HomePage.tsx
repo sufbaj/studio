@@ -120,7 +120,7 @@ export function HomePage() {
           )}
         </AnimatePresence>
       </div>
-      <p className="absolute bottom-4 text-md text-muted-foreground">Sufjan Bajrić</p>
+      <p className="absolute bottom-4 text-md text-muted-foreground">sufjan bajrić</p>
     </main>
   );
 }
